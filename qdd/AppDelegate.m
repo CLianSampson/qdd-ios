@@ -8,6 +8,9 @@
 
 #import "AppDelegate.h"
 #import "MainVC.h"
+#import "LeftVC.h"
+#import "RightVC.h"
+#import "RESideMenu.h"
 
 @interface AppDelegate ()
 
@@ -19,9 +22,19 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
-    MainVC *vc = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:vc];
-    self.window.rootViewController=nav;
+    MainVC *VC = [[MainVC alloc]init];
+    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+   
+    
+    LeftVC *leftVC = [[LeftVC alloc] init];
+    RightVC *rightVC = [[RightVC alloc] init];
+    
+     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    
+    
+    self.window.rootViewController=MenuVC;
+    
+     MenuVC.contentViewScaleValue=0.6;
     [self.window makeKeyAndVisible];
     
     return YES;

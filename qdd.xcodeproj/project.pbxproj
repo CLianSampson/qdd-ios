@@ -15,8 +15,6 @@
 		1831BCBA1E575CCA00AAE0E5 /* qddUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCB91E575CCA00AAE0E5 /* qddUITests.m */; };
 		1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */; };
 		1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCCC1E575E0A00AAE0E5 /* MainVC.m */; };
-		1831BCF91E575E0A00AAE0E5 /* SencondVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCCE1E575E0A00AAE0E5 /* SencondVC.m */; };
-		1831BCFA1E575E0A00AAE0E5 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCD01E575E0A00AAE0E5 /* ViewController.m */; };
 		1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCD31E575E0A00AAE0E5 /* AFNetRequest.m */; };
 		1831BCFC1E575E0A00AAE0E5 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1831BCD61E575E0A00AAE0E5 /* Accelerate.framework */; };
 		1831BCFD1E575E0A00AAE0E5 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1831BCD71E575E0A00AAE0E5 /* CFNetwork.framework */; };
@@ -36,6 +34,9 @@
 		1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF11E575E0A00AAE0E5 /* RECommonFunctions.m */; };
 		1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */; };
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
+		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
+		18DC3A5C1E596C4500151834 /* RightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A5B1E596C4500151834 /* RightVC.m */; };
+		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,10 +74,6 @@
 		1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BaseVC.m; sourceTree = "<group>"; };
 		1831BCCB1E575E0A00AAE0E5 /* MainVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainVC.h; sourceTree = "<group>"; };
 		1831BCCC1E575E0A00AAE0E5 /* MainVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainVC.m; sourceTree = "<group>"; };
-		1831BCCD1E575E0A00AAE0E5 /* SencondVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SencondVC.h; sourceTree = "<group>"; };
-		1831BCCE1E575E0A00AAE0E5 /* SencondVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SencondVC.m; sourceTree = "<group>"; };
-		1831BCCF1E575E0A00AAE0E5 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		1831BCD01E575E0A00AAE0E5 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		1831BCD21E575E0A00AAE0E5 /* AFNetRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AFNetRequest.h; sourceTree = "<group>"; };
 		1831BCD31E575E0A00AAE0E5 /* AFNetRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AFNetRequest.m; sourceTree = "<group>"; };
 		1831BCD61E575E0A00AAE0E5 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accelerate.framework; sourceTree = "<group>"; };
@@ -107,6 +104,13 @@
 		1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		1831BCF41E575E0A00AAE0E5 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		18DC3A571E596C2200151834 /* LeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftVC.h; sourceTree = "<group>"; };
+		18DC3A581E596C2200151834 /* LeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftVC.m; sourceTree = "<group>"; };
+		18DC3A5A1E596C4500151834 /* RightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightVC.h; sourceTree = "<group>"; };
+		18DC3A5B1E596C4500151834 /* RightVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RightVC.m; sourceTree = "<group>"; };
+		18DC3A611E5971AC00151834 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
+		18DC3A681E598D7400151834 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
+		18DC3A691E598D7400151834 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -164,6 +168,7 @@
 		1831BC931E575CCA00AAE0E5 /* qdd */ = {
 			isa = PBXGroup;
 			children = (
+				18DC3A5F1E59707900151834 /* util */,
 				1831BCC71E575E0A00AAE0E5 /* category */,
 				1831BCC81E575E0A00AAE0E5 /* controller */,
 				1831BCD11E575E0A00AAE0E5 /* http */,
@@ -221,10 +226,10 @@
 				1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */,
 				1831BCCB1E575E0A00AAE0E5 /* MainVC.h */,
 				1831BCCC1E575E0A00AAE0E5 /* MainVC.m */,
-				1831BCCD1E575E0A00AAE0E5 /* SencondVC.h */,
-				1831BCCE1E575E0A00AAE0E5 /* SencondVC.m */,
-				1831BCCF1E575E0A00AAE0E5 /* ViewController.h */,
-				1831BCD01E575E0A00AAE0E5 /* ViewController.m */,
+				18DC3A571E596C2200151834 /* LeftVC.h */,
+				18DC3A581E596C2200151834 /* LeftVC.m */,
+				18DC3A5A1E596C4500151834 /* RightVC.h */,
+				18DC3A5B1E596C4500151834 /* RightVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -314,8 +319,18 @@
 		1831BCF61E575E0A00AAE0E5 /* view */ = {
 			isa = PBXGroup;
 			children = (
+				18DC3A681E598D7400151834 /* MessageCell.h */,
+				18DC3A691E598D7400151834 /* MessageCell.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		18DC3A5F1E59707900151834 /* util */ = {
+			isa = PBXGroup;
+			children = (
+				18DC3A611E5971AC00151834 /* Macro.h */,
+			);
+			path = util;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,18 +466,19 @@
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
-				1831BCFA1E575E0A00AAE0E5 /* ViewController.m in Sources */,
+				18DC3A591E596C2200151834 /* LeftVC.m in Sources */,
 				1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */,
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
-				1831BCF91E575E0A00AAE0E5 /* SencondVC.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				1831BD0A1E575E0A00AAE0E5 /* README.md in Sources */,
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
+				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
+				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,
 				1831BD031E575E0A00AAE0E5 /* AFHTTPSessionManager.m in Sources */,
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 			);
@@ -688,6 +704,7 @@
 				1831BCC01E575CCA00AAE0E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1831BCC11E575CCA00AAE0E5 /* Build configuration list for PBXNativeTarget "qddTests" */ = {
 			isa = XCConfigurationList;
@@ -696,6 +713,7 @@
 				1831BCC31E575CCA00AAE0E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		1831BCC41E575CCA00AAE0E5 /* Build configuration list for PBXNativeTarget "qddUITests" */ = {
 			isa = XCConfigurationList;
@@ -704,6 +722,7 @@
 				1831BCC61E575CCA00AAE0E5 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
