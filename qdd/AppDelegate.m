@@ -11,6 +11,7 @@
 #import "LeftVC.h"
 #import "RightVC.h"
 #import "RESideMenu.h"
+#import "Macro.h"
 
 @interface AppDelegate ()
 
@@ -29,12 +30,14 @@
     LeftVC *leftVC = [[LeftVC alloc] init];
     RightVC *rightVC = [[RightVC alloc] init];
     
+    
+    
      RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
     
     
     self.window.rootViewController=MenuVC;
     
-     MenuVC.contentViewScaleValue=0.6;
+     MenuVC.contentViewScaleValue=0.69;
     [self.window makeKeyAndVisible];
     
     return YES;

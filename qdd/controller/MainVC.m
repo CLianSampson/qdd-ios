@@ -16,10 +16,13 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
+    [self.view addSubview:_label];
+    [self.view addSubview:_rightButton];
 }
 
 -(void)viewDidLoad{
-    
+    self.view.backgroundColor=RGBColor(233, 233, 233);
+
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -27,19 +30,19 @@
     [leftButton addTarget:self action:@selector(showLeft) forControlEvents:UIControlEventTouchUpInside];
     
     
-    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-22-30*WIDTH_SCALE, 31, 22, 22)];
-    [self.view addSubview:rightButton];
-    [rightButton setBackgroundImage:[UIImage imageNamed:@"消息"] forState:UIControlStateNormal];
-    [rightButton addTarget:self action:@selector(showRight) forControlEvents:UIControlEventTouchUpInside];
+    _rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-22-30*WIDTH_SCALE, 31, 22, 22)];
+    [self.view addSubview:_rightButton];
+    [_rightButton setBackgroundImage:[UIImage imageNamed:@"消息"] forState:UIControlStateNormal];
+    [_rightButton addTarget:self action:@selector(showRight) forControlEvents:UIControlEventTouchUpInside];
     
     
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
-    label.text=@"签多多";
-    label.textAlignment=UITextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:17];
+    _label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
+    _label.text=@"签多多";
+    _label.textAlignment=UITextAlignmentCenter;
+    _label.font=[UIFont systemFontOfSize:17];
     
-    [self.view addSubview:label];
+    [self.view addSubview:_label];
     
     UIScrollView *scrollView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*3, 120)];
     scrollView.backgroundColor=[UIColor redColor];
@@ -50,11 +53,15 @@
 
 
 -(void)showLeft{
+   
     [self presentLeftMenuViewController:nil];
 }
 
 
 -(void)showRight{
+    [_label removeFromSuperview];
+    [_rightButton removeFromSuperview];
+    
     RightVC *vc = [[RightVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
     

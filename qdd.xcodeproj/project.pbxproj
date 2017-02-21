@@ -37,6 +37,7 @@
 		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
 		18DC3A5C1E596C4500151834 /* RightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A5B1E596C4500151834 /* RightVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
+		18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF03421E5C80CC00A2093E /* MessageDetailVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,6 +112,8 @@
 		18DC3A611E5971AC00151834 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		18DC3A681E598D7400151834 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		18DC3A691E598D7400151834 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
+		18EF03411E5C80CC00A2093E /* MessageDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailVC.h; sourceTree = "<group>"; };
+		18EF03421E5C80CC00A2093E /* MessageDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -230,6 +233,8 @@
 				18DC3A581E596C2200151834 /* LeftVC.m */,
 				18DC3A5A1E596C4500151834 /* RightVC.h */,
 				18DC3A5B1E596C4500151834 /* RightVC.m */,
+				18EF03411E5C80CC00A2093E /* MessageDetailVC.h */,
+				18EF03421E5C80CC00A2093E /* MessageDetailVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -471,6 +476,7 @@
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
+				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
