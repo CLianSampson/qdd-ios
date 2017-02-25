@@ -34,6 +34,15 @@
 		1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF11E575E0A00AAE0E5 /* RECommonFunctions.m */; };
 		1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */; };
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
+		185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03111E61412B00EB9325 /* ShoppingVC.m */; };
+		185A03151E61415000EB9325 /* MySignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03141E61415000EB9325 /* MySignVC.m */; };
+		185A03181E61415E00EB9325 /* ContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03171E61415E00EB9325 /* ContactVC.m */; };
+		185A031B1E61416B00EB9325 /* MyOrderVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A031A1E61416B00EB9325 /* MyOrderVC.m */; };
+		185A031E1E61417900EB9325 /* SetVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A031D1E61417900EB9325 /* SetVC.m */; };
+		185A03211E6165DE00EB9325 /* SetView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03201E6165DE00EB9325 /* SetView.m */; };
+		185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03241E6173C300EB9325 /* ShoppingDetailVC.m */; };
+		185A032C1E618AEE00EB9325 /* PayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032B1E618AEE00EB9325 /* PayVC.m */; };
+		185A032F1E61916700EB9325 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032E1E61916700EB9325 /* PayView.m */; };
 		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
 		18DC3A5C1E596C4500151834 /* RightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A5B1E596C4500151834 /* RightVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
@@ -105,6 +114,24 @@
 		1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		1831BCF41E575E0A00AAE0E5 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
+		185A03111E61412B00EB9325 /* ShoppingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingVC.m; sourceTree = "<group>"; };
+		185A03131E61415000EB9325 /* MySignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignVC.h; sourceTree = "<group>"; };
+		185A03141E61415000EB9325 /* MySignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignVC.m; sourceTree = "<group>"; };
+		185A03161E61415E00EB9325 /* ContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactVC.h; sourceTree = "<group>"; };
+		185A03171E61415E00EB9325 /* ContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactVC.m; sourceTree = "<group>"; };
+		185A03191E61416B00EB9325 /* MyOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderVC.h; sourceTree = "<group>"; };
+		185A031A1E61416B00EB9325 /* MyOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderVC.m; sourceTree = "<group>"; };
+		185A031C1E61417900EB9325 /* SetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVC.h; sourceTree = "<group>"; };
+		185A031D1E61417900EB9325 /* SetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVC.m; sourceTree = "<group>"; };
+		185A031F1E6165DE00EB9325 /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
+		185A03201E6165DE00EB9325 /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
+		185A03231E6173C300EB9325 /* ShoppingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingDetailVC.h; sourceTree = "<group>"; };
+		185A03241E6173C300EB9325 /* ShoppingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingDetailVC.m; sourceTree = "<group>"; };
+		185A032A1E618AEE00EB9325 /* PayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayVC.h; sourceTree = "<group>"; };
+		185A032B1E618AEE00EB9325 /* PayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayVC.m; sourceTree = "<group>"; };
+		185A032D1E61916700EB9325 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
+		185A032E1E61916700EB9325 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
 		18DC3A571E596C2200151834 /* LeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftVC.h; sourceTree = "<group>"; };
 		18DC3A581E596C2200151834 /* LeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftVC.m; sourceTree = "<group>"; };
 		18DC3A5A1E596C4500151834 /* RightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightVC.h; sourceTree = "<group>"; };
@@ -225,6 +252,9 @@
 		1831BCC81E575E0A00AAE0E5 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				185A03261E618A7800EB9325 /* four */,
+				185A03221E6173A300EB9325 /* three */,
+				185A030F1E6140E900EB9325 /* second */,
 				1831BCC91E575E0A00AAE0E5 /* BaseVC.h */,
 				1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */,
 				1831BCCB1E575E0A00AAE0E5 /* MainVC.h */,
@@ -326,8 +356,47 @@
 			children = (
 				18DC3A681E598D7400151834 /* MessageCell.h */,
 				18DC3A691E598D7400151834 /* MessageCell.m */,
+				185A031F1E6165DE00EB9325 /* SetView.h */,
+				185A03201E6165DE00EB9325 /* SetView.m */,
+				185A032D1E61916700EB9325 /* PayView.h */,
+				185A032E1E61916700EB9325 /* PayView.m */,
 			);
 			path = view;
+			sourceTree = "<group>";
+		};
+		185A030F1E6140E900EB9325 /* second */ = {
+			isa = PBXGroup;
+			children = (
+				185A03101E61412B00EB9325 /* ShoppingVC.h */,
+				185A03111E61412B00EB9325 /* ShoppingVC.m */,
+				185A03131E61415000EB9325 /* MySignVC.h */,
+				185A03141E61415000EB9325 /* MySignVC.m */,
+				185A03161E61415E00EB9325 /* ContactVC.h */,
+				185A03171E61415E00EB9325 /* ContactVC.m */,
+				185A03191E61416B00EB9325 /* MyOrderVC.h */,
+				185A031A1E61416B00EB9325 /* MyOrderVC.m */,
+				185A031C1E61417900EB9325 /* SetVC.h */,
+				185A031D1E61417900EB9325 /* SetVC.m */,
+			);
+			name = second;
+			sourceTree = "<group>";
+		};
+		185A03221E6173A300EB9325 /* three */ = {
+			isa = PBXGroup;
+			children = (
+				185A03231E6173C300EB9325 /* ShoppingDetailVC.h */,
+				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
+			);
+			name = three;
+			sourceTree = "<group>";
+		};
+		185A03261E618A7800EB9325 /* four */ = {
+			isa = PBXGroup;
+			children = (
+				185A032A1E618AEE00EB9325 /* PayVC.h */,
+				185A032B1E618AEE00EB9325 /* PayVC.m */,
+			);
+			name = four;
 			sourceTree = "<group>";
 		};
 		18DC3A5F1E59707900151834 /* util */ = {
@@ -471,17 +540,26 @@
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
+				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
 				18DC3A591E596C2200151834 /* LeftVC.m in Sources */,
 				1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */,
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
+				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
+				185A03181E61415E00EB9325 /* ContactVC.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
+				185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */,
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
+				185A03151E61415000EB9325 /* MySignVC.m in Sources */,
+				185A032F1E61916700EB9325 /* PayView.m in Sources */,
+				185A031E1E61417900EB9325 /* SetVC.m in Sources */,
 				1831BD0A1E575E0A00AAE0E5 /* README.md in Sources */,
+				185A031B1E61416B00EB9325 /* MyOrderVC.m in Sources */,
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
+				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,

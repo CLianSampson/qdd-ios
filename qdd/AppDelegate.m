@@ -30,6 +30,7 @@
     LeftVC *leftVC = [[LeftVC alloc] init];
     RightVC *rightVC = [[RightVC alloc] init];
     
+     UINavigationController *leftNav =[[UINavigationController alloc]initWithRootViewController:leftVC];
     
     
      RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];

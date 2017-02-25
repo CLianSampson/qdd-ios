@@ -48,6 +48,10 @@
     scrollView.backgroundColor=[UIColor redColor];
     [self.view addSubview:scrollView];
     
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(100, 300, 100, 100)];
+    button.backgroundColor=[UIColor redColor];
+    [self.view addSubview:button];
+    
 }
 
 

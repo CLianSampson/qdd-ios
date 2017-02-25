@@ -8,14 +8,31 @@
 
 #import "LeftVC.h"
 #import "Macro.h"
+#import "ShoppingVC.h"
+#import "MySignVC.h"
+#import "ContactVC.h"
+#import "MyOrderVC.h"
+#import "SetVC.h"
+#import "RESideMenu.h"
+
+@interface LeftVC ()
+{
+    
+    
+}
+
+@end
+
 
 @implementation LeftVC
 
-//-(void)viewWillAppear:(BOOL)animated{
-//    self.navigationController.navigationBarHidden=NO;
-//}
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden=YES;
+    [self.navigationController.sideMenuViewController hideMenuViewController];
+}
 
 -(void)viewDidLoad{
+    
     self.view.backgroundColor=RGBColor(150 , 150, 150);
     
     UIButton *iconButton = [[UIButton alloc]initWithFrame:CGRectMake(145*WIDTH_SCALE, 119*HEIGHT_SCALE, 77, 77)];
@@ -40,6 +57,145 @@
     verifyText.text=@"已认证";
     [self.view addSubview:verifyText];
     
+    NSLog(@"****************** %f",verifyText.frame.origin.y);
+    NSLog(@"%f",445*SCREEN_WIDTH);
+    
+    CGFloat y =verifyText.frame.origin.y;
+    
+    
+    //以下宽度设置为300是为了居中对齐
+    UIButton *shoppingBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y+114*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    [shoppingBtn setTitle:@"购买套餐" forState:UIControlStateNormal];
+    [shoppingBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    [self.view addSubview:shoppingBtn];
+    
+    
+    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, shoppingBtn.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    [mySignBtn setTitle:@"我的签名" forState:UIControlStateNormal];
+    [mySignBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    [self.view addSubview:mySignBtn];
+
+    
+    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
+    [contactPeopel setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    [self.view addSubview:contactPeopel];
+    
+    
+    UIButton *myOrder = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    [myOrder setTitle:@"我的订单" forState:UIControlStateNormal];
+    [myOrder setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    [self.view addSubview:myOrder];
+    
+    
+    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, myOrder.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    [set setTitle:@"设置" forState:UIControlStateNormal];
+    [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    [self.view addSubview:set];
+    
+    
+    [shoppingBtn addTarget:self action:@selector(shooping) forControlEvents:UIControlEventTouchUpInside];
+    [mySignBtn addTarget:self action:@selector(mySign) forControlEvents:UIControlEventTouchUpInside];
+    [contactPeopel addTarget:self action:@selector(contact) forControlEvents:UIControlEventTouchUpInside];
+    [myOrder addTarget:self action:@selector(myOrder) forControlEvents:UIControlEventTouchUpInside];
+    [set addTarget:self action:@selector(set) forControlEvents:UIControlEventTouchUpInside];
+
+
+}
+
+-(void)shooping{
+    [self.sideMenuViewController hideMenuViewController];
+
+    
+    
+       ShoppingVC *VC = [[ShoppingVC alloc]init];
+//     [self.navigationController.sideMenuViewController setContentViewController:VC];
+//    [self.navigationController pushViewController:VC animated:YES];
+//    [self.sideMenuViewController presentationController];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+    [self presentViewController:VC animated:YES completion:^{
+       
+    }];
+   
+}
+
+
+
+-(void)mySign{
+     [self.sideMenuViewController hideMenuViewController];
+    
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+    MySignVC *VC = [[MySignVC alloc]init];
+    [self presentViewController:VC animated:YES completion:^{
+        
+    }];
+
+}
+
+-(void)contact{
+     [self.sideMenuViewController hideMenuViewController];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+    ContactVC *VC = [[ContactVC alloc]init];
+    [self presentViewController:VC animated:YES completion:^{
+        
+    }];
+}
+
+-(void)myOrder{
+     [self.sideMenuViewController hideMenuViewController];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+    MyOrderVC *VC = [[MyOrderVC alloc]init];
+    [self presentViewController:VC animated:YES completion:^{
+        
+    }];
+
+
+}
+
+
+-(void)set{
+     [self.sideMenuViewController hideMenuViewController];
+    
+    CATransition *transition = [CATransition animation];
+    transition.duration = 0.5;
+    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+    transition.type = kCATransitionPush;
+    transition.subtype = kCATransitionFromLeft;
+    [self.view.window.layer addAnimation:transition forKey:nil];
+    
+    SetVC *VC = [[SetVC alloc]init];
+    [self presentViewController:VC animated:YES completion:^{
+        
+    }];
+
 }
 
 @end
