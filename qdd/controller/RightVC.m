@@ -19,6 +19,8 @@
 }
 
 -(void)viewDidLoad{
+    self.view.backgroundColor=[UIColor whiteColor];
+    
     self.navigationItem.title=@"消息";
     
 //    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"左面返回箭头"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft)];

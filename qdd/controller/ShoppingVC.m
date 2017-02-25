@@ -10,6 +10,7 @@
 #import "Macro.h"
 #import "SetView.h"
 #import "ShoppingDetailVC.h"
+#import "RESideMenu.h"
 
 @interface ShoppingVC ()<SetDelegate>
 {
@@ -117,15 +118,18 @@
 
 
 -(void)showLeft{
-//    [self.navigationController popViewControllerAnimated:YES];
+   
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.3;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
+    
+    [self.sideMenuViewController setContentViewController:self.VC];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 
@@ -133,17 +137,19 @@
 -(void)jumpDetail:(int)setId{
     ShoppingDetailVC *VC = [[ShoppingDetailVC alloc]init];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.5;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
     
     VC.setId=setId;
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
+//    [self presentViewController:VC animated:YES completion:^{
+//        
+//    }];
+    
+    [self.navigationController pushViewController:VC animated:YES];
 
 }
 

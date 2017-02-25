@@ -104,98 +104,79 @@
 }
 
 -(void)shooping{
-    [self.sideMenuViewController hideMenuViewController];
+   
+    ShoppingVC *VC = [[ShoppingVC alloc]init];
+    VC.VC=self.sideMenuViewController.contentViewController;
 
     
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
-       ShoppingVC *VC = [[ShoppingVC alloc]init];
-//     [self.navigationController.sideMenuViewController setContentViewController:VC];
-//    [self.navigationController pushViewController:VC animated:YES];
-//    [self.sideMenuViewController presentationController];
+    [self.sideMenuViewController setContentViewController:nav];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    
-    [self presentViewController:VC animated:YES completion:^{
-       
-    }];
-   
+     [self.sideMenuViewController hideMenuViewController];
 }
 
 
 
 -(void)mySign{
-     [self.sideMenuViewController hideMenuViewController];
-    
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
     
     MySignVC *VC = [[MySignVC alloc]init];
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
+    VC.VC=self.sideMenuViewController.contentViewController;
+    
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    
+    [self.sideMenuViewController hideMenuViewController];
+
 
 }
 
 -(void)contact{
-     [self.sideMenuViewController hideMenuViewController];
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
     
     ContactVC *VC = [[ContactVC alloc]init];
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
+    VC.VC=self.sideMenuViewController.contentViewController;
+    
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    
+    [self.sideMenuViewController hideMenuViewController];
+
 }
 
 -(void)myOrder{
-     [self.sideMenuViewController hideMenuViewController];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
     
     MyOrderVC *VC = [[MyOrderVC alloc]init];
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
+    VC.VC=self.sideMenuViewController.contentViewController;
+    
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    
+    [self.sideMenuViewController hideMenuViewController];
 
 
 }
 
 
 -(void)set{
-     [self.sideMenuViewController hideMenuViewController];
-    
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
+
     
     SetVC *VC = [[SetVC alloc]init];
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
-
+    VC.VC = self.sideMenuViewController.contentViewController;
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    [self.sideMenuViewController hideMenuViewController];
+    
+    
+    
 }
 
 @end

@@ -26,6 +26,8 @@
 }
 
 -(void)viewDidLoad{
+    //解决卡顿问题
+    self.view.backgroundColor=[UIColor whiteColor];
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -118,33 +120,22 @@
 
 
 -(void)showLeft{
-    //    [self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController popViewControllerAnimated:YES];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
+//    CATransition *transition = [CATransition animation];
+//    transition.duration = 0.3;
+//    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
+//    transition.type = kCATransitionPush;
+//    transition.subtype = kCATransitionFromLeft;
+//    [self.view.window.layer addAnimation:transition forKey:nil];
+//    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 
 -(void)pay{
     PayVC *VC = [[PayVC alloc]init];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.5;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    
-    VC.price=0;
-    [self presentViewController:VC animated:YES completion:^{
-        
-    }];
-
+    [self.navigationController pushViewController:VC animated:YES];
     
 }
 

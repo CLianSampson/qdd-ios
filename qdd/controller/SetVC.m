@@ -8,6 +8,7 @@
 
 #import "SetVC.h"
 #import "Macro.h"
+#import "RESideMenu.h"
 
 @implementation SetVC
 
@@ -38,16 +39,12 @@
 
 
 -(void)showLeft{
-    //    [self.navigationController popViewControllerAnimated:YES];
+       
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
+    [self.sideMenuViewController setContentViewController:self.VC];
+    [self.sideMenuViewController hideMenuViewController];
+    
+   }
 
 
 @end

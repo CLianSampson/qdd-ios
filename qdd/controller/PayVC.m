@@ -19,6 +19,7 @@
 }
 
 -(void)viewDidLoad{
+    self.view.backgroundColor=[UIColor whiteColor];
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -68,15 +69,8 @@
 
 
 -(void)showLeft{
-    //    [self.navigationController popViewControllerAnimated:YES];
+    [self.navigationController popViewControllerAnimated:YES];
     
-    CATransition *transition = [CATransition animation];
-    transition.duration = 0.3;
-    transition.timingFunction = [CAMediaTimingFunction functionWithName:kCAMediaTimingFunctionEaseInEaseOut];
-    transition.type = kCATransitionPush;
-    transition.subtype = kCATransitionFromLeft;
-    [self.view.window.layer addAnimation:transition forKey:nil];
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 

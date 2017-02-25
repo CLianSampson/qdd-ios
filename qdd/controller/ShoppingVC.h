@@ -10,4 +10,6 @@
 
 @interface ShoppingVC : BaseVC
 
+@property(nonatomic,strong) UIViewController *VC;
+
 @end

@@ -16,8 +16,7 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
-    [self.view addSubview:_label];
-    [self.view addSubview:_rightButton];
+   
 }
 
 -(void)viewDidLoad{
@@ -63,8 +62,6 @@
 
 
 -(void)showRight{
-    [_label removeFromSuperview];
-    [_rightButton removeFromSuperview];
     
     RightVC *vc = [[RightVC alloc]init];
     [self.navigationController pushViewController:vc animated:YES];
