@@ -64,7 +64,25 @@
     
     
     PayView *weChat = [[PayView alloc]initWithFrame:CGRectMake(0, ailPay.frame.origin.y+ailPay.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
+    weChat.name.text=@"微信";
     [self.view addSubview:weChat];
+    
+    
+    UIButton *confirm = [[UIButton alloc]initWithFrame:CGRectMake(50*WIDTH_SCALE, weChat.frame.origin.y+weChat.frame.size.height+178*HEIGHT_SCALE, 650*WIDTH_SCALE, 80*HEIGHT_SCALE)];
+    [confirm setTitle:@"确定" forState:UIControlStateNormal];
+    [confirm setBackgroundColor:RGBColor(0, 54, 99)];
+    confirm.titleLabel.font=[UIFont systemFontOfSize:20];
+    [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
+    confirm.layer.cornerRadius=5;
+    [self.view addSubview:confirm];
+    
+    
+    
+}
+
+
+-(void)confirm{
+    
 }
 
 

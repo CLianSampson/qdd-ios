@@ -16,7 +16,7 @@
         _icon = [[UIImageView alloc]initWithFrame:CGRectMake(46*WIDTH_SCALE, (frame.size.height-30)/2, 30, 30)];
         
         
-        _name = [[UILabel alloc]initWithFrame:CGRectMake(_icon.frame.origin.x+_icon.frame.size.width+47*WIDTH_SCALE, frame.size.height, 150, frame.size.height)];
+        _name = [[UILabel alloc]initWithFrame:CGRectMake(_icon.frame.origin.x+_icon.frame.size.width+47*WIDTH_SCALE, 0, 150, frame.size.height)];
         _name.text=@"支付宝";
         _name.textColor=RGBColor(0, 0, 0);
         _name.font=[UIFont systemFontOfSize:18];
@@ -27,9 +27,16 @@
         [_choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
         
         
+        
+        UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height, SCREEN_WIDTH, 1)];
+        line.backgroundColor=RGBColor(201, 201, 201);
+        
+        
+        
         [self addSubview:_icon];
         [self addSubview:_name];
         [self addSubview:_choose];
+        [self addSubview:line];
         
     }
     
