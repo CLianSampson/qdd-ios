@@ -12,4 +12,6 @@
 
 @property(nonatomic,strong) UIViewController *VC;
 
+@property(nonatomic,strong) UILabel *underLabel;
+
 @end

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D921E62ABB50046A127 /* SKGraphicView.m */; };
+		18314D961E62ACAB0046A127 /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D951E62ACAB0046A127 /* SignVC.m */; };
+		18314D991E62C0B20046A127 /* SignImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D981E62C0B20046A127 /* SignImageView.m */; };
 		1831BC961E575CCA00AAE0E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BC951E575CCA00AAE0E5 /* main.m */; };
 		1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BC981E575CCA00AAE0E5 /* AppDelegate.m */; };
 		1831BC9F1E575CCA00AAE0E5 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1831BC9D1E575CCA00AAE0E5 /* Main.storyboard */; };
@@ -67,6 +70,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
+		18314D921E62ABB50046A127 /* SKGraphicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGraphicView.m; sourceTree = "<group>"; };
+		18314D941E62ACAB0046A127 /* SignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignVC.h; sourceTree = "<group>"; };
+		18314D951E62ACAB0046A127 /* SignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignVC.m; sourceTree = "<group>"; };
+		18314D971E62C0B20046A127 /* SignImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignImageView.h; sourceTree = "<group>"; };
+		18314D981E62C0B20046A127 /* SignImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignImageView.m; sourceTree = "<group>"; };
 		1831BC911E575CC900AAE0E5 /* qdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831BC951E575CCA00AAE0E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1831BC971E575CCA00AAE0E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -175,6 +184,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		18314D901E62ABB50046A127 /* DrawingSign */ = {
+			isa = PBXGroup;
+			children = (
+				18314D911E62ABB50046A127 /* SKGraphicView.h */,
+				18314D921E62ABB50046A127 /* SKGraphicView.m */,
+			);
+			path = DrawingSign;
+			sourceTree = "<group>";
+		};
 		1831BC881E575CC900AAE0E5 = {
 			isa = PBXGroup;
 			children = (
@@ -302,6 +320,7 @@
 		1831BCDD1E575E0A00AAE0E5 /* thirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				18314D901E62ABB50046A127 /* DrawingSign */,
 				1831BCDE1E575E0A00AAE0E5 /* AFNetworking */,
 				1831BCEC1E575E0A00AAE0E5 /* RESideMenu */,
 			);
@@ -360,6 +379,8 @@
 				185A03201E6165DE00EB9325 /* SetView.m */,
 				185A032D1E61916700EB9325 /* PayView.h */,
 				185A032E1E61916700EB9325 /* PayView.m */,
+				18314D971E62C0B20046A127 /* SignImageView.h */,
+				18314D981E62C0B20046A127 /* SignImageView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -386,6 +407,8 @@
 			children = (
 				185A03231E6173C300EB9325 /* ShoppingDetailVC.h */,
 				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
+				18314D941E62ACAB0046A127 /* SignVC.h */,
+				18314D951E62ACAB0046A127 /* SignVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -539,7 +562,9 @@
 			files = (
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
+				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
+				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
 				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
 				18DC3A591E596C2200151834 /* LeftVC.m in Sources */,
 				1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */,
@@ -563,6 +588,7 @@
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,
+				18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */,
 				1831BD031E575E0A00AAE0E5 /* AFHTTPSessionManager.m in Sources */,
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 			);
