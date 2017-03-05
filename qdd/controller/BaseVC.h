@@ -10,4 +10,7 @@
 
 @interface BaseVC : UIViewController
 
+
+-(void)createBackgroungView;
+
 @end

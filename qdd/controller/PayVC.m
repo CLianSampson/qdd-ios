@@ -60,11 +60,14 @@
     
     
     PayView *ailPay = [[PayView alloc]initWithFrame:CGRectMake(0, type.frame.origin.y+type.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
+    [ailPay.icon setImage:[UIImage imageNamed:@"支付宝图标"]];
     [self.view addSubview:ailPay];
+   
     
     
     PayView *weChat = [[PayView alloc]initWithFrame:CGRectMake(0, ailPay.frame.origin.y+ailPay.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
     weChat.name.text=@"微信";
+     [weChat.icon setImage:[UIImage imageNamed:@"微信图标"]];
     [self.view addSubview:weChat];
     
     

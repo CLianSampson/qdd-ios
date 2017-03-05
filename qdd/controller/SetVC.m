@@ -9,6 +9,17 @@
 #import "SetVC.h"
 #import "Macro.h"
 #import "RESideMenu.h"
+#import "AboutVC.h"
+#import "SecurityVC.h"
+#import "UserAccountVC.h"
+
+@interface SetVC()<UITableViewDelegate,UITableViewDataSource>
+
+@property(nonatomic,strong)UITableView *myTableView;
+
+@property(nonatomic,strong)UIButton *logoutButton;
+
+@end
 
 @implementation SetVC
 
@@ -31,10 +42,126 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"设置";
-    label.textAlignment=UITextAlignmentCenter;
+    label.textAlignment=NSTextAlignmentCenter;
     label.font=[UIFont systemFontOfSize:17];
     [self.view addSubview:label];
+    
+    
+    [self creteView];
+    
 }
+
+
+
+-(void)creteView{
+    UIView *background  =[[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    background.backgroundColor=RGBColor(241, 241, 241);
+    [self.view addSubview:background];
+    
+    
+    UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 64+30*HEIGHT_SCALE, SCREEN_WIDTH, 30*HEIGHT_SCALE)];
+    backgroundView.backgroundColor=RGBColor(241, 241, 241);
+    [self.view addSubview:backgroundView];
+    
+    
+    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64+30*HEIGHT_SCALE, SCREEN_WIDTH, 107*3*HEIGHT_SCALE)];
+    _myTableView.delegate=self;
+    _myTableView.dataSource=self;
+    
+    _myTableView.scrollEnabled=NO;
+    
+    [self.view addSubview:_myTableView];
+    
+    
+    _logoutButton=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-300)/2, _myTableView.frame.origin.y+_myTableView.frame.size.height+140*HEIGHT_SCALE, 300, 41)];
+    [_logoutButton setBackgroundImage:[UIImage imageNamed:@"退出登陆"] forState:UIControlStateNormal];
+    [_logoutButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+    
+    [self.view addSubview:_logoutButton];
+}
+
+
+
+
+#pragma mark -tableView dataSourceDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 3;
+}
+
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    switch (indexPath.row) {
+        case 0:
+            cell.textLabel.text=@"账户资料";
+            break;
+            
+        case 1:
+            cell.textLabel.text=@"安全设置";
+            break;
+            
+        case 2:
+            cell.textLabel.text=@"关于签多多";
+            break;
+            
+        default:
+            break;
+    }
+    
+   
+    
+    cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+    
+    return cell;
+}
+
+
+#pragma mark -tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    UIViewController *VC ;
+    
+    switch (indexPath.row) {
+        case 0:
+            VC = [[UserAccountVC alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
+            break;
+            
+        case 1:
+            VC = [[SecurityVC alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
+            break;
+            
+        case 2:
+            VC  =[[AboutVC alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
+            
+            break;
+            
+        default:
+            break;
+    }
+
+    
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return 107*HEIGHT_SCALE;
+}
+
+
+
+
 
 
 
@@ -44,7 +171,11 @@
     [self.sideMenuViewController setContentViewController:self.VC];
     [self.sideMenuViewController hideMenuViewController];
     
-   }
+}
+
+-(void)logout{
+    
+}
 
 
 @end

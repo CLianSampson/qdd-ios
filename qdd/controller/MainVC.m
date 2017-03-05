@@ -38,7 +38,7 @@
     
     _label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     _label.text=@"签多多";
-    _label.textAlignment=UITextAlignmentCenter;
+    _label.textAlignment=NSTextAlignmentCenter;
     _label.font=[UIFont systemFontOfSize:17];
     
     [self.view addSubview:_label];

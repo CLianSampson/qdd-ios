@@ -50,6 +50,17 @@
 		18DC3A5C1E596C4500151834 /* RightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A5B1E596C4500151834 /* RightVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
 		18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF03421E5C80CC00A2093E /* MessageDetailVC.m */; };
+		18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F493F81E6BB0C80033AC03 /* OrderCell.m */; };
+		18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494001E6BD2B50033AC03 /* NSString+PinYin.m */; };
+		18F494041E6BDF100033AC03 /* AddContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494031E6BDF100033AC03 /* AddContactVC.m */; };
+		18F494071E6BE9120033AC03 /* AddContactView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494061E6BE9120033AC03 /* AddContactView.m */; };
+		18F4940D1E6BFFDA0033AC03 /* AboutVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4940C1E6BFFDA0033AC03 /* AboutVC.m */; };
+		18F494101E6C06060033AC03 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4940F1E6C06060033AC03 /* HelpVC.m */; };
+		18F494131E6C086C0033AC03 /* UILabel+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494121E6C086C0033AC03 /* UILabel+Adjust.m */; };
+		18F494161E6C14310033AC03 /* SecurityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494151E6C14310033AC03 /* SecurityVC.m */; };
+		18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494181E6C16BB0033AC03 /* SetPasswordVC.m */; };
+		18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941B1E6C1B9D0033AC03 /* PasswordView.m */; };
+		18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -150,6 +161,28 @@
 		18DC3A691E598D7400151834 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
 		18EF03411E5C80CC00A2093E /* MessageDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailVC.h; sourceTree = "<group>"; };
 		18EF03421E5C80CC00A2093E /* MessageDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailVC.m; sourceTree = "<group>"; };
+		18F493F71E6BB0C80033AC03 /* OrderCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderCell.h; sourceTree = "<group>"; };
+		18F493F81E6BB0C80033AC03 /* OrderCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderCell.m; sourceTree = "<group>"; };
+		18F493FF1E6BD2B50033AC03 /* NSString+PinYin.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+PinYin.h"; sourceTree = "<group>"; };
+		18F494001E6BD2B50033AC03 /* NSString+PinYin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin.m"; sourceTree = "<group>"; };
+		18F494021E6BDF100033AC03 /* AddContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactVC.h; sourceTree = "<group>"; };
+		18F494031E6BDF100033AC03 /* AddContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactVC.m; sourceTree = "<group>"; };
+		18F494051E6BE9120033AC03 /* AddContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactView.h; sourceTree = "<group>"; };
+		18F494061E6BE9120033AC03 /* AddContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactView.m; sourceTree = "<group>"; };
+		18F4940B1E6BFFDA0033AC03 /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
+		18F4940C1E6BFFDA0033AC03 /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
+		18F4940E1E6C06060033AC03 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
+		18F4940F1E6C06060033AC03 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
+		18F494111E6C086C0033AC03 /* UILabel+Adjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Adjust.h"; sourceTree = "<group>"; };
+		18F494121E6C086C0033AC03 /* UILabel+Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Adjust.m"; sourceTree = "<group>"; };
+		18F494141E6C14310033AC03 /* SecurityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityVC.h; sourceTree = "<group>"; };
+		18F494151E6C14310033AC03 /* SecurityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityVC.m; sourceTree = "<group>"; };
+		18F494171E6C16BB0033AC03 /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
+		18F494181E6C16BB0033AC03 /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
+		18F4941A1E6C1B9D0033AC03 /* PasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordView.h; sourceTree = "<group>"; };
+		18F4941B1E6C1B9D0033AC03 /* PasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordView.m; sourceTree = "<group>"; };
+		18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccountVC.h; sourceTree = "<group>"; };
+		18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccountVC.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -263,6 +296,10 @@
 		1831BCC71E575E0A00AAE0E5 /* category */ = {
 			isa = PBXGroup;
 			children = (
+				18F493FF1E6BD2B50033AC03 /* NSString+PinYin.h */,
+				18F494001E6BD2B50033AC03 /* NSString+PinYin.m */,
+				18F494111E6C086C0033AC03 /* UILabel+Adjust.h */,
+				18F494121E6C086C0033AC03 /* UILabel+Adjust.m */,
 			);
 			path = category;
 			sourceTree = "<group>";
@@ -381,6 +418,12 @@
 				185A032E1E61916700EB9325 /* PayView.m */,
 				18314D971E62C0B20046A127 /* SignImageView.h */,
 				18314D981E62C0B20046A127 /* SignImageView.m */,
+				18F493F71E6BB0C80033AC03 /* OrderCell.h */,
+				18F493F81E6BB0C80033AC03 /* OrderCell.m */,
+				18F494051E6BE9120033AC03 /* AddContactView.h */,
+				18F494061E6BE9120033AC03 /* AddContactView.m */,
+				18F4941A1E6C1B9D0033AC03 /* PasswordView.h */,
+				18F4941B1E6C1B9D0033AC03 /* PasswordView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -409,6 +452,14 @@
 				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
 				18314D941E62ACAB0046A127 /* SignVC.h */,
 				18314D951E62ACAB0046A127 /* SignVC.m */,
+				18F494021E6BDF100033AC03 /* AddContactVC.h */,
+				18F494031E6BDF100033AC03 /* AddContactVC.m */,
+				18F4940B1E6BFFDA0033AC03 /* AboutVC.h */,
+				18F4940C1E6BFFDA0033AC03 /* AboutVC.m */,
+				18F494141E6C14310033AC03 /* SecurityVC.h */,
+				18F494151E6C14310033AC03 /* SecurityVC.m */,
+				18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */,
+				18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -418,6 +469,10 @@
 			children = (
 				185A032A1E618AEE00EB9325 /* PayVC.h */,
 				185A032B1E618AEE00EB9325 /* PayVC.m */,
+				18F4940E1E6C06060033AC03 /* HelpVC.h */,
+				18F4940F1E6C06060033AC03 /* HelpVC.m */,
+				18F494171E6C16BB0033AC03 /* SetPasswordVC.h */,
+				18F494181E6C16BB0033AC03 /* SetPasswordVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -560,22 +615,29 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				18F4940D1E6BFFDA0033AC03 /* AboutVC.m in Sources */,
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
+				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
 				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
+				18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */,
 				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
 				18DC3A591E596C2200151834 /* LeftVC.m in Sources */,
 				1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */,
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
+				18F494161E6C14310033AC03 /* SecurityVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
+				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
 				185A03181E61415E00EB9325 /* ContactVC.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
 				185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */,
+				18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */,
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
+				18F494131E6C086C0033AC03 /* UILabel+Adjust.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				185A03151E61415000EB9325 /* MySignVC.m in Sources */,
@@ -583,12 +645,16 @@
 				185A031E1E61417900EB9325 /* SetVC.m in Sources */,
 				1831BD0A1E575E0A00AAE0E5 /* README.md in Sources */,
 				185A031B1E61416B00EB9325 /* MyOrderVC.m in Sources */,
+				18F494101E6C06060033AC03 /* HelpVC.m in Sources */,
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
+				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
+				18F494071E6BE9120033AC03 /* AddContactView.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,
 				18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */,
+				18F494041E6BDF100033AC03 /* AddContactVC.m in Sources */,
 				1831BD031E575E0A00AAE0E5 /* AFHTTPSessionManager.m in Sources */,
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 			);

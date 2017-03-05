@@ -45,6 +45,8 @@
 
 #define RGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/ 255.0 alpha:1]  
 
+#define SepreateRGBColor [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/ 255.0 alpha:1]  
+
 
 #define RGRectMake(view,w,h)  CGRectMake((view).frame.origin.x+(view).frame.size.width, (view).frame.origin.y+(view).frame.size.height, (w)*WIDTH_SCALE, (h)*height)
 
