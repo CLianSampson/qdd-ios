@@ -37,6 +37,7 @@
 		1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF11E575E0A00AAE0E5 /* RECommonFunctions.m */; };
 		1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */; };
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
+		184935D31E6F035200195071 /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184935D21E6F035200195071 /* SignCell.m */; };
 		185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03111E61412B00EB9325 /* ShoppingVC.m */; };
 		185A03151E61415000EB9325 /* MySignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03141E61415000EB9325 /* MySignVC.m */; };
 		185A03181E61415E00EB9325 /* ContactVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03171E61415E00EB9325 /* ContactVC.m */; };
@@ -134,6 +135,8 @@
 		1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		1831BCF41E575E0A00AAE0E5 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		184935D11E6F035200195071 /* SignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
+		184935D21E6F035200195071 /* SignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
 		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
 		185A03111E61412B00EB9325 /* ShoppingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingVC.m; sourceTree = "<group>"; };
 		185A03131E61415000EB9325 /* MySignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignVC.h; sourceTree = "<group>"; };
@@ -424,6 +427,8 @@
 				18F494061E6BE9120033AC03 /* AddContactView.m */,
 				18F4941A1E6C1B9D0033AC03 /* PasswordView.h */,
 				18F4941B1E6C1B9D0033AC03 /* PasswordView.m */,
+				184935D11E6F035200195071 /* SignCell.h */,
+				184935D21E6F035200195071 /* SignCell.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -634,6 +639,7 @@
 				185A03181E61415E00EB9325 /* ContactVC.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
 				185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */,
+				184935D31E6F035200195071 /* SignCell.m in Sources */,
 				18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */,
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,

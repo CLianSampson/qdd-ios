@@ -169,8 +169,8 @@
        
     
     [self.sideMenuViewController setContentViewController:self.VC];
-    [self.sideMenuViewController hideMenuViewController];
-    
+//    [self.sideMenuViewController hideMenuViewController];
+    [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 -(void)logout{

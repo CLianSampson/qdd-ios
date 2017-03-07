@@ -122,6 +122,7 @@
     
     MySignVC *VC = [[MySignVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
+   
     
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
@@ -169,6 +170,7 @@
     
     SetVC *VC = [[SetVC alloc]init];
     VC.VC = self.sideMenuViewController.contentViewController;
+//     VC.VC=self.sideMenuViewController;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
