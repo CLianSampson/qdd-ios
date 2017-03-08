@@ -12,6 +12,7 @@
 #import "RightVC.h"
 #import "RESideMenu.h"
 #import "Macro.h"
+#import "LoginVC.h"
 
 @interface AppDelegate ()
 
@@ -23,22 +24,30 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
-    MainVC *VC = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-   
+//    MainVC *VC = [[MainVC alloc]init];
+//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+//   
+//    
+//    LeftVC *leftVC = [[LeftVC alloc] init];
+//    RightVC *rightVC = [[RightVC alloc] init];
+//    
+//     UINavigationController *leftNav =[[UINavigationController alloc]initWithRootViewController:leftVC];
+//    
+//    
+//     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+//    
+//    
+//    self.window.rootViewController=MenuVC;
+//    
+//     MenuVC.contentViewScaleValue=0.69;
     
-    LeftVC *leftVC = [[LeftVC alloc] init];
-    RightVC *rightVC = [[RightVC alloc] init];
-    
-     UINavigationController *leftNav =[[UINavigationController alloc]initWithRootViewController:leftVC];
     
     
-     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    LoginVC *VC = [[LoginVC alloc]init];
+    self.window.rootViewController=VC;
     
     
-    self.window.rootViewController=MenuVC;
     
-     MenuVC.contentViewScaleValue=0.69;
     [self.window makeKeyAndVisible];
     
     return YES;

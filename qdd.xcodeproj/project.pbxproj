@@ -47,6 +47,8 @@
 		185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03241E6173C300EB9325 /* ShoppingDetailVC.m */; };
 		185A032C1E618AEE00EB9325 /* PayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032B1E618AEE00EB9325 /* PayVC.m */; };
 		185A032F1E61916700EB9325 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032E1E61916700EB9325 /* PayView.m */; };
+		18D9380E1E704836000EC118 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9380D1E704836000EC118 /* LoginVC.m */; };
+		18D938111E705EF0000EC118 /* RegisteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D938101E705EF0000EC118 /* RegisteVC.m */; };
 		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
 		18DC3A5C1E596C4500151834 /* RightVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A5B1E596C4500151834 /* RightVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
@@ -155,6 +157,10 @@
 		185A032B1E618AEE00EB9325 /* PayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayVC.m; sourceTree = "<group>"; };
 		185A032D1E61916700EB9325 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
 		185A032E1E61916700EB9325 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
+		18D9380C1E704836000EC118 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
+		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
+		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
+		18D938101E705EF0000EC118 /* RegisteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteVC.m; sourceTree = "<group>"; };
 		18DC3A571E596C2200151834 /* LeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftVC.h; sourceTree = "<group>"; };
 		18DC3A581E596C2200151834 /* LeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftVC.m; sourceTree = "<group>"; };
 		18DC3A5A1E596C4500151834 /* RightVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RightVC.h; sourceTree = "<group>"; };
@@ -323,6 +329,8 @@
 				18DC3A5B1E596C4500151834 /* RightVC.m */,
 				18EF03411E5C80CC00A2093E /* MessageDetailVC.h */,
 				18EF03421E5C80CC00A2093E /* MessageDetailVC.m */,
+				18D9380C1E704836000EC118 /* LoginVC.h */,
+				18D9380D1E704836000EC118 /* LoginVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -446,6 +454,8 @@
 				185A031A1E61416B00EB9325 /* MyOrderVC.m */,
 				185A031C1E61417900EB9325 /* SetVC.h */,
 				185A031D1E61417900EB9325 /* SetVC.m */,
+				18D9380F1E705EF0000EC118 /* RegisteVC.h */,
+				18D938101E705EF0000EC118 /* RegisteVC.m */,
 			);
 			name = second;
 			sourceTree = "<group>";
@@ -626,6 +636,7 @@
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
+				18D9380E1E704836000EC118 /* LoginVC.m in Sources */,
 				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
 				18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */,
 				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
@@ -653,6 +664,7 @@
 				185A031B1E61416B00EB9325 /* MyOrderVC.m in Sources */,
 				18F494101E6C06060033AC03 /* HelpVC.m in Sources */,
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
+				18D938111E705EF0000EC118 /* RegisteVC.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
 				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,

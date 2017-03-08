@@ -178,7 +178,7 @@
     [self.sideMenuViewController hideMenuViewController];
     
     
-    
+//    [self.sideMenuViewController presentViewController:nav animated:NO completion:nil];
 }
 
 @end
