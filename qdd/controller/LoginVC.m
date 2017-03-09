@@ -126,7 +126,8 @@
 
 -(void)sign{
     RegisteVC *VC = [[RegisteVC alloc]init];
-    [self presentViewController:VC animated:YES completion:nil];
+     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+    [self presentViewController:nav animated:YES completion:nil];
 
 }
 

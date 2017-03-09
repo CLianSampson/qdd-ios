@@ -12,6 +12,11 @@
 @implementation BaseVC
 
 -(void)createBackgroungView{
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 1)];
+    label.backgroundColor=RGBColor(209, 209, 209);
+    [self.view addSubview:label];
+    
+    
     UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     backgroundView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backgroundView];
