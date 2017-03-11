@@ -10,6 +10,10 @@
 #import "Macro.h"
 #import "UILabel+Adjust.h"
 
+@interface RegisteCell()<UITextFieldDelegate>
+
+@end
+
 @implementation RegisteCell
 
 //cell高度为60
@@ -29,6 +33,7 @@
         _textField.textAlignment=NSTextAlignmentLeft;
         _textField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
         
+        _textField.delegate=self;
         [self addSubview:_textField];
         
         _smsCode = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-(30+160)*WIDTH_SCALE, (50-56*HEIGHT_SCALE)/2, 160*WIDTH_SCALE, 56*HEIGHT_SCALE)];
@@ -59,5 +64,10 @@
 }
 
 
+
+//textField delegate
+- (void)textFieldDidEndEditing:(UITextField *)textField{
+    _value = textField.text;
+}
 
 @end

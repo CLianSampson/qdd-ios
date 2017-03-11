@@ -47,6 +47,15 @@
 
 #define SepreateRGBColor [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/ 255.0 alpha:1]  
 
+//系统红色
+#define RedRGBColor [UIColor colorWithRed:255/255.0 green:17/255.0 blue:17/ 255.0 alpha:1]
+
+//系统灰色
+#define GrayRGBColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/ 255.0 alpha:1]
+
+
+
+
 
 #define RGRectMake(view,w,h)  CGRectMake((view).frame.origin.x+(view).frame.size.width, (view).frame.origin.y+(view).frame.size.height, (w)*WIDTH_SCALE, (h)*height)
 

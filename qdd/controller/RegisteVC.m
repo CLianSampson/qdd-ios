@@ -11,6 +11,8 @@
 #import "RegisteCell.h"
 #import "UILabel+Adjust.h"
 #import "RegisteSucessVC.h"
+#import "RegisteFailedVC.h"
+#import "BindMailVC.h"
 
 @interface RegisteVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -22,6 +24,9 @@
 @property(nonatomic,strong)UITableView *myTableView;
 
 @property(nonatomic,assign)int flag;
+
+@property(nonatomic,strong)NSString *account;
+@property(nonatomic,strong)NSString *password;
 
 @end
 
@@ -210,7 +215,17 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-
+//    RegisteCell *cell ;
+//    switch (indexPath.row) {
+//        case 0:
+//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            _account = cell.textField.text;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+    
     return;
 }
 
@@ -223,6 +238,22 @@
 //取消键盘第一响应
 -(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
     NSArray *arry = [_myTableView visibleCells];
+    
+    for (int i=0; i<[arry count]; i++) {
+        RegisteCell *cell = (RegisteCell*)arry[i];
+        [cell.textField resignFirstResponder];
+        
+        if (i==0) {
+            _account = cell.value;
+        }else if (i==2){
+            _password = cell.value;
+        }
+        
+        
+    }
+    
+    
+    
     for (id object in arry) {
         RegisteCell *cell = (RegisteCell*)object;
         [cell.textField resignFirstResponder];
@@ -256,9 +287,38 @@
 
 
 -(void)confirmClick{
-    RegisteSucessVC *VC = [[RegisteSucessVC alloc]init];
-    [self.navigationController pushViewController:VC animated:YES];
-//    [self presentViewController:VC animated:YES completion:nil];
+    
+    if (_flag == 2) {
+        //跳转到企业
+        
+        if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
+            
+            BindMailVC *VC = [[BindMailVC alloc]init];
+            
+            VC.mailAccount = _account;
+            
+            [self.navigationController pushViewController:VC animated:YES];
+        }else{
+            RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
+        }
+        
+        return;
+
+    }
+    
+    
+    
+    if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
+        RegisteSucessVC *VC = [[RegisteSucessVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else{
+        RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+
+    
+    
 }
 
 

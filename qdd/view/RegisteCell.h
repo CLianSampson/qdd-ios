@@ -19,4 +19,6 @@
 
 @property(nonatomic,strong)UILabel *change;
 
+
+@property(nonatomic,strong)NSString *value;
 @end

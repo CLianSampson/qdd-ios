@@ -47,6 +47,8 @@
 		185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03241E6173C300EB9325 /* ShoppingDetailVC.m */; };
 		185A032C1E618AEE00EB9325 /* PayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032B1E618AEE00EB9325 /* PayVC.m */; };
 		185A032F1E61916700EB9325 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032E1E61916700EB9325 /* PayView.m */; };
+		18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D31E73922A00022368 /* RegisteFailedVC.m */; };
+		18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D61E739C7B00022368 /* BindMailVC.m */; };
 		18D9380E1E704836000EC118 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9380D1E704836000EC118 /* LoginVC.m */; };
 		18D938111E705EF0000EC118 /* RegisteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D938101E705EF0000EC118 /* RegisteVC.m */; };
 		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
@@ -159,6 +161,10 @@
 		185A032B1E618AEE00EB9325 /* PayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayVC.m; sourceTree = "<group>"; };
 		185A032D1E61916700EB9325 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
 		185A032E1E61916700EB9325 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
+		18ABF8D21E73922A00022368 /* RegisteFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteFailedVC.h; sourceTree = "<group>"; };
+		18ABF8D31E73922A00022368 /* RegisteFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteFailedVC.m; sourceTree = "<group>"; };
+		18ABF8D51E739C7B00022368 /* BindMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindMailVC.h; sourceTree = "<group>"; };
+		18ABF8D61E739C7B00022368 /* BindMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindMailVC.m; sourceTree = "<group>"; };
 		18D9380C1E704836000EC118 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
@@ -485,6 +491,10 @@
 				18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */,
 				18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */,
 				18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */,
+				18ABF8D21E73922A00022368 /* RegisteFailedVC.h */,
+				18ABF8D31E73922A00022368 /* RegisteFailedVC.m */,
+				18ABF8D51E739C7B00022368 /* BindMailVC.h */,
+				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -657,6 +667,7 @@
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
 				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
+				18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */,
 				18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */,
 				185A03181E61415E00EB9325 /* ContactVC.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
@@ -669,6 +680,7 @@
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */,
+				18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */,
 				185A03151E61415000EB9325 /* MySignVC.m in Sources */,
 				185A032F1E61916700EB9325 /* PayView.m in Sources */,
 				185A031E1E61417900EB9325 /* SetVC.m in Sources */,
