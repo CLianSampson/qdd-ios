@@ -19,15 +19,18 @@
     if (self==[super initWithFrame:frame]) {
         self.backgroundColor=[UIColor whiteColor];
         
-        _password =[[UILabel alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE, 0, 100, 40)];
+        
+        float height = self.frame.size.height;
+        
+        _password =[[UILabel alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE, 0, 100, height)];
         [self addSubview:_password];
         
-        _textField = [[UITextField alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE+100, 0, SCREEN_WIDTH-32*WIDTH_SCALE-100-52*WIDTH_SCALE-14, 40)];
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE+100, 0, SCREEN_WIDTH-32*WIDTH_SCALE-100-52*WIDTH_SCALE-14, height)];
         _textField.placeholder=@"请输入原始密码";
         _textField.delegate=self;
         [self addSubview:_textField];
         
-        _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-52*WIDTH_SCALE-14, (40-14)/2, 14, 14)];
+        _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-52*WIDTH_SCALE-14, (height-14)/2, 14, 14)];
         [_cancelButton setBackgroundImage:[UIImage imageNamed:@"删除密码"] forState:UIControlStateNormal];
         [_cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
 //        [self addSubview:_cancelButton];

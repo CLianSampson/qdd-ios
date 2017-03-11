@@ -45,7 +45,8 @@
 
 #define RGBColor(r, g, b) [UIColor colorWithRed:(r)/255.0 green:(g)/255.0 blue:(b)/ 255.0 alpha:1]  
 
-#define SepreateRGBColor [UIColor colorWithRed:230/255.0 green:230/255.0 blue:230/ 255.0 alpha:1]  
+//分割线颜色 
+#define SepreateRGBColor [UIColor colorWithRed:209/255.0 green:209/255.0 blue:209/ 255.0 alpha:1]
 
 //系统红色
 #define RedRGBColor [UIColor colorWithRed:255/255.0 green:17/255.0 blue:17/ 255.0 alpha:1]
@@ -53,7 +54,12 @@
 //系统灰色
 #define GrayRGBColor [UIColor colorWithRed:102/255.0 green:102/255.0 blue:102/ 255.0 alpha:1]
 
+//文字
+#define TextRGBColor [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/ 255.0 alpha:1]
 
+
+//占位符
+#define PlaceHoderRGBColor [UIColor colorWithRed:172/255.0 green:172/255.0 blue:172/ 255.0 alpha:1]
 
 
 

@@ -9,6 +9,7 @@
 #import "AboutVC.h"
 #import "Macro.h"
 #import "HelpVC.h"
+#import "CommentVC.h"
 
 
 @interface AboutVC()<UITableViewDelegate,UITableViewDataSource>
@@ -125,7 +126,8 @@
             break;
             
         case 1:
-            
+            VC = [[CommentVC alloc]init];
+            [self.navigationController pushViewController:VC animated:YES];
             break;
             
             

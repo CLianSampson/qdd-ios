@@ -49,6 +49,12 @@
 		185A032F1E61916700EB9325 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032E1E61916700EB9325 /* PayView.m */; };
 		18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D31E73922A00022368 /* RegisteFailedVC.m */; };
 		18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D61E739C7B00022368 /* BindMailVC.m */; };
+		18ABF8DA1E73C52E00022368 /* ForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D91E73C52E00022368 /* ForgetPasswordVC.m */; };
+		18ABF8DD1E73CBBA00022368 /* GetVerifyCodeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8DC1E73CBBA00022368 /* GetVerifyCodeView.m */; };
+		18ABF8E01E73D38700022368 /* SetPasswordSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */; };
+		18ABF8E31E73D39800022368 /* SetPasswordFailedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */; };
+		18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */; };
+		18ABF8E91E73FE2700022368 /* CommentVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8E81E73FE2700022368 /* CommentVC.m */; };
 		18D9380E1E704836000EC118 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9380D1E704836000EC118 /* LoginVC.m */; };
 		18D938111E705EF0000EC118 /* RegisteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D938101E705EF0000EC118 /* RegisteVC.m */; };
 		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
@@ -165,6 +171,18 @@
 		18ABF8D31E73922A00022368 /* RegisteFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteFailedVC.m; sourceTree = "<group>"; };
 		18ABF8D51E739C7B00022368 /* BindMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindMailVC.h; sourceTree = "<group>"; };
 		18ABF8D61E739C7B00022368 /* BindMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindMailVC.m; sourceTree = "<group>"; };
+		18ABF8D81E73C52E00022368 /* ForgetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordVC.h; sourceTree = "<group>"; };
+		18ABF8D91E73C52E00022368 /* ForgetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordVC.m; sourceTree = "<group>"; };
+		18ABF8DB1E73CBBA00022368 /* GetVerifyCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVerifyCodeView.h; sourceTree = "<group>"; };
+		18ABF8DC1E73CBBA00022368 /* GetVerifyCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVerifyCodeView.m; sourceTree = "<group>"; };
+		18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordSucessVC.h; sourceTree = "<group>"; };
+		18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordSucessVC.m; sourceTree = "<group>"; };
+		18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordFailedVC.h; sourceTree = "<group>"; };
+		18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordFailedVC.m; sourceTree = "<group>"; };
+		18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordVC.h; sourceTree = "<group>"; };
+		18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordVC.m; sourceTree = "<group>"; };
+		18ABF8E71E73FE2700022368 /* CommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentVC.h; sourceTree = "<group>"; };
+		18ABF8E81E73FE2700022368 /* CommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentVC.m; sourceTree = "<group>"; };
 		18D9380C1E704836000EC118 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
@@ -451,6 +469,8 @@
 				184935D21E6F035200195071 /* SignCell.m */,
 				18FD19C01E718DA600AA54CF /* RegisteCell.h */,
 				18FD19C11E718DA600AA54CF /* RegisteCell.m */,
+				18ABF8DB1E73CBBA00022368 /* GetVerifyCodeView.h */,
+				18ABF8DC1E73CBBA00022368 /* GetVerifyCodeView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -495,6 +515,8 @@
 				18ABF8D31E73922A00022368 /* RegisteFailedVC.m */,
 				18ABF8D51E739C7B00022368 /* BindMailVC.h */,
 				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
+				18ABF8D81E73C52E00022368 /* ForgetPasswordVC.h */,
+				18ABF8D91E73C52E00022368 /* ForgetPasswordVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -508,6 +530,14 @@
 				18F4940F1E6C06060033AC03 /* HelpVC.m */,
 				18F494171E6C16BB0033AC03 /* SetPasswordVC.h */,
 				18F494181E6C16BB0033AC03 /* SetPasswordVC.m */,
+				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
+				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
+				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
+				18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */,
+				18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */,
+				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
+				18ABF8E71E73FE2700022368 /* CommentVC.h */,
+				18ABF8E81E73FE2700022368 /* CommentVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -651,7 +681,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F4940D1E6BFFDA0033AC03 /* AboutVC.m in Sources */,
+				18ABF8E31E73D39800022368 /* SetPasswordFailedVC.m in Sources */,
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
+				18ABF8E01E73D38700022368 /* SetPasswordSucessVC.m in Sources */,
+				18ABF8DA1E73C52E00022368 /* ForgetPasswordVC.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
@@ -668,6 +701,7 @@
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
 				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
 				18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */,
+				18ABF8DD1E73CBBA00022368 /* GetVerifyCodeView.m in Sources */,
 				18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */,
 				185A03181E61415E00EB9325 /* ContactVC.m in Sources */,
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
@@ -690,7 +724,9 @@
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
 				18D938111E705EF0000EC118 /* RegisteVC.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
+				18ABF8E91E73FE2700022368 /* CommentVC.m in Sources */,
 				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
+				18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
 				18F494071E6BE9120033AC03 /* AddContactView.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
