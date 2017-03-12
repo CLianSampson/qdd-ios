@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		180F11851E757DD40082F385 /* PhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11841E757DD40082F385 /* PhotoVC.m */; };
 		1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4491E750A9D003B8865 /* AccountCell.m */; };
 		1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E44C1E751518003B8865 /* BindingMailVC.m */; };
 		1818E4531E753210003B8865 /* MessageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4521E753210003B8865 /* MessageDetailView.m */; };
@@ -99,6 +100,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180F11831E757DD40082F385 /* PhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoVC.h; sourceTree = "<group>"; };
+		180F11841E757DD40082F385 /* PhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoVC.m; sourceTree = "<group>"; };
 		1818E4481E750A9D003B8865 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
 		1818E4491E750A9D003B8865 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
 		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingMailVC.h; sourceTree = "<group>"; };
@@ -540,6 +543,8 @@
 				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
 				18ABF8D81E73C52E00022368 /* ForgetPasswordVC.h */,
 				18ABF8D91E73C52E00022368 /* ForgetPasswordVC.m */,
+				180F11831E757DD40082F385 /* PhotoVC.h */,
+				180F11841E757DD40082F385 /* PhotoVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -724,6 +729,7 @@
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				18F494161E6C14310033AC03 /* SecurityVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
+				180F11851E757DD40082F385 /* PhotoVC.m in Sources */,
 				1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */,
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
 				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
