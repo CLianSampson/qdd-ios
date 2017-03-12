@@ -55,11 +55,11 @@
     
     
     UILabel *upperLine = [[UILabel alloc]initWithFrame:CGRectMake(0,64, SCREEN_WIDTH,  1)];
-    upperLine.backgroundColor=RGBColor(241, 241, 241);
+    upperLine.backgroundColor=SepreateRGBColor;
     [self.view addSubview:upperLine];
     
     UILabel *underLine = [[UILabel alloc]initWithFrame:CGRectMake(0,112, SCREEN_WIDTH,  1)];
-    underLine.backgroundColor=RGBColor(241, 241, 241);
+    underLine.backgroundColor=SepreateRGBColor;
     [self.view addSubview:underLine];
     
     
@@ -67,6 +67,7 @@
 //    allButton.backgroundColor=[UIColor redColor];
     [allButton addTarget:self action:@selector(all) forControlEvents:UIControlEventTouchUpInside];
     [allButton setTitle:@"全部" forState:UIControlStateNormal];
+    allButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
     
     
@@ -74,6 +75,7 @@
 //    unPayButton.backgroundColor=[UIColor yellowColor];
     [unPayButton addTarget:self action:@selector(unPay) forControlEvents:UIControlEventTouchUpInside];
     [unPayButton setTitle:@"未支付" forState:UIControlStateNormal];
+     unPayButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
 
@@ -82,6 +84,7 @@
 //    payButton.backgroundColor=[UIColor greenColor];
     [payButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
     [payButton setTitle:@"已支付" forState:UIControlStateNormal];
+     payButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
 
@@ -95,11 +98,11 @@
     [self.view addSubview:_underLabel];
     
     UILabel *sepreteAll = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 64+49/4, 1, 49/2)];
-    sepreteAll.backgroundColor=RGBColor(241, 241, 241);
+    sepreteAll.backgroundColor=SepreateRGBColor;
     
     
     UILabel *sepretePay = [[UILabel alloc]initWithFrame:CGRectMake(2*SCREEN_WIDTH/3, 64+49/4, 1, 49/2)];
-    sepretePay.backgroundColor=RGBColor(241, 241, 241);
+    sepretePay.backgroundColor=SepreateRGBColor;
     
     [self.view addSubview:sepreteAll];
     [self.view addSubview:sepretePay];

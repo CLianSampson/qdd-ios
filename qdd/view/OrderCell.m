@@ -22,6 +22,7 @@
         
         _type = [[UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, upperBackground.frame.origin.y+45*HEIGHT_SCALE, 200, 13)];
         _type.textColor=RGBColor(0, 0, 0);
+        _type.font=[UIFont boldSystemFontOfSize:13];
         _type.text=@"套餐类型:   个人套餐A";
         [self addSubview:_type];
         
@@ -30,20 +31,24 @@
         _timeDuration.textColor=RGBColor(255, 182, 184);
         _timeDuration.text=@"有效期: 永久";
         _timeDuration.textAlignment=NSTextAlignmentRight;
+        _timeDuration.font=[UIFont systemFontOfSize:11];
         [self addSubview:_timeDuration];
         
         _price = [[UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, _type.frame.origin.y+13+38*HEIGHT_SCALE, SCREEN_WIDTH, 12)];
         _price.text=@"价格: 100元";
         _price.textColor=RGBColor(0, 0, 0);
+        _price.font=[UIFont systemFontOfSize:12];
         [self addSubview:_price];
         
         _useTimes = [[UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, _price.frame.origin.y+_price.frame.size.height+30*HEIGHT_SCALE, 200, 12)];
         _useTimes.text=@"可使用次数: 10次";
+        _useTimes.font=[UIFont systemFontOfSize:12];
         [self addSubview:_useTimes];
         
         _signDuration = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-200-56*WIDTH_SCALE, _price.frame.origin.y+_price.frame.size.height+30*HEIGHT_SCALE, 200, 11)];
         _signDuration.textAlignment=NSTextAlignmentRight;
         _signDuration.text=@"签约有效期: 15天";
+        _signDuration.font=[UIFont systemFontOfSize:11];
         [self addSubview:_signDuration];
         
         
@@ -53,10 +58,12 @@
         
         _orderId = [[UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, middleBackgroubd.frame.origin.y+middleBackgroubd.frame.size.height+32*HEIGHT_SCALE, SCREEN_WIDTH, 12)];
         _orderId.text=@"订单编号: 20170305111111";
+        _orderId.font=[UIFont systemFontOfSize:12];
         [self addSubview:_orderId];
         
         _orderTime = [[UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, _orderId.frame.origin.y+_orderId.frame.size.height+32*HEIGHT_SCALE, SCREEN_WIDTH, 12)];
         _orderTime.text = @"下单时间: 2017-08-08 10:13:13";
+        _orderTime.font=[UIFont systemFontOfSize:12];
         [self addSubview:_orderTime];
         
         UILabel *underBackGround =[[ UILabel alloc]initWithFrame:CGRectMake(56*WIDTH_SCALE, _orderTime.frame.origin.y+_orderTime.frame.size.height+32*HEIGHT_SCALE, SCREEN_WIDTH-56*2*WIDTH_SCALE, 1)];

@@ -44,7 +44,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"联系人";
     label.textAlignment=NSTextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:17];
+    label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
     
     UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-30*WIDTH_SCALE-22, 31, 22, 22)];

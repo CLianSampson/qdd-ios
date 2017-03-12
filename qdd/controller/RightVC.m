@@ -9,6 +9,7 @@
 #import "RightVC.h"
 #import "Macro.h"
 #import "MessageCell.h"
+#import "MessageDetailVC.h"
 
 @implementation RightVC
 
@@ -20,12 +21,7 @@
 
 -(void)viewDidLoad{
     self.view.backgroundColor=[UIColor whiteColor];
-    
-    self.navigationItem.title=@"消息";
-    
-//    UIBarButtonItem *item = [[UIBarButtonItem alloc]initWithImage:[UIImage imageNamed:@"左面返回箭头"] style:UIBarButtonItemStyleBordered target:self action:@selector(showLeft)];
-//    
-//    self.navigationItem.backBarButtonItem=item;
+
     
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
@@ -36,8 +32,8 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"消息";
-    label.textAlignment=UITextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:17];
+    label.textAlignment=NSTextAlignmentCenter;
+    label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
     
 
@@ -78,7 +74,14 @@
 
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MessageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     
+    
+    MessageDetailVC *VC =[[MessageDetailVC alloc]init];
+    VC.mainTitle=cell.mainTitle.text;
+    VC.subTitle=cell.subTitle.text;
+    VC.time=cell.time.text;
+    [self.navigationController pushViewController:VC animated:YES];
 
     
     return;
@@ -86,8 +89,6 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%f",(48+32+26+28+50)*HEIGHT_SCALE);
-    NSLog(@"%f",HEIGHT_SCALE);
     return (48+32+26+28+50)*HEIGHT_SCALE;
 }
 

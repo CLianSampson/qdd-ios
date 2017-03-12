@@ -57,6 +57,10 @@
 //文字
 #define TextRGBColor [UIColor colorWithRed:51/255.0 green:51/255.0 blue:51/ 255.0 alpha:1]
 
+//系统蓝色
+#define BlueRGBColor [UIColor colorWithRed:0/255.0 green:51/255.0 blue:102/ 255.0 alpha:1]
+
+
 
 //占位符
 #define PlaceHoderRGBColor [UIColor colorWithRed:172/255.0 green:172/255.0 blue:172/ 255.0 alpha:1]

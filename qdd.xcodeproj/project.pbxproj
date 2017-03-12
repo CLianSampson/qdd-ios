@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4491E750A9D003B8865 /* AccountCell.m */; };
+		1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E44C1E751518003B8865 /* BindingMailVC.m */; };
+		1818E4531E753210003B8865 /* MessageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4521E753210003B8865 /* MessageDetailView.m */; };
+		1818E4561E754FBE003B8865 /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4551E754FBE003B8865 /* VerifyVC.m */; };
+		1818E4591E75544C003B8865 /* VerifyTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4581E75544C003B8865 /* VerifyTypeView.m */; };
 		18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D921E62ABB50046A127 /* SKGraphicView.m */; };
 		18314D961E62ACAB0046A127 /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D951E62ACAB0046A127 /* SignVC.m */; };
 		18314D991E62C0B20046A127 /* SignImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D981E62C0B20046A127 /* SignImageView.m */; };
@@ -94,6 +99,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		1818E4481E750A9D003B8865 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
+		1818E4491E750A9D003B8865 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
+		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingMailVC.h; sourceTree = "<group>"; };
+		1818E44C1E751518003B8865 /* BindingMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingMailVC.m; sourceTree = "<group>"; };
+		1818E4511E753210003B8865 /* MessageDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailView.h; sourceTree = "<group>"; };
+		1818E4521E753210003B8865 /* MessageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailView.m; sourceTree = "<group>"; };
+		1818E4541E754FBE003B8865 /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVC.h; sourceTree = "<group>"; };
+		1818E4551E754FBE003B8865 /* VerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVC.m; sourceTree = "<group>"; };
+		1818E4571E75544C003B8865 /* VerifyTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTypeView.h; sourceTree = "<group>"; };
+		1818E4581E75544C003B8865 /* VerifyTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTypeView.m; sourceTree = "<group>"; };
 		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
 		18314D921E62ABB50046A127 /* SKGraphicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGraphicView.m; sourceTree = "<group>"; };
 		18314D941E62ACAB0046A127 /* SignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignVC.h; sourceTree = "<group>"; };
@@ -471,6 +486,12 @@
 				18FD19C11E718DA600AA54CF /* RegisteCell.m */,
 				18ABF8DB1E73CBBA00022368 /* GetVerifyCodeView.h */,
 				18ABF8DC1E73CBBA00022368 /* GetVerifyCodeView.m */,
+				1818E4481E750A9D003B8865 /* AccountCell.h */,
+				1818E4491E750A9D003B8865 /* AccountCell.m */,
+				1818E4511E753210003B8865 /* MessageDetailView.h */,
+				1818E4521E753210003B8865 /* MessageDetailView.m */,
+				1818E4571E75544C003B8865 /* VerifyTypeView.h */,
+				1818E4581E75544C003B8865 /* VerifyTypeView.m */,
 			);
 			path = view;
 			sourceTree = "<group>";
@@ -490,6 +511,8 @@
 				185A031D1E61417900EB9325 /* SetVC.m */,
 				18D9380F1E705EF0000EC118 /* RegisteVC.h */,
 				18D938101E705EF0000EC118 /* RegisteVC.m */,
+				1818E4541E754FBE003B8865 /* VerifyVC.h */,
+				1818E4551E754FBE003B8865 /* VerifyVC.m */,
 			);
 			name = second;
 			sourceTree = "<group>";
@@ -538,6 +561,8 @@
 				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
 				18ABF8E71E73FE2700022368 /* CommentVC.h */,
 				18ABF8E81E73FE2700022368 /* CommentVC.m */,
+				1818E44B1E751518003B8865 /* BindingMailVC.h */,
+				1818E44C1E751518003B8865 /* BindingMailVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -685,6 +710,7 @@
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				18ABF8E01E73D38700022368 /* SetPasswordSucessVC.m in Sources */,
 				18ABF8DA1E73C52E00022368 /* ForgetPasswordVC.m in Sources */,
+				1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
@@ -698,6 +724,7 @@
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				18F494161E6C14310033AC03 /* SecurityVC.m in Sources */,
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
+				1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */,
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
 				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
 				18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */,
@@ -714,6 +741,7 @@
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */,
+				1818E4561E754FBE003B8865 /* VerifyVC.m in Sources */,
 				18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */,
 				185A03151E61415000EB9325 /* MySignVC.m in Sources */,
 				185A032F1E61916700EB9325 /* PayView.m in Sources */,
@@ -723,8 +751,10 @@
 				18F494101E6C06060033AC03 /* HelpVC.m in Sources */,
 				1831BD071E575E0A00AAE0E5 /* AFURLResponseSerialization.m in Sources */,
 				18D938111E705EF0000EC118 /* RegisteVC.m in Sources */,
+				1818E4531E753210003B8865 /* MessageDetailView.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
 				18ABF8E91E73FE2700022368 /* CommentVC.m in Sources */,
+				1818E4591E75544C003B8865 /* VerifyTypeView.m in Sources */,
 				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
 				18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,

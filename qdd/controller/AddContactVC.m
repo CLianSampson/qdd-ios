@@ -43,7 +43,7 @@
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"添加";
     label.textAlignment=NSTextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:17];
+    label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
 
     

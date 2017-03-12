@@ -55,6 +55,7 @@
     [self.view addSubview:rightButton];
     [rightButton setTitle:@"完成" forState:UIControlStateNormal];
     [rightButton setTitleColor:RGBColor(51, 51, 51) forState:UIControlStateNormal];
+    rightButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [rightButton addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
     
     

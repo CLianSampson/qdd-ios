@@ -32,8 +32,8 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"我的签名";
-    label.textAlignment=UITextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:17];
+    label.textAlignment=NSTextAlignmentCenter;
+    label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
     
     
@@ -42,24 +42,36 @@
     [self.view addSubview:addButton];
     [addButton setTitle:@"添加签章" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    addButton.titleLabel.textAlignment=UITextAlignmentRight;
+    addButton.titleLabel.textAlignment=NSTextAlignmentRight;
+    addButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [addButton addTarget:self action:@selector(add) forControlEvents:UIControlEventTouchUpInside];
     
+    
+    UILabel *upper = [[UILabel alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, 1)];
+    upper.backgroundColor=RGBColor(209, 209, 209);
+    [self.view addSubview:upper];
+
     
     UILabel *backGround = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 20*HEIGHT_SCALE)];
     backGround.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backGround];
     
-    //按22号字体算
+    
+    
+    UILabel *under = [[UILabel alloc]initWithFrame:CGRectMake(0, backGround.frame.origin.y+backGround.frame.size.height+1, SCREEN_WIDTH, 1)];
+    under.backgroundColor=RGBColor(209, 209, 209);
+    [self.view addSubview:under];
+    
+    //按32号字体算
     UILabel *personSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, backGround.frame.origin.y+backGround.frame.size.height+28*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 29)];
     
     personSign.text=@"个人签章";
-    personSign.font=[UIFont systemFontOfSize:22];
+    personSign.font=[UIFont boldSystemFontOfSize:16];
     [self.view addSubview:personSign];
     
     SignImageView *signImageView = [[SignImageView alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, personSign.frame.origin.y+personSign.frame.size.height+28*HEIGHT_SCALE, 665*WIDTH_SCALE, 285*HEIGHT_SCALE)];
     signImageView.image =[UIImage imageNamed:@""];
-    signImageView.backgroundColor=[UIColor redColor];
+    signImageView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:signImageView];
     
 }

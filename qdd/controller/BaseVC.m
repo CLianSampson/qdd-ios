@@ -29,4 +29,32 @@
     [self.view addSubview:backgroundView];
 }
 
+
+-(void)createAlertView{
+    
+    _alertView =[[UIAlertView alloc]initWithTitle:@"" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    _alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
+    
+}
+
+-(void)createNavition{
+    _leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
+    [self.view addSubview:_leftButton];
+    [_leftButton setBackgroundImage:[UIImage imageNamed:@"左面返回箭头"] forState:UIControlStateNormal];
+    [_leftButton addTarget:self action:@selector(showLeft) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    _mytitle = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
+//    _mytitle.text=@"消息";
+    _mytitle.textAlignment=NSTextAlignmentCenter;
+    _mytitle.font=[UIFont boldSystemFontOfSize:17];
+    [self.view addSubview:_mytitle];
+
+}
+
+-(void)showLeft{
+    
+}
+
+
 @end

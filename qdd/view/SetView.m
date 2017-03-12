@@ -21,28 +21,28 @@
         _times = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, frame.size.width, 60)];
         
         _times.text=@"100元/10次";
-        _times.textAlignment=UITextAlignmentCenter;
+        _times.textAlignment=NSTextAlignmentCenter;
         _times.textColor=RGBColor(0, 51, 102);
         _times.layer.borderColor=[UIColor blackColor].CGColor;
         _times.layer.borderWidth=1;
         _times.layer.cornerRadius=5;
         
-        _times.font=[UIFont systemFontOfSize:14];
+        _times.font=[UIFont systemFontOfSize:12];
         [self addSubview:_times];
         
         
         _type = [[UILabel alloc]initWithFrame:CGRectMake(0, 60+20*HEIGHT_SCALE, frame.size.width, 12)];
-        _type.font=[UIFont systemFontOfSize:14];
-//         _type.font=[UIFont systemFontOfSize:18];
+        _type.font=[UIFont systemFontOfSize:12];
         _type.text=@"个人套餐A";
-        _type.textAlignment=UITextAlignmentCenter;
+        _type.textAlignment=NSTextAlignmentCenter;
         [self addSubview:_type];
         
         
         _content = [[UILabel alloc]initWithFrame:CGRectMake(10, _type.frame.origin.y+12+18*HEIGHT_SCALE, frame.size.width-20, 28)];
         _content.text=@"购买标准化电子合同服务...";
-        _content.font=[UIFont systemFontOfSize:14];
+        _content.font=[UIFont systemFontOfSize:9];
         _content.textColor=RGBColor(65, 65, 65);
+        _content.numberOfLines=0;
         [self addSubview:_content];
         
         

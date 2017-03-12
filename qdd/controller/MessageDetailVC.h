@@ -10,4 +10,8 @@
 
 @interface MessageDetailVC : BaseVC
 
+@property(nonatomic,strong)NSString *mainTitle;
+@property(nonatomic,strong)NSString *subTitle;
+@property(nonatomic,strong)NSString *time;
+
 @end

@@ -37,7 +37,6 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
-    //     self.automaticallyAdjustsScrollViewInsets=false;
 }
 
 -(void)viewDidLoad{

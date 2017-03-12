@@ -43,23 +43,33 @@
 -(void)createView{
     [self createBackgroungView];
     
-    UILabel *upper = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 1)];
-    upper.backgroundColor=RGBColor(230, 230, 230);
+    UILabel *upper = [[UILabel alloc]initWithFrame:CGRectMake(0, 65+1+10, SCREEN_WIDTH, 1)];
+    upper.backgroundColor=SepreateRGBColor;
     [self.view addSubview:upper];
     
     
-    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE, 64+20, 100, 14)];
+    UIView *background = [[UIView alloc]initWithFrame:CGRectMake(0, upper.frame.origin.y+upper.frame.size.height+1, SCREEN_WIDTH, 20+14+20)];
+    background.backgroundColor=[UIColor whiteColor];
+    [self.view addSubview:background];
+
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(32*WIDTH_SCALE, upper.frame.size.height+upper.frame.origin.y+20, 100, 14)];
     label.text=@"登陆密码";
+    label.font=[UIFont systemFontOfSize:14];
+    label.textColor=RGBColor(51, 51, 51);
+    label.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:label];
     
-    UIButton *button =[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32*WIDTH_SCALE-40, 64+20, 40, 14)];
+    UIButton *button =[[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-32*WIDTH_SCALE-40, upper.frame.size.height+upper.frame.origin.y+20, 40, 14)];
     [button setTitle:@"重置" forState:UIControlStateNormal];
     [button setTitleColor:RGBColor(51, 51, 51) forState:UIControlStateNormal];
+    button.titleLabel.font=[UIFont systemFontOfSize:14];
     [button addTarget:self action:@selector(setPassword) forControlEvents:UIControlEventTouchUpInside];
+    button.backgroundColor=[UIColor whiteColor];
     [self.view addSubview:button];
     
     UILabel *under = [[UILabel alloc]initWithFrame:CGRectMake(0, button.frame.origin.y+button.frame.size.height+20, SCREEN_WIDTH, 1)];
-    under.backgroundColor=RGBColor(230, 230, 230);
+    under.backgroundColor=SepreateRGBColor;
     [self.view addSubview:under];
     
     

@@ -17,6 +17,9 @@
 {
     float buttonOrginalY;
     float buttonWidth;
+    float interval;
+    float fontSize;
+
 }
 
 
@@ -32,6 +35,8 @@
 
 @property(nonatomic,strong)UITableView *myTableView;
 
+//1 待我签署 2 待别人签署 3已完成 4过期未签署
+@property(nonatomic,assign) int status;
 
 @end
 
@@ -43,8 +48,9 @@
 }
 
 -(void)viewDidLoad{
-    self.view.backgroundColor=RGBColor(233, 233, 233);
-
+    self.view.backgroundColor=[UIColor whiteColor];
+    
+    _status=1;
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -62,12 +68,12 @@
     _label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     _label.text=@"签多多";
     _label.textAlignment=NSTextAlignmentCenter;
-    _label.font=[UIFont systemFontOfSize:17];
+    _label.font=[UIFont boldSystemFontOfSize:17];
     
     [self.view addSubview:_label];
     
     _scrolView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*3, 120)];
-    _scrolView.backgroundColor=[UIColor redColor];
+    _scrolView.backgroundColor=RGBColor(235, 239, 242);;
     [self.view addSubview:_scrolView];
     
     [self creatView];
@@ -77,43 +83,59 @@
 
 
 -(void)creatView{
+    if (iPhone4||iPhone5) {
+        interval = 30;
+    }else{
+        interval = 60;
+    }
     
-    buttonWidth = (SCREEN_WIDTH-60*5*WIDTH_SCALE)/4;
+    
+    if (iPhone4||iPhone5) {
+         buttonWidth = (SCREEN_WIDTH-interval*5*WIDTH_SCALE)/4;
+    }else{
+        buttonWidth = (SCREEN_WIDTH-interval*5*WIDTH_SCALE)/4;
+    }
+    
+    
+    
+    fontSize=12;
+    
+    
     buttonOrginalY = _scrolView.frame.origin.y+_scrolView.frame.size.height;
     
-    _waitForMe  =[[UIButton alloc]initWithFrame:CGRectMake(60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
+    _waitForMe  =[[UIButton alloc]initWithFrame:CGRectMake(interval*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     [_waitForMe setTitle:@"待我签署" forState:UIControlStateNormal];
-    _waitForMe.titleLabel.font=[UIFont systemFontOfSize:10];
+    _waitForMe.titleLabel.font=[UIFont systemFontOfSize:fontSize];
     [_waitForMe setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
     [_waitForMe addTarget:self action:@selector(waitForMeMethod) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_waitForMe];
     
     
-    _waitForOther = [[UIButton alloc]initWithFrame:CGRectMake(_waitForMe.frame.origin.x+_waitForMe.frame.size.width+60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
+    _waitForOther = [[UIButton alloc]initWithFrame:CGRectMake(_waitForMe.frame.origin.x+_waitForMe.frame.size.width+interval*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     [_waitForOther setTitle:@"待别人签署" forState:UIControlStateNormal];
-    _waitForOther.titleLabel.font=[UIFont systemFontOfSize:9];
+    _waitForOther.titleLabel.font=[UIFont systemFontOfSize:fontSize];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_waitForOther addTarget:self action:@selector(waitForOtherMethod) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_waitForOther];
     
     
-    _complete = [[UIButton alloc]initWithFrame:CGRectMake(_waitForOther.frame.origin.x+_waitForOther.frame.size.width+60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
+    _complete = [[UIButton alloc]initWithFrame:CGRectMake(_waitForOther.frame.origin.x+_waitForOther.frame.size.width+interval*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     [_complete setTitle:@"已完成" forState:UIControlStateNormal];
-    _complete.titleLabel.font=[UIFont systemFontOfSize:9];
+    _complete.titleLabel.font=[UIFont systemFontOfSize:fontSize];
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_complete addTarget:self action:@selector(completeMethod) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_complete];
     
-    _timeOut = [[UIButton alloc]initWithFrame:CGRectMake(_complete.frame.origin.x+_complete.frame.size.width+60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
+    _timeOut = [[UIButton alloc]initWithFrame:CGRectMake(_complete.frame.origin.x+_complete.frame.size.width+interval*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     [_timeOut setTitle:@"过期未签署" forState:UIControlStateNormal];
-    _timeOut.titleLabel.font=[UIFont systemFontOfSize:9];
+    _timeOut.titleLabel.font=[UIFont systemFontOfSize:fontSize];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut addTarget:self action:@selector(timeOutMethod) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_timeOut];
     
 //    _underLabel = [[UILabel alloc]initWithFrame:CGRectMakeCGRectMake(60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     
-    _underLabel = [[UILabel alloc]initWithFrame:CGRectMake(60*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2)];
+    _underLabel = [[UILabel alloc]initWithFrame:CGRectMake(buttonWidth*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2)];
     [_underLabel setBackgroundColor:RGBColor(0, 51, 192)];
     [self.view addSubview:_underLabel];
     
@@ -134,8 +156,9 @@
 
 
 -(void)waitForMeMethod{
+    _status=1;
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(60*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
      [_waitForMe setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
@@ -144,14 +167,16 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
 
-
+    [_myTableView reloadData];
     
     
 }
 
 -(void)waitForOtherMethod{
+    _status=2;
+    
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(60*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     
@@ -160,11 +185,15 @@
     
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    
+    [_myTableView reloadData];
 }
 
 -(void)completeMethod{
+    _status=3;
+    
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(60*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     [_complete setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
@@ -173,11 +202,14 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
+     [_myTableView reloadData];
+    
 }
 
 -(void)timeOutMethod{
+    _status=4;
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(60*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     [_timeOut setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
@@ -185,6 +217,8 @@
     
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    
+     [_myTableView reloadData];
 }
 
 
@@ -210,6 +244,28 @@
     SignCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[SignCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    switch (_status) {
+        case 1:
+            cell.state.text=@"待我签署";
+            break;
+            
+        case 2:
+            cell.state.text=@"待别人签署";
+            break;
+            
+        case 3:
+            cell.state.text=@"已完成";
+            break;
+            
+        case 4:
+            cell.state.text=@"过期未签署";
+            break;
+            
+        default:
+            break;
     }
     
     cell.layer.cornerRadius=3;
@@ -261,7 +317,7 @@
 
 
 -(void)click{
-    NSLog(@"button click sucess");
+   
     self.block(@"chenlian");
     AFNetRequest *request = [[AFNetRequest alloc]init];
     [request getMethod];

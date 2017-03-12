@@ -12,6 +12,23 @@
 
 
 
+@property(nonatomic,strong)UIAlertView *alertView;
+
+
+
+
+
+@property(nonatomic,strong)UIButton *leftButton;
+@property(nonatomic,strong)UILabel *mytitle;
+
+
 -(void)createBackgroungView;
+
+-(void)createAlertView;
+
+-(void)createNavition;
+
+
+-(void)showLeft;
 
 @end

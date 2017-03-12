@@ -33,8 +33,8 @@
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     label.text=@"选择签章";
-    label.textAlignment=UITextAlignmentCenter;
-    label.font=[UIFont systemFontOfSize:20];
+    label.textAlignment=NSTextAlignmentCenter;
+    label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
     
     
@@ -43,8 +43,8 @@
     [self.view addSubview:completeButton];
     [completeButton setTitle:@"完成" forState:UIControlStateNormal];
     [completeButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    completeButton.titleLabel.textAlignment=UITextAlignmentRight;
-    completeButton.titleLabel.font=[UIFont systemFontOfSize:17];
+    completeButton.titleLabel.textAlignment=NSTextAlignmentRight;
+    completeButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [completeButton addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
     
     
@@ -58,7 +58,9 @@
 
 
 -(void)complete{
-   
+    UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"签名已保存" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
+    [alertView show];
     
 }
 

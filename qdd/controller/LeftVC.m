@@ -14,6 +14,7 @@
 #import "MyOrderVC.h"
 #import "SetVC.h"
 #import "RESideMenu.h"
+#import "VerifyVC.h"
 
 @interface LeftVC ()
 {
@@ -33,64 +34,80 @@
 
 -(void)viewDidLoad{
     
-    self.view.backgroundColor=RGBColor(150 , 150, 150);
+    self.view.backgroundColor=RGBColor(233 , 233, 233);
     
-    UIButton *iconButton = [[UIButton alloc]initWithFrame:CGRectMake(145*WIDTH_SCALE, 119*HEIGHT_SCALE, 77, 77)];
+    
+    float selfWidth = 445*WIDTH_SCALE;
+    
+    UIButton *iconButton = [[UIButton alloc]initWithFrame:CGRectMake(selfWidth/2-77/2, 119*HEIGHT_SCALE, 77, 77)];
     [iconButton setBackgroundImage:[UIImage imageNamed:@"默认头像"] forState:UIControlStateNormal];
+    [iconButton addTarget:self action:@selector(goToVerifyVC) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:iconButton];
     
     
     //高度加10
-    UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(132*WIDTH_SCALE, 77+(119+33)*HEIGHT_SCALE, 200, 26*HEIGHT_SCALE+10*HEIGHT_SCALE)];
+    UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(selfWidth/2-100, iconButton.frame.origin.y+iconButton.frame.size.height+33*HEIGHT_SCALE, 200, 13)];
     phoneLabel.text=@"136 6666 6666";
-    phoneLabel.font=[UIFont systemFontOfSize:20];
-    phoneLabel.textAlignment=UITextAlignmentLeft;
+    phoneLabel.font=[UIFont systemFontOfSize:13];
+    phoneLabel.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:phoneLabel];
     
-    UIImageView *verify = [[UIImageView alloc]initWithFrame:CGRectMake(170*WIDTH_SCALE, 77+(119+33+26+20)*HEIGHT_SCALE, 14, 14)];
+    
+    
+    UIImageView *verify = [[UIImageView alloc]initWithFrame:CGRectMake(170*WIDTH_SCALE, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 14, 14)];
     verify.image=[UIImage imageNamed:@"认证图标"];
     [self.view addSubview:verify];
     
      //高度加10
-    UILabel *verifyText = [[UILabel alloc]initWithFrame:CGRectMake((170+8)*WIDTH_SCALE+14, 77+(119+33+26+20+10)*HEIGHT_SCALE, 200, 24*HEIGHT_SCALE)];
-    verifyText.textAlignment=UITextAlignmentLeft;
+    UILabel *verifyText = [[UILabel alloc]initWithFrame:CGRectMake((170+8)*WIDTH_SCALE+14, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 200, 24*HEIGHT_SCALE)];
+    verifyText.textAlignment=NSTextAlignmentLeft;
     verifyText.text=@"已认证";
+    verifyText.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:verifyText];
     
-    NSLog(@"****************** %f",verifyText.frame.origin.y);
-    NSLog(@"%f",445*SCREEN_WIDTH);
+   
     
-    CGFloat y =verifyText.frame.origin.y;
+    CGFloat y =verifyText.frame.origin.y+114*HEIGHT_SCALE;
     
     
     //以下宽度设置为300是为了居中对齐
-    UIButton *shoppingBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y+114*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    UIButton *shoppingBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y, 200*WIDTH_SCALE, 14)];
     [shoppingBtn setTitle:@"购买套餐" forState:UIControlStateNormal];
     [shoppingBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    shoppingBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    shoppingBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:shoppingBtn];
     
     
-    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, shoppingBtn.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, shoppingBtn.frame.origin.y+ shoppingBtn.frame.size.height+ 82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [mySignBtn setTitle:@"我的签名" forState:UIControlStateNormal];
     [mySignBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    mySignBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    mySignBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:mySignBtn];
 
     
-    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+mySignBtn.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
     [contactPeopel setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    contactPeopel.titleLabel.font=[UIFont systemFontOfSize:14];
+    contactPeopel.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:contactPeopel];
     
     
-    UIButton *myOrder = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    UIButton *myOrder = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+contactPeopel.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [myOrder setTitle:@"我的订单" forState:UIControlStateNormal];
     [myOrder setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    myOrder.titleLabel.font=[UIFont systemFontOfSize:14];
+     myOrder.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:myOrder];
     
     
-    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, myOrder.frame.origin.y+(75+82)*HEIGHT_SCALE, 300*WIDTH_SCALE, 75*HEIGHT_SCALE)];
+    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, myOrder.frame.origin.y+myOrder.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [set setTitle:@"设置" forState:UIControlStateNormal];
     [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    set.titleLabel.font=[UIFont systemFontOfSize:14];
+      set.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:set];
     
     
@@ -161,8 +178,9 @@
     
     [self.sideMenuViewController hideMenuViewController];
 
-
 }
+
+
 
 
 -(void)set{
@@ -180,5 +198,30 @@
     
 //    [self.sideMenuViewController presentViewController:nav animated:NO completion:nil];
 }
+
+
+
+
+
+
+
+-(void)goToVerifyVC{
+    VerifyVC *VC =[[VerifyVC alloc]init];
+    VC.VC=self.sideMenuViewController.contentViewController;
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    
+    [self.sideMenuViewController hideMenuViewController];
+    
+}
+
+
+
+
+
+
+
 
 @end

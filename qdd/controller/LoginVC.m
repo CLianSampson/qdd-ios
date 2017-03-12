@@ -115,7 +115,7 @@
 
      RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
 
-     MenuVC.contentViewScaleValue=0.69;
+     MenuVC.contentViewScaleValue=(float)305/445;
     
     
     [self presentViewController:MenuVC animated:YES completion:nil];
