@@ -8,6 +8,35 @@
 
 /* Begin PBXBuildFile section */
 		180F11851E757DD40082F385 /* PhotoVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11841E757DD40082F385 /* PhotoVC.m */; };
+		180F11871E7590090082F385 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11861E7590090082F385 /* iflyMSC.framework */; };
+		180F11A31E75907C0082F385 /* FaceStreamDetectorViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F118B1E75907C0082F385 /* FaceStreamDetectorViewController.m */; };
+		180F11A41E75907C0082F385 /* CanvasView.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F118F1E75907C0082F385 /* CanvasView.m */; };
+		180F11A51E75907C0082F385 /* CaptureManager.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11921E75907C0082F385 /* CaptureManager.m */; };
+		180F11A61E75907C0082F385 /* CalculatorTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11961E75907C0082F385 /* CalculatorTools.m */; };
+		180F11A71E75907C0082F385 /* IFlyFaceImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11981E75907C0082F385 /* IFlyFaceImage.m */; };
+		180F11A81E75907C0082F385 /* UIImage+compress.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F119A1E75907C0082F385 /* UIImage+compress.m */; };
+		180F11A91E75907C0082F385 /* UIImage+Extensions.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F119C1E75907C0082F385 /* UIImage+Extensions.m */; };
+		180F11AA1E75907C0082F385 /* PermissionDetector.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F119F1E75907C0082F385 /* PermissionDetector.m */; };
+		180F11AB1E75907C0082F385 /* IFlyFaceResultKeys.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11A21E75907C0082F385 /* IFlyFaceResultKeys.m */; };
+		180F11AE1E7593090082F385 /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 180F11AD1E7593090082F385 /* ViewController.mm */; };
+		180F11D21E759B620082F385 /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C21E759B620082F385 /* Accelerate.framework */; };
+		180F11D31E759B620082F385 /* AddressBook.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C31E759B620082F385 /* AddressBook.framework */; };
+		180F11D41E759B620082F385 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C41E759B620082F385 /* AudioToolbox.framework */; };
+		180F11D51E759B620082F385 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C51E759B620082F385 /* AVFoundation.framework */; };
+		180F11D61E759B620082F385 /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C61E759B620082F385 /* CFNetwork.framework */; };
+		180F11D71E759B620082F385 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C71E759B620082F385 /* CoreGraphics.framework */; };
+		180F11D81E759B620082F385 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C81E759B620082F385 /* CoreLocation.framework */; };
+		180F11D91E759B620082F385 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11C91E759B620082F385 /* CoreTelephony.framework */; };
+		180F11DA1E759B620082F385 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CA1E759B620082F385 /* Foundation.framework */; };
+		180F11DB1E759B620082F385 /* iflyMSC.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CB1E759B620082F385 /* iflyMSC.framework */; };
+		180F11DC1E759B620082F385 /* libc++.1.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CC1E759B620082F385 /* libc++.1.tbd */; };
+		180F11DD1E759B620082F385 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CD1E759B620082F385 /* libz.tbd */; };
+		180F11DE1E759B620082F385 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CE1E759B620082F385 /* QuartzCore.framework */; };
+		180F11DF1E759B620082F385 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11CF1E759B620082F385 /* Security.framework */; };
+		180F11E01E759B620082F385 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11D01E759B620082F385 /* SystemConfiguration.framework */; };
+		180F11E11E759B620082F385 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 180F11D11E759B620082F385 /* UIKit.framework */; };
+		180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11E31E75B4490082F385 /* FaceDetectVC.m */; };
+		180F11E71E75B9B40082F385 /* FaceSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 180F11E61E75B9B40082F385 /* FaceSucessVC.m */; };
 		1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4491E750A9D003B8865 /* AccountCell.m */; };
 		1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E44C1E751518003B8865 /* BindingMailVC.m */; };
 		1818E4531E753210003B8865 /* MessageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4521E753210003B8865 /* MessageDetailView.m */; };
@@ -102,6 +131,49 @@
 /* Begin PBXFileReference section */
 		180F11831E757DD40082F385 /* PhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoVC.h; sourceTree = "<group>"; };
 		180F11841E757DD40082F385 /* PhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoVC.m; sourceTree = "<group>"; };
+		180F11861E7590090082F385 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		180F118A1E75907C0082F385 /* FaceStreamDetectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceStreamDetectorViewController.h; sourceTree = "<group>"; };
+		180F118B1E75907C0082F385 /* FaceStreamDetectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceStreamDetectorViewController.m; sourceTree = "<group>"; };
+		180F118E1E75907C0082F385 /* CanvasView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CanvasView.h; sourceTree = "<group>"; };
+		180F118F1E75907C0082F385 /* CanvasView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CanvasView.m; sourceTree = "<group>"; };
+		180F11911E75907C0082F385 /* CaptureManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CaptureManager.h; sourceTree = "<group>"; };
+		180F11921E75907C0082F385 /* CaptureManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CaptureManager.m; sourceTree = "<group>"; };
+		180F11931E75907C0082F385 /* DemoPreDefine.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoPreDefine.h; sourceTree = "<group>"; };
+		180F11951E75907C0082F385 /* CalculatorTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CalculatorTools.h; sourceTree = "<group>"; };
+		180F11961E75907C0082F385 /* CalculatorTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CalculatorTools.m; sourceTree = "<group>"; };
+		180F11971E75907C0082F385 /* IFlyFaceImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFlyFaceImage.h; sourceTree = "<group>"; };
+		180F11981E75907C0082F385 /* IFlyFaceImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFlyFaceImage.m; sourceTree = "<group>"; };
+		180F11991E75907C0082F385 /* UIImage+compress.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+compress.h"; sourceTree = "<group>"; };
+		180F119A1E75907C0082F385 /* UIImage+compress.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+compress.m"; sourceTree = "<group>"; };
+		180F119B1E75907C0082F385 /* UIImage+Extensions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIImage+Extensions.h"; sourceTree = "<group>"; };
+		180F119C1E75907C0082F385 /* UIImage+Extensions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIImage+Extensions.m"; sourceTree = "<group>"; };
+		180F119E1E75907C0082F385 /* PermissionDetector.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PermissionDetector.h; sourceTree = "<group>"; };
+		180F119F1E75907C0082F385 /* PermissionDetector.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PermissionDetector.m; sourceTree = "<group>"; };
+		180F11A11E75907C0082F385 /* IFlyFaceResultKeys.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IFlyFaceResultKeys.h; sourceTree = "<group>"; };
+		180F11A21E75907C0082F385 /* IFlyFaceResultKeys.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IFlyFaceResultKeys.m; sourceTree = "<group>"; };
+		180F11AC1E7593090082F385 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		180F11AD1E7593090082F385 /* ViewController.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
+		180F11B51E75972A0082F385 /* PrefixHeader.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		180F11C21E759B620082F385 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Accelerate.framework; sourceTree = "<group>"; };
+		180F11C31E759B620082F385 /* AddressBook.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AddressBook.framework; sourceTree = "<group>"; };
+		180F11C41E759B620082F385 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AudioToolbox.framework; sourceTree = "<group>"; };
+		180F11C51E759B620082F385 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVFoundation.framework; sourceTree = "<group>"; };
+		180F11C61E759B620082F385 /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CFNetwork.framework; sourceTree = "<group>"; };
+		180F11C71E759B620082F385 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreGraphics.framework; sourceTree = "<group>"; };
+		180F11C81E759B620082F385 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreLocation.framework; sourceTree = "<group>"; };
+		180F11C91E759B620082F385 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = CoreTelephony.framework; sourceTree = "<group>"; };
+		180F11CA1E759B620082F385 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Foundation.framework; sourceTree = "<group>"; };
+		180F11CB1E759B620082F385 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
+		180F11CC1E759B620082F385 /* libc++.1.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = "libc++.1.tbd"; sourceTree = "<group>"; };
+		180F11CD1E759B620082F385 /* libz.tbd */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = "sourcecode.text-based-dylib-definition"; path = libz.tbd; sourceTree = "<group>"; };
+		180F11CE1E759B620082F385 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = QuartzCore.framework; sourceTree = "<group>"; };
+		180F11CF1E759B620082F385 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Security.framework; sourceTree = "<group>"; };
+		180F11D01E759B620082F385 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
+		180F11D11E759B620082F385 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UIKit.framework; sourceTree = "<group>"; };
+		180F11E21E75B4490082F385 /* FaceDetectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectVC.h; sourceTree = "<group>"; };
+		180F11E31E75B4490082F385 /* FaceDetectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectVC.m; sourceTree = "<group>"; };
+		180F11E51E75B9B40082F385 /* FaceSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceSucessVC.h; sourceTree = "<group>"; };
+		180F11E61E75B9B40082F385 /* FaceSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceSucessVC.m; sourceTree = "<group>"; };
 		1818E4481E750A9D003B8865 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
 		1818E4491E750A9D003B8865 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
 		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingMailVC.h; sourceTree = "<group>"; };
@@ -247,11 +319,28 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				180F11D31E759B620082F385 /* AddressBook.framework in Frameworks */,
+				180F11E11E759B620082F385 /* UIKit.framework in Frameworks */,
 				1831BCFE1E575E0A00AAE0E5 /* CoreGraphics.framework in Frameworks */,
+				180F11DE1E759B620082F385 /* QuartzCore.framework in Frameworks */,
+				180F11DC1E759B620082F385 /* libc++.1.tbd in Frameworks */,
+				180F11DA1E759B620082F385 /* Foundation.framework in Frameworks */,
 				1831BD001E575E0A00AAE0E5 /* Security.framework in Frameworks */,
+				180F11D41E759B620082F385 /* AudioToolbox.framework in Frameworks */,
+				180F11D91E759B620082F385 /* CoreTelephony.framework in Frameworks */,
+				180F11DB1E759B620082F385 /* iflyMSC.framework in Frameworks */,
+				180F11E01E759B620082F385 /* SystemConfiguration.framework in Frameworks */,
 				1831BCFD1E575E0A00AAE0E5 /* CFNetwork.framework in Frameworks */,
+				180F11DD1E759B620082F385 /* libz.tbd in Frameworks */,
+				180F11D61E759B620082F385 /* CFNetwork.framework in Frameworks */,
+				180F11D81E759B620082F385 /* CoreLocation.framework in Frameworks */,
 				1831BCFC1E575E0A00AAE0E5 /* Accelerate.framework in Frameworks */,
+				180F11DF1E759B620082F385 /* Security.framework in Frameworks */,
+				180F11871E7590090082F385 /* iflyMSC.framework in Frameworks */,
 				1831BD011E575E0A00AAE0E5 /* SystemConfiguration.framework in Frameworks */,
+				180F11D51E759B620082F385 /* AVFoundation.framework in Frameworks */,
+				180F11D71E759B620082F385 /* CoreGraphics.framework in Frameworks */,
+				180F11D21E759B620082F385 /* Accelerate.framework in Frameworks */,
 				1831BD021E575E0A00AAE0E5 /* UIKit.framework in Frameworks */,
 				1831BCFF1E575E0A00AAE0E5 /* Foundation.framework in Frameworks */,
 			);
@@ -274,6 +363,88 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		180F11881E75907C0082F385 /* FaceRecognition */ = {
+			isa = PBXGroup;
+			children = (
+				180F11891E75907C0082F385 /* FaceDetector */,
+				180F118C1E75907C0082F385 /* Tools */,
+			);
+			path = FaceRecognition;
+			sourceTree = "<group>";
+		};
+		180F11891E75907C0082F385 /* FaceDetector */ = {
+			isa = PBXGroup;
+			children = (
+				180F118A1E75907C0082F385 /* FaceStreamDetectorViewController.h */,
+				180F118B1E75907C0082F385 /* FaceStreamDetectorViewController.m */,
+			);
+			path = FaceDetector;
+			sourceTree = "<group>";
+		};
+		180F118C1E75907C0082F385 /* Tools */ = {
+			isa = PBXGroup;
+			children = (
+				180F118D1E75907C0082F385 /* CanvasView */,
+				180F11901E75907C0082F385 /* Capture */,
+				180F11931E75907C0082F385 /* DemoPreDefine.h */,
+				180F11941E75907C0082F385 /* Image */,
+				180F119D1E75907C0082F385 /* Permission */,
+				180F11A01E75907C0082F385 /* Result */,
+			);
+			path = Tools;
+			sourceTree = "<group>";
+		};
+		180F118D1E75907C0082F385 /* CanvasView */ = {
+			isa = PBXGroup;
+			children = (
+				180F118E1E75907C0082F385 /* CanvasView.h */,
+				180F118F1E75907C0082F385 /* CanvasView.m */,
+			);
+			path = CanvasView;
+			sourceTree = "<group>";
+		};
+		180F11901E75907C0082F385 /* Capture */ = {
+			isa = PBXGroup;
+			children = (
+				180F11911E75907C0082F385 /* CaptureManager.h */,
+				180F11921E75907C0082F385 /* CaptureManager.m */,
+			);
+			path = Capture;
+			sourceTree = "<group>";
+		};
+		180F11941E75907C0082F385 /* Image */ = {
+			isa = PBXGroup;
+			children = (
+				180F11951E75907C0082F385 /* CalculatorTools.h */,
+				180F11961E75907C0082F385 /* CalculatorTools.m */,
+				180F11971E75907C0082F385 /* IFlyFaceImage.h */,
+				180F11981E75907C0082F385 /* IFlyFaceImage.m */,
+				180F11991E75907C0082F385 /* UIImage+compress.h */,
+				180F119A1E75907C0082F385 /* UIImage+compress.m */,
+				180F119B1E75907C0082F385 /* UIImage+Extensions.h */,
+				180F119C1E75907C0082F385 /* UIImage+Extensions.m */,
+			);
+			path = Image;
+			sourceTree = "<group>";
+		};
+		180F119D1E75907C0082F385 /* Permission */ = {
+			isa = PBXGroup;
+			children = (
+				180F119E1E75907C0082F385 /* PermissionDetector.h */,
+				180F119F1E75907C0082F385 /* PermissionDetector.m */,
+			);
+			path = Permission;
+			sourceTree = "<group>";
+		};
+		180F11A01E75907C0082F385 /* Result */ = {
+			isa = PBXGroup;
+			children = (
+				180F11A11E75907C0082F385 /* IFlyFaceResultKeys.h */,
+				180F11A21E75907C0082F385 /* IFlyFaceResultKeys.m */,
+			);
+			path = Result;
+			sourceTree = "<group>";
+		};
 		18314D901E62ABB50046A127 /* DrawingSign */ = {
 			isa = PBXGroup;
 			children = (
@@ -306,6 +477,9 @@
 		1831BC931E575CCA00AAE0E5 /* qdd */ = {
 			isa = PBXGroup;
 			children = (
+				180F11B51E75972A0082F385 /* PrefixHeader.pch */,
+				180F11AC1E7593090082F385 /* ViewController.h */,
+				180F11AD1E7593090082F385 /* ViewController.mm */,
 				18DC3A5F1E59707900151834 /* util */,
 				1831BCC71E575E0A00AAE0E5 /* category */,
 				1831BCC81E575E0A00AAE0E5 /* controller */,
@@ -402,6 +576,23 @@
 		1831BCD51E575E0A00AAE0E5 /* sdk */ = {
 			isa = PBXGroup;
 			children = (
+				180F11C21E759B620082F385 /* Accelerate.framework */,
+				180F11C31E759B620082F385 /* AddressBook.framework */,
+				180F11C41E759B620082F385 /* AudioToolbox.framework */,
+				180F11C51E759B620082F385 /* AVFoundation.framework */,
+				180F11C61E759B620082F385 /* CFNetwork.framework */,
+				180F11C71E759B620082F385 /* CoreGraphics.framework */,
+				180F11C81E759B620082F385 /* CoreLocation.framework */,
+				180F11C91E759B620082F385 /* CoreTelephony.framework */,
+				180F11CA1E759B620082F385 /* Foundation.framework */,
+				180F11CB1E759B620082F385 /* iflyMSC.framework */,
+				180F11CC1E759B620082F385 /* libc++.1.tbd */,
+				180F11CD1E759B620082F385 /* libz.tbd */,
+				180F11CE1E759B620082F385 /* QuartzCore.framework */,
+				180F11CF1E759B620082F385 /* Security.framework */,
+				180F11D01E759B620082F385 /* SystemConfiguration.framework */,
+				180F11D11E759B620082F385 /* UIKit.framework */,
+				180F11861E7590090082F385 /* iflyMSC.framework */,
 				1831BCD61E575E0A00AAE0E5 /* Accelerate.framework */,
 				1831BCD71E575E0A00AAE0E5 /* CFNetwork.framework */,
 				1831BCD81E575E0A00AAE0E5 /* CoreGraphics.framework */,
@@ -416,6 +607,7 @@
 		1831BCDD1E575E0A00AAE0E5 /* thirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				180F11881E75907C0082F385 /* FaceRecognition */,
 				18314D901E62ABB50046A127 /* DrawingSign */,
 				1831BCDE1E575E0A00AAE0E5 /* AFNetworking */,
 				1831BCEC1E575E0A00AAE0E5 /* RESideMenu */,
@@ -545,6 +737,8 @@
 				18ABF8D91E73C52E00022368 /* ForgetPasswordVC.m */,
 				180F11831E757DD40082F385 /* PhotoVC.h */,
 				180F11841E757DD40082F385 /* PhotoVC.m */,
+				180F11E21E75B4490082F385 /* FaceDetectVC.h */,
+				180F11E31E75B4490082F385 /* FaceDetectVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -568,6 +762,8 @@
 				18ABF8E81E73FE2700022368 /* CommentVC.m */,
 				1818E44B1E751518003B8865 /* BindingMailVC.h */,
 				1818E44C1E751518003B8865 /* BindingMailVC.m */,
+				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
+				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -711,6 +907,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				18F4940D1E6BFFDA0033AC03 /* AboutVC.m in Sources */,
+				180F11AE1E7593090082F385 /* ViewController.mm in Sources */,
 				18ABF8E31E73D39800022368 /* SetPasswordFailedVC.m in Sources */,
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
 				18ABF8E01E73D38700022368 /* SetPasswordSucessVC.m in Sources */,
@@ -719,6 +916,7 @@
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
+				180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
 				18D9380E1E704836000EC118 /* LoginVC.m in Sources */,
 				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
@@ -731,6 +929,7 @@
 				1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */,
 				180F11851E757DD40082F385 /* PhotoVC.m in Sources */,
 				1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */,
+				180F11AB1E75907C0082F385 /* IFlyFaceResultKeys.m in Sources */,
 				185A03251E6173C300EB9325 /* ShoppingDetailVC.m in Sources */,
 				18F494011E6BD2B50033AC03 /* NSString+PinYin.m in Sources */,
 				18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */,
@@ -742,8 +941,11 @@
 				184935D31E6F035200195071 /* SignCell.m in Sources */,
 				18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */,
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
+				180F11A61E75907C0082F385 /* CalculatorTools.m in Sources */,
+				180F11A41E75907C0082F385 /* CanvasView.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
 				18F494131E6C086C0033AC03 /* UILabel+Adjust.m in Sources */,
+				180F11AA1E75907C0082F385 /* PermissionDetector.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */,
@@ -760,17 +962,23 @@
 				1818E4531E753210003B8865 /* MessageDetailView.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
 				18ABF8E91E73FE2700022368 /* CommentVC.m in Sources */,
+				180F11A81E75907C0082F385 /* UIImage+compress.m in Sources */,
+				180F11A71E75907C0082F385 /* IFlyFaceImage.m in Sources */,
 				1818E4591E75544C003B8865 /* VerifyTypeView.m in Sources */,
 				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
 				18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */,
 				18DC3A5C1E596C4500151834 /* RightVC.m in Sources */,
 				18F494071E6BE9120033AC03 /* AddContactView.m in Sources */,
+				180F11A91E75907C0082F385 /* UIImage+Extensions.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,
+				180F11E71E75B9B40082F385 /* FaceSucessVC.m in Sources */,
+				180F11A51E75907C0082F385 /* CaptureManager.m in Sources */,
 				18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */,
 				18F494041E6BDF100033AC03 /* AddContactVC.m in Sources */,
 				1831BD031E575E0A00AAE0E5 /* AFHTTPSessionManager.m in Sources */,
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
+				180F11A31E75907C0082F385 /* FaceStreamDetectorViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -903,12 +1111,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/qdd/sdk",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Loney-Devil.qdd";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
@@ -918,12 +1131,17 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/qdd/sdk",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "Loney-Devil.qdd";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};

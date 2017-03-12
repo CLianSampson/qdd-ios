@@ -9,6 +9,7 @@
 #import "PhotoVC.h"
 #import "Macro.h"
 
+#import "ViewController.h"
 
 @interface PhotoVC()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
@@ -132,7 +133,8 @@
 
 
 -(void)confirmClick{
-
+    ViewController *VC =[[ViewController alloc]init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 

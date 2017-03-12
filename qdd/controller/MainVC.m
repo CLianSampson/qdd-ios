@@ -135,7 +135,7 @@
     
 //    _underLabel = [[UILabel alloc]initWithFrame:CGRectMakeCGRectMake(60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     
-    _underLabel = [[UILabel alloc]initWithFrame:CGRectMake(buttonWidth*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2)];
+    _underLabel = [[UILabel alloc]initWithFrame:CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2)];
     [_underLabel setBackgroundColor:RGBColor(0, 51, 192)];
     [self.view addSubview:_underLabel];
     
@@ -176,7 +176,7 @@
     _status=2;
     
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     
@@ -193,7 +193,7 @@
     _status=3;
     
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     [_complete setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
@@ -209,7 +209,7 @@
 -(void)timeOutMethod{
     _status=4;
     [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(buttonWidth*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
     
     [_timeOut setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
