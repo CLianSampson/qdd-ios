@@ -190,7 +190,7 @@
 		18314D951E62ACAB0046A127 /* SignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignVC.m; sourceTree = "<group>"; };
 		18314D971E62C0B20046A127 /* SignImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignImageView.h; sourceTree = "<group>"; };
 		18314D981E62C0B20046A127 /* SignImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignImageView.m; sourceTree = "<group>"; };
-		1831BC911E575CC900AAE0E5 /* qdd.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = qdd.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		1831BC911E575CC900AAE0E5 /* 签多多.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "签多多.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		1831BC951E575CCA00AAE0E5 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		1831BC971E575CCA00AAE0E5 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		1831BC981E575CCA00AAE0E5 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -467,7 +467,7 @@
 		1831BC921E575CC900AAE0E5 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				1831BC911E575CC900AAE0E5 /* qdd.app */,
+				1831BC911E575CC900AAE0E5 /* 签多多.app */,
 				1831BCAA1E575CCA00AAE0E5 /* qddTests.xctest */,
 				1831BCB51E575CCA00AAE0E5 /* qddUITests.xctest */,
 			);
@@ -793,7 +793,7 @@
 			);
 			name = qdd;
 			productName = qdd;
-			productReference = 1831BC911E575CC900AAE0E5 /* qdd.app */;
+			productReference = 1831BC911E575CC900AAE0E5 /* 签多多.app */;
 			productType = "com.apple.product-type.application";
 		};
 		1831BCA91E575CCA00AAE0E5 /* qddTests */ = {
@@ -843,6 +843,7 @@
 				TargetAttributes = {
 					1831BC901E575CC900AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
+						DevelopmentTeam = X9EVRZTDAY;
 					};
 					1831BCA91E575CCA00AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1111,19 +1112,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Loney-Devil.qdd";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_NAME = "签多多";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1131,19 +1136,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "Loney-Devil.qdd";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_NAME = "签多多";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

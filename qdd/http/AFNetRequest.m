@@ -11,45 +11,71 @@
 
 @implementation AFNetRequest
 
--(void)getMethod{
-    NSLog(@"开始请求网络");
-    NSString *URLString = @"http://192.168.1.228:8080/LiveVideo/chenlian";
-    NSDictionary *parameters = @{@"foo": @"bar", @"baz": @[@1, @2, @3]};
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
-    
-    [manager GET:URLString parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
-        
-    }
-         success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-             
-             NSLog(@"这里打印请求成功要做的事");
-             
-         }
-     
-         failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull   error) {
-             
-             NSLog(@"%@",error);  //这里打印错误信息
-             
-         }];    NSLog(@"网络请求完成");
-}
 
--(void)postMethod{
-    NSString *URLString = @"http://192.168.1.228:8080/LiveVideo/chenlian";
+
+
+
+-(void)netRequestWithUrl:(NSString *)url Data:(NSDictionary *)dic{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
     
-    NSMutableDictionary *parameters = @{@"":@"",@"":@""};
+    //AFSSLPinningModeNone 这个模式表示不做 SSL pinning，只跟浏览器一样在系统的信任机构列表里验证服务端返回的证书。若证书是信任机构签发的就会通过，若是自己服务器生成的证书，这里是不会通过的。
+    //AFSSLPinningModeCertificate 这个模式表示用证书绑定方式验证证书，需要客户端保存有服务端的证书拷贝，这里验证分两步，第一步验证证书的域名/有效期等信息，第二步是对比服务端返回的证书跟客户端返回的是否一致。
+    //AFSSLPinningModePublicKey 这个模式同样是用证书绑定方式验证，客户端要有服务端的证书拷贝，只是验证时只验证证书里的公钥，不验证证书的有效期等信息。只要公钥是正确的，就能保证通信不会被窃听，因为中间人没有私钥，无法解开通过公钥加密的数据。
     
-    [manager POST:URLString parameters:parameters progress:^(NSProgress * _Nonnull uploadProgress) {
+    /***************************https**********************************/
+    AFSecurityPolicy *securityPolicy = [AFSecurityPolicy defaultPolicy];//设置证书类型
+    securityPolicy.allowInvalidCertificates = YES; //允许自签证书
+    manager.securityPolicy=securityPolicy;
+    
+    //是否验证域名（一般不验证）(若是ip 则不用)
+    securityPolicy.validatesDomainName=NO;
+    /***************************https**********************************/
+    
+    
+    
+    
+    [manager.requestSerializer setValue:@"text/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
+    
+    //设置返回值的解析方式
+    manager.responseSerializer = [AFHTTPResponseSerializer serializer];
+    
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    
+    
+    [manager POST:url parameters:dic progress:^(NSProgress * _Nonnull uploadProgress) {
         
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"responseObject is : %@",responseObject);
         
+        NSLog(@"result is : %@" ,result);
+        
+        NSData * data = responseObject;
+        NSString *html = [[NSString alloc] initWithData:data  encoding:NSUTF8StringEncoding];
+        
+        NSLog(@"html is : %@",html);
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"error is : %@",error);
     }];
+    
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 - (void)downLoad{

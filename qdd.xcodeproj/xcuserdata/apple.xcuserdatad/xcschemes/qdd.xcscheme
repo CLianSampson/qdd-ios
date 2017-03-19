@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "1831BC901E575CC900AAE0E5"
-               BuildableName = "qdd.app"
+               BuildableName = "&#x7b7e;&#x591a;&#x591a;.app"
                BlueprintName = "qdd"
                ReferencedContainer = "container:qdd.xcodeproj">
             </BuildableReference>
@@ -53,7 +53,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1831BC901E575CC900AAE0E5"
-            BuildableName = "qdd.app"
+            BuildableName = "&#x7b7e;&#x591a;&#x591a;.app"
             BlueprintName = "qdd"
             ReferencedContainer = "container:qdd.xcodeproj">
          </BuildableReference>
@@ -62,7 +62,7 @@
       </AdditionalOptions>
    </TestAction>
    <LaunchAction
-      buildConfiguration = "Debug"
+      buildConfiguration = "Release"
       selectedDebuggerIdentifier = "Xcode.DebuggerFoundation.Debugger.LLDB"
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       launchStyle = "0"
@@ -76,7 +76,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1831BC901E575CC900AAE0E5"
-            BuildableName = "qdd.app"
+            BuildableName = "&#x7b7e;&#x591a;&#x591a;.app"
             BlueprintName = "qdd"
             ReferencedContainer = "container:qdd.xcodeproj">
          </BuildableReference>
@@ -95,7 +95,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "1831BC901E575CC900AAE0E5"
-            BuildableName = "qdd.app"
+            BuildableName = "&#x7b7e;&#x591a;&#x591a;.app"
             BlueprintName = "qdd"
             ReferencedContainer = "container:qdd.xcodeproj">
          </BuildableReference>

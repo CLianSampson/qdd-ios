@@ -44,10 +44,15 @@
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
+    
+    NSLog(@"widthscale is : %f" ,WIDTH_SCALE);
    
+    NSLog(@"widthscale is : %f" ,(float)1080/750/3);
 }
 
 -(void)viewDidLoad{
+    [self netRequest];
+    
     self.view.backgroundColor=[UIColor whiteColor];
     
     _status=1;
@@ -145,7 +150,8 @@
     [self.view addSubview:background];
     
     
-    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(20*WIDTH_SCALE, _underLabel.frame.origin.y+_underLabel.frame.size.height, SCREEN_WIDTH-2*20*WIDTH_SCALE, SCREEN_HEIGHT-_underLabel.frame.origin.y-_underLabel.frame.size.height)];
+//    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(20*WIDTH_SCALE, _underLabel.frame.origin.y+_underLabel.frame.size.height, SCREEN_WIDTH-2*20*WIDTH_SCALE, SCREEN_HEIGHT-_underLabel.frame.origin.y-_underLabel.frame.size.height)];
+    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _underLabel.frame.origin.y+_underLabel.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT-_underLabel.frame.origin.y-_underLabel.frame.size.height)];
     _myTableView.delegate=self;
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -246,6 +252,8 @@
         cell = [[SignCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+   
+    
     
     switch (_status) {
         case 1:
@@ -316,11 +324,14 @@
 
 
 
--(void)click{
-   
-    self.block(@"chenlian");
-    AFNetRequest *request = [[AFNetRequest alloc]init];
-    [request getMethod];
+-(void)netRequest{
+//    NSString* url = @"https://www.baidu.com";
+    NSString *url =  @"https://www.qiandd.com/mobile/Iden/iden_post/token/4add3a80c92238fef58691fddd450c26";
+    
+    
+    [self netRequestWithUrl:url Data:nil];
 }
+
+
 
 @end

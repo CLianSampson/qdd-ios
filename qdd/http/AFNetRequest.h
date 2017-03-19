@@ -9,11 +9,10 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
+static NSString *userInfo = @"kkkkkkkkkkkk";
+
 @interface AFNetRequest : NSObject
 
 
--(void)getMethod;
-
--(void)postMethod;
 
 @end

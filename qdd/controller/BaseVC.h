@@ -8,14 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface BaseVC : UIViewController
+@interface  BaseVC : UIViewController
 
 
 
 @property(nonatomic,strong)UIAlertView *alertView;
-
-
-
 
 
 @property(nonatomic,strong)UIButton *leftButton;
@@ -30,5 +27,9 @@
 
 
 -(void)showLeft;
+
+
+-(void)netRequestWithUrl:(NSString *)url Data:(NSDictionary *)dic;
+
 
 @end
