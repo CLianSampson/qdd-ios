@@ -13,6 +13,7 @@
 #import "RegisteSucessVC.h"
 #import "RegisteFailedVC.h"
 #import "BindMailVC.h"
+#import "AFNetRequest.h"
 
 @interface RegisteVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -214,16 +215,21 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    RegisteCell *cell ;
-//    switch (indexPath.row) {
-//        case 0:
-//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
-//            _account = cell.textField.text;
-//            break;
-//            
-//        default:
-//            break;
-//    }
+    RegisteCell *cell ;
+    switch (indexPath.row) {
+        case 0:
+            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+            _account = cell.textField.text;
+            break;
+        
+        case 1:
+            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+            _password = cell.textField.text;
+            break;
+            
+        default:
+            break;
+    }
     
     return;
 }
@@ -290,31 +296,33 @@
     if (_flag == 2) {
         //跳转到企业
         
-        if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
-            
-            BindMailVC *VC = [[BindMailVC alloc]init];
-            
-            VC.mailAccount = _account;
-            
-            [self.navigationController pushViewController:VC animated:YES];
-        }else{
-            RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-        }
+        [self netRequest];
         
+//        if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
+//            
+//            BindMailVC *VC = [[BindMailVC alloc]init];
+//            
+//            VC.mailAccount = _account;
+//            
+//            [self.navigationController pushViewController:VC animated:YES];
+//        }else{
+//            RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
+//            [self.navigationController pushViewController:VC animated:YES];
+//        }
+//        
         return;
 
     }
     
+    [self netRequest];
     
-    
-    if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
-        RegisteSucessVC *VC = [[RegisteSucessVC alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else{
-        RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }
+//    if ([_account isEqualToString:@"123@qq.com"] && [_password isEqualToString:@"234"]) {
+//        RegisteSucessVC *VC = [[RegisteSucessVC alloc]init];
+//        [self.navigationController pushViewController:VC animated:YES];
+//    }else{
+//        RegisteFailedVC *VC = [[RegisteFailedVC alloc]init];
+//        [self.navigationController pushViewController:VC animated:YES];
+//    }
 
     
     
@@ -324,5 +332,47 @@
 -(void)showLeft{
     [self dismissViewControllerAnimated:YES completion:nil];
 }
+
+
+
+-(void)netRequest{
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    if (_flag==1) {
+        [dic setObject:_account forKey:@"mobile"];
+    }else if (_flag==2){
+         [dic setObject:_account forKey:@"email"];
+    }
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+       
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+
+        }
+        
+    };
+    
+    [self netRequestWithUrl:URL_REGISTER Data:jsonData];
+}
+
+
 
 @end

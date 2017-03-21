@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void (^NetSucessBlock)(id result);
+typedef void (^NetFailedBlock)(id result);
+
+
+
 @interface  BaseVC : UIViewController
 
 
@@ -17,6 +22,9 @@
 
 @property(nonatomic,strong)UIButton *leftButton;
 @property(nonatomic,strong)UILabel *mytitle;
+
+@property(nonatomic,copy)NetSucessBlock netSucessBlock;
+@property(nonatomic,copy)NetFailedBlock netFailedBlock;
 
 
 -(void)createBackgroungView;
@@ -29,7 +37,8 @@
 -(void)showLeft;
 
 
--(void)netRequestWithUrl:(NSString *)url Data:(NSDictionary *)dic;
+-(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 
+-(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
 
 @end
