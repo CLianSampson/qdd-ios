@@ -8,6 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^SmsCodeBlock)();
+
 @interface RegisteCell : UITableViewCell
 
 @property(nonatomic,strong)UIImageView *icon;
@@ -21,4 +23,8 @@
 
 
 @property(nonatomic,strong)NSString *value;
+
+
+@property(nonatomic,copy)SmsCodeBlock smsCodeBlock;
+
 @end

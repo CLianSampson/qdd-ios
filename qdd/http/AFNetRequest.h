@@ -11,7 +11,7 @@
 
 static  NSString *URL_SMS = @"https://www.qiandd.com/mobile/user/sms?";
 
-static  NSString *URL_REGISTER = @"https://www.qiandd.com//mobile/user/doregister";
+static  NSString *URL_REGISTER = @"https://www.qiandd.com/mobile/user/doregister";
 
 
 @interface AFNetRequest : NSObject

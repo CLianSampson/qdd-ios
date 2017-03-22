@@ -51,7 +51,7 @@
 }
 
 -(void)viewDidLoad{
-    [self netRequest];
+  
     
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -324,30 +324,6 @@
 
 
 
--(void)netRequest{
-    
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
-    
-    NSString *phone = @"18771098004";
-    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",phone];
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
-    
-    __weak typeof(self) weakSelf=self;
-    
-    self.netSucessBlock=^(id result){
-        NSString *state = [result objectForKey:@"state"];
-        NSLog(@"%@",state);
-        if ([state isEqualToString:@"success"]) {
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=@"短信验证码已发送";
-            [weakSelf.alertView show];
-        }
-
-    };
-    
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
-}
 
 
 

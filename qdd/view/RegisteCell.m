@@ -40,7 +40,7 @@
         [_smsCode setTitle:@"获取验证码" forState:UIControlStateNormal];
         _smsCode.titleLabel.font=[UIFont systemFontOfSize:13];
         [_smsCode setBackgroundImage:[UIImage imageNamed:@"获取验证码按钮"] forState:UIControlStateNormal];
-        
+        [_smsCode addTarget:self action:@selector(smsCodeClick) forControlEvents:UIControlEventTouchUpInside];
         
         _change = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-20*WIDTH_SCALE, 65*HEIGHT_SCALE, 60, 50-(65+22)*HEIGHT_SCALE)];
         _change.text=@"看不清，换一张";
@@ -68,6 +68,11 @@
 //textField delegate
 - (void)textFieldDidEndEditing:(UITextField *)textField{
     _value = textField.text;
+}
+
+
+-(void)smsCodeClick{
+    _smsCodeBlock();
 }
 
 @end

@@ -28,6 +28,9 @@
 
 @property(nonatomic,strong)NSString *account;
 @property(nonatomic,strong)NSString *password;
+@property(nonatomic,strong)NSString *verifyCode;
+@property(nonatomic,strong)NSString *repassword;
+
 
 @end
 
@@ -176,6 +179,10 @@
             
             [cell.change removeFromSuperview];
             [cell.verfyCode removeFromSuperview];
+            
+            cell.smsCodeBlock=^{
+                [self sendSmsCode];
+            };
         }
     }else if (_flag==2){
         //企业用户
@@ -224,7 +231,17 @@
         
         case 1:
             cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+            _verifyCode = cell.textField.text;
+            break;
+            
+        case 2:
+            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
             _password = cell.textField.text;
+            break;
+            
+        case 3:
+            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+            _repassword = cell.textField.text;
             break;
             
         default:
@@ -248,12 +265,24 @@
         RegisteCell *cell = (RegisteCell*)arry[i];
         [cell.textField resignFirstResponder];
         
-        if (i==0) {
-            _account = cell.value;
-        }else if (i==2){
-            _password = cell.value;
+        switch (i) {
+            case 0:
+                 _account = cell.value;
+                break;
+                
+            case 1:
+                _verifyCode = cell.value;
+                break;
+            case 2:
+                _password = cell.value;
+                break;
+            case 3:
+                _repassword = cell.value;
+                break;
+                
+            default:
+                break;
         }
-        
         
     }
     
@@ -334,6 +363,49 @@
 }
 
 
+-(void)sendSmsCode{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    
+    if (_flag==1) {
+        if (_account==nil) {
+            [self createAlertView];
+            self.alertView.title=@"手机号不能为空";
+            [self.alertView show];
+            
+            return;
+        }
+    }
+    
+   
+    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_account];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    
+    __weak typeof(self) weakSelf=self;
+
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+      
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
 
 -(void)netRequest{
     
@@ -344,10 +416,21 @@
          [dic setObject:_account forKey:@"email"];
     }
     
+    
+    [dic setObject:_verifyCode forKey:@"mobile_code"];
+    [dic setObject:_password forKey:@"password"];
+    [dic setObject:_repassword forKey:@"repassword"];
+    [dic setObject:@"read" forKey:@"read"];
+    
+    NSLog(@"json data is : %@" ,dic);
+
+    
     NSError *error;
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
+    
+    
     
     __weak typeof(self) weakSelf=self;
     
