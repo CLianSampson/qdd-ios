@@ -11,6 +11,7 @@
 typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);
 
+typedef void (^PictureBlock)(id result);
 
 
 @interface  BaseVC : UIViewController
@@ -25,7 +26,7 @@ typedef void (^NetFailedBlock)(id result);
 
 @property(nonatomic,copy)NetSucessBlock netSucessBlock;
 @property(nonatomic,copy)NetFailedBlock netFailedBlock;
-
+@property(nonatomic,copy)PictureBlock pictureBlock;
 
 -(void)createBackgroungView;
 
@@ -40,5 +41,7 @@ typedef void (^NetFailedBlock)(id result);
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 
 -(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
+
+- (void)downLoad:(NSString *)urlString;
 
 @end

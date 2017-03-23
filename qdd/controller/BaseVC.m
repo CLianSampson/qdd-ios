@@ -9,6 +9,7 @@
 #import "BaseVC.h"
 #import "Macro.h"
 #import "AFNetRequest.h"
+#import "AFNetworking.h"
 
 
 @implementation BaseVC
@@ -168,6 +169,27 @@
     
     
 }
+
+
+- (void)downLoad:(NSString *)urlString{
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+   
+    AFHTTPResponseSerializer *serializer=[AFHTTPResponseSerializer serializer];
+    serializer.acceptableContentTypes = [NSSet setWithObject:@"image/png"]; // 设置相应的 http header Content-Type
+    session.responseSerializer=serializer;
+    
+    [session GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+       
+        self.pictureBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"失败");
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
 
 
 

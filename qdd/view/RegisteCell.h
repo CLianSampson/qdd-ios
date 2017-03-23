@@ -9,6 +9,8 @@
 #import <UIKit/UIKit.h>
 
 typedef void(^SmsCodeBlock)();
+typedef void(^PictureCodeBlock)();
+
 
 @interface RegisteCell : UITableViewCell
 
@@ -17,7 +19,7 @@ typedef void(^SmsCodeBlock)();
 
 
 @property(nonatomic,strong)UIButton *smsCode;
-@property(nonatomic,strong)UIImageView *verfyCode;
+@property(nonatomic,strong)UIButton *verfyCode;
 
 @property(nonatomic,strong)UILabel *change;
 
@@ -26,5 +28,7 @@ typedef void(^SmsCodeBlock)();
 
 
 @property(nonatomic,copy)SmsCodeBlock smsCodeBlock;
+@property(nonatomic,copy)PictureCodeBlock pictureCodeBlock;
+
 
 @end

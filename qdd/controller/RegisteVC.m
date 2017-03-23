@@ -32,6 +32,8 @@
 @property(nonatomic,strong)NSString *repassword;
 
 
+@property(nonatomic,strong)UIImage *verifyCodeImage;
+
 @end
 
 @implementation RegisteVC
@@ -196,7 +198,15 @@
             [cell addSubview:cell.verfyCode];
             [cell addSubview:cell.change];
             
+            
+//            cell.verfyCode.image=_verifyCodeImage;
+            [cell.verfyCode setBackgroundImage:_verifyCodeImage forState:UIControlStateNormal];
+            
             [cell.smsCode removeFromSuperview];
+            
+            cell.pictureCodeBlock=^{
+                [self sendPictureCode];
+            };
         }
 
     }
@@ -405,22 +415,37 @@
     [self netRequestGetWithUrl:appendUrlString Data:nil];
 }
 
+-(void)sendPictureCode{
+    
+    __weak typeof(self) weakSelf=self;
 
+    self.pictureBlock=^(id result){
+        
+        weakSelf.verifyCodeImage =[UIImage imageWithData:result];
+              [weakSelf.myTableView reloadData];
+    
+    };
+    
+    [self downLoad:URL_PICTURE_CODE];
+}
 
 -(void)netRequest{
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
         [dic setObject:_account forKey:@"mobile"];
+        [dic setObject:_verifyCode forKey:@"mobile_code"];
+
     }else if (_flag==2){
          [dic setObject:_account forKey:@"email"];
+        [dic setObject:_verifyCode forKey:@"verify"];
+
     }
     
     
-    [dic setObject:_verifyCode forKey:@"mobile_code"];
     [dic setObject:_password forKey:@"password"];
     [dic setObject:_repassword forKey:@"repassword"];
-    [dic setObject:@"read" forKey:@"read"];
+    [dic setObject:@"1" forKey:@"read"];
     
     NSLog(@"json data is : %@" ,dic);
 
@@ -429,8 +454,12 @@
     NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
                                                        options:NSJSONWritingPrettyPrinted
                                                          error:&error];
+    NSString *jsonString  = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
     
+    NSLog(@"jsondata is : %@",jsonData);
     
+    NSLog(@"jsonString is : %@",jsonString);
+
     
     __weak typeof(self) weakSelf=self;
     

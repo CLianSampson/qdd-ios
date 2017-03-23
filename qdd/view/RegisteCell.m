@@ -29,7 +29,6 @@
         _textField = [[UITextField alloc]initWithFrame:CGRectMake(_icon.frame.origin.x+_icon.frame.size.width+44*WIDTH_SCALE, 0, self.frame.size.width-(_icon.frame.origin.x+_icon.frame.size.width+44*WIDTH_SCALE), 50)];
         
         
-        
         _textField.textAlignment=NSTextAlignmentLeft;
         _textField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;
         
@@ -49,14 +48,16 @@
         _change.numberOfLines=0;
         CGFloat width = [UILabel getWidthWithTitle:_change.text font:_change.font];
         _change.frame=CGRectMake(SCREEN_WIDTH-20*WIDTH_SCALE-width, 65*HEIGHT_SCALE, width, 50-(65+22)*HEIGHT_SCALE);
-       
+      
+        
+        [self addTap:_verfyCode];
         
         
             
         
-        _verfyCode  = [[UIImageView alloc]initWithFrame:CGRectMake(self.frame.size.width-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 27*HEIGHT_SCALE, 120*WIDTH_SCALE, 50-(22+27)*HEIGHT_SCALE)];
+        _verfyCode  = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 27*HEIGHT_SCALE, 120*WIDTH_SCALE, 50-(22+27)*HEIGHT_SCALE)];
         _verfyCode.backgroundColor=[UIColor yellowColor];
-        
+        [_verfyCode addTarget:self action:@selector(picrureCode) forControlEvents:UIControlEventTouchUpInside];
                
     }
     
@@ -73,6 +74,17 @@
 
 -(void)smsCodeClick{
     _smsCodeBlock();
+}
+
+
+-(void)addTap:(UIView *)view{
+    UITapGestureRecognizer*tapGesture = [[UITapGestureRecognizer alloc]initWithTarget:view action:@selector(picrureCode)];
+    
+    [view addGestureRecognizer:tapGesture];
+}
+
+-(void)picrureCode{
+    _pictureCodeBlock();
 }
 
 @end
