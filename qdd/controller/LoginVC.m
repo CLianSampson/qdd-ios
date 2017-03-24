@@ -14,6 +14,7 @@
 #import "RightVC.h"
 #import "RegisteVC.h"
 #import "ForgetPasswordVC.h"
+#import "AFNetRequest.h"
 
 @interface LoginVC()
 
@@ -105,20 +106,22 @@
 
 
 -(void)login{
-    MainVC *VC = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-
-
-    LeftVC *leftVC = [[LeftVC alloc] init];
-    RightVC *rightVC = [[RightVC alloc] init];
-
-
-     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-
-     MenuVC.contentViewScaleValue=(float)305/445;
+    [self netRequest];
     
-    
-    [self presentViewController:MenuVC animated:YES completion:nil];
+//    MainVC *VC = [[MainVC alloc]init];
+//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+//
+//
+//    LeftVC *leftVC = [[LeftVC alloc] init];
+//    RightVC *rightVC = [[RightVC alloc] init];
+//
+//
+//     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+//
+//     MenuVC.contentViewScaleValue=(float)305/445;
+//    
+//    
+//    [self presentViewController:MenuVC animated:YES completion:nil];
 
     
 }
@@ -145,5 +148,55 @@
     [_passWord resignFirstResponder];
     [_userName resignFirstResponder];
 }
+
+
+-(void)netRequest{
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    
+    
+    [dic setObject:@"17600170189" forKey:@"username"];
+    [dic setObject:@"613200" forKey:@"password"];
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    NSError *error;
+    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
+                                                       options:NSJSONWritingPrettyPrinted
+                                                         error:&error];
+    NSString *jsonString  = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
+    
+    NSLog(@"jsondata is : %@",jsonData);
+    
+    NSLog(@"jsonString is : %@",jsonString);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    [self netRequestWithUrl:URL_LOGIN Data:dic];
+}
+
+
 
 @end

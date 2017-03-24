@@ -80,21 +80,15 @@
    
     
     
+
     
-   
-   
-//    [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
-    [manager.requestSerializer setValue:@"text/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
-   
     //设置返回值的解析方式
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
     
-    //https*****************************************
-//    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObject:@"text/html"];
     
-      manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
+    manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     
-      __weak typeof(self) weakSelf=self;
+    __weak typeof(self) weakSelf=self;
     
     
     [manager POST:url parameters:data progress:^(NSProgress * _Nonnull uploadProgress) {

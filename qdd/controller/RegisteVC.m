@@ -445,20 +445,9 @@
     
     [dic setObject:_password forKey:@"password"];
     [dic setObject:_repassword forKey:@"repassword"];
-    [dic setObject:@"1" forKey:@"read"];
+    [dic setObject:@"on" forKey:@"read"];
     
     NSLog(@"json data is : %@" ,dic);
-
-    
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *jsonString  = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"jsondata is : %@",jsonData);
-    
-    NSLog(@"jsonString is : %@",jsonString);
 
     
     __weak typeof(self) weakSelf=self;
@@ -482,7 +471,7 @@
         
     };
     
-    [self netRequestWithUrl:URL_REGISTER Data:jsonData];
+    [self netRequestWithUrl:URL_REGISTER Data:dic];
 }
 
 
