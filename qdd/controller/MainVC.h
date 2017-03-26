@@ -17,4 +17,6 @@ typedef void(^MyBlock)(NSString *);
 @property(nonatomic,strong) UILabel *label;
 @property(nonatomic,strong) UIButton *rightButton;
 
+@property(nonatomic,strong) NSString *token;
+
 @end

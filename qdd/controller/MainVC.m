@@ -10,8 +10,13 @@
 #import "AFNetRequest.h"
 #import "Macro.h"
 #import "RESideMenu.h"
-#import "RightVC.h"
 #import "SignCell.h"
+#import "MJRefresh.h"
+#import "SignModel.h"
+#import "TimeUtil.h"
+#import "StringUtil.h"
+#import "MainRigthVC.h"
+
 
 @interface MainVC()<UITableViewDelegate,UITableViewDataSource>
 {
@@ -36,7 +41,11 @@
 @property(nonatomic,strong)UITableView *myTableView;
 
 //1 待我签署 2 待别人签署 3已完成 4过期未签署
-@property(nonatomic,assign) int status;
+@property(nonatomic,assign)int status;
+
+@property(nonatomic,strong)NSMutableArray *mutableArry;
+
+@property(nonatomic,assign)int pageNo;
 
 @end
 
@@ -51,11 +60,13 @@
 }
 
 -(void)viewDidLoad{
-  
+    _pageNo=0;
+    _status=1;
     
+   
+
     self.view.backgroundColor=[UIColor whiteColor];
     
-    _status=1;
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -156,8 +167,27 @@
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _myTableView.backgroundColor=RGBColor(200, 200, 200);
-    [self.view addSubview:_myTableView];
+//    [self.view addSubview:_myTableView];
     
+    [self addMjRefresh:_myTableView];
+    
+    [self addLoadIndicator];
+    
+    [self netReauest];
+
+    
+}
+
+
+-(void)addMjRefresh:(UITableView *)tableView{
+    
+    //上拉加载
+    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNo++;
+        [self netReauest];
+        //停止刷新
+        [tableView.footer endRefreshing];
+    }];
 }
 
 
@@ -173,7 +203,8 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
 
-    [_myTableView reloadData];
+    [_myTableView removeFromSuperview];
+    [self netReauest];
     
     
 }
@@ -192,7 +223,8 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-    [_myTableView reloadData];
+    [_myTableView removeFromSuperview];
+    [self netReauest];
 }
 
 -(void)completeMethod{
@@ -208,7 +240,8 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-     [_myTableView reloadData];
+    [_myTableView removeFromSuperview];
+    [self netReauest];
     
 }
 
@@ -224,7 +257,9 @@
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-     [_myTableView reloadData];
+    [_myTableView removeFromSuperview];
+    [self netReauest];
+
 }
 
 
@@ -240,7 +275,7 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 10;
+    return _mutableArry.count;
 }
 
 - (SignCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -278,6 +313,49 @@
     
     cell.layer.cornerRadius=3;
     cell.clipsToBounds=YES;
+    
+    
+    SignModel *model  = (SignModel *)[_mutableArry objectAtIndex:indexPath.row];
+    
+    long startTimestap = [TimeUtil transStringToTimestap:model.startTime];
+    long endTimestap = [TimeUtil transStringToTimestap:model.endTime];
+    int intervalTime = (int)(endTimestap-startTimestap)/(24*60*60);
+    
+    NSString *signName = nil;
+    NSString *sendPerson=nil;
+    NSString *sendTime =nil;
+    NSString *duration =nil;
+    
+    if (![StringUtil isNullOrBlank:model.title]) {
+        signName = [NSString stringWithFormat:@"合同名称: %@",model.title];
+    }else{
+        signName = @"合同名称: ";
+
+    }
+    
+    if (![StringUtil isNullOrBlank:model.phone]) {
+        sendPerson = [NSString stringWithFormat:@"发送人: %@",model.phone];
+    }else{
+        sendPerson = @"发送人: ";
+    }
+    
+    if (![StringUtil isNullOrBlank:model.startTime]) {
+        NSString *time = [TimeUtil transDateFormate:model.startTime];
+        sendTime = [NSString stringWithFormat:@"发送时间: %@",time];
+    }else{
+        sendTime = @"发送时间: ";
+    }
+    
+    
+    
+
+    duration =[NSString stringWithFormat:@"签约有限期: %d天",intervalTime];
+    
+   
+    cell.signName.text=signName;
+    cell.sendPerson.text=sendPerson;
+    cell.sendTime.text=sendTime;
+    cell.duration.text=duration;
     
     return cell;
 }
@@ -317,14 +395,104 @@
 
 -(void)showRight{
     
-    RightVC *vc = [[RightVC alloc]init];
+    MainRigthVC *vc = [[MainRigthVC alloc]init];
+    vc.token=self.token;
     [self.navigationController pushViewController:vc animated:YES];
     
 }
 
 
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN];
+
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:_token];
+    
+    NSString *statusString = [NSString stringWithFormat:@"?status=%d",_status];
+    NSString *pageNo =[NSString stringWithFormat:@"&p=%d",_pageNo];
+    
+    
+    NSString *string1=[appendUrlString stringByAppendingString:statusString];
+    NSString *string2=[string1 stringByAppendingString:pageNo];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:string2 Data:nil];
+}
 
 
+-(void)sucessDo:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSArray *arry = [data objectForKey:@"contract"];
+    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+        
+        [self createAlertView];
+        self.alertView.title=@"没有更多合同了";
+        [self.alertView show];
+        return;
+    }
+    
+   
+    for (NSDictionary *temp in arry) {
+        
+        SignModel *signModel =[[SignModel alloc]init];
+        signModel.id = [temp objectForKey:@"id"];
+        signModel.title = [temp objectForKey:@"title"];
+        signModel.phone= [temp objectForKey:@"sendname"];
 
+        signModel.startTime = [temp objectForKey:@"stime"];
+
+        signModel.endTime = [temp objectForKey:@"etime"];
+
+        
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
+        }
+        
+        [_mutableArry addObject:signModel];
+        
+        
+    }
+    
+    
+    [self.view addSubview:_myTableView];
+    [_myTableView reloadData];
+
+}
 
 @end

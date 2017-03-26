@@ -1,0 +1,258 @@
+//
+//  MainRigthVC.m
+//  qdd
+//
+//  Created by Apple on 17/3/25.
+//  Copyright © 2017年 Samposn Chen. All rights reserved.
+//
+
+#import "MainRigthVC.h"
+#import "Macro.h"
+#import "MessageCell.h"
+#import "MessageDetailVC.h"
+#import "AFNetRequest.h"
+#import "MessageModel.h"
+#import "MJRefresh.h"
+#import "StringUtil.h"
+
+
+
+@interface MainRigthVC()
+
+@property(nonatomic,assign)int pageNo;
+
+@property(nonatomic,strong)NSMutableArray *mutableArry;
+@property(nonatomic,strong)UITableView *myTableView;
+
+@end
+
+@implementation MainRigthVC
+
+
+-(void)viewWillAppear:(BOOL)animated{
+    self.navigationController.navigationBarHidden=YES;
+    //     self.automaticallyAdjustsScrollViewInsets=false;
+}
+
+-(void)viewDidLoad{
+    [super viewDidLoad];
+    
+    _pageNo=2;
+    
+    
+//    self.view.backgroundColor=[UIColor whiteColor];
+    
+    
+    UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
+    [self.view addSubview:leftButton];
+    [leftButton setBackgroundImage:[UIImage imageNamed:@"左面返回箭头"] forState:UIControlStateNormal];
+    [leftButton addTarget:self action:@selector(showLeft) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
+    label.text=@"消息";
+    label.textAlignment=NSTextAlignmentCenter;
+    label.font=[UIFont boldSystemFontOfSize:17];
+    [self.view addSubview:label];
+    
+    
+    UILabel *upper = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 1)];
+    upper.backgroundColor=RGBColor(209, 209, 209);
+    [self.view addSubview:upper];
+
+    
+    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, SCREEN_HEIGHT-30)];
+    _myTableView.delegate=self;
+    _myTableView.dataSource=self;
+    
+    _myTableView.autoresizingMask=UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleHeight;
+    
+    [self addMjRefresh:_myTableView];
+    [self addLoadIndicator];
+    [self netReauest];
+}
+
+
+-(void)addMjRefresh:(UITableView *)tableView{
+    
+    //上拉加载
+    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNo++;
+        [self netReauest];
+        //停止刷新
+        [tableView.footer endRefreshing];
+    }];
+}
+
+
+
+-(void)showLeft{
+    [self.navigationController popViewControllerAnimated:YES];
+}
+
+#pragma mark -tableView dataSourceDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return 10;
+}
+
+
+- (MessageCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    static NSString *cellIdentifier = @"Cell";
+    
+    MessageCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[MessageCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    MessageModel *model  = (MessageModel *)[_mutableArry objectAtIndex:indexPath.row];
+   
+    
+    NSString *mainTitle = nil;
+    NSString *subTitle=nil;
+    NSString *time =nil;
+    
+    if (![StringUtil isNullOrBlank:model.title]) {
+        mainTitle = model.title;
+    }else{
+        mainTitle = @"";
+        
+    }
+    
+    if (![StringUtil isNullOrBlank:model.contents]) {
+        subTitle = model.contents;
+    }else{
+        subTitle = @"";
+    }
+    
+    if (![StringUtil isNullOrBlank:model.createTime]) {
+        time = model.createTime;
+    }else{
+        time = @"";
+    }
+    
+
+    
+    return cell;
+}
+
+
+#pragma mark -tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    MessageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    
+    
+    MessageDetailVC *VC =[[MessageDetailVC alloc]init];
+    VC.mainTitle=cell.mainTitle.text;
+    VC.subTitle=cell.subTitle.text;
+    VC.time=cell.time.text;
+    [self.navigationController pushViewController:VC animated:YES];
+    
+    
+    return;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    return (48+32+26+28+50)*HEIGHT_SCALE;
+}
+
+
+-(void)netReauest{
+    
+    if (_token==nil) {
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_MESSAGE];
+    
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:_token];
+    
+    
+    NSString *pageNo =[NSString stringWithFormat:@"/p/%d",_pageNo];
+    
+    
+    NSString *string1=[appendUrlString stringByAppendingString:pageNo];
+    
+    NSLog(@"string1 is : %@",string1 );
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:string1 Data:nil];
+}
+
+
+-(void)sucessDo:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSArray *arry = [data objectForKey:@"message"];
+    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+        
+        [self createAlertView];
+        self.alertView.title=@"没有更多消息了";
+        [self.alertView show];
+        return;
+    }
+    
+    
+    for (NSDictionary *temp in arry) {
+        
+        MessageModel *model = [[MessageModel alloc]init];
+        
+        model.title=[temp objectForKey:@"title"];
+        model.type=[temp objectForKey:@"type"];
+        model.createTime=[temp objectForKey:@"ctime"];
+        model.id=[temp objectForKey:@"id"];
+        model.contents=[temp objectForKey:@"contents"];
+        model.status=[temp objectForKey:@"status"];
+        
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
+        }
+        
+        [_mutableArry addObject:model];
+    }
+    
+    
+    [self.view addSubview:_myTableView];
+    [_myTableView reloadData];
+    
+}
+
+
+@end

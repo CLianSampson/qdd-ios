@@ -10,6 +10,8 @@
 #import "Macro.h"
 #import "MessageDetailView.h"
 #import "UILabel+Adjust.h"
+#import "AFNetRequest.h"
+
 
 @interface MessageDetailVC()
 

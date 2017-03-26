@@ -60,6 +60,29 @@
 }
 
 
+-(void)addLoadIndicator{
+    _indicator = [[UIActivityIndicatorView alloc] initWithFrame:CGRectMake(0, 0, 80, 80)];
+    //设置显示样式,见UIActivityIndicatorViewStyle的定义
+    _indicator.activityIndicatorViewStyle = UIActivityIndicatorViewStyleWhiteLarge;
+    //设置背景色
+    _indicator.backgroundColor = [UIColor grayColor];
+    //设置背景透明
+    _indicator.alpha = 0.8;
+    //设置背景为圆角矩形
+    _indicator.layer.cornerRadius = 6;
+    _indicator.layer.masksToBounds = YES;
+    //设置显示位置
+    [_indicator setCenter:CGPointMake(SCREEN_WIDTH / 2.0, SCREEN_HEIGHT/ 2.0)];
+    //开始显示Loading动画
+    [_indicator startAnimating];
+    
+    [self.view addSubview:_indicator];
+    
+}
+
+
+
+
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
@@ -130,8 +153,7 @@
     
     
 
-    
-    //    [manager.requestSerializer setValue:@"gzip" forHTTPHeaderField:@"Accept-Encoding"];
+
     [manager.requestSerializer setValue:@"text/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     
     //设置返回值的解析方式
@@ -155,10 +177,9 @@
         weakSelf.netSucessBlock(result);
 
         
-        
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
+        NSLog(@"%@",error);
+        weakSelf.netFailedBlock(nil);
     }];
     
     

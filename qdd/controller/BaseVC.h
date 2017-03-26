@@ -28,6 +28,9 @@ typedef void (^PictureBlock)(id result);
 @property(nonatomic,copy)NetFailedBlock netFailedBlock;
 @property(nonatomic,copy)PictureBlock pictureBlock;
 
+@property(nonatomic,strong)UIActivityIndicatorView *indicator;
+
+
 -(void)createBackgroungView;
 
 -(void)createAlertView;
@@ -43,5 +46,7 @@ typedef void (^PictureBlock)(id result);
 -(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
 
 - (void)downLoad:(NSString *)urlString;
+
+-(void)addLoadIndicator;
 
 @end

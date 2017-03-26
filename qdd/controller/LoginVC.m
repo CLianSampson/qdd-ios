@@ -11,10 +11,11 @@
 #import "MainVC.h"
 #import "RESideMenu.h"
 #import "LeftVC.h"
-#import "RightVC.h"
 #import "RegisteVC.h"
 #import "ForgetPasswordVC.h"
 #import "AFNetRequest.h"
+#import "MainRigthVC.h"
+
 
 @interface LoginVC()
 
@@ -108,22 +109,6 @@
 -(void)login{
     [self netRequest];
     
-//    MainVC *VC = [[MainVC alloc]init];
-//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-//
-//
-//    LeftVC *leftVC = [[LeftVC alloc] init];
-//    RightVC *rightVC = [[RightVC alloc] init];
-//
-//
-//     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-//
-//     MenuVC.contentViewScaleValue=(float)305/445;
-//    
-//    
-//    [self presentViewController:MenuVC animated:YES completion:nil];
-
-    
 }
 
 -(void)sign{
@@ -182,9 +167,28 @@
         NSLog(@"%@",info);
         
         if ([state isEqualToString:@"success"]) {
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
+            
+            NSDictionary *data = [result objectForKey:@"data"];
+            NSString *token=[data objectForKey:@"token"];
+           
+            MainVC *VC = [[MainVC alloc]init];
+            VC.token=token;
+            UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+            
+        
+            LeftVC *leftVC = [[LeftVC alloc] init];
+            MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+            
+
+        
+             RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+        
+             MenuVC.contentViewScaleValue=(float)305/445;
+            
+            
+            [weakSelf presentViewController:MenuVC animated:YES completion:nil];
+
+            
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;

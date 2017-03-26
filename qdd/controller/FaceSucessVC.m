@@ -12,7 +12,7 @@
 #import "MainVC.h"
 #import "RESideMenu.h"
 #import "LeftVC.h"
-#import "RightVC.h"
+#import "MainRigthVC.h"
 
 @implementation FaceSucessVC
 
@@ -102,7 +102,7 @@
     
     
     LeftVC *leftVC = [[LeftVC alloc] init];
-    RightVC *rightVC = [[RightVC alloc] init];
+    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
     
     
     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
@@ -120,7 +120,7 @@
     
     
     LeftVC *leftVC = [[LeftVC alloc] init];
-    RightVC *rightVC = [[RightVC alloc] init];
+    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
     
     
     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
