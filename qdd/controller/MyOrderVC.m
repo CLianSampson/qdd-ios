@@ -11,6 +11,7 @@
 #import "RESideMenu.h"
 #import "OrderCell.h"
 #import "PayVC.h"
+#import "OrderModel.h"
 
 @interface MyOrderVC()<UITableViewDelegate,UITableViewDataSource,payMoneyProtocol>{
 
@@ -18,12 +19,12 @@
     UIButton *unPayButton;
     UIButton *payButton;
     
-    
-    UITableView *tableViewGloabal;
-    
-    NSArray *arry;
-    
 }
+
+@property(nonatomic,strong)NSMutableArray *mutableArry;
+@property(nonatomic,strong)UITableView *myTableView;
+@property(nonatomic,assign)int orstatus;  //订单状态 未完成0 已完成1 全部 2
+@property(nonatomic,assign)int pageNo;
 
 @end
 
@@ -36,8 +37,10 @@
 }
 
 -(void)viewDidLoad{
-    arry = @[@"1",@"2",@"3",@"4",@"5"];
+   
     
+    _pageNo=0;
+    _orstatus=2;
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
@@ -115,18 +118,39 @@
 
 -(void)createTableView{
     
-    tableViewGloabal = [[UITableView alloc]initWithFrame:CGRectMake(0, 113, SCREEN_WIDTH, SCREEN_HEIGHT-113)];
-    tableViewGloabal.delegate=self;
-    tableViewGloabal.dataSource=self;
+    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 113, SCREEN_WIDTH, SCREEN_HEIGHT-113)];
+    _myTableView.delegate=self;
+    _myTableView.dataSource=self;
     
-    tableViewGloabal.separatorStyle=UITableViewCellSeparatorStyleNone;
+    _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-    [self.view addSubview:tableViewGloabal];
+//    [self.view addSubview:_myTableView];
+    
+    [self addMjRefresh:_myTableView];
+    
+    [self addLoadIndicator];
+    
+    [self netReauest];
+
+}
+
+-(void)addMjRefresh:(UITableView *)tableView{
+    
+    //上拉加载
+    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNo++;
+        [self netReauest];
+        //停止刷新
+        [tableView.footer endRefreshing];
+    }];
 }
 
 
-
 -(void)all{
+    _mutableArry=nil;
+    _pageNo=0;
+    [self netReauest];
+    _orstatus=2;
     [UIView animateWithDuration:0.5 animations:^{
         [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
         
@@ -141,6 +165,10 @@
 
 
 -(void)unPay{
+    _mutableArry=nil;
+    _pageNo=0;
+    [self netReauest];
+    _orstatus=0;
     [UIView animateWithDuration:0.5 animations:^{
         
         [unPayButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
@@ -157,6 +185,10 @@
 
 
 -(void)pay{
+    _mutableArry=nil;
+    _pageNo=0;
+    [self netReauest];
+    _orstatus=1;
     [UIView animateWithDuration:0.5 animations:^{
         
         [payButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
@@ -184,7 +216,7 @@
 #pragma mark -tableView dataSourceDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _mutableArry.count;
 }
 
 
@@ -195,6 +227,18 @@
     if (cell == nil) {
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
         
+        
+        OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
+        
+        NSString *type = nil;
+        NSString *price = nil;
+        NSString *number = nil;
+        //返回参数无
+        NSString *time;
+        
+        if (![StringUtil isNullOrBlank:model.name]) {
+            
+        }
         
         if (indexPath.row%2==0) {
             
@@ -221,8 +265,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    NSLog(@"%f",(48+32+26+28+50)*HEIGHT_SCALE);
-    NSLog(@"%f",HEIGHT_SCALE);
+  
     
     if ( indexPath.row%2==0) {
         return (30+45+38+30+32+32+32+32+107)*HEIGHT_SCALE+13+12+12+12+12;
@@ -241,5 +284,107 @@
     PayVC *VC = [[PayVC alloc]init];
     [self.navigationController pushViewController:VC animated:YES];
 }
+
+
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_ORDER];
+    
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *statusString = [NSString stringWithFormat:@"?status=%d",_orstatus];
+    NSString *pageNo =[NSString stringWithFormat:@"&p=%d",_pageNo];
+    
+    
+    NSString *string1=[appendUrlString stringByAppendingString:statusString];
+    NSString *string2=[string1 stringByAppendingString:pageNo];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:string2 Data:nil];
+}
+
+
+-(void)sucessDo:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSArray *arry = [data objectForKey:@"orlist"];
+    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+        
+        [self createAlertView];
+        self.alertView.title=@"没有更多订单了";
+        [self.alertView show];
+        return;
+    }
+    
+    
+    for (NSDictionary *temp in arry) {
+        
+        OrderModel *model =[[OrderModel alloc]init];
+        model.systemId = [temp objectForKey:@"id"];
+        model.orderId = [temp objectForKey:@"orderid"];
+        model.status= [temp objectForKey:@"status"];
+        
+        model.creatTime = [temp objectForKey:@"ctime"];
+        
+        model.name = [temp objectForKey:@"name"];
+        model.number = [temp objectForKey:@"num"];
+        model.price = [temp objectForKey:@"price"];
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
+        }
+        
+        [_mutableArry addObject:model];
+        
+        
+    }
+    
+    
+    [self.view addSubview:_myTableView];
+    [_myTableView reloadData];
+    
+}
+
+
+
+
+
+
 
 @end

@@ -407,7 +407,7 @@
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN];
 
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:_token];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     NSString *statusString = [NSString stringWithFormat:@"?status=%d",_status];
     NSString *pageNo =[NSString stringWithFormat:@"&p=%d",_pageNo];

@@ -127,30 +127,19 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    UIViewController *VC ;
     
-    switch (indexPath.row) {
-        case 0:
-            VC = [[UserAccountVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-            break;
-            
-        case 1:
-            VC = [[SecurityVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-            break;
-            
-        case 2:
-            VC  =[[AboutVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-            
-            break;
-            
-        default:
-            break;
-    }
+    if (indexPath.row==0) {
+        UserAccountVC *VC = [[UserAccountVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row==1){
+        SecurityVC *VC = [[SecurityVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }else if (indexPath.row==2){
+        AboutVC *VC  =[[AboutVC alloc]init];
+        VC.token=self.token;
+        [self.navigationController pushViewController:VC animated:YES];
 
-    
+    }
 }
 
 

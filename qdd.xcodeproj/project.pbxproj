@@ -42,6 +42,8 @@
 		1818E4531E753210003B8865 /* MessageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4521E753210003B8865 /* MessageDetailView.m */; };
 		1818E4561E754FBE003B8865 /* VerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4551E754FBE003B8865 /* VerifyVC.m */; };
 		1818E4591E75544C003B8865 /* VerifyTypeView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4581E75544C003B8865 /* VerifyTypeView.m */; };
+		1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDB1E87B818002221C3 /* MainLeftVC.m */; };
+		1824ADDF1E87BFC5002221C3 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDE1E87BFC5002221C3 /* OrderModel.m */; };
 		18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D921E62ABB50046A127 /* SKGraphicView.m */; };
 		18314D961E62ACAB0046A127 /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D951E62ACAB0046A127 /* SignVC.m */; };
 		18314D991E62C0B20046A127 /* SignImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D981E62C0B20046A127 /* SignImageView.m */; };
@@ -116,7 +118,6 @@
 		18B9F3DC1E865FFF00A3A1EC /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9F3DB1E865FFF00A3A1EC /* MessageModel.m */; };
 		18D9380E1E704836000EC118 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9380D1E704836000EC118 /* LoginVC.m */; };
 		18D938111E705EF0000EC118 /* RegisteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D938101E705EF0000EC118 /* RegisteVC.m */; };
-		18DC3A591E596C2200151834 /* LeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A581E596C2200151834 /* LeftVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
 		18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18EF03421E5C80CC00A2093E /* MessageDetailVC.m */; };
 		18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F493F81E6BB0C80033AC03 /* OrderCell.m */; };
@@ -207,6 +208,10 @@
 		1818E4551E754FBE003B8865 /* VerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVC.m; sourceTree = "<group>"; };
 		1818E4571E75544C003B8865 /* VerifyTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTypeView.h; sourceTree = "<group>"; };
 		1818E4581E75544C003B8865 /* VerifyTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTypeView.m; sourceTree = "<group>"; };
+		1824ADDA1E87B818002221C3 /* MainLeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLeftVC.h; sourceTree = "<group>"; };
+		1824ADDB1E87B818002221C3 /* MainLeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLeftVC.m; sourceTree = "<group>"; };
+		1824ADDD1E87BFC5002221C3 /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
+		1824ADDE1E87BFC5002221C3 /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
 		18314D921E62ABB50046A127 /* SKGraphicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGraphicView.m; sourceTree = "<group>"; };
 		18314D941E62ACAB0046A127 /* SignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignVC.h; sourceTree = "<group>"; };
@@ -348,8 +353,6 @@
 		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
 		18D938101E705EF0000EC118 /* RegisteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteVC.m; sourceTree = "<group>"; };
-		18DC3A571E596C2200151834 /* LeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LeftVC.h; sourceTree = "<group>"; };
-		18DC3A581E596C2200151834 /* LeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LeftVC.m; sourceTree = "<group>"; };
 		18DC3A611E5971AC00151834 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		18DC3A681E598D7400151834 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		18DC3A691E598D7400151834 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -615,14 +618,14 @@
 				1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */,
 				1831BCCB1E575E0A00AAE0E5 /* MainVC.h */,
 				1831BCCC1E575E0A00AAE0E5 /* MainVC.m */,
-				18DC3A571E596C2200151834 /* LeftVC.h */,
-				18DC3A581E596C2200151834 /* LeftVC.m */,
 				18EF03411E5C80CC00A2093E /* MessageDetailVC.h */,
 				18EF03421E5C80CC00A2093E /* MessageDetailVC.m */,
 				18D9380C1E704836000EC118 /* LoginVC.h */,
 				18D9380D1E704836000EC118 /* LoginVC.m */,
 				18B9F3D71E865E8E00A3A1EC /* MainRigthVC.h */,
 				18B9F3D81E865E8E00A3A1EC /* MainRigthVC.m */,
+				1824ADDA1E87B818002221C3 /* MainLeftVC.h */,
+				1824ADDB1E87B818002221C3 /* MainLeftVC.m */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -846,6 +849,8 @@
 				18B9F38F1E8633FA00A3A1EC /* SignModel.m */,
 				18B9F3DA1E865FFF00A3A1EC /* MessageModel.h */,
 				18B9F3DB1E865FFF00A3A1EC /* MessageModel.m */,
+				1824ADDD1E87BFC5002221C3 /* OrderModel.h */,
+				1824ADDE1E87BFC5002221C3 /* OrderModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1103,14 +1108,15 @@
 				180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
 				18B9F3D31E863D6000A3A1EC /* TimeUtil.m in Sources */,
+				1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */,
 				18B9F3901E8633FA00A3A1EC /* SignModel.m in Sources */,
 				18D9380E1E704836000EC118 /* LoginVC.m in Sources */,
 				18B9F3BF1E86374800A3A1EC /* MJRefreshBackFooter.m in Sources */,
+				1824ADDF1E87BFC5002221C3 /* OrderModel.m in Sources */,
 				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
 				18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */,
 				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
 				18B9F3CD1E86374800A3A1EC /* MJRefreshConst.m in Sources */,
-				18DC3A591E596C2200151834 /* LeftVC.m in Sources */,
 				1831BCF71E575E0A00AAE0E5 /* BaseVC.m in Sources */,
 				1831BCF81E575E0A00AAE0E5 /* MainVC.m in Sources */,
 				18B9F3C91E86374800A3A1EC /* MJRefreshGifHeader.m in Sources */,

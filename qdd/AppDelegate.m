@@ -8,7 +8,7 @@
 
 #import "AppDelegate.h"
 #import "MainVC.h"
-#import "LeftVC.h"
+#import "MainLeftVC.h"
 #import "MainRigthVC.h"
 #import "RESideMenu.h"
 #import "Macro.h"

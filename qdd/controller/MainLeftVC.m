@@ -1,12 +1,12 @@
 //
-//  LeftVC.m
+//  MainLeftVC.m
 //  qdd
 //
-//  Created by Apple on 17/2/19.
+//  Created by Apple on 17/3/26.
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
-#import "LeftVC.h"
+#import "MainLeftVC.h"
 #import "Macro.h"
 #import "ShoppingVC.h"
 #import "MySignVC.h"
@@ -16,16 +16,9 @@
 #import "RESideMenu.h"
 #import "VerifyVC.h"
 
-@interface LeftVC ()
-{
-    
-    
-}
-
-@end
+@implementation MainLeftVC
 
 
-@implementation LeftVC
 
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
@@ -58,14 +51,14 @@
     verify.image=[UIImage imageNamed:@"认证图标"];
     [self.view addSubview:verify];
     
-     //高度加10
+    //高度加10
     UILabel *verifyText = [[UILabel alloc]initWithFrame:CGRectMake((170+8)*WIDTH_SCALE+14, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 200, 24*HEIGHT_SCALE)];
     verifyText.textAlignment=NSTextAlignmentLeft;
     verifyText.text=@"已认证";
     verifyText.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:verifyText];
     
-   
+    
     
     CGFloat y =verifyText.frame.origin.y+114*HEIGHT_SCALE;
     
@@ -85,7 +78,7 @@
     mySignBtn.titleLabel.font=[UIFont systemFontOfSize:14];
     mySignBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:mySignBtn];
-
+    
     
     UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+mySignBtn.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
@@ -99,7 +92,7 @@
     [myOrder setTitle:@"我的订单" forState:UIControlStateNormal];
     [myOrder setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
     myOrder.titleLabel.font=[UIFont systemFontOfSize:14];
-     myOrder.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+    myOrder.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:myOrder];
     
     
@@ -107,7 +100,7 @@
     [set setTitle:@"设置" forState:UIControlStateNormal];
     [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
     set.titleLabel.font=[UIFont systemFontOfSize:14];
-      set.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+    set.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
     [self.view addSubview:set];
     
     
@@ -116,21 +109,21 @@
     [contactPeopel addTarget:self action:@selector(contact) forControlEvents:UIControlEventTouchUpInside];
     [myOrder addTarget:self action:@selector(myOrder) forControlEvents:UIControlEventTouchUpInside];
     [set addTarget:self action:@selector(set) forControlEvents:UIControlEventTouchUpInside];
-
-
+    
+    
 }
 
 -(void)shooping{
-   
+    
     ShoppingVC *VC = [[ShoppingVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
-
+    
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
     [self.sideMenuViewController setContentViewController:nav];
     
-     [self.sideMenuViewController hideMenuViewController];
+    [self.sideMenuViewController hideMenuViewController];
 }
 
 
@@ -139,7 +132,7 @@
     
     MySignVC *VC = [[MySignVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
-   
+    
     
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
@@ -147,8 +140,8 @@
     [self.sideMenuViewController setContentViewController:nav];
     
     [self.sideMenuViewController hideMenuViewController];
-
-
+    
+    
 }
 
 -(void)contact{
@@ -162,7 +155,7 @@
     [self.sideMenuViewController setContentViewController:nav];
     
     [self.sideMenuViewController hideMenuViewController];
-
+    
 }
 
 -(void)myOrder{
@@ -171,24 +164,26 @@
     MyOrderVC *VC = [[MyOrderVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
     
+    VC.token=self.token;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
     [self.sideMenuViewController setContentViewController:nav];
     
     [self.sideMenuViewController hideMenuViewController];
-
+    
 }
 
 
 
 
 -(void)set{
-
+    
     
     SetVC *VC = [[SetVC alloc]init];
     VC.VC = self.sideMenuViewController.contentViewController;
-//     VC.VC=self.sideMenuViewController;
+    //     VC.VC=self.sideMenuViewController;
+    VC.token=self.token;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
@@ -196,7 +191,7 @@
     [self.sideMenuViewController hideMenuViewController];
     
     
-//    [self.sideMenuViewController presentViewController:nav animated:NO completion:nil];
+    //    [self.sideMenuViewController presentViewController:nav animated:NO completion:nil];
 }
 
 
@@ -216,10 +211,6 @@
     [self.sideMenuViewController hideMenuViewController];
     
 }
-
-
-
-
 
 
 

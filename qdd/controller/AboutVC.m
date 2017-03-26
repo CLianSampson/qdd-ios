@@ -117,25 +117,17 @@
 
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    UIViewController *VC;
+   
     
-    switch (indexPath.row) {
-        case 0:
-            VC=[[HelpVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-            break;
-            
-        case 1:
-            VC = [[CommentVC alloc]init];
-            [self.navigationController pushViewController:VC animated:YES];
-            break;
-            
-            
-        default:
-            break;
+    if (indexPath.row==0) {
+         HelpVC  *VC=[[HelpVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    
+    }else if (indexPath.row==1){
+        CommentVC *VC = [[CommentVC alloc]init];
+        VC.token=self.token;
+        [self.navigationController pushViewController:VC animated:YES];
     }
-
-    
     
 }
 

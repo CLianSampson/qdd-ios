@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "AFNetRequest.h"
+#import "MJRefresh.h"
+#import "StringUtil.h"
 
 typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);
 
 typedef void (^PictureBlock)(id result);
+
 
 
 @interface  BaseVC : UIViewController
@@ -29,6 +33,8 @@ typedef void (^PictureBlock)(id result);
 @property(nonatomic,copy)PictureBlock pictureBlock;
 
 @property(nonatomic,strong)UIActivityIndicatorView *indicator;
+
+@property(nonatomic,strong)NSString *token;
 
 
 -(void)createBackgroungView;

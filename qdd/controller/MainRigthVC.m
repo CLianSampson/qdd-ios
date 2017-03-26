@@ -161,14 +161,14 @@
 
 -(void)netReauest{
     
-    if (_token==nil) {
+    if (self.token==nil) {
         return;
     }
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_MESSAGE];
     
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:_token];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     
     NSString *pageNo =[NSString stringWithFormat:@"/p/%d",_pageNo];

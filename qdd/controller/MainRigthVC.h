@@ -11,7 +11,7 @@
 @interface MainRigthVC : BaseVC<UITableViewDelegate,UITableViewDataSource>
 
 
-@property(nonatomic,strong)NSString *token;
+//@property(nonatomic,strong)NSString *token;
 
 
 @end

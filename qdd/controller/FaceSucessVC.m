@@ -11,8 +11,8 @@
 
 #import "MainVC.h"
 #import "RESideMenu.h"
-#import "LeftVC.h"
 #import "MainRigthVC.h"
+#import "MainLeftVC.h"
 
 @implementation FaceSucessVC
 
@@ -101,7 +101,7 @@
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     
     
-    LeftVC *leftVC = [[LeftVC alloc] init];
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
     MainRigthVC *rightVC = [[MainRigthVC alloc] init];
     
     
@@ -119,7 +119,7 @@
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     
     
-    LeftVC *leftVC = [[LeftVC alloc] init];
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
     MainRigthVC *rightVC = [[MainRigthVC alloc] init];
     
     

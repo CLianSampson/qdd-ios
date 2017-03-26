@@ -10,7 +10,7 @@
 #import "Macro.h"
 #import "MainVC.h"
 #import "RESideMenu.h"
-#import "LeftVC.h"
+#import "MainLeftVC.h"
 #import "MainRigthVC.h"
 
 @implementation BindMailVC
@@ -120,7 +120,7 @@
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
 
 
-    LeftVC *leftVC = [[LeftVC alloc] init];
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
     MainRigthVC *rightVC = [[MainRigthVC alloc] init];
 
 

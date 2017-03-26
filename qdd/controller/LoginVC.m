@@ -10,11 +10,11 @@
 #import "Macro.h"
 #import "MainVC.h"
 #import "RESideMenu.h"
-#import "LeftVC.h"
 #import "RegisteVC.h"
 #import "ForgetPasswordVC.h"
 #import "AFNetRequest.h"
 #import "MainRigthVC.h"
+#import "MainLeftVC.h"
 
 
 @interface LoginVC()
@@ -147,17 +147,6 @@
     NSLog(@"json data is : %@" ,dic);
     
     
-    NSError *error;
-    NSData *jsonData = [NSJSONSerialization dataWithJSONObject:dic
-                                                       options:NSJSONWritingPrettyPrinted
-                                                         error:&error];
-    NSString *jsonString  = [[NSString alloc] initWithData:jsonData encoding:NSUTF8StringEncoding];
-    
-    NSLog(@"jsondata is : %@",jsonData);
-    
-    NSLog(@"jsonString is : %@",jsonString);
-    
-    
     __weak typeof(self) weakSelf=self;
     
     self.netSucessBlock=^(id result){
@@ -173,12 +162,14 @@
            
             MainVC *VC = [[MainVC alloc]init];
             VC.token=token;
+//            globleToken=token;
             UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
             
         
-            LeftVC *leftVC = [[LeftVC alloc] init];
+            MainLeftVC *leftVC = [[MainLeftVC alloc] init];
             MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-            
+            leftVC.token=token;
+            rightVC.token=nil;
 
         
              RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];

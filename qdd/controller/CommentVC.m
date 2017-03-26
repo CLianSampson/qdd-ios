@@ -23,6 +23,8 @@
 
 @property(nonatomic,strong)UITextView *textView;
 
+@property(nonatomic,assign)int type;
+
 @end
 
 @implementation CommentVC
@@ -36,6 +38,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    _type=0;
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [leftButton setBackgroundImage:[UIImage imageNamed:@"左面返回箭头"] forState:UIControlStateNormal];
@@ -172,6 +175,7 @@
 
 
 -(void)defaultClick{
+    _type=0;
      [_defaultButton setBackgroundImage:[UIImage imageNamed:@"圆角矩形选中"] forState:UIControlStateNormal];
     [_defaultButton setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -189,6 +193,7 @@
 }
 
 -(void)signClick{
+    _type=1;
     [_signProblem setBackgroundImage:[UIImage imageNamed:@"圆角矩形选中"] forState:UIControlStateNormal];
     [_signProblem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -205,6 +210,7 @@
 }
 
 -(void)payClick{
+    _type=2;
     [_payProblem setBackgroundImage:[UIImage imageNamed:@"圆角矩形选中"] forState:UIControlStateNormal];
     [_payProblem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -220,6 +226,7 @@
 }
 
 -(void)setClick{
+    _type=3;
     [_setProblem setBackgroundImage:[UIImage imageNamed:@"圆角矩形选中"] forState:UIControlStateNormal];
     [_setProblem setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     
@@ -246,12 +253,57 @@
         return;
     }
     
-    self.alertView.title=@"评论已提交";
-    [self.alertView show];
+    [self netRequest];
     
 
     
 }
+
+
+
+-(void)netRequest{
+    
+    NSString *mutableUrl =[NSMutableString stringWithString:URL_COMMENT];
+    NSString *url = [mutableUrl stringByAppendingString:self.token];
+    
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+   
+    
+    NSString *type = [NSString stringWithFormat:@"%d",_type];
+    [dic setObject:type forKey:@"type"];
+    [dic setObject:_textView.text forKey:@"question"];
+   
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    [self netRequestWithUrl:url Data:dic];
+}
+
+
+
 
 
 @end
