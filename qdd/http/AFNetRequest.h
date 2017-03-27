@@ -23,6 +23,8 @@ static NSString *URL_LIST_SIGN =@"https://www.qiandd.com/mobile/Contract/index/t
 
 static NSString *URL_LIST_MESSAGE=@"https://www.qiandd.com/mobile/Message/index/token/";//消息列表
 
+static NSString *URL_MESSAGE_DETAIL=@"https://www.qiandd.com/mobile/Message/show/token/";
+
 static NSString *URL_COMMENT=@"https://www.qiandd.com/mobile/Question/add/token/";//意见反馈
 
 static NSString *URL_LIST_ORDER=@"https://www.qiandd.com/mobile/order/allindex/token/";// 订单列表

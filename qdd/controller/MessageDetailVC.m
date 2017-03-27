@@ -31,9 +31,9 @@
     
     self.mytitle.text=@"消息详情";
     
-//    [super createBackgroungView];
+
     
-    [self createView];
+    [self netReauest];
     
 }
 
@@ -101,6 +101,71 @@
 
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_MESSAGE_DETAIL];
+    
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *statusString = [NSString stringWithFormat:@"/id/%@",_messageId];
+   
+    NSString *string1=[appendUrlString stringByAppendingString:statusString];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:string1 Data:nil];
+}
+
+
+-(void)sucessDo:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    
+    _mainTitle = [data objectForKey:@"title"];
+    _subTitle = [data objectForKey:@"contents"];
+    
+   
+    [self createView];
+    
+    
+    
 }
 
 

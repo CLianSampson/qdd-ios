@@ -233,16 +233,58 @@
         NSString *type = nil;
         NSString *price = nil;
         NSString *number = nil;
+        NSString *orderId = nil;
+        NSString *createTime = nil;
         //返回参数无
-        NSString *time;
+        long startTimestap = [TimeUtil transStringToTimestap:model.creatTime];
+        long endTimestap = [TimeUtil transStringToTimestap:model.endTime];
+        int intervalTime = (int)(endTimestap-startTimestap)/(24*60*60);
+        
+        NSString *duration = [NSString stringWithFormat:@"签约有效期: %d天",intervalTime];
         
         if (![StringUtil isNullOrBlank:model.name]) {
-            
+            type = [NSString stringWithFormat:@"套餐类型:   %@",model.name];
+        }else{
+             type = [NSString stringWithFormat:@"套餐类型:"];
         }
         
-        if (indexPath.row%2==0) {
-            
+        
+        if (![StringUtil isNullOrBlank:model.price]) {
+            type = [NSString stringWithFormat:@"价格: %@元",model.price];
         }else{
+            type = [NSString stringWithFormat:@"价格:"];
+        }
+        
+        if (![StringUtil isNullOrBlank:model.number]) {
+            number = [NSString stringWithFormat:@"可使用次数: %@元",model.number];
+        }else{
+            number = [NSString stringWithFormat:@"可使用次数:"];
+        }
+        
+        if (![StringUtil isNullOrBlank:model.orderId]) {
+            number = [NSString stringWithFormat:@"订单编号: %@元",model.orderId];
+        }else{
+            number = [NSString stringWithFormat:@"订单编号:"];
+        }
+
+        if (![StringUtil isNullOrBlank:model.creatTime]) {
+            createTime = [NSString stringWithFormat:@"下单时间: %@元",model.creatTime];
+        }else{
+            createTime = [NSString stringWithFormat:@"下单时间:"];
+        }
+        
+        
+        
+        cell.type.text=type;
+        cell.price.text=price;
+        cell.useTimes.text=number;
+        cell.timeDuration.text=number;
+        cell.orderId.text=orderId;
+        cell.orderTime.text=createTime;
+        
+        if ([model.status intValue]==0) {
+            
+        }else if ([model.status intValue]==1) {
             [cell.pay removeFromSuperview];
         }
         
@@ -267,9 +309,12 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
     
-    if ( indexPath.row%2==0) {
+    OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
+    
+    
+    if ( [model.status intValue]==0) {
         return (30+45+38+30+32+32+32+32+107)*HEIGHT_SCALE+13+12+12+12+12;
-    }else{
+    }else {
         return (30+45+38+30+32+32+32+32)*HEIGHT_SCALE+13+12+12+12+12;
     }
     

@@ -17,7 +17,7 @@
 @property(nonatomic,strong)NSString *name;
 @property(nonatomic,strong)NSString *number;
 @property(nonatomic,strong)NSString *price;
-
+@property(nonatomic,strong)NSString *endTime;
 
 
 @end

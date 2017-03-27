@@ -14,4 +14,6 @@
 @property(nonatomic,strong)UILabel *subTitle;
 @property(nonatomic,strong)UILabel *time;
 
+@property(nonatomic,strong)UIImageView *icon;
+
 @end

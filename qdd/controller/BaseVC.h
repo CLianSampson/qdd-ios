@@ -10,6 +10,7 @@
 #import "AFNetRequest.h"
 #import "MJRefresh.h"
 #import "StringUtil.h"
+#import "TimeUtil.h"
 
 typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);

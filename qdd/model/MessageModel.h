@@ -13,7 +13,7 @@
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)NSString *type;
 @property(nonatomic,strong)NSString *createTime;
-@property(nonatomic,strong)NSString *id;
+@property(nonatomic,strong)NSString *messageId;
 @property(nonatomic,strong)NSString *contents;
 @property(nonatomic,strong)NSString *status;
 

@@ -113,6 +113,12 @@
     NSString *subTitle=nil;
     NSString *time =nil;
     
+    if ([StringUtil isNullOrBlank:model.status]) {
+        cell.icon.image=[UIImage imageNamed:@"消息图标未读"];
+    }else if ([model.status intValue]==0){
+        cell.icon.image=[UIImage imageNamed:@"消息图标"];
+    }
+    
     if (![StringUtil isNullOrBlank:model.title]) {
         mainTitle = model.title;
     }else{
@@ -140,13 +146,17 @@
 
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    MessageCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+  
+    
+    MessageModel *model = (MessageModel *)[_mutableArry objectAtIndex:indexPath.row];
     
     
     MessageDetailVC *VC =[[MessageDetailVC alloc]init];
-    VC.mainTitle=cell.mainTitle.text;
-    VC.subTitle=cell.subTitle.text;
-    VC.time=cell.time.text;
+    VC.messageId=model.messageId;
+    
+//    VC.mainTitle=cell.mainTitle.text;
+//    VC.subTitle=cell.subTitle.text;
+//    VC.time=cell.time.text;
     [self.navigationController pushViewController:VC animated:YES];
     
     
@@ -236,7 +246,7 @@
         model.title=[temp objectForKey:@"title"];
         model.type=[temp objectForKey:@"type"];
         model.createTime=[temp objectForKey:@"ctime"];
-        model.id=[temp objectForKey:@"id"];
+        model.messageId=[temp objectForKey:@"id"];
         model.contents=[temp objectForKey:@"contents"];
         model.status=[temp objectForKey:@"status"];
         

@@ -15,9 +15,9 @@
     
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
-        UIImageView *icon = [[UIImageView alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 92*HEIGHT_SCALE-25, 50, 50)];
-        icon.image=[UIImage imageNamed:@"消息图标"];
-        [self.contentView addSubview:icon];
+        _icon = [[UIImageView alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 92*HEIGHT_SCALE-25, 50, 50)];
+        _icon.image=[UIImage imageNamed:@"消息图标"];
+        [self.contentView addSubview:_icon];
         
         
         _mainTitle = [[UILabel alloc]initWithFrame:CGRectMake((30+32)*WIDTH_SCALE+50, 48*HEIGHT_SCALE, 150, 32*HEIGHT_SCALE)];
