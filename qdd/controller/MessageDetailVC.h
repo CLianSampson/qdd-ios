@@ -8,6 +8,8 @@
 
 #import "BaseVC.h"
 
+typedef void(^BackBlock)(void);
+
 @interface MessageDetailVC : BaseVC
 
 @property(nonatomic,strong)NSString *mainTitle;
@@ -15,5 +17,7 @@
 @property(nonatomic,strong)NSString *time;
 
 @property(nonatomic,strong)NSString *messageId;
+
+@property(nonatomic,copy)BackBlock backBlock;
 
 @end

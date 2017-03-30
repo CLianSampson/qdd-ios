@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol SendSmsCodeDelegete <NSObject>
+
+-(void)sendSmsCode;
+
+@end
+
 @interface GetVerifyCodeView : UIView
 
 
@@ -17,5 +23,7 @@
 @property(nonatomic,strong)UITextField *textField;
 
 @property(nonatomic,strong)UIButton *smsCode;
+
+@property(nonatomic,assign)id<SendSmsCodeDelegete> delegate;
 
 @end

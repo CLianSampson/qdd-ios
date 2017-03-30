@@ -123,16 +123,59 @@
         return;
     }
     
+    [self netRequest];
     
-    
-    if ([_newingPassword.textField.text isEqualToString:_confirmPassword.textField.text]) {
-        SetPasswordSucessVC *VC=[[SetPasswordSucessVC alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }else{
-        SetPasswordFailedVC *VC=[[SetPasswordFailedVC alloc]init];
-        [self.navigationController pushViewController:VC animated:YES];
-    }
 }
+
+
+-(void)netRequest{
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    
+    
+    [dic setObject:_newingPassword.textField.text forKey:@"password"];
+    [dic setObject:_confirmPassword.textField.text forKey:@"repassword"];
+    [dic setObject:_mobile forKey:@"mobile"];
+    [dic setObject:_mobile_code forKey:@"mobile_code"];
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            
+            SetPasswordSucessVC *VC=[[SetPasswordSucessVC alloc]init];
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+            
+        }else if ([state isEqualToString:@"fail"]){
+           
+            SetPasswordFailedVC *VC=[[SetPasswordFailedVC alloc]init];
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+
+        }
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestWithUrl:URL_FORGET_PASSWORD Data:dic];
+}
+
 
 
 @end

@@ -181,9 +181,6 @@
 
 
 
-
-
-
 -(void)showLeft{
     [self.sideMenuViewController setContentViewController:self.VC];
     [self.sideMenuViewController hideMenuViewController];

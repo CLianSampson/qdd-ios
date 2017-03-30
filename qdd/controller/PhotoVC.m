@@ -10,11 +10,13 @@
 #import "Macro.h"
 
 #import "ViewController.h"
+#import "FaceDetectVC.h"
 
 @interface PhotoVC()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
 
 @property(nonatomic,strong)UIImageView *icon;
+@property(nonatomic,assign)int netFlag; //0失败  1成功
 
 @end
 
@@ -28,6 +30,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
+    _netFlag=1;
     
     
     [super createNavition];
@@ -133,8 +136,10 @@
 
 
 -(void)confirmClick{
-    ViewController *VC =[[ViewController alloc]init];
-    [self.navigationController pushViewController:VC animated:YES];
+//    ViewController *VC =[[ViewController alloc]init];
+//    [self.navigationController pushViewController:VC animated:YES];
+    [self addLoadIndicator];
+    [self netReauest];
 }
 
 
@@ -159,6 +164,83 @@
         
 
     }];
+}
+
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSLog(@"appendUrlString is : %@",appendUrlString);
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            _netFlag = 1;
+            
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            
+            _netFlag = 0;
+            
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        
+        _netFlag = 0;
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self upLoad:appendUrlString image:_icon.image];
+}
+
+
+-(void)sucessDo:(id )result{
+    
+    [self createAlertView];
+    self.alertView.title=@"上传图片成功";
+    [self.alertView show];
+    return;
+    
+}
+
+
+
+//AlertView已经消失时执行的事件,alertView代理
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
+    
+    if (_netFlag == 1) {
+        FaceDetectVC *VC =[[FaceDetectVC alloc]init];
+        [self.navigationController pushViewController:VC animated:YES];
+    }
+    
+   
 }
 
 

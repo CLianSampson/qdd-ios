@@ -32,7 +32,7 @@
     self.mytitle.text=@"消息详情";
     
 
-    
+    [self addLoadIndicator];
     [self netReauest];
     
 }
@@ -101,6 +101,7 @@
 
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
+    self.backBlock();
 }
 
 

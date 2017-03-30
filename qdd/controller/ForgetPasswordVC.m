@@ -13,6 +13,13 @@
 #import "ResetPasswordVC.h"
 
 
+@interface ForgetPasswordVC()<SendSmsCodeDelegete>
+
+@property(nonatomic,strong)PasswordView *phone;
+@property(nonatomic,strong)GetVerifyCodeView *code ;
+
+@end
+
 @implementation ForgetPasswordVC
 
 
@@ -53,21 +60,22 @@
 
     
     
-    PasswordView *phone = [[PasswordView alloc]initWithFrame:CGRectMake(0, sepreate.frame.origin.y+sepreate.frame.size.height+1, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
-    phone.password.text=@"手机号码";
-    phone.textField.placeholder=@"请输入手机号码";
-    phone.password.textColor=RGBColor(51, 51, 51);
-    phone.textField.textColor=RGBColor(172, 172, 172);
-    phone.password.font=[UIFont systemFontOfSize:14];
-    phone.textField.font=[UIFont systemFontOfSize:14];
-    [self.view addSubview:phone];
+    _phone = [[PasswordView alloc]initWithFrame:CGRectMake(0, sepreate.frame.origin.y+sepreate.frame.size.height+1, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
+    _phone.password.text=@"手机号码";
+    _phone.textField.placeholder=@"请输入手机号码";
+    _phone.password.textColor=RGBColor(51, 51, 51);
+    _phone.textField.textColor=RGBColor(172, 172, 172);
+    _phone.password.font=[UIFont systemFontOfSize:14];
+    _phone.textField.font=[UIFont systemFontOfSize:14];
+    [self.view addSubview:_phone];
     
     
-    GetVerifyCodeView *code = [[GetVerifyCodeView alloc]initWithFrame:CGRectMake(0, phone.frame.origin.y+phone.frame.size.height, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
-    [self.view addSubview:code];
+    _code = [[GetVerifyCodeView alloc]initWithFrame:CGRectMake(0, _phone.frame.origin.y+_phone.frame.size.height, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
+    _code.delegate=self;
+    [self.view addSubview:_code];
     
     
-    UIButton *nextStep = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, code.frame.origin.y+code.frame.size.height+150*HEIGHT_SCALE, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
+    UIButton *nextStep = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, _code.frame.origin.y+_code.frame.size.height+150*HEIGHT_SCALE, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
     [nextStep setBackgroundImage:[UIImage imageNamed:@"登录按钮"] forState:UIControlStateNormal];
     [nextStep setTitle:@"下一步" forState:UIControlStateNormal];
     [nextStep setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
@@ -84,10 +92,62 @@
 }
 
 -(void)nextStepClick{
+    if ([StringUtil isNullOrBlank:_code.textField.text]) {
+        [self createAlertView];
+        self.alertView.title=@"验证码不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+    
     ResetPasswordVC *VC =[[ResetPasswordVC alloc]init];
+    VC.mobile = _phone.textField.text;
+    VC.mobile_code = _code.textField.text;
+    
+    VC.token = self.token;
+    
     [self.navigationController pushViewController:VC animated:YES];
 }
 
+-(void)sendSmsCode{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    
+   
+    if (_phone.textField.text==nil) {
+        [self createAlertView];
+        self.alertView.title=@"手机号不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+
+    
+    
+    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phone.textField.text];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+           
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
 
 
 @end

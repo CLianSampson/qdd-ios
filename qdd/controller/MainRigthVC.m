@@ -93,7 +93,7 @@
 #pragma mark -tableView dataSourceDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return _mutableArry.count;
 }
 
 
@@ -152,11 +152,14 @@
     
     
     MessageDetailVC *VC =[[MessageDetailVC alloc]init];
+    VC.token=self.token;
     VC.messageId=model.messageId;
     
-//    VC.mainTitle=cell.mainTitle.text;
-//    VC.subTitle=cell.subTitle.text;
-//    VC.time=cell.time.text;
+    VC.backBlock=^{
+        [self netReauest];
+        _pageNo=0;
+    };
+    
     [self.navigationController pushViewController:VC animated:YES];
     
     

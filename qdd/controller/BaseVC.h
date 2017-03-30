@@ -19,7 +19,7 @@ typedef void (^PictureBlock)(id result);
 
 
 
-@interface  BaseVC : UIViewController
+@interface  BaseVC : UIViewController<UIAlertViewDelegate>
 
 
 
@@ -55,5 +55,7 @@ typedef void (^PictureBlock)(id result);
 - (void)downLoad:(NSString *)urlString;
 
 -(void)addLoadIndicator;
+
+-(void)upLoad:(NSString *)urlString image:(UIImage *)image;
 
 @end

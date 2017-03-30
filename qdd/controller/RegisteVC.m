@@ -431,10 +431,14 @@
 
 -(void)netRequest{
     
+    NSMutableString *string = [NSMutableString stringWithFormat:@"mobile"];
+    [string appendString:@"_"];
+    [string appendString:@"code"];
+    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
         [dic setObject:_account forKey:@"mobile"];
-        [dic setObject:_verifyCode forKey:@"mobile_code"];
+        [dic setObject:_verifyCode forKey:string];
 
     }else if (_flag==2){
          [dic setObject:_account forKey:@"email"];
@@ -469,6 +473,14 @@
 
         }
         
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
     };
     
     [self netRequestWithUrl:URL_REGISTER Data:dic];

@@ -29,6 +29,14 @@ static NSString *URL_COMMENT=@"https://www.qiandd.com/mobile/Question/add/token/
 
 static NSString *URL_LIST_ORDER=@"https://www.qiandd.com/mobile/order/allindex/token/";// 订单列表
 
+static NSString *URL_LIST_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/signindex/token/";//签名列表
+
+static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picuploadt/token/";//上传图片
+
+static NSString *URL_FORGET_PASSWORD=@"https://www.qiandd.com/mobile/user/do_mobile_forgot_password";//修改密码
+
+
+
 @interface AFNetRequest : NSObject
 
 

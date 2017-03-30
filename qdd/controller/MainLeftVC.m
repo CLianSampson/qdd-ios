@@ -131,6 +131,7 @@
 -(void)mySign{
     
     MySignVC *VC = [[MySignVC alloc]init];
+    VC.token=self.token;
     VC.VC=self.sideMenuViewController.contentViewController;
     
     
@@ -202,6 +203,7 @@
 
 -(void)goToVerifyVC{
     VerifyVC *VC =[[VerifyVC alloc]init];
+    VC.token=self.token;
     VC.VC=self.sideMenuViewController.contentViewController;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];

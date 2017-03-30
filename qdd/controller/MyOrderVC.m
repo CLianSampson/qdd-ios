@@ -250,25 +250,25 @@
         
         
         if (![StringUtil isNullOrBlank:model.price]) {
-            type = [NSString stringWithFormat:@"价格: %@元",model.price];
+            price = [NSString stringWithFormat:@"价格: %@元",model.price];
         }else{
-            type = [NSString stringWithFormat:@"价格:"];
+            price = [NSString stringWithFormat:@"价格:"];
         }
         
         if (![StringUtil isNullOrBlank:model.number]) {
-            number = [NSString stringWithFormat:@"可使用次数: %@元",model.number];
+            number = [NSString stringWithFormat:@"可使用次数: %@次",model.number];
         }else{
             number = [NSString stringWithFormat:@"可使用次数:"];
         }
         
         if (![StringUtil isNullOrBlank:model.orderId]) {
-            number = [NSString stringWithFormat:@"订单编号: %@元",model.orderId];
+            orderId = [NSString stringWithFormat:@"订单编号: %@",model.orderId];
         }else{
-            number = [NSString stringWithFormat:@"订单编号:"];
+            orderId = [NSString stringWithFormat:@"订单编号:"];
         }
 
         if (![StringUtil isNullOrBlank:model.creatTime]) {
-            createTime = [NSString stringWithFormat:@"下单时间: %@元",model.creatTime];
+            createTime = [NSString stringWithFormat:@"下单时间: %@",model.creatTime];
         }else{
             createTime = [NSString stringWithFormat:@"下单时间:"];
         }
@@ -278,7 +278,7 @@
         cell.type.text=type;
         cell.price.text=price;
         cell.useTimes.text=number;
-        cell.timeDuration.text=number;
+        cell.signDuration.text=duration;
         cell.orderId.text=orderId;
         cell.orderTime.text=createTime;
         
@@ -317,10 +317,6 @@
     }else {
         return (30+45+38+30+32+32+32+32)*HEIGHT_SCALE+13+12+12+12+12;
     }
-    
-   
-    
-    
 }
 
 

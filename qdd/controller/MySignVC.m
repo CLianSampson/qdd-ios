@@ -11,6 +11,13 @@
 #import "RESideMenu.h"
 #import "SignVC.h"
 #import "SignImageView.h"
+#import "SignatureModel.h"
+
+@interface MySignVC()
+
+@property(nonatomic,strong)NSMutableArray *mutableArry;
+
+@end
 
 @implementation MySignVC
 
@@ -74,6 +81,8 @@
     signImageView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:signImageView];
     
+    [self netReauest];
+    
 }
 
 
@@ -89,6 +98,87 @@
 }
 
 
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGNATURE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf sucessDo:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)sucessDo:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSArray *arry = [data objectForKey:@"allsign"];
+    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+        
+        [self createAlertView];
+        self.alertView.title=@"没有签章";
+        [self.alertView show];
+        return;
+    }
+    
+    
+    for (NSDictionary *temp in arry) {
+        
+        SignatureModel *model =[[SignatureModel alloc]init];
+        model.signatureId = [temp objectForKey:@"id"];
+        model.name = [temp objectForKey:@"name"];
+        model.path= [temp objectForKey:@"path"];
+        
+        model.uid = [temp objectForKey:@"uid"];
+        
+        model.status = [temp objectForKey:@"status"];
+        model.ctime = [temp objectForKey:@"ctime"];
+        model.utime = [temp objectForKey:@"utime"];
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
+        }
+        
+        [_mutableArry addObject:model];
+        
+        
+    }
+    
+    
+}
 
 
 

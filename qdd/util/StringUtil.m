@@ -13,13 +13,23 @@
 
 +(BOOL)isNullOrBlank:(NSString *)string{
     
+    
+    
+    if ((NSNull*)string==[NSNull null]) {
+        return true;
+    }
+    
     if (string==nil) {
         return true;
     }
     
-    if ([string isEqualToString:@""]) {
+    if ([string isEqual:@""]) {
         return true;
     }
+    
+//    if ([string isEqualToString:@""]) {
+//        return true;
+//    }
     
     
     

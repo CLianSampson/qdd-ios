@@ -48,14 +48,19 @@
         [_smsCode setTitle:@"获取验证码" forState:UIControlStateNormal];
         _smsCode.titleLabel.font=[UIFont systemFontOfSize:13];
         [_smsCode setBackgroundImage:[UIImage imageNamed:@"获取验证码按钮"] forState:UIControlStateNormal];
+        [_smsCode addTarget:self action:@selector(sendSmsCodeClick) forControlEvents:UIControlEventTouchUpInside];
         [self addSubview:_smsCode];
-        
         UILabel *underlabel =[[ UILabel alloc]initWithFrame:CGRectMake(0,height-1, SCREEN_WIDTH, 1)];
         underlabel.backgroundColor=RGBColor(209, 209, 209);
         [self addSubview:underlabel];
     }
     
     return  self;
+}
+
+
+-(void)sendSmsCodeClick{
+    [self.delegate sendSmsCode];
 }
 
 @end

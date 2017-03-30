@@ -189,6 +189,14 @@
         
     };
     
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
     [self netRequestWithUrl:URL_LOGIN Data:dic];
 }
 

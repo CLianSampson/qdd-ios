@@ -74,6 +74,7 @@
 		1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF11E575E0A00AAE0E5 /* RECommonFunctions.m */; };
 		1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */; };
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
+		1832C8D21E8959E100C3DB37 /* SignatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832C8D11E8959E100C3DB37 /* SignatureModel.m */; };
 		184935D31E6F035200195071 /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184935D21E6F035200195071 /* SignCell.m */; };
 		185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03111E61412B00EB9325 /* ShoppingVC.m */; };
 		185A03151E61415000EB9325 /* MySignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03141E61415000EB9325 /* MySignVC.m */; };
@@ -265,6 +266,8 @@
 		1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
 		1831BCF41E575E0A00AAE0E5 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		1832C8D01E8959E100C3DB37 /* SignatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureModel.h; sourceTree = "<group>"; };
+		1832C8D11E8959E100C3DB37 /* SignatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureModel.m; sourceTree = "<group>"; };
 		184935D11E6F035200195071 /* SignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
 		184935D21E6F035200195071 /* SignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
 		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
@@ -851,6 +854,8 @@
 				18B9F3DB1E865FFF00A3A1EC /* MessageModel.m */,
 				1824ADDD1E87BFC5002221C3 /* OrderModel.h */,
 				1824ADDE1E87BFC5002221C3 /* OrderModel.m */,
+				1832C8D01E8959E100C3DB37 /* SignatureModel.h */,
+				1832C8D11E8959E100C3DB37 /* SignatureModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1092,6 +1097,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1832C8D21E8959E100C3DB37 /* SignatureModel.m in Sources */,
 				18F4940D1E6BFFDA0033AC03 /* AboutVC.m in Sources */,
 				180F11AE1E7593090082F385 /* ViewController.mm in Sources */,
 				18B9F3D61E86500100A3A1EC /* StringUtil.m in Sources */,

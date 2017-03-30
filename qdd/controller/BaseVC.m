@@ -12,6 +12,9 @@
 #import "AFNetworking.h"
 
 
+
+
+
 @implementation BaseVC
 
 
@@ -80,7 +83,11 @@
     
 }
 
+//AlertView已经消失时执行的事件,alertView代理
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex
+{
 
+}
 
 
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data{
@@ -205,6 +212,116 @@
     
 }
 
+//- (void)upLoad:(NSString *)urlString image:(UIImage *)image{
+//    
+//    //1。创建管理者对象
+//    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+//    
+//    //2.上传文件
+////    NSDictionary *dict = @{@"username":@"1234"};
+//    
+//    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+//        //上传文件参数
+//        NSData *data = UIImagePNGRepresentation(image);
+//        //这个就是参数
+//        [formData appendPartWithFileData:data name:@"file" fileName:@"123.png" mimeType:@"image/png"];
+//        
+//    } progress:^(NSProgress * _Nonnull uploadProgress) {
+//        
+//        //打印下上传进度
+//        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+//    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+//        
+//        //请求成功
+//        NSLog(@"请求成功：%@",responseObject);
+//        
+//        self.netSucessBlock(responseObject);
+//        
+//    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+//        
+//        //请求失败
+//        NSLog(@"请求失败：%@",error);
+//        self.netFailedBlock(nil);
+//    }];
+//    
+//}
+
+- (void)upLoad:(NSString *)urlString image:(UIImage *)image{
+    
+    NSData *data;
+    if (UIImagePNGRepresentation(image) == nil) {
+        
+        data = UIImageJPEGRepresentation(image, 1);
+        
+    } else {
+        
+        data = UIImagePNGRepresentation(image);
+    }
+
+    NSMutableURLRequest *urlRequest=[[NSMutableURLRequest alloc]initWithURL:[NSURL URLWithString:urlString] cachePolicy:NSURLRequestUseProtocolCachePolicy timeoutInterval:250];
+    [urlRequest setHTTPMethod:@"POST"];
+    
+    //表单分界符
+    static NSString * const BOUNDRY = @"0xKhTmLbOuNdArY";
+
+    
+    //设置请求头
+    [urlRequest setValue:
+     [NSString stringWithFormat:@"multipart/form-data; boundary=%@", BOUNDRY]
+      forHTTPHeaderField:@"Content-Type"];
+   
+    
+    NSMutableData *postData =
+    [NSMutableData dataWithCapacity:[data length] + 512];
+    
+    //http协议规定必须以  --BOUNDRY   开头， 每行以 \r\n 结束， 在此由于服务端进行处理，不加也可以。
+    [postData appendData:
+     [[NSString stringWithFormat:@"--%@\r\n", BOUNDRY] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    //文件名
+    //以下字符串中‘\’，表示转义字符，作用是说明下一个“不表示字符串的结束,文件名自定义
+    [postData appendData:
+     [[NSString stringWithFormat:
+       @"Content-Disposition: form-data; name=\"File\"; filename=\"icon.png\"\r\n\r\n\r\n\r\n"]
+      dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    //http协议规定，必须以 --BOUNDRY-- 结束，在此由于服务端进行处理，不加也可以。
+    
+    [postData appendData:data];
+    [postData appendData:
+     [[NSString stringWithFormat:@"\r\n--%@--\r\n", BOUNDRY] dataUsingEncoding:NSUTF8StringEncoding]];
+    
+    
+    [urlRequest setValue:[NSString stringWithFormat:@"%lu", (unsigned long)[postData length]] forHTTPHeaderField:@"Content-Length"];
+    
+    [urlRequest setHTTPBody:postData];
+    
+    
+    [NSURLConnection sendAsynchronousRequest:urlRequest queue:[NSOperationQueue mainQueue] completionHandler:^(NSURLResponse *response, NSData *data, NSError *connectionError) {
+        if (connectionError) {
+            self.netFailedBlock(nil);
+            return ;
+        }
+        id result = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+        NSLog(@"上传图片的返回是 :%@",result);
+//        int state=[[result objectForKey:@"state"] intValue];
+//        if (state==1) {
+//            if (self.netSucessBlock) {
+//                self.netSucessBlock();
+//            }
+//        }
+//        else{
+//            if (self.netFailedBlock) {
+//                self.netFailedBlock();
+//            }
+//        }
+        
+        
+         self.netSucessBlock(result);
+    }];
+
+}
 
 
 
