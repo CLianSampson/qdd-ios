@@ -431,14 +431,10 @@
 
 -(void)netRequest{
     
-    NSMutableString *string = [NSMutableString stringWithFormat:@"mobile"];
-    [string appendString:@"_"];
-    [string appendString:@"code"];
-    
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
         [dic setObject:_account forKey:@"mobile"];
-        [dic setObject:_verifyCode forKey:string];
+        [dic setObject:_verifyCode forKey:@"mobilecode"];
 
     }else if (_flag==2){
          [dic setObject:_account forKey:@"email"];

@@ -10,7 +10,7 @@
 
 @interface SignModel : NSObject
 
-@property(nonatomic,strong)NSString *id;
+@property(nonatomic,strong)NSString *signId;
 @property(nonatomic,strong)NSString *title;
 @property(nonatomic,strong)NSString *endTime;
 @property(nonatomic,strong)NSString *startTime;

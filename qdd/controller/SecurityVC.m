@@ -83,6 +83,7 @@
 
 -(void)setPassword{
     SetPasswordVC *VC = [[SetPasswordVC alloc]init];
+    VC.token=self.token;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

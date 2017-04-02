@@ -93,6 +93,7 @@
     [reSend setTitleColor:RedRGBColor forState:UIControlStateNormal];
     reSend.titleLabel.font=[UIFont systemFontOfSize:14];
     reSend.contentHorizontalAlignment=UIControlContentHorizontalAlignmentLeft;
+    [reSend addTarget:self action:@selector(showLeft) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:reSend];
     
 

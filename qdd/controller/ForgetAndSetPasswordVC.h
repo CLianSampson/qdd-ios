@@ -8,6 +8,6 @@
 
 #import "BaseVC.h"
 
-@interface ForgetPasswordVC : BaseVC
+@interface ForgetAndSetPasswordVC : BaseVC
 
 @end

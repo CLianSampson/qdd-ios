@@ -113,7 +113,7 @@
         if ([state isEqualToString:@"success"]) {
             [weakSelf.indicator removeFromSuperview];
             
-            [weakSelf sucessDo:result];
+            [weakSelf doSucess:result];
             
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf.indicator removeFromSuperview];
@@ -139,7 +139,7 @@
 }
 
 
--(void)sucessDo:(id )result{
+-(void)doSucess:(id )result{
     NSDictionary *data = [result objectForKey:@"data"];
     if (data==nil || [data isEqual:[NSNull null]]) {
         return ;

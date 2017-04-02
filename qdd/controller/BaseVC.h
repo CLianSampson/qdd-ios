@@ -11,12 +11,19 @@
 #import "MJRefresh.h"
 #import "StringUtil.h"
 #import "TimeUtil.h"
+#import "Macro.h"
+#import "RESideMenu.h"
 
 typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);
 
 typedef void (^PictureBlock)(id result);
 
+
+typedef NS_ENUM(NSInteger, ACCOUNT_FLAG) {
+    USER_ACCOUNT = 1,
+    ENTERPRISE_ACCOUNT =2,
+};
 
 
 @interface  BaseVC : UIViewController<UIAlertViewDelegate>
@@ -36,6 +43,8 @@ typedef void (^PictureBlock)(id result);
 @property(nonatomic,strong)UIActivityIndicatorView *indicator;
 
 @property(nonatomic,strong)NSString *token;
+
+@property(nonatomic,assign)ACCOUNT_FLAG accountFlag;
 
 
 -(void)createBackgroungView;

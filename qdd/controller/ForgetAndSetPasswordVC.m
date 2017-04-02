@@ -6,21 +6,21 @@
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
-#import "ForgetPasswordVC.h"
+#import "ForgetAndSetPasswordVC.h"
 #import "Macro.h"
 #import "PasswordView.h"
 #import "GetVerifyCodeView.h"
 #import "ResetPasswordVC.h"
 
 
-@interface ForgetPasswordVC()<SendSmsCodeDelegete>
+@interface ForgetAndSetPasswordVC()<SendSmsCodeDelegete>
 
 @property(nonatomic,strong)PasswordView *phone;
 @property(nonatomic,strong)GetVerifyCodeView *code ;
 
 @end
 
-@implementation ForgetPasswordVC
+@implementation ForgetAndSetPasswordVC
 
 
 

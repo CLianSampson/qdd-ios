@@ -33,9 +33,15 @@ static NSString *URL_LIST_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/signind
 
 static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picuploadt/token/";//上传图片
 
-static NSString *URL_FORGET_PASSWORD=@"https://www.qiandd.com/mobile/user/do_mobile_forgot_password";//修改密码
+static NSString *URL_FORGET_PASSWORD=@"https://www.qiandd.com/mobile/user/do_mobile_forgot_password";//忘记密码
 
+static NSString *URL_RESET_PASSWORD=@"https://www.qiandd.com/mobile/Set/changepwd_post/token/";//修改密码
 
+static NSString *URL_GET_ACCOUNT_INFO=@"https://www.qiandd.com/mobile/set/userinfo/token/";//获取用户资料
+
+static NSString *URL_BIND_MAIL=@"https://www.qiandd.com/mobile/Set/bound_post/token/";//绑定邮箱，发送邮件
+
+static NSString *URL_SIGN_DETAIL=@"https://www.qiandd.com/mobile/Contract/details/token/";//合同内容
 
 @interface AFNetRequest : NSObject
 

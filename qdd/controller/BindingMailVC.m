@@ -97,24 +97,74 @@
 
 
 -(void)complete{
-    [super createAlertView];
+    
+   
     
     if ([_textField.text isEqualToString:@""]) {
+        [self createAlertView];
         self.alertView.title=@"邮箱地址不能为空";
         [self.alertView show];
+        
         return;
     }
     
-    BindMailVC *VC =[[BindMailVC alloc]init];
-    VC.mailAccount=_textField.text;
-    [self.navigationController pushViewController:VC animated:YES];
     
-    
+    [self netReauest];
 }
 
 
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    BindMailVC *VC =[[BindMailVC alloc]init];
+    VC.mailAccount=_textField.text;
+    [self.navigationController pushViewController:VC animated:YES];
+
+}
+
+
+
 
 @end

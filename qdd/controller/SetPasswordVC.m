@@ -103,35 +103,48 @@
 }
 
 -(void)complete{
-     _completeLabel = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 577*HEIGHT_SCALE, 200, SCREEN_HEIGHT-577*HEIGHT_SCALE-677*HEIGHT_SCALE)];
+//     _completeLabel = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 577*HEIGHT_SCALE, 200, SCREEN_HEIGHT-577*HEIGHT_SCALE-677*HEIGHT_SCALE)];
+//    
+//    if ([_newingPassword.textField.text isEqualToString:_confirmPassword.textField.text]) {
+//        
+//        _completeLabel.text=@"密码已修改完成";
+//        
+//    }else{
+//         _completeLabel.text=@"新旧密码不相等";
+//    
+//    }
+//    
+//    _back =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+//    
+//    _back.backgroundColor=RGBColor(191, 191, 191);
+//    _back.alpha=0.8;
+//    [self.view addSubview:_back];
+//    
+//    
+//    _back.userInteractionEnabled = YES;
+//    // hy:添加单击事件
+//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+//    [_back addGestureRecognizer:tap];
+//    
+//   
+//    _completeLabel.backgroundColor=[UIColor whiteColor];
+//    _completeLabel.textAlignment=NSTextAlignmentCenter;
+//    _completeLabel.layer.cornerRadius=5;
+//    _completeLabel.clipsToBounds=YES;
+//    [self.view addSubview:_completeLabel];
     
-    if ([_newingPassword.textField.text isEqualToString:_confirmPassword.textField.text]) {
-        
-        _completeLabel.text=@"密码已修改完成";
-        
-    }else{
-         _completeLabel.text=@"新旧密码不相等";
     
+    if ([StringUtil isNullOrBlank:_oldPassword.textField.text]
+        || [StringUtil isNullOrBlank:_newingPassword.textField.text]
+        || [StringUtil isNullOrBlank:_confirmPassword.textField.text]) {
+        
+        [self createAlertView];
+        self.alertView.title=@"输入内容不能为空";
+        [self.alertView show];
     }
     
-    _back =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-    
-    _back.backgroundColor=RGBColor(191, 191, 191);
-    _back.alpha=0.8;
-    [self.view addSubview:_back];
-    
-    
-    _back.userInteractionEnabled = YES;
-    // hy:添加单击事件
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-    [_back addGestureRecognizer:tap];
-    
-   
-    _completeLabel.backgroundColor=[UIColor whiteColor];
-    _completeLabel.textAlignment=NSTextAlignmentCenter;
-    _completeLabel.layer.cornerRadius=5;
-    _completeLabel.clipsToBounds=YES;
-    [self.view addSubview:_completeLabel];
+    [self addLoadIndicator];
+    [self netRequest];
 }
 
 
@@ -142,5 +155,54 @@
     _back=nil;
     _completeLabel=nil;
 }
+
+
+
+
+-(void)netRequest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_RESET_PASSWORD];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    
+    [dic setObject:_oldPassword.textField.text forKey:@"pwd"];
+    [dic setObject:_newingPassword.textField.text forKey:@"newpwd"];
+    [dic setObject:_confirmPassword.textField.text forKey:@"renewpwd"];
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
+}
+
+
 
 @end

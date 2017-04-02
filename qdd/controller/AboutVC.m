@@ -138,10 +138,6 @@
 }
 
 
-
-
-
-
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
 }

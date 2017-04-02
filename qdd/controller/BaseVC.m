@@ -18,6 +18,7 @@
 @implementation BaseVC
 
 
+
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
 }
@@ -33,6 +34,8 @@
     UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     backgroundView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backgroundView];
+    
+    [self setNetRequestFailedBlock];
 }
 
 
@@ -324,5 +327,19 @@
 }
 
 
+-(void)setNetRequestFailedBlock{
+    
+    __weak typeof(self) weakSelf=self;
+
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+}
 
 @end

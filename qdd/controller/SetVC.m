@@ -130,9 +130,12 @@
     
     if (indexPath.row==0) {
         UserAccountVC *VC = [[UserAccountVC alloc]init];
+        VC.token=self.token;
+        VC.accountFlag=self.accountFlag;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row==1){
         SecurityVC *VC = [[SecurityVC alloc]init];
+        VC.token=self.token;
         [self.navigationController pushViewController:VC animated:YES];
     }else if (indexPath.row==2){
         AboutVC *VC  =[[AboutVC alloc]init];

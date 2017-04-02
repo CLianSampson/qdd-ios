@@ -16,6 +16,7 @@
 #import "TimeUtil.h"
 #import "StringUtil.h"
 #import "MainRigthVC.h"
+#import "SignShowVC.h"
 
 
 @interface MainVC()<UITableViewDelegate,UITableViewDataSource>
@@ -193,6 +194,7 @@
 
 -(void)waitForMeMethod{
     _status=1;
+    _pageNo=0;
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -211,7 +213,8 @@
 
 -(void)waitForOtherMethod{
     _status=2;
-    
+    _pageNo=0;
+
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -229,7 +232,8 @@
 
 -(void)completeMethod{
     _status=3;
-    
+    _pageNo=0;
+
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -247,6 +251,8 @@
 
 -(void)timeOutMethod{
     _status=4;
+    _pageNo=0;
+
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -364,7 +370,22 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    SignModel *model = (SignModel *)[_mutableArry objectAtIndex:indexPath.row];
     
+    SignShowVC *VC= [[SignShowVC alloc]init];
+    VC.token=self.token;
+    VC.signTitle=model.title;
+    VC.signId=model.signId;
+    
+    VC.VC = self.sideMenuViewController.contentViewController;
+
+    
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    [self.sideMenuViewController hideMenuViewController];
+    
+//    [self.navigationController pushViewController:VC animated:YES];
     
     return;
 }
@@ -470,7 +491,7 @@
     for (NSDictionary *temp in arry) {
         
         SignModel *signModel =[[SignModel alloc]init];
-        signModel.id = [temp objectForKey:@"id"];
+        signModel.signId = [temp objectForKey:@"id"];
         signModel.title = [temp objectForKey:@"title"];
         signModel.phone= [temp objectForKey:@"sendname"];
 

@@ -15,6 +15,13 @@
 
 @property(nonatomic,strong)UITableView *tableView;
 
+@property(nonatomic,strong)NSString *idNum;
+@property(nonatomic,strong)NSString *checkStatus;
+@property(nonatomic,strong)NSString *name;
+@property(nonatomic,strong)NSString *account;
+@property(nonatomic,strong)NSString *mail;
+@property(nonatomic,strong)NSString *phone;
+
 @end
 
 @implementation UserAccountVC
@@ -62,7 +69,8 @@
     _tableView.delegate=self;
     _tableView.dataSource=self;
     [self.view addSubview:_tableView];
-
+    
+    [self netReauest];
     
 }
 
@@ -95,39 +103,98 @@
     }
     
     
-    if (indexPath.section==1) {
-        cell.leftLabel.text=@"绑定邮箱";
-        cell.rightLabel.text=@"未绑定 >";
-//        cell.accessoryType=UITableViewCellAccessoryDisclosureIndicator;
+    if (self.accountFlag==USER_ACCOUNT) {
+        if (indexPath.section==1) {
+            if ([StringUtil isNullOrBlank:_mail]) {
+                cell.leftLabel.text=@"绑定邮箱";
+                cell.rightLabel.text=@"未绑定 >";
+               
+            }else{
+                cell.leftLabel.text=@"邮箱";
+                
+                NSMutableString *mustableString = [NSMutableString stringWithString:_mail];
+                NSString *string =[mustableString stringByAppendingString:@" >"];
+                
+                cell.rightLabel.text=string;
+                
+            }
+            
+            return cell;
+        }
+        
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.leftLabel.text=@"名称";
+                cell.rightLabel.text=_name;
+                break;
+                
+            case 1:
+                cell.leftLabel.text=@"账号";
+                cell.rightLabel.text=_account;
+                
+                break;
+                
+            case 2:
+                cell.leftLabel.text=@"身份证";
+                cell.rightLabel.text=_idNum;
+                
+                break;
+                
+            default:
+                break;
+        }
+        
+        
+        return cell;
+    }else{
+        if (indexPath.section==1) {
+            if ([StringUtil isNullOrBlank:_phone]) {
+                cell.leftLabel.text=@"法人手机号";
+                cell.rightLabel.text=@"未绑定 >";
+            }else{
+                cell.leftLabel.text=@"法人手机号";
+                
+                NSMutableString *mustableString = [NSMutableString stringWithString:_phone];
+                NSString *string =[mustableString stringByAppendingString:@" >"];
+                
+                cell.rightLabel.text=string;
+                
+            }
+            
+            return cell;
+        }
+        
+        
+        switch (indexPath.row) {
+            case 0:
+                cell.leftLabel.text=@"企业名称";
+                cell.rightLabel.text=_name;
+                break;
+                
+            case 1:
+                cell.leftLabel.text=@"账号";
+                cell.rightLabel.text=_account;
+                
+                break;
+                
+            case 2:
+                cell.leftLabel.text=@"法人身份证号";
+                cell.rightLabel.text=_idNum;
+                
+                break;
+                
+            default:
+                break;
+        }
+        
         
         return cell;
     }
     
     
-    switch (indexPath.row) {
-        case 0:
-            cell.leftLabel.text=@"名称";
-            cell.rightLabel.text=@"林林集";
-            break;
-            
-        case 1:
-            cell.leftLabel.text=@"账号";
-            cell.rightLabel.text=@"18771098004";
-            
-            break;
-            
-        case 2:
-            cell.leftLabel.text=@"身份证";
-            cell.rightLabel.text=@"67777878778787878778";
-            
-            break;
-            
-        default:
-            break;
-    }
     
-    
-    return cell;
+   
 }
 
 
@@ -136,6 +203,7 @@
     
     if (indexPath.section==1) {
         BindingMailVC *VC =[[BindingMailVC alloc]init];
+        VC.token=self.token;
         [self.navigationController pushViewController:VC animated:YES];
     }
     
@@ -182,5 +250,62 @@
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    _idNum =[data objectForKey:@"sfz"];
+     _checkStatus =[data objectForKey:@"cherk"];
+     _name =[data objectForKey:@"name"];
+     _account =[data objectForKey:@"idname"];
+     _mail =[data objectForKey:@"mail"];
+     _phone =[data objectForKey:@"tel"];
+    
+    
+   
+    
+    [_tableView reloadData];
+    
+}
+
+
+
 
 @end

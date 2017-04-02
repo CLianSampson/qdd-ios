@@ -13,4 +13,6 @@
 
 +(BOOL)isNullOrBlank:(NSString *)string;
 
++(BOOL)isPhoneNum:(NSString *)mobileNum;
+
 @end

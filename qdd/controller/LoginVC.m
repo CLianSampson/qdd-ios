@@ -11,7 +11,7 @@
 #import "MainVC.h"
 #import "RESideMenu.h"
 #import "RegisteVC.h"
-#import "ForgetPasswordVC.h"
+#import "ForgetAndSetPasswordVC.h"
 #import "AFNetRequest.h"
 #import "MainRigthVC.h"
 #import "MainLeftVC.h"
@@ -122,7 +122,7 @@
 
 
 -(void)forgetPassword{
-    ForgetPasswordVC *VC = [[ForgetPasswordVC alloc]init];
+    ForgetAndSetPasswordVC *VC = [[ForgetAndSetPasswordVC alloc]init];
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     [self presentViewController:nav animated:YES completion:nil];
 
@@ -143,6 +143,7 @@
     
     [dic setObject:@"17600170189" forKey:@"username"];
     [dic setObject:@"613200" forKey:@"password"];
+//    [dic setObject:@"123456" forKey:@"password"];
     
     NSLog(@"json data is : %@" ,dic);
     
@@ -157,28 +158,7 @@
         
         if ([state isEqualToString:@"success"]) {
             
-            NSDictionary *data = [result objectForKey:@"data"];
-            NSString *token=[data objectForKey:@"token"];
-           
-            MainVC *VC = [[MainVC alloc]init];
-            VC.token=token;
-//            globleToken=token;
-            UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-            
-        
-            MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-            MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-            leftVC.token=token;
-            rightVC.token=nil;
-
-        
-             RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-        
-             MenuVC.contentViewScaleValue=(float)305/445;
-            
-            
-            [weakSelf presentViewController:MenuVC animated:YES completion:nil];
-
+            [weakSelf doSucess:result];
             
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf createAlertView];
@@ -200,6 +180,32 @@
     [self netRequestWithUrl:URL_LOGIN Data:dic];
 }
 
-
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    NSString *token=[data objectForKey:@"token"];
+    
+    MainVC *VC = [[MainVC alloc]init];
+    VC.token=token;
+    
+    if ([StringUtil isPhoneNum:_userName.text]) {
+        VC.accountFlag = USER_ACCOUNT;
+    }else{
+        VC.accountFlag = ENTERPRISE_ACCOUNT;
+    }
+    
+    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+    
+    
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+    leftVC.token=token;
+    rightVC.token=nil;
+    
+    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    
+    MenuVC.contentViewScaleValue=(float)305/445;
+    
+    [self presentViewController:MenuVC animated:YES completion:nil];
+}
 
 @end

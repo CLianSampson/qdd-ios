@@ -34,6 +34,7 @@
     
     
     [super createNavition];
+    
     self.mytitle.text=@"身份照上传";
     
     
@@ -60,7 +61,9 @@
     
 }
 
-
+-(void)showLeft{
+    [self.navigationController popViewControllerAnimated:YES];
+}
 
 -(void)creteView{
 
