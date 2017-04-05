@@ -43,6 +43,13 @@ static NSString *URL_BIND_MAIL=@"https://www.qiandd.com/mobile/Set/bound_post/to
 
 static NSString *URL_SIGN_DETAIL=@"https://www.qiandd.com/mobile/Contract/details/token/";//合同内容
 
+static NSString *URL_LIST_CONTACT=@"https://www.qiandd.com/mobile/Contacts/index/token/";//联系人列表
+
+//添加联系人
+//搜索联系人
+
+static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/token/";//个人认证
+
 @interface AFNetRequest : NSObject
 
 

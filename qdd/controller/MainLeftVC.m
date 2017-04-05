@@ -150,6 +150,7 @@
     ContactVC *VC = [[ContactVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
     
+    VC.token=self.token;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
@@ -183,8 +184,8 @@
     
     SetVC *VC = [[SetVC alloc]init];
     VC.VC = self.sideMenuViewController.contentViewController;
-    //     VC.VC=self.sideMenuViewController;
     VC.token=self.token;
+    VC.accountFlag=self.accountFlag;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     

@@ -120,6 +120,7 @@
 		18B9F3D61E86500100A3A1EC /* StringUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9F3D51E86500100A3A1EC /* StringUtil.m */; };
 		18B9F3D91E865E8E00A3A1EC /* MainRigthVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9F3D81E865E8E00A3A1EC /* MainRigthVC.m */; };
 		18B9F3DC1E865FFF00A3A1EC /* MessageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18B9F3DB1E865FFF00A3A1EC /* MessageModel.m */; };
+		18D064091E953E2300264F6E /* ContactModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D064081E953E2300264F6E /* ContactModel.m */; };
 		18D9380E1E704836000EC118 /* LoginVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D9380D1E704836000EC118 /* LoginVC.m */; };
 		18D938111E705EF0000EC118 /* RegisteVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18D938101E705EF0000EC118 /* RegisteVC.m */; };
 		18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18DC3A691E598D7400151834 /* MessageCell.m */; };
@@ -361,6 +362,8 @@
 		18B9F3D81E865E8E00A3A1EC /* MainRigthVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainRigthVC.m; sourceTree = "<group>"; };
 		18B9F3DA1E865FFF00A3A1EC /* MessageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageModel.h; sourceTree = "<group>"; };
 		18B9F3DB1E865FFF00A3A1EC /* MessageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageModel.m; sourceTree = "<group>"; };
+		18D064071E953E2300264F6E /* ContactModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactModel.h; sourceTree = "<group>"; };
+		18D064081E953E2300264F6E /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		18D9380C1E704836000EC118 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
 		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
@@ -871,6 +874,8 @@
 				1824ADDE1E87BFC5002221C3 /* OrderModel.m */,
 				1832C8D01E8959E100C3DB37 /* SignatureModel.h */,
 				1832C8D11E8959E100C3DB37 /* SignatureModel.m */,
+				18D064071E953E2300264F6E /* ContactModel.h */,
+				18D064081E953E2300264F6E /* ContactModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1129,6 +1134,7 @@
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
+				18D064091E953E2300264F6E /* ContactModel.m in Sources */,
 				18B9F3D31E863D6000A3A1EC /* TimeUtil.m in Sources */,
 				1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */,
 				18B9F3901E8633FA00A3A1EC /* SignModel.m in Sources */,

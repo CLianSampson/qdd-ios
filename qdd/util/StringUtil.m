@@ -39,21 +39,25 @@
 
 
 +(BOOL)isPhoneNum:(NSString *)mobileNum{
-    NSString *Fristnumber;
-    if (mobileNum.length!=0) {
-        Fristnumber   = [mobileNum substringWithRange:NSMakeRange(0, 1)];
-        
-    }
+    NSString *fristnumber;
     
-    if (mobileNum.length ==11 && [Fristnumber isEqualToString:@"1"]) {
-        return YES;
+    if (mobileNum.length!=0) {
+        fristnumber   = [mobileNum substringWithRange:NSMakeRange(0, 1)];
     }
     
     if ([mobileNum containsString:@"@"]) {
         return NO;
     }
     
-    return NO;
+    if (mobileNum.length ==11 && [fristnumber isEqualToString:@"1"]) {
+        return YES;
+    }else{
+        return NO;
+    }
+    
+
 }
+
+
 
 @end

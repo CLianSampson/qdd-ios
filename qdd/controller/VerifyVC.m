@@ -15,7 +15,7 @@
 #import "PhotoVC.h"
 #import "FaceDetectVC.h"
 
-@interface VerifyVC()
+@interface VerifyVC()<SendSmsCodeDelegete>
 
 
 @property(nonatomic,strong)PasswordView *name;
@@ -95,6 +95,7 @@
     
     
     _code = [[GetVerifyCodeView alloc]initWithFrame:CGRectMake(0, _phone.frame.origin.y+_phone.frame.size.height, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
+    _code.delegate=self;
     [self.view addSubview:_code];
     
     
@@ -116,23 +117,21 @@
 
 
 -(void)confirm{
-//    if ([_name.textField.text isEqualToString:@""]
-//        || [_idNum.textField.text isEqualToString:@""]
-//        || [_bankNum.textField.text isEqualToString:@""]
-//        || [_phone.textField.text isEqualToString:@""]
-//        || [_code.textField.text isEqualToString:@""]) {
-//        
-//        [super createAlertView];
-//        self.alertView.title=@"输入内容不能为空";
-//        [self.alertView show];
-//        
-//        return;
-//    }
+    if ([_name.textField.text isEqualToString:@""]
+        || [_idNum.textField.text isEqualToString:@""]
+        || [_bankNum.textField.text isEqualToString:@""]
+        || [_phone.textField.text isEqualToString:@""]
+        || [_code.textField.text isEqualToString:@""]) {
+        
+        [super createAlertView];
+        self.alertView.title=@"输入内容不能为空";
+        [self.alertView show];
+        
+        return;
+    }
     
     
-    PhotoVC *VC =[[PhotoVC alloc]init];
-    VC.token=self.token;
-    [self.navigationController pushViewController:VC animated:YES];
+    [self netRequest];
     
 //    FaceDetectVC *VC =[[FaceDetectVC alloc]init];
 //    [self.navigationController pushViewController:VC animated:YES];
@@ -154,6 +153,111 @@
     [self.sideMenuViewController presentLeftMenuViewController];
 
 }
+
+
+
+
+-(void)netRequest{
+    if (self.token==nil) {
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_USER_VERIFY];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+
+    [dic setObject:_name.textField.text forKey:@"name"];
+    [dic setObject:_idNum.textField.text forKey:@"sfz"];
+    [dic setObject:_bankNum.textField.text forKey:@"bankid"];
+    [dic setObject:_phone.textField.text forKey:@"mobile"];
+    [dic setObject:_code.textField.text forKey:@"mobilecode"];
+    
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
+}
+
+-(void)doSucess:(id )result{
+    
+    PhotoVC *VC =[[PhotoVC alloc]init];
+    VC.token=self.token;
+    [self.navigationController pushViewController:VC animated:YES];
+}
+
+-(void)sendSmsCode{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    
+    if ([StringUtil isNullOrBlank:_phone.textField.text]) {
+        [self createAlertView];
+        self.alertView.title=@"手机号不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+    
+    
+    
+    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phone.textField.text];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
 
 
 @end

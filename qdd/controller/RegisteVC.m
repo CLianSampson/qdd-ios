@@ -24,7 +24,7 @@
 
 @property(nonatomic,strong)UITableView *myTableView;
 
-@property(nonatomic,assign)int flag;
+@property(nonatomic,assign)int flag;//1代表个人注册，2代表企业注册
 
 @property(nonatomic,strong)NSString *account;
 @property(nonatomic,strong)NSString *password;
