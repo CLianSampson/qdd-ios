@@ -31,7 +31,8 @@ static NSString *URL_LIST_ORDER=@"https://www.qiandd.com/mobile/order/allindex/t
 
 static NSString *URL_LIST_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/signindex/token/";//签名列表
 
-static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picuploadt/token/";//上传图片
+static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picupload/token/";//上传图片
+
 
 static NSString *URL_FORGET_PASSWORD=@"https://www.qiandd.com/mobile/user/do_mobile_forgot_password";//忘记密码
 
@@ -45,13 +46,23 @@ static NSString *URL_SIGN_DETAIL=@"https://www.qiandd.com/mobile/Contract/detail
 
 static NSString *URL_LIST_CONTACT=@"https://www.qiandd.com/mobile/Contacts/index/token/";//联系人列表
 
-//添加联系人
+
 //搜索联系人
+static NSString *URL_SEARCH_USER=@"https://www.qiandd.com/mobile/Contacts/search/token/";
+
+//添加联系人
+static NSString *URL_ADD_USER=@"https://www.qiandd.com/mobile/Contacts/add/token/";
 
 static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/token/";//个人认证
 
+
+typedef void (^PictureBlock)(id result);
+
 @interface AFNetRequest : NSObject
 
+@property(nonatomic,copy)PictureBlock pictureBlock;
 
+
+-(void)downLoadPicture:(NSString *)urlString;
 
 @end

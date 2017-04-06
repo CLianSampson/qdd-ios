@@ -117,21 +117,26 @@
 
 
 -(void)confirm{
-    if ([_name.textField.text isEqualToString:@""]
-        || [_idNum.textField.text isEqualToString:@""]
-        || [_bankNum.textField.text isEqualToString:@""]
-        || [_phone.textField.text isEqualToString:@""]
-        || [_code.textField.text isEqualToString:@""]) {
-        
-        [super createAlertView];
-        self.alertView.title=@"输入内容不能为空";
-        [self.alertView show];
-        
-        return;
-    }
+//    if ([_name.textField.text isEqualToString:@""]
+//        || [_idNum.textField.text isEqualToString:@""]
+//        || [_bankNum.textField.text isEqualToString:@""]
+//        || [_phone.textField.text isEqualToString:@""]
+//        || [_code.textField.text isEqualToString:@""]) {
+//        
+//        [super createAlertView];
+//        self.alertView.title=@"输入内容不能为空";
+//        [self.alertView show];
+//        
+//        return;
+//    }
+//    
+//    [self netRequest];
     
+    PhotoVC *VC =[[PhotoVC alloc]init];
+    VC.token=self.token;
+    [self.navigationController pushViewController:VC animated:YES];
     
-    [self netRequest];
+   
     
 //    FaceDetectVC *VC =[[FaceDetectVC alloc]init];
 //    [self.navigationController pushViewController:VC animated:YES];

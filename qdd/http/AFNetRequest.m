@@ -229,4 +229,26 @@
     }] ;
 }
 
+
+-(void)downLoadPicture:(NSString *)urlString{
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    AFHTTPResponseSerializer *serializer=[AFHTTPResponseSerializer serializer];
+    //    serializer.acceptableContentTypes = [NSSet setWithObject:@"image/png"]; // 设置相应的 http header Content-Type
+    serializer.acceptableContentTypes = [NSSet setWithObjects:@"image/png",@"image/jpg",@"image/gif",@"image/jpeg", nil];
+    session.responseSerializer=serializer;
+    
+    [session GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"down load sucess");
+        
+        self.pictureBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"失败");
+        NSLog(@"%@",error);
+    }];
+
+}
+
+
 @end

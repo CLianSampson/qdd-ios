@@ -2,12 +2,12 @@
 //  AddContactVC.h
 //  qdd
 //
-//  Created by Apple on 17/3/5.
+//  Created by Apple on 17/4/6.
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
+#import "BaseVC.h"
 
-@interface AddContactVC : UIViewController
+@interface AddContactVC : BaseVC
 
 @end

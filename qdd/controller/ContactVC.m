@@ -195,6 +195,7 @@
 
 -(void)showRight{
     AddContactVC *VC = [[AddContactVC alloc]init];
+    VC.token=self.token;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -218,7 +219,7 @@
     
     ContactModel *model = (ContactModel *)[_mutableArry objectAtIndex:indexPath.row];
     
-    cell.textLabel.text=model.account;
+    cell.textLabel.text=model.name;
     
     return cell;
 }
@@ -234,7 +235,7 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    return (48+32+26+28+50)*HEIGHT_SCALE;
+    return 40;
 }
 
 
@@ -287,13 +288,20 @@
 
 
 -(void)sucessDo:(id )result{
-    NSArray *data = [result objectForKey:@"data"];
+    NSDictionary *data = [result objectForKey:@"data"];
     if (data==nil || [data isEqual:[NSNull null]]) {
         return ;
     }
     
-
-    for (NSDictionary *temp in data) {
+    int count = [[data objectForKey:@"allcount"] intValue];
+    
+    if (count==0) {
+        return;
+    }
+    
+    for (int i=0; i<count; i++) {
+        
+        NSDictionary *temp = [data objectForKey:[NSString stringWithFormat:@"%d",i]];
         
         ContactModel *model = [[ContactModel alloc]init];
         model.account=[temp objectForKey:@"idname"];
@@ -304,7 +312,10 @@
         }
         
         [_mutableArry addObject:model];
+        
     }
+    
+   
     
     
     [_myTableView reloadData];

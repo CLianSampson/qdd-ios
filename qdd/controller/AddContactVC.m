@@ -2,12 +2,11 @@
 //  AddContactVC.m
 //  qdd
 //
-//  Created by Apple on 17/3/5.
+//  Created by Apple on 17/4/6.
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
 #import "AddContactVC.h"
-#import "Macro.h"
 #import "AddContactView.h"
 
 
@@ -21,6 +20,7 @@
 
 @property(nonatomic,strong)UIButton *addContactbutton;
 
+@property(nonatomic,strong)NSDictionary *userInfo;
 @end
 
 @implementation AddContactVC
@@ -45,10 +45,10 @@
     label.textAlignment=NSTextAlignmentCenter;
     label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
-
+    
     
     [self createView];
-
+    
     
 }
 
@@ -73,7 +73,7 @@
     _noContactLabel = [[UILabel alloc]initWithFrame:CGRectMake(0, 64+85*HEIGHT_SCALE+40, SCREEN_WIDTH, 15)];
     _noContactLabel.text=@"该用户不存在";
     _noContactLabel.textAlignment=NSTextAlignmentCenter;
-    _noContactLabel.font=[UIFont systemFontOfSize:29];
+    _noContactLabel.font=[UIFont systemFontOfSize:15];
     _noContactLabel.textColor=RGBColor(174, 174, 174);
     
     
@@ -86,8 +86,8 @@
     _addContactbutton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-300/2, _addContactView.frame.origin.y+_addContactView.frame.size.height+160*HEIGHT_SCALE, 300, 41)];
     [_addContactbutton setBackgroundImage:[UIImage imageNamed:@"添加联系人按钮"] forState:UIControlStateNormal];
     [_addContactbutton setTitle:@"添加联系人" forState:UIControlStateNormal];
-   
-
+    [_addContactbutton addTarget:self action:@selector(addContact) forControlEvents:UIControlEventTouchUpInside];
+    
 }
 
 -(void)showLeft{
@@ -99,22 +99,12 @@
 #pragma -mark searchbar delegate
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar{
     
-    if ([searchBar.text isEqualToString:@"123"]) {
-        [self.view addSubview:_noContactLabel];
-    }
-    
-    
-    if ([searchBar.text isEqualToString:@"234"]) {
-        
-        [searchBar removeFromSuperview];
-        
-        [self.view addSubview:_addContactView];
-        [self.view addSubview:_addContactbutton];
-    }
+    [self netReauest];
+   
     
     [searchBar resignFirstResponder]; //searchBar失去焦点
-//    UIButton *cancelBtn = [searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
-//    cancelBtn.enabled = YES; //把enabled设置为yes
+    //    UIButton *cancelBtn = [searchBar valueForKey:@"cancelButton"]; //首先取出cancelBtn
+    //    cancelBtn.enabled = YES; //把enabled设置为yes
     
 }
 
@@ -135,11 +125,141 @@
 
 - (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
     [_noContactLabel removeFromSuperview];
+    
+}
 
+
+
+-(void)netReauest{
+    
+    if (self.token==nil) {
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SEARCH_USER];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:_searchBar.text forKey:@"idname"];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
+}
+
+
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        [self.view addSubview:_noContactLabel];
+        return ;
+    }
+    
+    _userInfo = [data objectForKey:@"res"];
+    if (_userInfo==nil || [_userInfo isEqual:[NSNull null]]) {
+        [self.view addSubview:_noContactLabel];
+        return ;
+    }
+    
+    
+    [_searchBar removeFromSuperview];
+    
+    [self.view addSubview:_addContactView];
+    [self.view addSubview:_addContactbutton];
+    
+    if ([StringUtil isPhoneNum:_searchBar.text]) {
+        _addContactView.account.text=[_userInfo objectForKey:@"mobile"];
+    }else{
+        _addContactView.account.text=[_userInfo objectForKey:@"mail"];
+    }
+    
+    _addContactView.name.text=[_userInfo objectForKey:@"name"];
+    
+}
+
+
+-(void)addContact{
+    if (self.token==nil) {
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_USER];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    [dic setObject:[_userInfo objectForKey:@"name"] forKey:@"name"];
+    [dic setObject:[_userInfo objectForKey:@"mail"] forKey:@"mail"];
+    [dic setObject:[_userInfo objectForKey:@"mobile"] forKey:@"mobile"];
+
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
 }
 
 
 @end
-
-
-

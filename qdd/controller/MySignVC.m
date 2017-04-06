@@ -7,15 +7,18 @@
 //
 
 #import "MySignVC.h"
-#import "Macro.h"
 #import "RESideMenu.h"
 #import "SignVC.h"
-#import "SignImageView.h"
 #import "SignatureModel.h"
+#import "SignatureCell.h"
+#import "AFNetRequest.h"
 
-@interface MySignVC()
+@interface MySignVC()<UITableViewDelegate,UITableViewDataSource>
 
 @property(nonatomic,strong)NSMutableArray *mutableArry;
+@property(nonatomic,strong)SignImageView *signImageView ;
+
+@property(nonatomic,strong)UITableView *myTableView;
 
 @end
 
@@ -69,21 +72,107 @@
     under.backgroundColor=RGBColor(209, 209, 209);
     [self.view addSubview:under];
     
-    //按32号字体算
-    UILabel *personSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, backGround.frame.origin.y+backGround.frame.size.height+28*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 29)];
     
-    personSign.text=@"个人签章";
-    personSign.font=[UIFont boldSystemFontOfSize:16];
-    [self.view addSubview:personSign];
+    _myTableView =[[UITableView alloc]initWithFrame:CGRectMake(0, under.frame.origin.y+1, SCREEN_WIDTH, SCREEN_HEIGHT-under.frame.origin.y) style:UITableViewStylePlain];
+    _myTableView.delegate=self;
+    _myTableView.dataSource=self;
+    _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
+    [self.view addSubview:_myTableView];
     
-    SignImageView *signImageView = [[SignImageView alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, personSign.frame.origin.y+personSign.frame.size.height+28*HEIGHT_SCALE, 665*WIDTH_SCALE, 285*HEIGHT_SCALE)];
-    signImageView.image =[UIImage imageNamed:@""];
-    signImageView.backgroundColor=RGBColor(241, 241, 241);
-    [self.view addSubview:signImageView];
-    
+    [self addLoadIndicator];
     [self netReauest];
     
 }
+
+
+
+
+
+
+
+#pragma mark -tableView dataSourceDelegate
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return _mutableArry.count;
+}
+
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    
+    return 1;
+}
+
+- (SignatureCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    static NSString *cellIdentifier = @"Cell";
+    
+    SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    if (cell == nil) {
+        cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+    }
+    
+    
+    
+    SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:@"https://www.qiandd.com"];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
+    
+    
+    
+    //为同一个block
+//    self.pictureBlock=^(id result){
+//        cell.signImageView.image=[UIImage imageWithData:result];
+//
+//    };
+//    [self downLoad:appendUrlString];
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.pictureBlock=^(id result){
+        cell.signImageView.image=[UIImage imageWithData:result];
+    };
+    [request downLoadPicture:appendUrlString];
+    
+    
+    
+    
+    return cell;
+}
+
+
+#pragma mark -tableView delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return;
+}
+
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
+    return (285+33)*HEIGHT_SCALE;
+}
+
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
+    return 28*2*HEIGHT_SCALE+16;
+}
+
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
+    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28*2*HEIGHT_SCALE+16)];
+    header.backgroundColor=[UIColor whiteColor];
+    
+    //按17号字体算
+    UILabel *personSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, 28*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 16)];
+    
+    personSign.text=@"个人签章";
+    personSign.font=[UIFont boldSystemFontOfSize:16];
+    [header addSubview:personSign];
+    
+    return header;
+}
+
+
+
 
 
 -(void)add{
@@ -171,14 +260,16 @@
         if (_mutableArry==nil) {
             _mutableArry=[[NSMutableArray alloc]init];
         }
-        
+       
         [_mutableArry addObject:model];
-        
-        
     }
     
     
+    [_myTableView reloadData];
+    
 }
+
+
 
 
 
