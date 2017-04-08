@@ -246,6 +246,7 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"失败");
         NSLog(@"%@",error);
+        _pictureFailedBlock();
     }];
 
 }

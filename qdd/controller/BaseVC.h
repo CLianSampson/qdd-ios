@@ -26,6 +26,14 @@ typedef NS_ENUM(NSInteger, ACCOUNT_FLAG) {
 };
 
 
+typedef NS_ENUM(NSInteger, SIGN_STATE) {
+    WAIT_FOR_ME = 1,
+    WAIT_FOR_OTHER =2,
+    COMPLETE = 3,
+    TIME_OUT,
+};
+
+
 @interface  BaseVC : UIViewController<UIAlertViewDelegate>
 
 

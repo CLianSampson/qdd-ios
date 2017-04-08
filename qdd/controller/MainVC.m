@@ -377,6 +377,24 @@
     VC.signTitle=model.title;
     VC.signId=model.signId;
     
+    switch (_status) {
+        case 1:
+            VC.signState=WAIT_FOR_ME;
+            break;
+        case 2:
+            VC.signState=WAIT_FOR_OTHER;
+            break;
+        case 3:
+            VC.signState=COMPLETE;
+            break;
+        case 4:
+            VC.signState=TIME_OUT;
+            break;
+            
+        default:
+            break;
+    }
+    
     VC.VC = self.sideMenuViewController.contentViewController;
 
     

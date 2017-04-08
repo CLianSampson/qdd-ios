@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "AFNetworking.h"
 
+static NSString *URL_COMMON=@"https://www.qiandd.com";
+
 static  NSString *URL_SMS = @"https://www.qiandd.com/mobile/user/sms?"; //短信验证码
 
 static  NSString *URL_REGISTER = @"https://www.qiandd.com/mobile/user/doregister"; //注册
@@ -19,6 +21,10 @@ static  NSString *URL_PICTURE_CODE = @"https://www.qiandd.com/api/checkcode/inde
 static NSString *URL_LOGIN = @"https://www.qiandd.com/mobile/user/dologin"; //登陆
 
 static NSString *URL_LIST_SIGN =@"https://www.qiandd.com/mobile/Contract/index/token/"; //合同列表
+
+static NSString *URL_SIGN_DETAIL=@"https://www.qiandd.com/mobile/Contract/details/token/";//合同内容
+
+static NSString *URL_SIGN_SHOW=@"https://www.qiandd.com/mobile/Contract/sendsign/token/";//合同展示页面
 
 
 static NSString *URL_LIST_MESSAGE=@"https://www.qiandd.com/mobile/Message/index/token/";//消息列表
@@ -42,7 +48,6 @@ static NSString *URL_GET_ACCOUNT_INFO=@"https://www.qiandd.com/mobile/set/userin
 
 static NSString *URL_BIND_MAIL=@"https://www.qiandd.com/mobile/Set/bound_post/token/";//绑定邮箱，发送邮件
 
-static NSString *URL_SIGN_DETAIL=@"https://www.qiandd.com/mobile/Contract/details/token/";//合同内容
 
 static NSString *URL_LIST_CONTACT=@"https://www.qiandd.com/mobile/Contacts/index/token/";//联系人列表
 
@@ -57,11 +62,12 @@ static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/
 
 
 typedef void (^PictureBlock)(id result);
+typedef void(^PictureFailedBlock)();
 
 @interface AFNetRequest : NSObject
 
 @property(nonatomic,copy)PictureBlock pictureBlock;
-
+@property(nonatomic,copy)PictureFailedBlock pictureFailedBlock;
 
 -(void)downLoadPicture:(NSString *)urlString;
 
