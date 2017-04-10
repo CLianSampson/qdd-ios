@@ -58,7 +58,11 @@ static NSString *URL_SEARCH_USER=@"https://www.qiandd.com/mobile/Contacts/search
 //添加联系人
 static NSString *URL_ADD_USER=@"https://www.qiandd.com/mobile/Contacts/add/token/";
 
-static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/token/";//个人认证
+//个人认证
+static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/token/";
+
+//判断用户是否授权
+static NSString *URL_IS_AUTH=@"https://www.qiandd.com/mobile/Contract/auth/token/";
 
 
 typedef void (^PictureBlock)(id result);

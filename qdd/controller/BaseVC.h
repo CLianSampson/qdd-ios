@@ -19,18 +19,24 @@ typedef void (^NetFailedBlock)(id result);
 
 typedef void (^PictureBlock)(id result);
 
-
+//个人用户还是企业用户
 typedef NS_ENUM(NSInteger, ACCOUNT_FLAG) {
     USER_ACCOUNT = 1,
     ENTERPRISE_ACCOUNT =2,
 };
 
-
+//合同状态
 typedef NS_ENUM(NSInteger, SIGN_STATE) {
     WAIT_FOR_ME = 1,
     WAIT_FOR_OTHER =2,
     COMPLETE = 3,
     TIME_OUT,
+};
+
+//授权状态
+typedef NS_ENUM(NSInteger, AUTH_STATE) {
+    NOT_AUTH = 1,
+    HAVE_AUTH =2,
 };
 
 
@@ -53,7 +59,7 @@ typedef NS_ENUM(NSInteger, SIGN_STATE) {
 @property(nonatomic,strong)NSString *token;
 
 @property(nonatomic,assign)ACCOUNT_FLAG accountFlag;
-
+@property(nonatomic,assign)AUTH_STATE authState;
 
 -(void)createBackgroungView;
 
@@ -61,9 +67,7 @@ typedef NS_ENUM(NSInteger, SIGN_STATE) {
 
 -(void)createNavition;
 
-
 -(void)showLeft;
-
 
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 

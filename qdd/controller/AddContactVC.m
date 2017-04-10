@@ -144,6 +144,9 @@
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:_searchBar.text forKey:@"idname"];
     
+    NSLog(@"%@",appendUrlString);
+    NSLog(@"dic is %@",dic);
+    
     __weak typeof(self) weakSelf=self;
     
     self.netSucessBlock=^(id result){

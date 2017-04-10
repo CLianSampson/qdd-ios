@@ -22,6 +22,8 @@
 @property(nonatomic,strong)UITextField *userName;
 @property(nonatomic,strong)UITextField *passWord;
 
+@property(nonatomic,strong)NSString *tokenString;
+
 @end
 
 @implementation LoginVC
@@ -185,20 +187,110 @@
 
 -(void)doSucess:(id )result{
     NSDictionary *data = [result objectForKey:@"data"];
-    NSString *token=[data objectForKey:@"token"];
+    _tokenString =[data objectForKey:@"token"];
+    
+    [self auth];
+   
+}
+
+
+
+//判断用户是否授权
+-(void)auth{
+    
+    if ([StringUtil isNullOrBlank:_tokenString]) {
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+        
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_IS_AUTH];
+    
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:_tokenString];
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doAuthSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)doAuthSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+
+        return ;
+    }
+    
+    NSString *authStateStr = [data objectForKey:@"auth"];
+    
+    if ([StringUtil isNullOrBlank:authStateStr]) {
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+        return;
+    }
+    
     
     MainVC *VC = [[MainVC alloc]init];
-    VC.token=token;
+    VC.token=_tokenString;
     
-   
+    
     
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     
     
     MainLeftVC *leftVC = [[MainLeftVC alloc] init];
     MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-    leftVC.token=token;
+    leftVC.token=_tokenString;
     rightVC.token=nil;
+    
+    if (authStateStr.intValue==0) {
+        leftVC.authState = NOT_AUTH;
+    }else if (authStateStr.intValue==1){
+        leftVC.authState = HAVE_AUTH;
+    }else{
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+    }
+
+    
     
     if ([StringUtil isPhoneNum:_userName.text]) {
         leftVC.accountFlag = USER_ACCOUNT;
@@ -206,14 +298,18 @@
         leftVC.accountFlag = ENTERPRISE_ACCOUNT;
     }
     
-//    leftVC.accountFlag = USER_ACCOUNT;
-
     
     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
     
     MenuVC.contentViewScaleValue=(float)305/445;
     
     [self presentViewController:MenuVC animated:YES completion:nil];
+    
 }
+
+
+
+
+
 
 @end

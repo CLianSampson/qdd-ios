@@ -54,7 +54,11 @@
     //高度加10
     UILabel *verifyText = [[UILabel alloc]initWithFrame:CGRectMake((170+8)*WIDTH_SCALE+14, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 200, 24*HEIGHT_SCALE)];
     verifyText.textAlignment=NSTextAlignmentLeft;
-    verifyText.text=@"已认证";
+    if (self.authState == NOT_AUTH) {
+        verifyText.text=@"未认证";
+    }else{
+        verifyText.text=@"已认证";
+    }
     verifyText.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:verifyText];
     
@@ -197,12 +201,11 @@
 }
 
 
-
-
-
-
-
 -(void)goToVerifyVC{
+    if (self.authState == HAVE_AUTH) {
+        return;
+    }
+    
     VerifyVC *VC =[[VerifyVC alloc]init];
     VC.token=self.token;
     VC.VC=self.sideMenuViewController.contentViewController;
@@ -214,6 +217,7 @@
     [self.sideMenuViewController hideMenuViewController];
     
 }
+
 
 
 
