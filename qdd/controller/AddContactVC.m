@@ -189,6 +189,14 @@
         return ;
     }
     
+    
+    if (! [[data objectForKey:@"res"] isKindOfClass:[NSDictionary class]]) {
+        [self createAlertView];
+        self.alertView.title=@"联系人已添加";
+        [self.alertView show];
+    }
+    
+    
     _userInfo = [data objectForKey:@"res"];
     if (_userInfo==nil || [_userInfo isEqual:[NSNull null]]) {
         [self.view addSubview:_noContactLabel];
