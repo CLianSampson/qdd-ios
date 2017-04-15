@@ -1,28 +1,27 @@
 //
-//  MySignVC.m
+//  ChooseSignVC.m
 //  qdd
 //
-//  Created by Apple on 17/2/25.
+//  Created by Apple on 17/4/15.
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
-#import "MySignVC.h"
-#import "RESideMenu.h"
+#import "ChoosePersonalSignVC.h"
+
 #import "SignatureCell.h"
 #import "SignatureModel.h"
 
-@interface MySignVC()<UITableViewDelegate,UITableViewDataSource>
+@interface ChoosePersonalSignVC()<UITableViewDelegate,UITableViewDataSource>
 
 
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 
 @property(nonatomic,strong)UITableView *myTableView;
 
-@property(nonatomic,strong)SignatureModel *enterpriseSignatureModel; //企业签章，只有一个
 
 @end
 
-@implementation MySignVC
+@implementation ChoosePersonalSignVC
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -95,86 +94,39 @@
 #pragma mark -tableView dataSourceDelegate
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    
-    
-    if (section==0) {
-        return _mutableArry.count;
-    }else{
-        if (_enterpriseSignatureModel==nil) {
-            return 0;
-        }else{
-            return 1;
-        }
-    }
-    
+    return _mutableArry.count;
 }
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
-    return 2;
+    return 1;
 }
 
 - (SignatureCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *cellIdentifier = @"Cell";
     
-    
-    if (indexPath.section==0) {
-        
-        SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
-        if (cell == nil) {
-            cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-        }
-        
-        
-        
-        SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
-        
-        NSMutableString  *urlstring=[NSMutableString stringWithString:@"https://www.qiandd.com"];
-        
-        NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
-        
-        
-        
-        //为同一个block
-        //    self.pictureBlock=^(id result){
-        //        cell.signImageView.image=[UIImage imageWithData:result];
-        //
-        //    };
-        //    [self downLoad:appendUrlString];
-        AFNetRequest *request = [[AFNetRequest alloc]init];
-        request.pictureBlock=^(id result){
-            cell.signImageView.image=[UIImage imageWithData:result];
-        };
-        [request downLoadPicture:appendUrlString];
-        
-        
-        [cell.signImageView.chooseImage removeFromSuperview];
-        
-        //默认选择第一个签章
-        if (indexPath.row == 0) {
-            [cell.signImageView addSubview:cell.signImageView.chooseImage];
-            
-        }
-        
-        return cell;
-        
-    }
-    
-    
-    static NSString *enterpriseCellIdentifier = @"enterpriseCell";
-    //企业签章
     SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:enterpriseCellIdentifier];
+        cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
     
+    
+    
+    SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:@"https://www.qiandd.com"];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:_enterpriseSignatureModel.path];
+    NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
     
+    
+    //为同一个block
+    //    self.pictureBlock=^(id result){
+    //        cell.signImageView.image=[UIImage imageWithData:result];
+    //
+    //    };
+    //    [self downLoad:appendUrlString];
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
     request.pictureBlock=^(id result){
@@ -184,12 +136,16 @@
     
     
     [cell.signImageView.chooseImage removeFromSuperview];
-    [cell.signImageView.unChooseImage removeFromSuperview];
+    
+    //默认选择第一个签章
+    if (indexPath.row == 0) {
+        [cell.signImageView addSubview:cell.signImageView.chooseImage];
+        
+        SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
+        self.signatureId = model.signatureId;
+    }
     
     return cell;
-    
-    
-    
 }
 
 
@@ -199,6 +155,8 @@
     SignatureCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell.signImageView addSubview:cell.signImageView.chooseImage];
     
+    SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
+    self.signatureId = model.signatureId;
     
     return;
 }
@@ -210,57 +168,45 @@
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
-    if (section == 0) {
-        return 28*2*HEIGHT_SCALE+16;
-    }else{
-        return 28*4*HEIGHT_SCALE+16;
-    }
+    return 28*2*HEIGHT_SCALE+16;
 }
 
 - (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section{
-    
-    if (section==0) {
-        UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28*2*HEIGHT_SCALE+16)];
-        header.backgroundColor=[UIColor whiteColor];
-        
-        //按17号字体算
-        UILabel *personSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, 28*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 16)];
-        
-        personSign.text=@"个人签章";
-        personSign.font=[UIFont boldSystemFontOfSize:16];
-        [header addSubview:personSign];
-        
-        return header;
-    }
-    
-    
-    UIView *enterpriseHeader = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28*4*HEIGHT_SCALE+16)];
+    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 28*2*HEIGHT_SCALE+16)];
+    header.backgroundColor=[UIColor whiteColor];
     
     //按17号字体算
-    UILabel *enterpriseSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, 28*3*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 16)];
+    UILabel *personSign = [[UILabel alloc]initWithFrame:CGRectMake(42*WIDTH_SCALE, 28*HEIGHT_SCALE, SCREEN_WIDTH-42*WIDTH_SCALE, 16)];
     
-    enterpriseSign.text=@"企业签章";
-    enterpriseSign.font=[UIFont boldSystemFontOfSize:16];
-    [enterpriseHeader addSubview:enterpriseSign];
+    personSign.text=@"个人签章";
+    personSign.font=[UIFont boldSystemFontOfSize:16];
+    [header addSubview:personSign];
     
-    return enterpriseHeader;
-    
-    
+    return header;
 }
+
+
+
 
 
 
 -(void)showLeft{
-    [self.sideMenuViewController setContentViewController:self.VC];
-    [self.sideMenuViewController hideMenuViewController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 -(void)netReauest{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGNATURE];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
     
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *string1 = [appendUrlString stringByAppendingString:@"/status/"];
+    
+    NSString *status = @"0";  //签章状态，0代表个人签章 1代表企业签章
+    
+    NSString *string2 = [string1 stringByAppendingString:status];
+    
     
     __weak typeof(self) weakSelf=self;
     
@@ -293,7 +239,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    [self netRequestGetWithUrl:string2 Data:nil];
 }
 
 
@@ -303,61 +249,40 @@
         return ;
     }
     
-    NSArray *arry = [data objectForKey:@"allsign"];
+    NSArray *arry = [data objectForKey:@"msign"];
     if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
         
         [self createAlertView];
-        self.alertView.title=@"没有个人签章";
+        self.alertView.title=@"没有签章";
         [self.alertView show];
-    }else{
-        for (NSDictionary *temp in arry) {
-            
-            SignatureModel *model =[[SignatureModel alloc]init];
-            model.signatureId = [temp objectForKey:@"id"];
-            model.name = [temp objectForKey:@"name"];
-            model.path= [temp objectForKey:@"path"];
-            
-            model.uid = [temp objectForKey:@"uid"];
-            
-            model.status = [temp objectForKey:@"status"];
-            model.ctime = [temp objectForKey:@"ctime"];
-            model.utime = [temp objectForKey:@"utime"];
-            
-            if (_mutableArry==nil) {
-                _mutableArry=[[NSMutableArray alloc]init];
-            }
-            
-            [_mutableArry addObject:model];
+        return;
+    }
+    
+    
+    for (NSDictionary *temp in arry) {
+        
+        SignatureModel *model =[[SignatureModel alloc]init];
+        model.signatureId = [temp objectForKey:@"id"];
+        model.name = [temp objectForKey:@"name"];
+        model.path= [temp objectForKey:@"path"];
+        
+        model.uid = [temp objectForKey:@"uid"];
+        
+        model.status = [temp objectForKey:@"status"];
+        model.ctime = [temp objectForKey:@"ctime"];
+        model.utime = [temp objectForKey:@"utime"];
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
         }
-    }
-    
-    
-    
-    
-    
-    //企业签章
-    NSDictionary *dic = [data objectForKey:@"csign"];
-    if (dic==nil
-        || [dic isEqual:[NSNull null]]) {
         
-        [self createAlertView];
-        self.alertView.title=@"没有企业签章";
-        [self.alertView show];
-        
-    }else{
-        _enterpriseSignatureModel = [[SignatureModel alloc]init];
-        _enterpriseSignatureModel.signatureId = [dic objectForKey:@"id"];
-        _enterpriseSignatureModel.path= [dic objectForKey:@"path"];
-        _enterpriseSignatureModel.uid = [dic objectForKey:@"uid"];
+        [_mutableArry addObject:model];
     }
-    
     
     
     [_myTableView reloadData];
     
 }
-
-
 
 
 

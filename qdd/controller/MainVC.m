@@ -195,6 +195,8 @@
 -(void)waitForMeMethod{
     _status=1;
     _pageNo=0;
+    
+    _mutableArry=nil;
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -214,7 +216,8 @@
 -(void)waitForOtherMethod{
     _status=2;
     _pageNo=0;
-
+    
+     _mutableArry=nil;
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -233,7 +236,8 @@
 -(void)completeMethod{
     _status=3;
     _pageNo=0;
-
+    
+     _mutableArry=nil;
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -252,7 +256,8 @@
 -(void)timeOutMethod{
     _status=4;
     _pageNo=0;
-
+    
+     _mutableArry=nil;
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -374,6 +379,7 @@
     
     SignShowVC *VC= [[SignShowVC alloc]init];
     VC.token=self.token;
+    VC.authState=self.authState;
     VC.signTitle=model.title;
     VC.signId=model.signId;
     

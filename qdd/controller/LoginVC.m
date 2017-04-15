@@ -280,16 +280,17 @@
     leftVC.token=_tokenString;
     rightVC.token=nil;
     
-    if (authStateStr.intValue==0) {
-        leftVC.authState = NOT_AUTH;
-    }else if (authStateStr.intValue==1){
-        leftVC.authState = HAVE_AUTH;
-    }else{
-        [self createAlertView];
-        self.alertView.title=@"系统有点问题";
-        [self.alertView show];
-    }
-
+//    if (authStateStr.intValue==0) {
+//        leftVC.authState = NOT_AUTH;
+//    }else if (authStateStr.intValue==1){
+//        leftVC.authState = HAVE_AUTH;
+//    }else{
+//        [self createAlertView];
+//        self.alertView.title=@"系统有点问题";
+//        [self.alertView show];
+//    }
+    
+      leftVC.authState = NOT_AUTH;
     
     
     if ([StringUtil isPhoneNum:_userName.text]) {

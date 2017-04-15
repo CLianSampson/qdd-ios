@@ -65,6 +65,12 @@ static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/
 static NSString *URL_IS_AUTH=@"https://www.qiandd.com/mobile/Contract/auth/token/";
 
 
+//撤销合同
+static NSString *URL_REFUSE_SIGN=@"https://www.qiandd.com/mobile/Contract/repeal/token/";
+
+//合同签署时签章列表
+static NSString *URL_LIST_SIGN_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/getsign/token/";
+
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();
 

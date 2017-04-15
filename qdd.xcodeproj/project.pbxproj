@@ -138,6 +138,8 @@
 		18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494181E6C16BB0033AC03 /* SetPasswordVC.m */; };
 		18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941B1E6C1B9D0033AC03 /* PasswordView.m */; };
 		18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */; };
+		18FC4E961EA2279300C7BC2E /* ChoosePersonalSignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */; };
+		18FC4E991EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */; };
 		18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C11E718DA600AA54CF /* RegisteCell.m */; };
 		18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */; };
 /* End PBXBuildFile section */
@@ -401,6 +403,10 @@
 		18F4941B1E6C1B9D0033AC03 /* PasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordView.m; sourceTree = "<group>"; };
 		18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccountVC.h; sourceTree = "<group>"; };
 		18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccountVC.m; sourceTree = "<group>"; };
+		18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonalSignVC.h; sourceTree = "<group>"; };
+		18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonalSignVC.m; sourceTree = "<group>"; };
+		18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseEnterpriseSignatureVC.h; sourceTree = "<group>"; };
+		18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseEnterpriseSignatureVC.m; sourceTree = "<group>"; };
 		18FD19C01E718DA600AA54CF /* RegisteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteCell.h; sourceTree = "<group>"; };
 		18FD19C11E718DA600AA54CF /* RegisteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteCell.m; sourceTree = "<group>"; };
 		18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteSucessVC.h; sourceTree = "<group>"; };
@@ -844,6 +850,10 @@
 				18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */,
 				18236D1E1E9679DC005A7C83 /* AddContactVC.h */,
 				18236D1F1E9679DC005A7C83 /* AddContactVC.m */,
+				18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */,
+				18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */,
+				18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */,
+				18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -1179,8 +1189,10 @@
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				18B9F3D91E865E8E00A3A1EC /* MainRigthVC.m in Sources */,
 				180F11A61E75907C0082F385 /* CalculatorTools.m in Sources */,
+				18FC4E961EA2279300C7BC2E /* ChoosePersonalSignVC.m in Sources */,
 				180F11A41E75907C0082F385 /* CanvasView.m in Sources */,
 				18B9F3C01E86374800A3A1EC /* MJRefreshComponent.m in Sources */,
+				18FC4E991EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m in Sources */,
 				18B9F3C41E86374800A3A1EC /* MJRefreshAutoNormalFooter.m in Sources */,
 				1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */,
 				18236D201E9679DC005A7C83 /* AddContactVC.m in Sources */,

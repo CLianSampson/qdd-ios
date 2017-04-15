@@ -1,17 +1,16 @@
 //
-//  MySignVC.m
+//  ChooseEnterpriseSignatureVC.m
 //  qdd
 //
-//  Created by Apple on 17/2/25.
+//  Created by Apple on 17/4/15.
 //  Copyright © 2017年 Samposn Chen. All rights reserved.
 //
 
-#import "MySignVC.h"
-#import "RESideMenu.h"
+#import "ChooseEnterpriseSignatureVC.h"
 #import "SignatureCell.h"
 #import "SignatureModel.h"
 
-@interface MySignVC()<UITableViewDelegate,UITableViewDataSource>
+@interface ChooseEnterpriseSignatureVC()<UITableViewDelegate,UITableViewDataSource>
 
 
 @property(nonatomic,strong)NSMutableArray *mutableArry;
@@ -22,7 +21,7 @@
 
 @end
 
-@implementation MySignVC
+@implementation ChooseEnterpriseSignatureVC
 
 
 -(void)viewWillAppear:(BOOL)animated{
@@ -118,7 +117,7 @@
 - (SignatureCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
     static NSString *cellIdentifier = @"Cell";
-    
+
     
     if (indexPath.section==0) {
         
@@ -156,10 +155,12 @@
         if (indexPath.row == 0) {
             [cell.signImageView addSubview:cell.signImageView.chooseImage];
             
+            SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
+            self.signatureId = model.signatureId;
         }
         
         return cell;
-        
+
     }
     
     
@@ -187,7 +188,7 @@
     [cell.signImageView.unChooseImage removeFromSuperview];
     
     return cell;
-    
+
     
     
 }
@@ -199,6 +200,8 @@
     SignatureCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     [cell.signImageView addSubview:cell.signImageView.chooseImage];
     
+    SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
+    self.signatureId = model.signatureId;
     
     return;
 }
@@ -244,23 +247,29 @@
     [enterpriseHeader addSubview:enterpriseSign];
     
     return enterpriseHeader;
-    
+
     
 }
 
 
 
 -(void)showLeft{
-    [self.sideMenuViewController setContentViewController:self.VC];
-    [self.sideMenuViewController hideMenuViewController];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 
 -(void)netReauest{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGNATURE];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
     
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *string1 = [appendUrlString stringByAppendingString:@"/status/"];
+    
+    NSString *status = @"1";  //签章状态，0代表个人签章 1代表企业签章
+    
+    NSString *string2 = [string1 stringByAppendingString:status];
+    
     
     __weak typeof(self) weakSelf=self;
     
@@ -293,7 +302,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    [self netRequestGetWithUrl:string2 Data:nil];
 }
 
 
@@ -303,7 +312,7 @@
         return ;
     }
     
-    NSArray *arry = [data objectForKey:@"allsign"];
+    NSArray *arry = [data objectForKey:@"msign"];
     if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
         
         [self createAlertView];
@@ -351,14 +360,13 @@
         _enterpriseSignatureModel.uid = [dic objectForKey:@"uid"];
     }
     
-    
+
     
     [_myTableView reloadData];
     
 }
 
-
-
-
-
 @end
+
+
+
