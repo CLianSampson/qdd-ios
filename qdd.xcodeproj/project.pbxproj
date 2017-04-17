@@ -91,6 +91,8 @@
 		185A032C1E618AEE00EB9325 /* PayVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032B1E618AEE00EB9325 /* PayVC.m */; };
 		185A032F1E61916700EB9325 /* PayView.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A032E1E61916700EB9325 /* PayView.m */; };
 		187CEABE1E98BC7200CDA372 /* SignShowCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 187CEABD1E98BC7200CDA372 /* SignShowCell.m */; };
+		18A4853C1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */; };
+		18A4853F1EA50F9100A1FE12 /* SignSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */; };
 		18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D31E73922A00022368 /* RegisteFailedVC.m */; };
 		18ABF8D71E739C7B00022368 /* BindMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D61E739C7B00022368 /* BindMailVC.m */; };
 		18ABF8DA1E73C52E00022368 /* ForgetAndSetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */; };
@@ -308,6 +310,10 @@
 		185A032E1E61916700EB9325 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
 		187CEABC1E98BC7200CDA372 /* SignShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignShowCell.h; sourceTree = "<group>"; };
 		187CEABD1E98BC7200CDA372 /* SignShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignShowCell.m; sourceTree = "<group>"; };
+		18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignMobileVerifyVC.h; sourceTree = "<group>"; };
+		18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignMobileVerifyVC.m; sourceTree = "<group>"; };
+		18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignSucessVC.h; sourceTree = "<group>"; };
+		18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignSucessVC.m; sourceTree = "<group>"; };
 		18ABF8D21E73922A00022368 /* RegisteFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteFailedVC.h; sourceTree = "<group>"; };
 		18ABF8D31E73922A00022368 /* RegisteFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteFailedVC.m; sourceTree = "<group>"; };
 		18ABF8D51E739C7B00022368 /* BindMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindMailVC.h; sourceTree = "<group>"; };
@@ -879,6 +885,10 @@
 				1818E44C1E751518003B8865 /* BindingMailVC.m */,
 				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
 				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
+				18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */,
+				18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */,
+				18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */,
+				18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -1148,6 +1158,7 @@
 				18ABF8DA1E73C52E00022368 /* ForgetAndSetPasswordVC.m in Sources */,
 				1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */,
 				18177FEE1E90F3E900BE54D0 /* SignShowVC.m in Sources */,
+				18A4853F1EA50F9100A1FE12 /* SignSucessVC.m in Sources */,
 				18B9F3C31E86374800A3A1EC /* MJRefreshAutoGifFooter.m in Sources */,
 				1831BD0B1E575E0A00AAE0E5 /* RECommonFunctions.m in Sources */,
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
@@ -1231,6 +1242,7 @@
 				18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */,
 				18B9F3C81E86374800A3A1EC /* MJRefreshBackStateFooter.m in Sources */,
 				18F494071E6BE9120033AC03 /* AddContactView.m in Sources */,
+				18A4853C1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m in Sources */,
 				180F11A91E75907C0082F385 /* UIImage+Extensions.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,

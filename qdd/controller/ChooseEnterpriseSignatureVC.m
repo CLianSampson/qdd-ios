@@ -9,6 +9,7 @@
 #import "ChooseEnterpriseSignatureVC.h"
 #import "SignatureCell.h"
 #import "SignatureModel.h"
+#import "SignMobileVerifyVC.h"
 
 @interface ChooseEnterpriseSignatureVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -82,12 +83,6 @@
     [self netReauest];
     
 }
-
-
--(void)complete{
-    
-}
-
 
 
 
@@ -258,6 +253,56 @@
 }
 
 
+-(void)complete{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            NSDictionary *mobileDic =[result objectForKey:@"mobile"];
+            NSString *mobile = [mobileDic objectForKey:@"mobile"];
+            
+            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
+            VC.token=weakSelf.token;
+            VC.phoneNum=mobile;
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    
+}
+
+
 -(void)netReauest{
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
@@ -312,33 +357,62 @@
         return ;
     }
     
-    NSArray *arry = [data objectForKey:@"msign"];
-    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+//    NSArray *arry = [data objectForKey:@"msign"];
+//    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+//        
+//        [self createAlertView];
+//        self.alertView.title=@"没有个人签章";
+//        [self.alertView show];
+//    }else{
+//        for (NSDictionary *temp in arry) {
+//            
+//            SignatureModel *model =[[SignatureModel alloc]init];
+//            model.signatureId = [temp objectForKey:@"id"];
+//            model.name = [temp objectForKey:@"name"];
+//            model.path= [temp objectForKey:@"path"];
+//            
+//            model.uid = [temp objectForKey:@"uid"];
+//            
+//            model.status = [temp objectForKey:@"status"];
+//            model.ctime = [temp objectForKey:@"ctime"];
+//            model.utime = [temp objectForKey:@"utime"];
+//            
+//            if (_mutableArry==nil) {
+//                _mutableArry=[[NSMutableArray alloc]init];
+//            }
+//            
+//            [_mutableArry addObject:model];
+//        }
+//    }
+    
+    //个人签章为字典
+    NSDictionary *personalSign = [data objectForKey:@"msign"];
+    if (personalSign==nil ||  [personalSign isEqual:[NSNull null]]) {
         
         [self createAlertView];
         self.alertView.title=@"没有个人签章";
         [self.alertView show];
     }else{
-        for (NSDictionary *temp in arry) {
-            
-            SignatureModel *model =[[SignatureModel alloc]init];
-            model.signatureId = [temp objectForKey:@"id"];
-            model.name = [temp objectForKey:@"name"];
-            model.path= [temp objectForKey:@"path"];
-            
-            model.uid = [temp objectForKey:@"uid"];
-            
-            model.status = [temp objectForKey:@"status"];
-            model.ctime = [temp objectForKey:@"ctime"];
-            model.utime = [temp objectForKey:@"utime"];
-            
-            if (_mutableArry==nil) {
-                _mutableArry=[[NSMutableArray alloc]init];
-            }
-            
-            [_mutableArry addObject:model];
+        
+        SignatureModel *model =[[SignatureModel alloc]init];
+        model.signatureId = [personalSign objectForKey:@"id"];
+        model.name = [personalSign objectForKey:@"name"];
+        model.path= [personalSign objectForKey:@"path"];
+        
+        model.uid = [personalSign objectForKey:@"uid"];
+        
+        model.status = [personalSign objectForKey:@"status"];
+        model.ctime = [personalSign objectForKey:@"ctime"];
+        model.utime = [personalSign objectForKey:@"utime"];
+        
+        if (_mutableArry==nil) {
+            _mutableArry=[[NSMutableArray alloc]init];
         }
+        
+        [_mutableArry addObject:model];
+        
     }
+
     
     
     

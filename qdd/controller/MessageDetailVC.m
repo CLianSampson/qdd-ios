@@ -85,6 +85,7 @@
     
     
     float messageHeight = (46+24+24+40)*HEIGHT_SCALE + 16 + subTitleHeight;
+    
     message.frame=CGRectMake(icon.frame.origin.x+icon.frame.size.width+26*WIDTH_SCALE, 66+90*HEIGHT_SCALE, 600*WIDTH_SCALE, messageHeight);
     
     

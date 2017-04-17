@@ -21,6 +21,9 @@
 
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
+    
+    [self setNetRequestFailedBlock];
+
 }
 
 -(void)createBackgroungView{
@@ -35,7 +38,6 @@
     backgroundView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backgroundView];
     
-    [self setNetRequestFailedBlock];
 }
 
 

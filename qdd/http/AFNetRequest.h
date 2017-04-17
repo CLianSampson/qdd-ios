@@ -71,6 +71,12 @@ static NSString *URL_REFUSE_SIGN=@"https://www.qiandd.com/mobile/Contract/repeal
 //合同签署时签章列表
 static NSString *URL_LIST_SIGN_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/getsign/token/";
 
+//获取用户手机号
+static NSString *URL_GET_USER_PHONE=@"https://www.qiandd.com/mobile/Contract/change/token/";
+
+//验证手机验证码
+static NSString *URL_VERIFY_MOBILE_CODE=@"https://www.qiandd.com/mobile/Contract/refre_post/token/";
+
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();
 

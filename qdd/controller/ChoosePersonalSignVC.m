@@ -7,9 +7,9 @@
 //
 
 #import "ChoosePersonalSignVC.h"
-
 #import "SignatureCell.h"
 #import "SignatureModel.h"
+#import "SignMobileVerifyVC.h"
 
 @interface ChoosePersonalSignVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -85,7 +85,8 @@
 
 
 -(void)complete{
-    
+    SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 
