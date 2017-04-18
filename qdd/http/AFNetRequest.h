@@ -37,6 +37,9 @@ static NSString *URL_LIST_ORDER=@"https://www.qiandd.com/mobile/order/allindex/t
 
 static NSString *URL_LIST_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/signindex/token/";//签名列表
 
+//设置默认签章
+static NSString *URL_SET_DETAULT_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/mobilesetdefault/token/";
+
 static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picupload/token/";//上传图片
 
 
@@ -76,6 +79,14 @@ static NSString *URL_GET_USER_PHONE=@"https://www.qiandd.com/mobile/Contract/cha
 
 //验证手机验证码
 static NSString *URL_VERIFY_MOBILE_CODE=@"https://www.qiandd.com/mobile/Contract/refre_post/token/";
+
+//存储删除合同签章信息
+static NSString *URL_STORE_AND_DELETE_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/contract_sign/token/";
+
+//设置合同签署类型
+static NSString *URL_SET_SIGN_TYPE=@"https://www.qiandd.com/mobile/Contract/setstatus/token/";
+
+
 
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();

@@ -13,6 +13,7 @@
 #import "TimeUtil.h"
 #import "Macro.h"
 #import "RESideMenu.h"
+#import "math.h"
 
 typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);

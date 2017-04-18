@@ -14,6 +14,7 @@
 @interface SignMobileVerifyVC()<SendSmsCodeDelegete>
 
 @property(nonatomic,strong)GetVerifyCodeView *code;
+@property(nonatomic,strong)UILabel *phoneLabel;
 
 @end
 
@@ -75,11 +76,11 @@
     [self.view addSubview:underText];
     
     
-    UILabel *phone = [[UILabel alloc]initWithFrame:CGRectMake(underText.frame.origin.x+underText.frame.size.width, underText.frame.origin.y-1.5, 150, 15)];
-    phone.text = @"18771098004";
-    phone.font = [UIFont systemFontOfSize:15];
-    phone.textColor = BlueRGBColor;
-    [self.view addSubview:phone];
+    _phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(underText.frame.origin.x+underText.frame.size.width, underText.frame.origin.y-1.5, 150, 15)];
+    _phoneLabel.text = _phoneNum;
+    _phoneLabel.font = [UIFont systemFontOfSize:15];
+    _phoneLabel.textColor = BlueRGBColor;
+    [self.view addSubview:_phoneLabel];
     
     
     _code = [[GetVerifyCodeView alloc]initWithFrame:CGRectMake(0, underText.frame.origin.y+underText.frame.size.height+45*HEIGHT_SCALE, SCREEN_WIDTH, 108*HEIGHT_SCALE)];

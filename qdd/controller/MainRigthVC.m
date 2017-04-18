@@ -75,13 +75,36 @@
 
 -(void)addMjRefresh:(UITableView *)tableView{
     
-    //上拉加载
-    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        _pageNo++;
-        [self netReauest];
-        //停止刷新
-        [tableView.footer endRefreshing];
-    }];
+    float cellHeight = (48+32+26+28+50)*HEIGHT_SCALE ;
+    float headViewHeight = 0;
+    float height = _mutableArry.count*cellHeight + headViewHeight;
+    
+    //float比较大于
+    if (height - _myTableView.frame.size.height > 0.000001) {
+        //上拉加载
+        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            _pageNo++;
+            [self netReauest];
+            //停止刷新
+            [tableView.footer endRefreshing];
+        }];
+        
+    }
+    
+    //float比较等于
+    if (fabs(height - _myTableView.frame.size.height) < 0.000001 ||
+        fabs(_myTableView.frame.size.height - height) < 0.000001) {
+        
+        //上拉加载
+        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            _pageNo++;
+            [self netReauest];
+            //停止刷新
+            [tableView.footer endRefreshing];
+        }];
+    }
+    
+    
 }
 
 
@@ -156,8 +179,9 @@
     VC.messageId=model.messageId;
     
     VC.backBlock=^{
-        [self netReauest];
+        _mutableArry=nil;
         _pageNo=0;
+        [self netReauest];
     };
     
     [self.navigationController pushViewController:VC animated:YES];
@@ -263,6 +287,7 @@
     
     
     [self.view addSubview:_myTableView];
+    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
     
 }

@@ -51,7 +51,7 @@
     [self.view addSubview:addButton];
     [addButton setTitle:@"完成" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    addButton.titleLabel.textAlignment=NSTextAlignmentRight;
+    addButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     addButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [addButton addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
     
@@ -188,9 +188,6 @@
 
 
 
-
-
-
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
 }
@@ -250,37 +247,65 @@
         return ;
     }
     
-    NSArray *arry = [data objectForKey:@"msign"];
-    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+//    NSArray *arry = [data objectForKey:@"msign"];
+//    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+//        
+//        [self createAlertView];
+//        self.alertView.title=@"没有签章";
+//        [self.alertView show];
+//        return;
+//    }
+//    
+//    
+//    for (NSDictionary *temp in arry) {
+//        
+//        SignatureModel *model =[[SignatureModel alloc]init];
+//        model.signatureId = [temp objectForKey:@"id"];
+//        model.name = [temp objectForKey:@"name"];
+//        model.path= [temp objectForKey:@"path"];
+//        
+//        model.uid = [temp objectForKey:@"uid"];
+//        
+//        model.status = [temp objectForKey:@"status"];
+//        model.ctime = [temp objectForKey:@"ctime"];
+//        model.utime = [temp objectForKey:@"utime"];
+//        
+//        if (_mutableArry==nil) {
+//            _mutableArry=[[NSMutableArray alloc]init];
+//        }
+//        
+//        [_mutableArry addObject:model];
+//    }
+    
+    //个人签章为字典
+    NSDictionary *personalSign = [data objectForKey:@"msign"];
+    if (personalSign==nil ||  [personalSign isEqual:[NSNull null]]) {
         
         [self createAlertView];
-        self.alertView.title=@"没有签章";
+        self.alertView.title=@"没有个人签章";
         [self.alertView show];
-        return;
-    }
-    
-    
-    for (NSDictionary *temp in arry) {
+    }else{
         
         SignatureModel *model =[[SignatureModel alloc]init];
-        model.signatureId = [temp objectForKey:@"id"];
-        model.name = [temp objectForKey:@"name"];
-        model.path= [temp objectForKey:@"path"];
+        model.signatureId = [personalSign objectForKey:@"id"];
+        model.name = [personalSign objectForKey:@"name"];
+        model.path= [personalSign objectForKey:@"path"];
         
-        model.uid = [temp objectForKey:@"uid"];
+        model.uid = [personalSign objectForKey:@"uid"];
         
-        model.status = [temp objectForKey:@"status"];
-        model.ctime = [temp objectForKey:@"ctime"];
-        model.utime = [temp objectForKey:@"utime"];
+        model.status = [personalSign objectForKey:@"status"];
+        model.ctime = [personalSign objectForKey:@"ctime"];
+        model.utime = [personalSign objectForKey:@"utime"];
         
         if (_mutableArry==nil) {
             _mutableArry=[[NSMutableArray alloc]init];
         }
         
         [_mutableArry addObject:model];
+        
     }
-    
-    
+
+
     [_myTableView reloadData];
     
 }

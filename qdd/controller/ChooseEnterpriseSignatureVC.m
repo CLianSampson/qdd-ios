@@ -52,7 +52,7 @@
     [self.view addSubview:addButton];
     [addButton setTitle:@"完成" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    addButton.titleLabel.textAlignment=NSTextAlignmentRight;
+    addButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     addButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [addButton addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
     
@@ -252,10 +252,11 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+//获取手机号
+#pragma mark store signature and
 -(void)complete{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
     
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
@@ -269,7 +270,9 @@
         if ([state isEqualToString:@"success"]) {
             [weakSelf.indicator removeFromSuperview];
             
-            NSDictionary *mobileDic =[result objectForKey:@"mobile"];
+            NSDictionary *data = [result objectForKey:@"data"];
+            
+            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
             NSString *mobile = [mobileDic objectForKey:@"mobile"];
             
             SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
@@ -302,7 +305,68 @@
     
 }
 
+#pragma  mark store signature
+-(void)storeSignature{
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_STORE_AND_DELETE_SIGNATURE];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
+    [paramasDic setObject:@"1" forKey:@"status"];  //status：合同签章类型（0，个人签署，1授权签署）
+    [paramasDic setObject:_signId forKey:@"id"];
+    
+    
+    NSMutableArray *addArry = [[NSMutableArray alloc]init];
+    NSMutableDictionary *personalSignature = [[NSMutableDictionary alloc]init];
+    [personalSignature setObject:@"" forKey:@"signid"];
+    [personalSignature setObject:@"" forKey:@"num"];
+    [personalSignature setObject:@"" forKey:@"posX"];
+    [personalSignature setObject:@"" forKey:@"posY"];
+    
+    NSMutableDictionary *enterpriseDic = [[NSMutableDictionary alloc]init];
+    [enterpriseDic setObject:@"" forKey:@"signid"];
+    [enterpriseDic setObject:@"" forKey:@"num"];
+    [enterpriseDic setObject:@"" forKey:@"posX"];
+    [enterpriseDic setObject:@"" forKey:@"posY"];
+    
+    [addArry addObject:personalSignature];
+    [addArry addObject:enterpriseDic];
+    
+    [paramasDic setObject:addArry forKey:@"add"];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            
+          
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:paramasDic];
 
+}
+
+//获取签章列表
 -(void)netReauest{
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];

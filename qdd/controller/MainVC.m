@@ -168,7 +168,7 @@
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _myTableView.backgroundColor=RGBColor(200, 200, 200);
-//    [self.view addSubview:_myTableView];
+
     
     [self addMjRefresh:_myTableView];
     
@@ -181,14 +181,22 @@
 
 
 -(void)addMjRefresh:(UITableView *)tableView{
+    float cellHeight = (44+28+46+20+29)*HEIGHT_SCALE+13+11+11 ;
+    float headViewHeight = 10;
+    float height = _mutableArry.count*cellHeight + headViewHeight;
     
-    //上拉加载
-    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-        _pageNo++;
-        [self netReauest];
-        //停止刷新
-        [tableView.footer endRefreshing];
-    }];
+    if (height>_myTableView.frame.size.height) {
+        //上拉加载
+        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+            _pageNo++;
+            [self netReauest];
+            //停止刷新
+            [tableView.footer endRefreshing];
+        }];
+
+    }
+    
+    
 }
 
 
@@ -536,6 +544,7 @@
     
     
     [self.view addSubview:_myTableView];
+    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
 
 }

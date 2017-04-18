@@ -10,6 +10,7 @@
 #import "RESideMenu.h"
 #import "SignatureCell.h"
 #import "SignatureModel.h"
+#import "AddSignatureVC.h"
 
 @interface MySignVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -41,7 +42,7 @@
     
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
-    label.text=@"选择签章";
+    label.text=@"我的签名";
     label.textAlignment=NSTextAlignmentCenter;
     label.font=[UIFont boldSystemFontOfSize:17];
     [self.view addSubview:label];
@@ -50,9 +51,9 @@
     
     UIButton *addButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-30*WIDTH_SCALE-100, 31, 100, 22)];
     [self.view addSubview:addButton];
-    [addButton setTitle:@"完成" forState:UIControlStateNormal];
+    [addButton setTitle:@"添加签章" forState:UIControlStateNormal];
     [addButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
-    addButton.titleLabel.textAlignment=NSTextAlignmentRight;
+    addButton.contentHorizontalAlignment = UIControlContentHorizontalAlignmentRight;
     addButton.titleLabel.font=[UIFont systemFontOfSize:16];
     [addButton addTarget:self action:@selector(complete) forControlEvents:UIControlEventTouchUpInside];
     
@@ -86,7 +87,9 @@
 
 
 -(void)complete{
-    
+    AddSignatureVC *VC = [[AddSignatureVC alloc]init];
+    VC.token = self.token;
+    [self.navigationController pushViewController:VC animated:YES];
 }
 
 
@@ -196,8 +199,14 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    SignatureCell *cell = [tableView cellForRowAtIndexPath:indexPath];
-    [cell.signImageView addSubview:cell.signImageView.chooseImage];
+    if (indexPath.section==0) {
+        SignatureCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+        [cell.signImageView addSubview:cell.signImageView.chooseImage];
+        
+        SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
+        
+        [self setDefaultSign:model.signatureId];
+    }
     
     
     return;
@@ -358,7 +367,51 @@
 }
 
 
-
+//设置默认签章
+-(void)setDefaultSign:(NSString *)signId{
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SET_DETAULT_SIGNATURE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *string1 = [appendUrlString stringByAppendingString:@"/sid/"];
+    NSString *string2 = [string1 stringByAppendingString:signId];
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    self.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [self netRequestGetWithUrl:string2 Data:nil];
+}
 
 
 @end

@@ -230,6 +230,7 @@
 -(void)enterpriseSign{
     ChooseEnterpriseSignatureVC *VC = [[ChooseEnterpriseSignatureVC alloc]init];
     VC.token = self.token;
+    VC.signId = self.signId;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

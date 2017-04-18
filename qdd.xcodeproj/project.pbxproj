@@ -50,7 +50,6 @@
 		1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDB1E87B818002221C3 /* MainLeftVC.m */; };
 		1824ADDF1E87BFC5002221C3 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDE1E87BFC5002221C3 /* OrderModel.m */; };
 		18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D921E62ABB50046A127 /* SKGraphicView.m */; };
-		18314D961E62ACAB0046A127 /* SignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D951E62ACAB0046A127 /* SignVC.m */; };
 		18314D991E62C0B20046A127 /* SignImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D981E62C0B20046A127 /* SignImageView.m */; };
 		1831BC961E575CCA00AAE0E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BC951E575CCA00AAE0E5 /* main.m */; };
 		1831BC991E575CCA00AAE0E5 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BC981E575CCA00AAE0E5 /* AppDelegate.m */; };
@@ -80,6 +79,7 @@
 		1831BD0C1E575E0A00AAE0E5 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF31E575E0A00AAE0E5 /* RESideMenu.m */; };
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
 		1832C8D21E8959E100C3DB37 /* SignatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832C8D11E8959E100C3DB37 /* SignatureModel.m */; };
+		183FC0BC1EA63A6200DB9A58 /* AddSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */; };
 		184935D31E6F035200195071 /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184935D21E6F035200195071 /* SignCell.m */; };
 		185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03111E61412B00EB9325 /* ShoppingVC.m */; };
 		185A03151E61415000EB9325 /* MySignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03141E61415000EB9325 /* MySignVC.m */; };
@@ -235,8 +235,6 @@
 		1824ADDE1E87BFC5002221C3 /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
 		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
 		18314D921E62ABB50046A127 /* SKGraphicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGraphicView.m; sourceTree = "<group>"; };
-		18314D941E62ACAB0046A127 /* SignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignVC.h; sourceTree = "<group>"; };
-		18314D951E62ACAB0046A127 /* SignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignVC.m; sourceTree = "<group>"; };
 		18314D971E62C0B20046A127 /* SignImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignImageView.h; sourceTree = "<group>"; };
 		18314D981E62C0B20046A127 /* SignImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignImageView.m; sourceTree = "<group>"; };
 		1831BC911E575CC900AAE0E5 /* 签多多.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "签多多.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -288,6 +286,8 @@
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		1832C8D01E8959E100C3DB37 /* SignatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureModel.h; sourceTree = "<group>"; };
 		1832C8D11E8959E100C3DB37 /* SignatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureModel.m; sourceTree = "<group>"; };
+		183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSignatureVC.h; sourceTree = "<group>"; };
+		183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSignatureVC.m; sourceTree = "<group>"; };
 		184935D11E6F035200195071 /* SignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
 		184935D21E6F035200195071 /* SignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
 		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
@@ -832,8 +832,6 @@
 			children = (
 				185A03231E6173C300EB9325 /* ShoppingDetailVC.h */,
 				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
-				18314D941E62ACAB0046A127 /* SignVC.h */,
-				18314D951E62ACAB0046A127 /* SignVC.m */,
 				18F4940B1E6BFFDA0033AC03 /* AboutVC.h */,
 				18F4940C1E6BFFDA0033AC03 /* AboutVC.m */,
 				18F494141E6C14310033AC03 /* SecurityVC.h */,
@@ -860,6 +858,8 @@
 				18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */,
 				18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */,
 				18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */,
+				183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */,
+				183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */,
 			);
 			name = three;
 			sourceTree = "<group>";
@@ -1154,6 +1154,7 @@
 				18ABF8E31E73D39800022368 /* SetPasswordFailedVC.m in Sources */,
 				18B9F3D01E86374800A3A1EC /* UIView+MJExtension.m in Sources */,
 				1831BCFB1E575E0A00AAE0E5 /* AFNetRequest.m in Sources */,
+				183FC0BC1EA63A6200DB9A58 /* AddSignatureVC.m in Sources */,
 				18ABF8E01E73D38700022368 /* SetPasswordSucessVC.m in Sources */,
 				18ABF8DA1E73C52E00022368 /* ForgetAndSetPasswordVC.m in Sources */,
 				1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */,
@@ -1173,7 +1174,6 @@
 				18D9380E1E704836000EC118 /* LoginVC.m in Sources */,
 				18B9F3BF1E86374800A3A1EC /* MJRefreshBackFooter.m in Sources */,
 				1824ADDF1E87BFC5002221C3 /* OrderModel.m in Sources */,
-				18314D961E62ACAB0046A127 /* SignVC.m in Sources */,
 				18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */,
 				185A032C1E618AEE00EB9325 /* PayVC.m in Sources */,
 				18B9F3CD1E86374800A3A1EC /* MJRefreshConst.m in Sources */,

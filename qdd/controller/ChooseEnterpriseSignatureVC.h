@@ -10,6 +10,9 @@
 
 @interface ChooseEnterpriseSignatureVC : BaseVC
 
-@property(nonatomic,strong)NSString *signatureId;
+@property(nonatomic,strong)NSString *signatureId; //签章id
+
+@property(nonatomic,strong)NSString *signId; //合同id
+
 
 @end
