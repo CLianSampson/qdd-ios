@@ -95,9 +95,11 @@ static NSString *URL_VERIFY_MOBILE_CODE=@"https://www.qiandd.com/mobile/Contract
 //存储删除合同签章信息
 static NSString *URL_STORE_AND_DELETE_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/contract_sign/token/";
 
-//设置合同签署类型
+//设置合同签署类型  (没有用到)
 static NSString *URL_SET_SIGN_TYPE=@"https://www.qiandd.com/mobile/Contract/setstatus/token/";
 
+//签合同
+static NSString *URL_SIGN_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/signend/token/";
 
 
 typedef void (^PictureBlock)(id result);

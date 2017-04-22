@@ -12,4 +12,10 @@
 
 @property(nonatomic,strong)NSString *phoneNum;
 
+@property(nonatomic,strong)NSString *signId;
+
+@property(nonatomic,assign)int signStatus;  //0 个人签章  1授权签章
+
+
+
 @end

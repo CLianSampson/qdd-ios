@@ -10,4 +10,6 @@
 
 @interface SignSucessVC : BaseVC
 
+@property(nonatomic,strong)NSString *mealTimes;
+
 @end

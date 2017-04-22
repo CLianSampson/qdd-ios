@@ -54,7 +54,10 @@
     
     
     UILabel *failReson =[[UILabel alloc]initWithFrame:CGRectMake(0, sucessLabel.frame.origin.y+sucessLabel.frame.size.height+30*HEIGHT_SCALE, SCREEN_WIDTH, 15)];
-    failReson.text=@"您的套餐剩余次数16";
+    NSMutableString *string = [NSMutableString stringWithString:@"您的套餐剩余次数"];
+    NSString *mutableString = [string stringByAppendingString:_mealTimes];
+    
+    failReson.text=mutableString;
     failReson.textColor=PlaceHoderRGBColor;
     failReson.font=[UIFont systemFontOfSize:15];
     failReson.textAlignment=NSTextAlignmentCenter;

@@ -25,6 +25,9 @@
 
 @property(nonatomic,strong)UIImage *enterpriseSignatureImage; //企业签章图片
 
+@property(nonatomic,strong)NSString *personalSignatureId; //个人签章id
+
+@property(nonatomic,strong)NSString *enterpriseSignatureId; //企业签章id
 
 @end
 
@@ -136,6 +139,7 @@
         NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
         
         
+        _personalSignatureId = model.signatureId;
         
         //为同一个block
         //    self.pictureBlock=^(id result){
@@ -185,6 +189,7 @@
     
     NSString *appendUrlString=[urlstring stringByAppendingString:_enterpriseSignatureModel.path];
     
+    _enterpriseSignatureId = _enterpriseSignatureModel.signatureId;
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
     request.pictureBlock=^(id result){
@@ -279,120 +284,13 @@
     VC.token = self.token;
     VC.personaSignaturelImage = self.personalSignatureImage;
     VC.enterpriseSignatureImage = self.enterpriseSignatureImage;
+    VC.personaSignaturelId = _personalSignatureId;
+    VC.enterpriseSignatureId = _enterpriseSignatureId;
+    VC.signStatus = 1;
     [self.navigationController pushViewController:VC animated:YES];
     
-    
-    
-    
-//    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
-//    
-//    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-//    
-//    
-//    __weak typeof(self) weakSelf=self;
-//    
-//    self.netSucessBlock=^(id result){
-//        NSString *state = [result objectForKey:@"state"];
-//        NSString *info = [result objectForKey:@"info"];
-//        
-//        if ([state isEqualToString:@"success"]) {
-//            [weakSelf.indicator removeFromSuperview];
-//            
-//            NSDictionary *data = [result objectForKey:@"data"];
-//            
-//            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
-//            NSString *mobile = [mobileDic objectForKey:@"mobile"];
-//            
-//            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
-//            VC.token=weakSelf.token;
-//            VC.phoneNum=mobile;
-//            [weakSelf.navigationController pushViewController:VC animated:YES];
-//
-//            
-//        }else if ([state isEqualToString:@"fail"]){
-//            [weakSelf.indicator removeFromSuperview];
-//            
-//            [weakSelf createAlertView];
-//            weakSelf.alertView.title=info;
-//            [weakSelf.alertView show];
-//            
-//        }
-//        
-//        
-//    };
-//    
-//    self.netFailedBlock=^(id result){
-//        [weakSelf.indicator removeFromSuperview];
-//        
-//        [weakSelf createAlertView];
-//        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-//        [weakSelf.alertView show];
-//    };
-//    
-//    [self netRequestGetWithUrl:appendUrlString Data:nil];
-    
 }
 
-#pragma  mark store signature
--(void)storeSignature{
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_STORE_AND_DELETE_SIGNATURE];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-    
-    NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
-    [paramasDic setObject:@"1" forKey:@"status"];  //status：合同签章类型（0，个人签署，1授权签署）
-    [paramasDic setObject:_signId forKey:@"id"];
-    
-    
-    NSMutableArray *addArry = [[NSMutableArray alloc]init];
-    NSMutableDictionary *personalSignature = [[NSMutableDictionary alloc]init];
-    [personalSignature setObject:@"" forKey:@"signid"];
-    [personalSignature setObject:@"" forKey:@"num"];
-    [personalSignature setObject:@"" forKey:@"posX"];
-    [personalSignature setObject:@"" forKey:@"posY"];
-    
-    NSMutableDictionary *enterpriseDic = [[NSMutableDictionary alloc]init];
-    [enterpriseDic setObject:@"" forKey:@"signid"];
-    [enterpriseDic setObject:@"" forKey:@"num"];
-    [enterpriseDic setObject:@"" forKey:@"posX"];
-    [enterpriseDic setObject:@"" forKey:@"posY"];
-    
-    [addArry addObject:personalSignature];
-    [addArry addObject:enterpriseDic];
-    
-    [paramasDic setObject:addArry forKey:@"add"];
-    
-    __weak typeof(self) weakSelf=self;
-    
-    self.netSucessBlock=^(id result){
-        NSString *state = [result objectForKey:@"state"];
-        NSString *info = [result objectForKey:@"info"];
-        
-        if ([state isEqualToString:@"success"]) {
-            
-          
-            
-        }else if ([state isEqualToString:@"fail"]){
-            [weakSelf.indicator removeFromSuperview];
-            
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
-            
-        }
-        
-    };
-    
-    self.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
-    [self netRequestWithUrl:appendUrlString Data:paramasDic];
-
-}
 
 //获取签章列表
 -(void)netReauest{

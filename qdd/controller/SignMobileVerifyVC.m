@@ -16,6 +16,8 @@
 @property(nonatomic,strong)GetVerifyCodeView *code;
 @property(nonatomic,strong)UILabel *phoneLabel;
 
+@property(nonatomic,strong)NSString *mealTimes; //剩余套餐使用次数
+
 @end
 
 @implementation SignMobileVerifyVC
@@ -93,7 +95,7 @@
     [confirm setTitle:@"确定" forState:UIControlStateNormal];
     [confirm setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
     confirm.titleLabel.font=[UIFont systemFontOfSize:18];
-    [confirm addTarget:self action:@selector(signConfirm) forControlEvents:UIControlEventTouchUpInside];
+    [confirm addTarget:self action:@selector(verifySmsCode) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirm];
     
     UIButton *cancel = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, confirm.frame.origin.y+confirm.frame.size.height+30*HEIGHT_SCALE, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
@@ -124,10 +126,8 @@
         NSString *info = [result objectForKey:@"info"];
         
         if ([state isEqualToString:@"success"]) {
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
-
+           
+            
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
@@ -142,7 +142,7 @@
 }
 
 
--(void)signConfirm{
+-(void)verifySmsCode{
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_VERIFY_MOBILE_CODE];
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
@@ -158,7 +158,49 @@
         NSString *info = [result objectForKey:@"info"];
         
         if ([state isEqualToString:@"success"]) {
+            
+            [weakSelf signSignature];
+            
+        }else if ([state isEqualToString:@"fail"]){
             [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
+}
+
+
+#pragma mark   //签合同
+-(void)signSignature{
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_SIGNATURE];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *string1 = [appendUrlString stringByAppendingString:@"/id/"];
+    
+    NSString *string2 = [string1 stringByAppendingString:_signId];
+    
+    NSString *string3 = [NSString stringWithFormat:@"/status/%d",_signStatus];
+    
+    NSString *string4 = [string2 stringByAppendingString:string3];
+    
+    NSLog(@"url is : %@",string4);
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            _mealTimes = [result objectForKey:@"data"];
             
             SignSucessVC *VC = [[SignSucessVC alloc]init];
             [weakSelf.navigationController pushViewController:VC animated:YES];
@@ -174,21 +216,18 @@
         
     };
     
-    self.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
-    
-    
+    [self netRequestGetWithUrl:string4 Data:nil];
 }
+
+
 
 -(void)signCancel{
     [self.navigationController popViewControllerAnimated:YES];
 }
+
+
+
+
 
 @end

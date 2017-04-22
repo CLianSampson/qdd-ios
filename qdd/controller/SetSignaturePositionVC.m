@@ -11,7 +11,7 @@
 #import "SignShowCell.h"
 #import "SignMobileVerifyVC.h"
 
-@interface SetSignaturePositionVC()<UITableViewDelegate,UITableViewDataSource>
+@interface SetSignaturePositionVC()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
 @property(nonatomic,strong)UITableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *mutableArry;
@@ -24,6 +24,8 @@
 
 @property(nonatomic,strong)UIImageView *personalImageView; //个人签章图片
 @property(nonatomic,strong)UIImageView *enterpriseImageView; //企业签章图片
+
+@property(nonatomic,assign)int pageNum; //第几页合同
 
 @end
 
@@ -111,52 +113,122 @@
 
 
 -(void)confirmClick{
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
+    [self storeSignature];
+}
 
+
+
+#pragma  mark store signature
+-(void)storeSignature{
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_STORE_AND_DELETE_SIGNATURE];
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-
-
+    
+    NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
+    NSString *signStatus = [NSString stringWithFormat:@"%d",_signStatus];
+    [paramasDic setObject:signStatus forKey:@"status"];  //status：合同签章类型（0，个人签署，1授权签署）
+    [paramasDic setObject:_signId forKey:@"id"];
+    
+    
+    NSMutableArray *addArry = [[NSMutableArray alloc]init];
+    NSMutableDictionary *personalSignature = [[NSMutableDictionary alloc]init];
+    
+    NSString *xPosition = [NSString stringWithFormat:@"%f",_personalImageView.frame.origin.x];
+    NSString *yPosition = [NSString stringWithFormat:@"%f",_personalImageView.frame.origin.y];
+    NSString *pageNumStr = [NSString stringWithFormat:@"%d",_pageNum];
+    
+    [personalSignature setObject:_personaSignaturelId forKey:@"signid"];
+    [personalSignature setObject:pageNumStr forKey:@"num"];
+    [personalSignature setObject:xPosition forKey:@"posX"];
+    [personalSignature setObject:yPosition forKey:@"posY"];
+    
+//    NSMutableDictionary *enterpriseDic = [[NSMutableDictionary alloc]init];
+//    [enterpriseDic setObject:@"" forKey:@"signid"];
+//    [enterpriseDic setObject:@"" forKey:@"num"];
+//    [enterpriseDic setObject:@"" forKey:@"posX"];
+//    [enterpriseDic setObject:@"" forKey:@"posY"];
+    
+    [addArry addObject:personalSignature];
+//    [addArry addObject:enterpriseDic];
+    
+    [paramasDic setObject:addArry forKey:@"add"];
+    
+    NSLog(@"params is : %@" ,paramasDic);
+    
+    
     __weak typeof(self) weakSelf=self;
-
+    
     self.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
-
+        
         if ([state isEqualToString:@"success"]) {
-            [weakSelf.indicator removeFromSuperview];
-
-            NSDictionary *data = [result objectForKey:@"data"];
-
-            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
-            NSString *mobile = [mobileDic objectForKey:@"mobile"];
-
-            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
-            VC.token=weakSelf.token;
-            VC.phoneNum=mobile;
-            [weakSelf.navigationController pushViewController:VC animated:YES];
-
-
+            
+            [weakSelf gotoMobileVerify];
+            
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf.indicator removeFromSuperview];
-
+            
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
-
+            
         }
-
-
-    };
-
-    self.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
+        
     };
     
+    [self netRequestWithUrl:appendUrlString Data:paramasDic];
+    
+}
+
+
+
+
+
+-(void)gotoMobileVerify{
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            //跳转到短信验证页面
+            
+            [weakSelf.indicator removeFromSuperview];
+            
+            NSDictionary *data = [result objectForKey:@"data"];
+            
+            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
+            NSString *mobile = [mobileDic objectForKey:@"mobile"];
+            
+            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
+            VC.token=weakSelf.token;
+            VC.phoneNum=mobile;
+            VC.signId  = weakSelf.signId;
+            VC.signStatus = weakSelf.signStatus;
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    
     [self netRequestGetWithUrl:appendUrlString Data:nil];
+
 }
 
 
@@ -317,6 +389,7 @@
 }
 
 
+//手势处理
 -(void)addPanGesture{
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     [_personalImageView setUserInteractionEnabled:YES];//开启图片控件的用户交互
@@ -329,6 +402,8 @@
     
 //    CGFloat KWidth = [UIScreen mainScreen].bounds.size.width;
 //    CGFloat KHeight = [UIScreen mainScreen].bounds.size.height;
+    
+    NSLog(@"class is : %@",rec.view.class);
     
     CGFloat KWidth = _myTableView.bounds.size.width;
     CGFloat KHeight = _myTableView.bounds.size.height;
@@ -344,15 +419,16 @@
     CGFloat viewhalfW = rec.view.frame.size.width/2;
     
     //确定特殊的centerY
-    if (centerY - viewHalfH < 0 ) {
-        centerY = viewHalfH;
+    if (centerY - viewHalfH < _myTableView.frame.origin.y ) {
+//        centerY = viewHalfH;
+        centerY = 65 + viewHalfH;
     }
     if (centerY + viewHalfH > KHeight ) {
         centerY = KHeight - viewHalfH;
     }
     
     //确定特殊的centerX
-    if (centerX - viewhalfW < 0){
+    if (centerX - viewhalfW < _myTableView.frame.origin.x){
         centerX = viewhalfW;
     }
     if (centerX + viewhalfW > KWidth){
@@ -367,4 +443,66 @@
 }
 
 
+
+
+
+#pragma mark scrollview delegate
+float lastContentOffset;
+- (void)scrollViewWillBeginDragging:(UIScrollView *)scrollView{
+    lastContentOffset = scrollView.contentOffset.y;
+}
+
+
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView{
+    NSLog(@"hgjahghkbknsbaba,kkghkghjann,gn,fngn,mnm");
+    
+    //arry 为indexpath的数组
+    NSArray *arry = [_myTableView indexPathsForVisibleRows];
+    if ([arry count]==1) {
+        return;
+    }
+    
+    
+    if (lastContentOffset < scrollView.contentOffset.y) {
+        NSIndexPath *scrollIndexPath = [arry objectAtIndex:1];
+        
+        [_myTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        
+        NSArray *newArry = [_myTableView indexPathsForVisibleRows];
+        
+        NSIndexPath *newIndexPath = (NSIndexPath *)[newArry objectAtIndex:0];
+        
+        _pageNum = (int)newIndexPath.row;
+
+    }else{
+        NSLog(@"向下滚动");
+        
+        NSIndexPath *scrollIndexPath = [arry objectAtIndex:0];
+        
+       
+        [_myTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
+        
+        NSArray *newArry = [_myTableView indexPathsForVisibleRows];
+
+        
+        NSIndexPath *newIndexPath = (NSIndexPath *)[newArry objectAtIndex:0];
+        
+        _pageNum = (int)newIndexPath.row;
+        
+        
+    }
+
+   
+}
+
+
+
 @end
+
+
+
+
+
+
+
+
