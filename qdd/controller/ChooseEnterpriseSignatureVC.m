@@ -10,6 +10,7 @@
 #import "SignatureCell.h"
 #import "SignatureModel.h"
 #import "SignMobileVerifyVC.h"
+#import "SetSignaturePositionVC.h"
 
 @interface ChooseEnterpriseSignatureVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -19,6 +20,11 @@
 @property(nonatomic,strong)UITableView *myTableView;
 
 @property(nonatomic,strong)SignatureModel *enterpriseSignatureModel; //企业签章，只有一个
+
+@property(nonatomic,strong)UIImage *personalSignatureImage; //个人签章图片
+
+@property(nonatomic,strong)UIImage *enterpriseSignatureImage; //企业签章图片
+
 
 @end
 
@@ -139,7 +145,9 @@
         //    [self downLoad:appendUrlString];
         AFNetRequest *request = [[AFNetRequest alloc]init];
         request.pictureBlock=^(id result){
-            cell.signImageView.image=[UIImage imageWithData:result];
+            cell.signImageView.image = [UIImage imageWithData:result];
+            
+            _personalSignatureImage = [UIImage imageWithData:result];
         };
         [request downLoadPicture:appendUrlString];
         
@@ -153,6 +161,12 @@
             SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
             self.signatureId = model.signatureId;
         }
+        
+        
+        
+        [cell.signImageView.deleteButton removeFromSuperview];
+        [cell.signImageView.chooseImage removeFromSuperview];
+        [cell.signImageView.unChooseImage removeFromSuperview];
         
         return cell;
 
@@ -175,18 +189,22 @@
     AFNetRequest *request = [[AFNetRequest alloc]init];
     request.pictureBlock=^(id result){
         cell.signImageView.image=[UIImage imageWithData:result];
+        
+        _enterpriseSignatureImage = [UIImage imageWithData:result];
+
     };
     [request downLoadPicture:appendUrlString];
     
     
     [cell.signImageView.chooseImage removeFromSuperview];
     [cell.signImageView.unChooseImage removeFromSuperview];
+    [cell.signImageView.deleteButton removeFromSuperview];
     
     return cell;
-
-    
-    
 }
+
+
+
 
 
 #pragma mark -tableView delegate
@@ -252,56 +270,66 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-//获取手机号
+//获取手机号  设置签章位置
 #pragma mark store signature and
 -(void)complete{
+    SetSignaturePositionVC *VC = [[SetSignaturePositionVC alloc]init];
+    VC.signId = self.signId;
+    VC.signTitle = self.signTitle;
+    VC.token = self.token;
+    VC.personaSignaturelImage = self.personalSignatureImage;
+    VC.enterpriseSignatureImage = self.enterpriseSignatureImage;
+    [self.navigationController pushViewController:VC animated:YES];
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     
-    __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
-        NSString *state = [result objectForKey:@"state"];
-        NSString *info = [result objectForKey:@"info"];
-        
-        if ([state isEqualToString:@"success"]) {
-            [weakSelf.indicator removeFromSuperview];
-            
-            NSDictionary *data = [result objectForKey:@"data"];
-            
-            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
-            NSString *mobile = [mobileDic objectForKey:@"mobile"];
-            
-            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
-            VC.token=weakSelf.token;
-            VC.phoneNum=mobile;
-            [weakSelf.navigationController pushViewController:VC animated:YES];
-
-            
-        }else if ([state isEqualToString:@"fail"]){
-            [weakSelf.indicator removeFromSuperview];
-            
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
-            
-        }
-        
-        
-    };
-    
-    self.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+//    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
+//    
+//    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+//    
+//    
+//    __weak typeof(self) weakSelf=self;
+//    
+//    self.netSucessBlock=^(id result){
+//        NSString *state = [result objectForKey:@"state"];
+//        NSString *info = [result objectForKey:@"info"];
+//        
+//        if ([state isEqualToString:@"success"]) {
+//            [weakSelf.indicator removeFromSuperview];
+//            
+//            NSDictionary *data = [result objectForKey:@"data"];
+//            
+//            NSDictionary *mobileDic =[data objectForKey:@"mobile"];
+//            NSString *mobile = [mobileDic objectForKey:@"mobile"];
+//            
+//            SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
+//            VC.token=weakSelf.token;
+//            VC.phoneNum=mobile;
+//            [weakSelf.navigationController pushViewController:VC animated:YES];
+//
+//            
+//        }else if ([state isEqualToString:@"fail"]){
+//            [weakSelf.indicator removeFromSuperview];
+//            
+//            [weakSelf createAlertView];
+//            weakSelf.alertView.title=info;
+//            [weakSelf.alertView show];
+//            
+//        }
+//        
+//        
+//    };
+//    
+//    self.netFailedBlock=^(id result){
+//        [weakSelf.indicator removeFromSuperview];
+//        
+//        [weakSelf createAlertView];
+//        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+//        [weakSelf.alertView show];
+//    };
+//    
+//    [self netRequestGetWithUrl:appendUrlString Data:nil];
     
 }
 

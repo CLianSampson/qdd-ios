@@ -10,4 +10,8 @@
 
 @interface HelpVC : BaseVC
 
+@property(nonatomic,strong)NSString *mainTitle;
+
+@property(nonatomic,strong)NSString *helpId;
+
 @end

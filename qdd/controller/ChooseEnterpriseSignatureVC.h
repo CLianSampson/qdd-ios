@@ -14,5 +14,6 @@
 
 @property(nonatomic,strong)NSString *signId; //合同id
 
+@property(nonatomic,strong)NSString *signTitle; //合同名称
 
 @end

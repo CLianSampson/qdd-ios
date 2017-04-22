@@ -8,7 +8,7 @@
 
 #import "AboutVC.h"
 #import "Macro.h"
-#import "HelpVC.h"
+#import "HelpListVC.h"
 #import "CommentVC.h"
 
 
@@ -120,7 +120,7 @@
    
     
     if (indexPath.row==0) {
-         HelpVC  *VC=[[HelpVC alloc]init];
+         HelpListVC  *VC=[[HelpListVC alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
     
     }else if (indexPath.row==1){

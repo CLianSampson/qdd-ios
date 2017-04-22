@@ -8,6 +8,12 @@
 
 #import <UIKit/UIKit.h>
 
+@protocol DeleteSignatureDelegate <NSObject>
+
+-(void)deleteSignature:(UIButton *)sender;
+
+@end
+
 @interface SignImageView : UIImageView
 
 
@@ -15,5 +21,8 @@
 
 @property(nonatomic,strong) UIImageView *chooseImage; //选中按钮
 
+@property(nonatomic,strong) UIButton *deleteButton; //删除按钮
+
+@property(nonatomic,assign) id<DeleteSignatureDelegate>  deleteSignatureDelegate;
 
 @end

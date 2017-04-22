@@ -10,4 +10,7 @@
 
 @interface AddSignatureVC : BaseVC
 
+@property(nonatomic,copy)BackBlock backBlock;
+
+
 @end

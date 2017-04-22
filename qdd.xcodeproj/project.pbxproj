@@ -40,6 +40,9 @@
 		18177FEE1E90F3E900BE54D0 /* SignShowVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18177FED1E90F3E900BE54D0 /* SignShowVC.m */; };
 		18177FF11E90FCBE00BE54D0 /* SignDetailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */; };
 		18177FF41E91017D00BE54D0 /* SignContentCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18177FF31E91017D00BE54D0 /* SignContentCell.m */; };
+		1818A1331EA86400003B4274 /* HelpListVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818A1321EA86400003B4274 /* HelpListVC.m */; };
+		1818A1361EA86639003B4274 /* HelpModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818A1351EA86639003B4274 /* HelpModel.m */; };
+		1818A1391EA896B6003B4274 /* VerifyStateVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818A1381EA896B6003B4274 /* VerifyStateVC.m */; };
 		1818E44A1E750A9D003B8865 /* AccountCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4491E750A9D003B8865 /* AccountCell.m */; };
 		1818E44D1E751518003B8865 /* BindingMailVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E44C1E751518003B8865 /* BindingMailVC.m */; };
 		1818E4531E753210003B8865 /* MessageDetailView.m in Sources */ = {isa = PBXBuildFile; fileRef = 1818E4521E753210003B8865 /* MessageDetailView.m */; };
@@ -49,6 +52,8 @@
 		18236D231E968751005A7C83 /* SignatureCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18236D221E968751005A7C83 /* SignatureCell.m */; };
 		1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDB1E87B818002221C3 /* MainLeftVC.m */; };
 		1824ADDF1E87BFC5002221C3 /* OrderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1824ADDE1E87BFC5002221C3 /* OrderModel.m */; };
+		182B4CCD1EA9E28D00C49874 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */; };
+		182B4CD01EA9EB3D00C49874 /* SetSignaturePositionVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */; };
 		18314D931E62ABB50046A127 /* SKGraphicView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D921E62ABB50046A127 /* SKGraphicView.m */; };
 		18314D991E62C0B20046A127 /* SignImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18314D981E62C0B20046A127 /* SignImageView.m */; };
 		1831BC961E575CCA00AAE0E5 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BC951E575CCA00AAE0E5 /* main.m */; };
@@ -137,7 +142,6 @@
 		18F494101E6C06060033AC03 /* HelpVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4940F1E6C06060033AC03 /* HelpVC.m */; };
 		18F494131E6C086C0033AC03 /* UILabel+Adjust.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494121E6C086C0033AC03 /* UILabel+Adjust.m */; };
 		18F494161E6C14310033AC03 /* SecurityVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494151E6C14310033AC03 /* SecurityVC.m */; };
-		18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F494181E6C16BB0033AC03 /* SetPasswordVC.m */; };
 		18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941B1E6C1B9D0033AC03 /* PasswordView.m */; };
 		18F4941F1E6C2BB70033AC03 /* UserAccountVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */; };
 		18FC4E961EA2279300C7BC2E /* ChoosePersonalSignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */; };
@@ -215,6 +219,12 @@
 		18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDetailVC.m; sourceTree = "<group>"; };
 		18177FF21E91017D00BE54D0 /* SignContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignContentCell.h; sourceTree = "<group>"; };
 		18177FF31E91017D00BE54D0 /* SignContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignContentCell.m; sourceTree = "<group>"; };
+		1818A1311EA86400003B4274 /* HelpListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpListVC.h; sourceTree = "<group>"; };
+		1818A1321EA86400003B4274 /* HelpListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpListVC.m; sourceTree = "<group>"; };
+		1818A1341EA86639003B4274 /* HelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpModel.h; sourceTree = "<group>"; };
+		1818A1351EA86639003B4274 /* HelpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpModel.m; sourceTree = "<group>"; };
+		1818A1371EA896B6003B4274 /* VerifyStateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyStateVC.h; sourceTree = "<group>"; };
+		1818A1381EA896B6003B4274 /* VerifyStateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyStateVC.m; sourceTree = "<group>"; };
 		1818E4481E750A9D003B8865 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
 		1818E4491E750A9D003B8865 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
 		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingMailVC.h; sourceTree = "<group>"; };
@@ -233,6 +243,10 @@
 		1824ADDB1E87B818002221C3 /* MainLeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLeftVC.m; sourceTree = "<group>"; };
 		1824ADDD1E87BFC5002221C3 /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		1824ADDE1E87BFC5002221C3 /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
+		182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
+		182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
+		182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSignaturePositionVC.h; sourceTree = "<group>"; };
+		182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSignaturePositionVC.m; sourceTree = "<group>"; };
 		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
 		18314D921E62ABB50046A127 /* SKGraphicView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SKGraphicView.m; sourceTree = "<group>"; };
 		18314D971E62C0B20046A127 /* SignImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignImageView.h; sourceTree = "<group>"; };
@@ -403,8 +417,6 @@
 		18F494121E6C086C0033AC03 /* UILabel+Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Adjust.m"; sourceTree = "<group>"; };
 		18F494141E6C14310033AC03 /* SecurityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityVC.h; sourceTree = "<group>"; };
 		18F494151E6C14310033AC03 /* SecurityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityVC.m; sourceTree = "<group>"; };
-		18F494171E6C16BB0033AC03 /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
-		18F494181E6C16BB0033AC03 /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
 		18F4941A1E6C1B9D0033AC03 /* PasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordView.h; sourceTree = "<group>"; };
 		18F4941B1E6C1B9D0033AC03 /* PasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordView.m; sourceTree = "<group>"; };
 		18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccountVC.h; sourceTree = "<group>"; };
@@ -823,6 +835,8 @@
 				1818E4551E754FBE003B8865 /* VerifyVC.m */,
 				18177FEC1E90F3E900BE54D0 /* SignShowVC.h */,
 				18177FED1E90F3E900BE54D0 /* SignShowVC.m */,
+				1818A1371EA896B6003B4274 /* VerifyStateVC.h */,
+				1818A1381EA896B6003B4274 /* VerifyStateVC.m */,
 			);
 			name = second;
 			sourceTree = "<group>";
@@ -871,8 +885,6 @@
 				185A032B1E618AEE00EB9325 /* PayVC.m */,
 				18F4940E1E6C06060033AC03 /* HelpVC.h */,
 				18F4940F1E6C06060033AC03 /* HelpVC.m */,
-				18F494171E6C16BB0033AC03 /* SetPasswordVC.h */,
-				18F494181E6C16BB0033AC03 /* SetPasswordVC.m */,
 				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
 				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
 				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
@@ -889,6 +901,12 @@
 				18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */,
 				18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */,
 				18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */,
+				1818A1311EA86400003B4274 /* HelpListVC.h */,
+				1818A1321EA86400003B4274 /* HelpListVC.m */,
+				182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */,
+				182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */,
+				182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */,
+				182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */,
 			);
 			name = four;
 			sourceTree = "<group>";
@@ -906,6 +924,8 @@
 				1832C8D11E8959E100C3DB37 /* SignatureModel.m */,
 				18D064071E953E2300264F6E /* ContactModel.h */,
 				18D064081E953E2300264F6E /* ContactModel.m */,
+				1818A1341EA86639003B4274 /* HelpModel.h */,
+				1818A1351EA86639003B4274 /* HelpModel.m */,
 			);
 			path = model;
 			sourceTree = "<group>";
@@ -1165,11 +1185,13 @@
 				18F493F91E6BB0C80033AC03 /* OrderCell.m in Sources */,
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */,
+				182B4CCD1EA9E28D00C49874 /* SetPasswordVC.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
 				18D064091E953E2300264F6E /* ContactModel.m in Sources */,
 				18B9F3D31E863D6000A3A1EC /* TimeUtil.m in Sources */,
 				1824ADDC1E87B818002221C3 /* MainLeftVC.m in Sources */,
 				18B9F3901E8633FA00A3A1EC /* SignModel.m in Sources */,
+				1818A1391EA896B6003B4274 /* VerifyStateVC.m in Sources */,
 				18177FF41E91017D00BE54D0 /* SignContentCell.m in Sources */,
 				18D9380E1E704836000EC118 /* LoginVC.m in Sources */,
 				18B9F3BF1E86374800A3A1EC /* MJRefreshBackFooter.m in Sources */,
@@ -1196,7 +1218,6 @@
 				1831BD051E575E0A00AAE0E5 /* AFSecurityPolicy.m in Sources */,
 				185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */,
 				184935D31E6F035200195071 /* SignCell.m in Sources */,
-				18F494191E6C16BB0033AC03 /* SetPasswordVC.m in Sources */,
 				18EF03431E5C80CC00A2093E /* MessageDetailVC.m in Sources */,
 				18B9F3D91E865E8E00A3A1EC /* MainRigthVC.m in Sources */,
 				180F11A61E75907C0082F385 /* CalculatorTools.m in Sources */,
@@ -1232,6 +1253,7 @@
 				18B9F3C61E86374800A3A1EC /* MJRefreshBackGifFooter.m in Sources */,
 				18B9F3BE1E86374800A3A1EC /* MJRefreshAutoFooter.m in Sources */,
 				185A03211E6165DE00EB9325 /* SetView.m in Sources */,
+				1818A1331EA86400003B4274 /* HelpListVC.m in Sources */,
 				18B9F3CA1E86374800A3A1EC /* MJRefreshNormalHeader.m in Sources */,
 				18ABF8E91E73FE2700022368 /* CommentVC.m in Sources */,
 				180F11A81E75907C0082F385 /* UIImage+compress.m in Sources */,
@@ -1245,6 +1267,7 @@
 				18A4853C1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m in Sources */,
 				180F11A91E75907C0082F385 /* UIImage+Extensions.m in Sources */,
 				1831BD081E575E0A00AAE0E5 /* AFURLSessionManager.m in Sources */,
+				182B4CD01EA9EB3D00C49874 /* SetSignaturePositionVC.m in Sources */,
 				18DC3A6A1E598D7400151834 /* MessageCell.m in Sources */,
 				180F11E71E75B9B40082F385 /* FaceSucessVC.m in Sources */,
 				180F11A51E75907C0082F385 /* CaptureManager.m in Sources */,
@@ -1254,6 +1277,7 @@
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 				180F11A31E75907C0082F385 /* FaceStreamDetectorViewController.m in Sources */,
 				18B9F3DC1E865FFF00A3A1EC /* MessageModel.m in Sources */,
+				1818A1361EA86639003B4274 /* HelpModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

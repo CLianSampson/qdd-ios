@@ -24,12 +24,16 @@
 
 @property(nonatomic,strong)NSString *tokenString;
 
+@property(nonatomic,assign)int observeState; //观察者状态，监控授权和认证成功
+
 @end
 
 @implementation LoginVC
 
 -(void)viewDidLoad{
     [super viewDidLoad];
+    
+    _observeState = 0;
     
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -190,6 +194,7 @@
     _tokenString =[data objectForKey:@"token"];
     
     [self auth];
+    [self getUserInfo];
    
 }
 
@@ -197,6 +202,9 @@
 
 //判断用户是否授权
 -(void)auth{
+    
+    
+    
     
     if ([StringUtil isNullOrBlank:_tokenString]) {
         [self createAlertView];
@@ -206,6 +214,8 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_IS_AUTH];
     
     
@@ -214,7 +224,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -235,7 +245,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -243,7 +253,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    [request netRequestGetWithUrl:appendUrlString Data:nil];
 }
 
 
@@ -266,20 +276,33 @@
         return;
     }
     
+    //设置授权状态
+    if (authStateStr.intValue==0) {
+        self.authState = NOT_AUTH;
+    }else if (authStateStr.intValue==1){
+        self.authState = HAVE_AUTH;
+    }else{
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+    }
+
     
-    MainVC *VC = [[MainVC alloc]init];
-    VC.token=_tokenString;
     
-    
-    
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-    
-    
-    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-    leftVC.token=_tokenString;
-    rightVC.token=nil;
-    
+//    MainVC *VC = [[MainVC alloc]init];
+//    VC.token=_tokenString;
+//    
+//    
+//    
+//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+//    
+//    
+//    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+//    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+//    leftVC.token=_tokenString;
+//    rightVC.token=nil;
+//    
+//    //设置授权状态
 //    if (authStateStr.intValue==0) {
 //        leftVC.authState = NOT_AUTH;
 //    }else if (authStateStr.intValue==1){
@@ -289,25 +312,137 @@
 //        self.alertView.title=@"系统有点问题";
 //        [self.alertView show];
 //    }
+//    
+//    
+//    if ([StringUtil isPhoneNum:_userName.text]) {
+//        leftVC.accountFlag = USER_ACCOUNT;
+//    }else{
+//        leftVC.accountFlag = ENTERPRISE_ACCOUNT;
+//    }
+//    
+//    
+//    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+//    
+//    MenuVC.contentViewScaleValue=(float)305/445;
+//    
+//    [self presentViewController:MenuVC animated:YES completion:nil];
     
-      leftVC.authState = NOT_AUTH;
-    
-    
-    if ([StringUtil isPhoneNum:_userName.text]) {
-        leftVC.accountFlag = USER_ACCOUNT;
-    }else{
-        leftVC.accountFlag = ENTERPRISE_ACCOUNT;
+    [self updateObserverState];
+}
+
+
+//获取用户资料 ，判断用户是否认证
+-(void)getUserInfo{
+    if ([StringUtil isNullOrBlank:_tokenString]) {
+        [self createAlertView];
+        self.alertView.title=@"系统有点问题";
+        [self.alertView show];
+        
+        return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
     
-    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
     
-    MenuVC.contentViewScaleValue=(float)305/445;
+    NSString *appendUrlString=[urlstring stringByAppendingString:_tokenString];
     
-    [self presentViewController:MenuVC animated:YES completion:nil];
+    __weak typeof(self) weakSelf=self;
+    
+    request.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doVerifySucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [request netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)doVerifySucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSString * status = [data objectForKey:@"cherk"];
+    switch (status.intValue) {
+        case 0:
+            self.verifyState = NOT_VERIFY;
+            break;
+            
+        case 1:
+            self.verifyState = UNDER_VERIFYING;
+            break;
+            
+        case 2:
+            self.verifyState = HAVE_VERIFY;
+            break;
+        
+        case 3:
+            self.verifyState = NOT_PASS_VERIFY;
+            break;
+
+        default:
+            break;
+    }
+    
+    [self updateObserverState];
     
 }
 
+//相当于观察者
+-(void)updateObserverState{
+    _observeState++;
+    if (_observeState==2) {
+      
+        MainVC *VC = [[MainVC alloc]init];
+        VC.token=_tokenString;
+        
+        
+        
+        UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+        
+        
+        MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+        MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+        leftVC.token=_tokenString;
+        rightVC.token=nil;
+        
+        leftVC.authState = self.authState;
+        
+        leftVC.verifyState = self.verifyState;
+        
+        if ([StringUtil isPhoneNum:_userName.text]) {
+            leftVC.accountFlag = USER_ACCOUNT;
+        }else{
+            leftVC.accountFlag = ENTERPRISE_ACCOUNT;
+        }
+        
+        
+        RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+        
+        MenuVC.contentViewScaleValue=(float)305/445;
+        
+        [self presentViewController:MenuVC animated:YES completion:nil];
+    }
+}
 
 
 

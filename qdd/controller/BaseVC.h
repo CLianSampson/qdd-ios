@@ -20,6 +20,9 @@ typedef void (^NetFailedBlock)(id result);
 
 typedef void (^PictureBlock)(id result);
 
+typedef void(^BackBlock)(void);
+
+
 //个人用户还是企业用户
 typedef NS_ENUM(NSInteger, ACCOUNT_FLAG) {
     USER_ACCOUNT = 1,
@@ -41,6 +44,14 @@ typedef NS_ENUM(NSInteger, AUTH_STATE) {
 };
 
 
+//认证状态  0：未认证  1：审核中  2：审核通过   3：审核不通过
+typedef NS_ENUM(NSInteger, VERIFY_STATE) {
+    NOT_VERIFY= 0,
+    UNDER_VERIFYING =1,
+    HAVE_VERIFY = 2,
+    NOT_PASS_VERIFY = 3,
+};
+
 @interface  BaseVC : UIViewController<UIAlertViewDelegate>
 
 
@@ -61,6 +72,8 @@ typedef NS_ENUM(NSInteger, AUTH_STATE) {
 
 @property(nonatomic,assign)ACCOUNT_FLAG accountFlag;
 @property(nonatomic,assign)AUTH_STATE authState;
+@property(nonatomic,assign)VERIFY_STATE verifyState;
+
 
 -(void)createBackgroungView;
 

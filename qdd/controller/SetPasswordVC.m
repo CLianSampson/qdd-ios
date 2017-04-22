@@ -12,7 +12,7 @@
 
 @interface SetPasswordVC()
 
-@property(nonatomic,strong)UILabel *account;
+@property(nonatomic,strong)UILabel *accountLabel;
 
 @property(nonatomic,strong)PasswordView *oldPassword;
 
@@ -72,13 +72,15 @@
     upper.backgroundColor=SepreateRGBColor;
     [self.view addSubview:upper];
     
-    _account  = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, 64, SCREEN_WIDTH, 40)];
-    _account.text = @"账号     18771098004";
-    _account.backgroundColor=RGBColor(241, 241, 241);
-    [self.view addSubview:_account];
+    _accountLabel  = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, 66, SCREEN_WIDTH, 40)];
+    NSMutableString *mutableString = [NSMutableString stringWithString:@"账号     "];
+    NSString *accountStr = [mutableString stringByAppendingString:_account];
+    _accountLabel.text=accountStr;
+    _accountLabel.backgroundColor=RGBColor(241, 241, 241);
+    [self.view addSubview:_accountLabel];
     
     
-    _oldPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _account.frame.origin.y+_account.frame.size.height, SCREEN_WIDTH, 40)];
+    _oldPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _accountLabel.frame.origin.y+_accountLabel.frame.size.height, SCREEN_WIDTH, 40)];
     _oldPassword.password.text=@"原始密码";
     _oldPassword.textField.placeholder=@"请输入原始密码";
     [self.view addSubview:_oldPassword];
@@ -94,7 +96,7 @@
     [self.view addSubview:_confirmPassword];
     
     
-                              
+    
 }
 
 
@@ -103,35 +105,35 @@
 }
 
 -(void)complete{
-//     _completeLabel = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 577*HEIGHT_SCALE, 200, SCREEN_HEIGHT-577*HEIGHT_SCALE-677*HEIGHT_SCALE)];
-//    
-//    if ([_newingPassword.textField.text isEqualToString:_confirmPassword.textField.text]) {
-//        
-//        _completeLabel.text=@"密码已修改完成";
-//        
-//    }else{
-//         _completeLabel.text=@"新旧密码不相等";
-//    
-//    }
-//    
-//    _back =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
-//    
-//    _back.backgroundColor=RGBColor(191, 191, 191);
-//    _back.alpha=0.8;
-//    [self.view addSubview:_back];
-//    
-//    
-//    _back.userInteractionEnabled = YES;
-//    // hy:添加单击事件
-//    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
-//    [_back addGestureRecognizer:tap];
-//    
-//   
-//    _completeLabel.backgroundColor=[UIColor whiteColor];
-//    _completeLabel.textAlignment=NSTextAlignmentCenter;
-//    _completeLabel.layer.cornerRadius=5;
-//    _completeLabel.clipsToBounds=YES;
-//    [self.view addSubview:_completeLabel];
+    //     _completeLabel = [[UILabel alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-200)/2, 577*HEIGHT_SCALE, 200, SCREEN_HEIGHT-577*HEIGHT_SCALE-677*HEIGHT_SCALE)];
+    //
+    //    if ([_newingPassword.textField.text isEqualToString:_confirmPassword.textField.text]) {
+    //
+    //        _completeLabel.text=@"密码已修改完成";
+    //
+    //    }else{
+    //         _completeLabel.text=@"新旧密码不相等";
+    //
+    //    }
+    //
+    //    _back =[[UIView alloc]initWithFrame:[UIScreen mainScreen].bounds];
+    //
+    //    _back.backgroundColor=RGBColor(191, 191, 191);
+    //    _back.alpha=0.8;
+    //    [self.view addSubview:_back];
+    //
+    //
+    //    _back.userInteractionEnabled = YES;
+    //    // hy:添加单击事件
+    //    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tap)];
+    //    [_back addGestureRecognizer:tap];
+    //
+    //
+    //    _completeLabel.backgroundColor=[UIColor whiteColor];
+    //    _completeLabel.textAlignment=NSTextAlignmentCenter;
+    //    _completeLabel.layer.cornerRadius=5;
+    //    _completeLabel.clipsToBounds=YES;
+    //    [self.view addSubview:_completeLabel];
     
     
     if ([StringUtil isNullOrBlank:_oldPassword.textField.text]
@@ -206,3 +208,4 @@
 
 
 @end
+

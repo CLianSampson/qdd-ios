@@ -15,6 +15,7 @@
 #import "SetVC.h"
 #import "RESideMenu.h"
 #import "VerifyVC.h"
+#import "VerifyStateVC.h"
 
 @implementation MainLeftVC
 
@@ -48,16 +49,22 @@
     
     
     UIImageView *verify = [[UIImageView alloc]initWithFrame:CGRectMake(170*WIDTH_SCALE, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 14, 14)];
-    verify.image=[UIImage imageNamed:@"认证图标"];
+    if (self.verifyState == HAVE_VERIFY) {
+        verify.image=[UIImage imageNamed:@"认证图标"];
+    }else{
+       verify.image=[UIImage imageNamed:@"未认证图标"];
+    }
+    
+    
     [self.view addSubview:verify];
     
     //高度加10
     UILabel *verifyText = [[UILabel alloc]initWithFrame:CGRectMake((170+8)*WIDTH_SCALE+14, phoneLabel.frame.origin.y+phoneLabel.frame.size.height+20*HEIGHT_SCALE, 200, 24*HEIGHT_SCALE)];
     verifyText.textAlignment=NSTextAlignmentLeft;
-    if (self.authState == NOT_AUTH) {
-        verifyText.text=@"未认证";
-    }else{
+    if (self.verifyState == HAVE_VERIFY) {
         verifyText.text=@"已认证";
+    }else{
+        verifyText.text=@"未认证";
     }
     verifyText.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:verifyText];
@@ -202,9 +209,22 @@
 
 
 -(void)goToVerifyVC{
-    if (self.authState == HAVE_AUTH) {
+    if (self.verifyState == HAVE_VERIFY) {
+        VerifyStateVC *VC =[[VerifyStateVC alloc]init];
+        VC.token=self.token;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+        
+        
         return;
     }
+    
+    
     
     VerifyVC *VC =[[VerifyVC alloc]init];
     VC.token=self.token;

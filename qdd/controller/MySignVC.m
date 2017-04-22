@@ -12,7 +12,7 @@
 #import "SignatureModel.h"
 #import "AddSignatureVC.h"
 
-@interface MySignVC()<UITableViewDelegate,UITableViewDataSource>
+@interface MySignVC()<UITableViewDelegate,UITableViewDataSource,DeleteSignatureDelegate>
 
 
 @property(nonatomic,strong)NSMutableArray *mutableArry;
@@ -89,6 +89,11 @@
 -(void)complete{
     AddSignatureVC *VC = [[AddSignatureVC alloc]init];
     VC.token = self.token;
+    VC.backBlock=^{
+        _mutableArry=nil;
+        [self netReauest];
+    };
+    
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -158,8 +163,13 @@
         //默认选择第一个签章
         if (indexPath.row == 0) {
             [cell.signImageView addSubview:cell.signImageView.chooseImage];
+            [cell.signImageView addSubview:cell.signImageView.unChooseImage];
+            
+            [cell.signImageView.deleteButton removeFromSuperview];
             
         }
+        
+        cell.signImageView.deleteSignatureDelegate = self;
         
         return cell;
         
@@ -189,9 +199,10 @@
     [cell.signImageView.chooseImage removeFromSuperview];
     [cell.signImageView.unChooseImage removeFromSuperview];
     
+    
+    [cell.signImageView.deleteButton removeFromSuperview];
+    
     return cell;
-    
-    
     
 }
 
@@ -402,16 +413,62 @@
         
     };
     
-    self.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
     [self netRequestGetWithUrl:string2 Data:nil];
 }
 
 
+#pragma mark deleteSignatureDelegate
+-(void)deleteSignature:(UIButton *)sender{
+    NSLog(@"delete button click sucess");
+    
+    //获取model
+    SignatureCell *cell = (SignatureCell *)[sender superview];
+    
+    NSIndexPath * indexPath = [_myTableView indexPathForCell:cell];
+    
+    SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
+    
+    
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_DELETE_SLGNATURE];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    NSString *string1 = [appendUrlString stringByAppendingString:@"/signid/"];
+    NSString *string2 = [string1 stringByAppendingString:model.signatureId];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    
+    [self netRequestGetWithUrl:string2 Data:nil];
+
+}
+
 @end
+
+
+
+

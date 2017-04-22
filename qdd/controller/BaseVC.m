@@ -12,12 +12,7 @@
 #import "AFNetworking.h"
 
 
-
-
-
 @implementation BaseVC
-
-
 
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -34,7 +29,7 @@
     [self.view addSubview:label];
     
     
-    UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     backgroundView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backgroundView];
     
@@ -220,38 +215,36 @@
     
 }
 
+
+
 - (void)upLoad:(NSString *)urlString image:(UIImage *)image{
     
-    //1。创建管理者对象
-    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+        //1。创建管理者对象
+        AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    //2.上传文件
-//    NSDictionary *dict = @{@"username":@"1234"};
+        [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+            //上传文件参数
+            NSData *data = UIImagePNGRepresentation(image);
+            //这个就是参数
+            [formData appendPartWithFileData:data name:@"sign" fileName:@"123.png" mimeType:@"image/png"];
     
-    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
-        //上传文件参数
-        NSData *data = UIImagePNGRepresentation(image);
-        //这个就是参数
-        [formData appendPartWithFileData:data name:@"file" fileName:@"123.png" mimeType:@"image/png"];
-        
-    } progress:^(NSProgress * _Nonnull uploadProgress) {
-        
-        //打印下上传进度
-        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
-    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
-        
-        //请求成功
-        NSLog(@"请求成功：%@",responseObject);
-        
-        self.netSucessBlock(responseObject);
-        
-    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
-        
-        //请求失败
-        NSLog(@"请求失败：%@",error);
-        self.netFailedBlock(nil);
-    }];
+        } progress:^(NSProgress * _Nonnull uploadProgress) {
     
+            //打印下上传进度
+            NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+        } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+    
+            //请求成功
+            NSLog(@"请求成功：%@",responseObject);
+    
+            self.netSucessBlock(responseObject);
+    
+        } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+    
+            //请求失败
+            NSLog(@"请求失败：%@",error);
+            self.netFailedBlock(nil);
+        }];
 }
 
 //- (void)upLoad:(NSString *)urlString image:(UIImage *)image{

@@ -71,7 +71,8 @@
     [self.view addSubview:upper];
 
     
-    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 67, SCREEN_WIDTH, SCREEN_HEIGHT-67)];
+//    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 67, SCREEN_WIDTH, SCREEN_HEIGHT-67)];
+     _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-160, 67, 320, 544)];
     _myTableView.delegate=self;
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
@@ -231,6 +232,7 @@
     ChooseEnterpriseSignatureVC *VC = [[ChooseEnterpriseSignatureVC alloc]init];
     VC.token = self.token;
     VC.signId = self.signId;
+    VC.signTitle = self.signTitle;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -295,7 +297,8 @@
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    return SCREEN_HEIGHT-66-49;
+//    return SCREEN_HEIGHT-66-49;
+    return 544;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{

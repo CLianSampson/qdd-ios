@@ -10,6 +10,12 @@
 #import "Macro.h"
 #import "SetPasswordVC.h"
 
+@interface SecurityVC()
+
+@property(nonatomic,strong)NSString *accountStr;
+
+@end
+
 @implementation SecurityVC
 
 
@@ -82,10 +88,72 @@
 }
 
 -(void)setPassword{
+    [self netReauest];
+}
+
+
+
+
+-(void)netReauest{
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
+    
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    [self netRequestGetWithUrl:appendUrlString Data:nil];
+}
+
+
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+//    _idNum =[data objectForKey:@"sfz"];
+//    _checkStatus =[data objectForKey:@"cherk"];
+//    _name =[data objectForKey:@"name"];
+    _accountStr =[data objectForKey:@"idname"];
+//    _mail =[data objectForKey:@"mail"];
+//    _phone =[data objectForKey:@"tel"];
+    
+    
+    
     SetPasswordVC *VC = [[SetPasswordVC alloc]init];
     VC.token=self.token;
+    VC.account = _accountStr;
     [self.navigationController pushViewController:VC animated:YES];
+    
+
 }
+
+
+
+
+
 
 
 @end

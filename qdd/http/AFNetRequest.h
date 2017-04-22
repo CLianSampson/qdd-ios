@@ -33,12 +33,24 @@ static NSString *URL_MESSAGE_DETAIL=@"https://www.qiandd.com/mobile/Message/show
 
 static NSString *URL_COMMENT=@"https://www.qiandd.com/mobile/Question/add/token/";//意见反馈
 
+//帮助列表
+static NSString *URL_LIST_HELP=@"https://www.qiandd.com/mobile/help/lists";
+
+//帮助详情
+static NSString *URL_HELP_DETAIL=@"https://www.qiandd.com/mobile/help/show/id/";
+
 static NSString *URL_LIST_ORDER=@"https://www.qiandd.com/mobile/order/allindex/token/";// 订单列表
 
 static NSString *URL_LIST_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/signindex/token/";//签名列表
 
+//添加签名
+static NSString *URL_ADD_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/add_post/token/";
+
 //设置默认签章
 static NSString *URL_SET_DETAULT_SIGNATURE=@"https://www.qiandd.com/mobile/Sign/mobilesetdefault/token/";
+
+//删除签章
+static NSString *URL_DELETE_SLGNATURE=@"https://www.qiandd.com/mobile/Sign/delete/token/";
 
 static NSString *URL_UPLOAD_PICTURE=@"https://www.qiandd.com/mobile/Iden/picupload/token/";//上传图片
 
@@ -91,11 +103,24 @@ static NSString *URL_SET_SIGN_TYPE=@"https://www.qiandd.com/mobile/Contract/sets
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();
 
+typedef void (^NetSucessBlock)(id result);
+typedef void (^NetFailedBlock)(id result);
+
+
 @interface AFNetRequest : NSObject
 
 @property(nonatomic,copy)PictureBlock pictureBlock;
 @property(nonatomic,copy)PictureFailedBlock pictureFailedBlock;
 
+@property(nonatomic,copy)NetSucessBlock netSucessBlock;
+@property(nonatomic,copy)NetFailedBlock netFailedBlock;
+
+
 -(void)downLoadPicture:(NSString *)urlString;
+
+
+-(void)netRequestWithUrl:(NSString *)url Data:(id )data;
+
+-(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
 
 @end

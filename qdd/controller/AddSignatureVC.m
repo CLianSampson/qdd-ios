@@ -13,7 +13,8 @@
 
 @interface AddSignatureVC()
 
-@property(nonatomic,strong)SKGraphicView *drawView;
+@property(nonatomic,strong)SKGraphicView *drawView; //签名区域
+
 
 @end
 
@@ -55,7 +56,7 @@
     
     
     _drawView = [[SKGraphicView alloc] initWithFrame:CGRectMake(30*WIDTH_SCALE, 64, SCREEN_WIDTH-60*WIDTH_SCALE, 1175*HEIGHT_SCALE)];
-    _drawView.backgroundColor = [UIColor whiteColor];
+    _drawView.backgroundColor = RGBColor(241, 241, 241);
     _drawView.color = [UIColor blackColor];
     _drawView.lineWidth = 10;
     [self.view addSubview:_drawView];
@@ -70,22 +71,33 @@
 
 
 -(void)showLeft{
+    self.backBlock();
     [self.navigationController popViewControllerAnimated:YES];
 }
 
 
-//上传图片获取图片路径
+//上传签名图片获取图片路径
 -(void)netReauest{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
+//    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
     
+//    NSString *path = @"http://192.168.16.34:8082/passengerImpl/test/uploadHeadPicture";
+    
+   
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_SIGNATURE];
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     NSLog(@"appendUrlString is : %@",appendUrlString);
     
+    
+//    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+//    [dic setObject:@"" forKey:@"sign"];
+    
     __weak typeof(self) weakSelf=self;
     
     self.netSucessBlock=^(id result){
+        
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -93,7 +105,9 @@
             
             [weakSelf.indicator removeFromSuperview];
             
-            [weakSelf sucessDo:result];
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
             
         }else if ([state isEqualToString:@"fail"]){
             
@@ -118,68 +132,68 @@
         weakSelf.alertView.title=@"网络有点问题哦，无法加载";
         [weakSelf.alertView show];
     };
-    
+        
     [self upLoad:appendUrlString image:_drawView.getDrawingImg];
 }
 
 
--(void)sucessDo:(id )result{
-    
-    [self createAlertView];
-    self.alertView.title=@"上传图片成功";
-    [self.alertView show];
-    return;
-    
-}
 
 
-//上传签名
--(void)uploadSignature:(NSString *)path{
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-    
-    NSLog(@"appendUrlString is : %@",appendUrlString);
-    
-    __weak typeof(self) weakSelf=self;
-    
-    self.netSucessBlock=^(id result){
-        NSString *state = [result objectForKey:@"state"];
-        NSString *info = [result objectForKey:@"info"];
-        
-        if ([state isEqualToString:@"success"]) {
-            
-            [weakSelf.indicator removeFromSuperview];
-            
-            [weakSelf sucessDo:result];
-            
-        }else if ([state isEqualToString:@"fail"]){
-            
-            
-            
-            [weakSelf.indicator removeFromSuperview];
-            
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
-            
-        }
-        
-        
-    };
-    
-    self.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
-    [self upLoad:appendUrlString image:_drawView.getDrawingImg];
 
-}
+//上传签名路径
+//-(void)uploadSignature:(NSString *)path{
+//    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_SIGNATURE];
+//    
+//    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+//    
+//    NSLog(@"appendUrlString is : %@",appendUrlString);
+//    
+//    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+//    [dic setObject:path forKey:@"sign"];
+//    
+//    NSLog(@"dic is : %@",dic);
+//
+//    
+//    __weak typeof(self) weakSelf=self;
+//    
+//    self.netSucessBlock=^(id result){
+//        NSString *state = [result objectForKey:@"state"];
+//        NSString *info = [result objectForKey:@"info"];
+//        
+//        if ([state isEqualToString:@"success"]) {
+//            
+//            [weakSelf.indicator removeFromSuperview];
+//            
+//            [weakSelf createAlertView];
+//            weakSelf.alertView.title=@"上传图片成功";
+//            [weakSelf.alertView show];
+//            return;
+//
+//            
+//        }else if ([state isEqualToString:@"fail"]){
+//            
+//            
+//            
+//            [weakSelf.indicator removeFromSuperview];
+//            
+//            [weakSelf createAlertView];
+//            weakSelf.alertView.title=info;
+//            [weakSelf.alertView show];
+//            
+//        }
+//    };
+//    
+//    self.netFailedBlock=^(id result){
+//        
+//        [weakSelf.indicator removeFromSuperview];
+//        
+//        [weakSelf createAlertView];
+//        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+//        [weakSelf.alertView show];
+//    };
+//    
+//    [self netRequestWithUrl:appendUrlString Data:dic];
+//}
 
 
 @end

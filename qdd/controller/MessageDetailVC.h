@@ -8,7 +8,6 @@
 
 #import "BaseVC.h"
 
-typedef void(^BackBlock)(void);
 
 @interface MessageDetailVC : BaseVC
 

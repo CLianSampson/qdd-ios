@@ -8,6 +8,7 @@
 
 #import "SKGraphicView.h"
 
+
 @implementation SKGraphicView
 
 - (instancetype)initWithFrame:(CGRect)frame {
@@ -115,7 +116,8 @@
     if (_pathArray.count) {
         UIGraphicsBeginImageContext(self.frame.size);
         CGContextRef context = UIGraphicsGetCurrentContext();
-        UIRectClip(CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
+//        UIRectClip(CGRectMake(0, 0, self.frame.size.width, self.frame.size.height));
+        UIRectClip(CGRectMake(0, 0, self.frame.size.width, self.frame.size.height-60));
         [self.layer renderInContext:context];
         
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
