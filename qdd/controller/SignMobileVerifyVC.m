@@ -150,6 +150,7 @@
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:_phoneNum forKey:@"mobile"];
     [dic setObject:_code.textField.text forKey:@"mobile_code"];
+    [dic setObject:_signId forKey:@"id"];
     
     __weak typeof(self) weakSelf=self;
     
@@ -200,9 +201,10 @@
         if ([state isEqualToString:@"success"]) {
             [weakSelf.indicator removeFromSuperview];
             
-            _mealTimes = [result objectForKey:@"data"];
+            _mealTimes = (NSString *)[result objectForKey:@"data"];
             
             SignSucessVC *VC = [[SignSucessVC alloc]init];
+            VC.mealTimes = weakSelf.mealTimes;
             [weakSelf.navigationController pushViewController:VC animated:YES];
             
         }else if ([state isEqualToString:@"fail"]){

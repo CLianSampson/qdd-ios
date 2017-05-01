@@ -16,6 +16,7 @@
 #import "RESideMenu.h"
 #import "VerifyVC.h"
 #import "VerifyStateVC.h"
+#import "EnterpriseVerifyVC.h"
 
 @implementation MainLeftVC
 
@@ -226,15 +227,28 @@
     
     
     
-    VerifyVC *VC =[[VerifyVC alloc]init];
-    VC.token=self.token;
-    VC.VC=self.sideMenuViewController.contentViewController;
+    if (self.accountFlag == USER_ACCOUNT) {
+        VerifyVC *VC =[[VerifyVC alloc]init];
+        VC.token=self.token;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+
+    }else{
+        EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
+        VC.token=self.token;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+    }
     
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
-    [self.sideMenuViewController setContentViewController:nav];
-    
-    [self.sideMenuViewController hideMenuViewController];
     
 }
 

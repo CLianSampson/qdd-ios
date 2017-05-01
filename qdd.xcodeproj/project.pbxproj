@@ -85,6 +85,7 @@
 		1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */; };
 		1832C8D21E8959E100C3DB37 /* SignatureModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 1832C8D11E8959E100C3DB37 /* SignatureModel.m */; };
 		183FC0BC1EA63A6200DB9A58 /* AddSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */; };
+		1843843C1EB77221006B2142 /* EnterpriseVerifyVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */; };
 		184935D31E6F035200195071 /* SignCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 184935D21E6F035200195071 /* SignCell.m */; };
 		185A03121E61412B00EB9325 /* ShoppingVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03111E61412B00EB9325 /* ShoppingVC.m */; };
 		185A03151E61415000EB9325 /* MySignVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 185A03141E61415000EB9325 /* MySignVC.m */; };
@@ -302,6 +303,8 @@
 		1832C8D11E8959E100C3DB37 /* SignatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureModel.m; sourceTree = "<group>"; };
 		183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSignatureVC.h; sourceTree = "<group>"; };
 		183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSignatureVC.m; sourceTree = "<group>"; };
+		1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseVerifyVC.h; sourceTree = "<group>"; };
+		1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseVerifyVC.m; sourceTree = "<group>"; };
 		184935D11E6F035200195071 /* SignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
 		184935D21E6F035200195071 /* SignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
 		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
@@ -833,6 +836,8 @@
 				18D938101E705EF0000EC118 /* RegisteVC.m */,
 				1818E4541E754FBE003B8865 /* VerifyVC.h */,
 				1818E4551E754FBE003B8865 /* VerifyVC.m */,
+				1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */,
+				1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */,
 				18177FEC1E90F3E900BE54D0 /* SignShowVC.h */,
 				18177FED1E90F3E900BE54D0 /* SignShowVC.m */,
 				1818A1371EA896B6003B4274 /* VerifyStateVC.h */,
@@ -1261,6 +1266,7 @@
 				1818E4591E75544C003B8865 /* VerifyTypeView.m in Sources */,
 				18F4941C1E6C1B9D0033AC03 /* PasswordView.m in Sources */,
 				187CEABE1E98BC7200CDA372 /* SignShowCell.m in Sources */,
+				1843843C1EB77221006B2142 /* EnterpriseVerifyVC.m in Sources */,
 				18ABF8E61E73D9B900022368 /* ResetPasswordVC.m in Sources */,
 				18B9F3C81E86374800A3A1EC /* MJRefreshBackStateFooter.m in Sources */,
 				18F494071E6BE9120033AC03 /* AddContactView.m in Sources */,
