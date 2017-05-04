@@ -210,44 +210,55 @@
 
 
 -(void)goToVerifyVC{
-    if (self.verifyState == HAVE_VERIFY) {
-        VerifyStateVC *VC =[[VerifyStateVC alloc]init];
-        VC.token=self.token;
-        VC.VC=self.sideMenuViewController.contentViewController;
-        
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-        
-        [self.sideMenuViewController setContentViewController:nav];
-        
-        [self.sideMenuViewController hideMenuViewController];
-        
-        
-        return;
-    }
+    
+    EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
+    VC.token=self.token;
+    VC.VC=self.sideMenuViewController.contentViewController;
+    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+    
+    [self.sideMenuViewController setContentViewController:nav];
+    
+    [self.sideMenuViewController hideMenuViewController];
     
     
-    
-    if (self.accountFlag == USER_ACCOUNT) {
-        VerifyVC *VC =[[VerifyVC alloc]init];
-        VC.token=self.token;
-        VC.VC=self.sideMenuViewController.contentViewController;
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-        
-        [self.sideMenuViewController setContentViewController:nav];
-        
-        [self.sideMenuViewController hideMenuViewController];
-
-    }else{
-        EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
-        VC.token=self.token;
-        VC.VC=self.sideMenuViewController.contentViewController;
-        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-        
-        [self.sideMenuViewController setContentViewController:nav];
-        
-        [self.sideMenuViewController hideMenuViewController];
-    }
-    
+//    if (self.verifyState == HAVE_VERIFY) {
+//        VerifyStateVC *VC =[[VerifyStateVC alloc]init];
+//        VC.token=self.token;
+//        VC.VC=self.sideMenuViewController.contentViewController;
+//        
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+//        
+//        [self.sideMenuViewController setContentViewController:nav];
+//        
+//        [self.sideMenuViewController hideMenuViewController];
+//        
+//        
+//        return;
+//    }
+//    
+//    
+//    
+//    if (self.accountFlag == USER_ACCOUNT) {
+//        VerifyVC *VC =[[VerifyVC alloc]init];
+//        VC.token=self.token;
+//        VC.VC=self.sideMenuViewController.contentViewController;
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+//        
+//        [self.sideMenuViewController setContentViewController:nav];
+//        
+//        [self.sideMenuViewController hideMenuViewController];
+//
+//    }else{
+//        EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
+//        VC.token=self.token;
+//        VC.VC=self.sideMenuViewController.contentViewController;
+//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+//        
+//        [self.sideMenuViewController setContentViewController:nav];
+//        
+//        [self.sideMenuViewController hideMenuViewController];
+//    }
+   
     
     
 }
