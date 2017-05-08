@@ -114,13 +114,15 @@
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     
    
-    if (_phone.textField.text==nil) {
+    if (_phone.textField.text==nil
+        || [StringUtil isNullOrBlank:_phone.textField.text]) {
         [self createAlertView];
         self.alertView.title=@"手机号不能为空";
         [self.alertView show];
         
         return;
     }
+
 
     
     
