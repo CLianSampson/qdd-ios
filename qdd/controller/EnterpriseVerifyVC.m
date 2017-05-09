@@ -9,8 +9,9 @@
 #import "EnterpriseVerifyVC.h"
 #import "PasswordView.h"
 #import "GetVerifyCodeView.h"
+#import "FaceSucessVC.h"
 
-@interface EnterpriseVerifyVC()<SendSmsCodeDelegete,UIImagePickerControllerDelegate,UINavigationControllerDelegate>
+@interface EnterpriseVerifyVC()<SendSmsCodeDelegete,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 
 @property(nonatomic,strong)UIScrollView *scrollView;
 
@@ -80,6 +81,11 @@
     
     _pictureType = 0;
     
+    _viceCertificatePicturePath = @"";
+    _organizationPicturePath = @"";
+    _taxiPicturePath = @"";
+
+    
     BOOL is7Version=[[[UIDevice currentDevice]systemVersion] floatValue] >= 7.0 ? YES : NO;
     if (is7Version) {
         self.edgesForExtendedLayout=UIRectEdgeNone;
@@ -115,6 +121,16 @@
     self.mytitle.text=@"实名认证";
 
     [_scrollView addSubview:self.mytitle];
+    
+    
+    
+    UIButton *rightButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-44-30*WIDTH_SCALE, 31, 44, 22)];
+    [rightButton setTitle:@"完成" forState:UIControlStateNormal];
+    [rightButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
+    rightButton.titleLabel.font = [UIFont systemFontOfSize:16];
+    [rightButton addTarget:self action:@selector(commitData) forControlEvents:UIControlEventTouchUpInside];
+    [_scrollView addSubview:rightButton];
+    
     
     [self creteView];
 }
@@ -357,20 +373,20 @@
     text.font = [UIFont systemFontOfSize:14];
     [_scrollView addSubview:text];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
-    imageView.layer.borderWidth = 1;
-    imageView.layer.borderColor = BlueRGBColor.CGColor;
-    imageView.layer.cornerRadius = 5;
-    imageView.userInteractionEnabled = YES;
-    [_scrollView addSubview:imageView];
+    _organizationPicture = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
+    _organizationPicture.layer.borderWidth = 1;
+    _organizationPicture.layer.borderColor = BlueRGBColor.CGColor;
+    _organizationPicture.layer.cornerRadius = 5;
+    _organizationPicture.userInteractionEnabled = YES;
+    [_scrollView addSubview:_organizationPicture];
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(imageView.frame.size.width/2-6, imageView.frame.size.height/2-6, 16, 12)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(_organizationPicture.frame.size.width/2-6, _organizationPicture.frame.size.height/2-6, 16, 12)];
     [button setBackgroundImage:[UIImage imageNamed:@"添加照片按钮"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addOrganizationPicture) forControlEvents:UIControlEventTouchUpInside];
-    [imageView addSubview:button];
+    [_organizationPicture addSubview:button];
     
     //组织机构代码证 －－－－－ 税务登记证
-    UIView *background1 = [[UIView alloc]initWithFrame:CGRectMake(0, imageView.frame.origin.y+imageView.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH, 20*HEIGHT_SCALE)];
+    UIView *background1 = [[UIView alloc]initWithFrame:CGRectMake(0, _organizationPicture.frame.origin.y+_organizationPicture.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH, 20*HEIGHT_SCALE)];
     background1.backgroundColor = SepreateRGBColor;
     [_scrollView addSubview:background1];
     
@@ -385,21 +401,21 @@
     text.font = [UIFont systemFontOfSize:14];
     [_scrollView addSubview:text];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
-    imageView.layer.borderWidth = 1;
-    imageView.layer.borderColor = BlueRGBColor.CGColor;
-    imageView.layer.cornerRadius = 5;
-    imageView.userInteractionEnabled = YES;
-    [_scrollView addSubview:imageView];
+    _taxiPicture = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
+    _taxiPicture.layer.borderWidth = 1;
+    _taxiPicture.layer.borderColor = BlueRGBColor.CGColor;
+    _taxiPicture.layer.cornerRadius = 5;
+    _taxiPicture.userInteractionEnabled = YES;
+    [_scrollView addSubview:_taxiPicture];
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(imageView.frame.size.width/2-6, imageView.frame.size.height/2-6, 16, 12)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(_taxiPicture.frame.size.width/2-6, _taxiPicture.frame.size.height/2-6, 16, 12)];
     [button setBackgroundImage:[UIImage imageNamed:@"添加照片按钮"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addTaxiPicture) forControlEvents:UIControlEventTouchUpInside];
-    [imageView addSubview:button];
+    [_taxiPicture addSubview:button];
     
    
     
-    [self createLawInformation:imageView];
+    [self createLawInformation:_taxiPicture];
 
 }
 
@@ -478,45 +494,45 @@
     text.font = [UIFont systemFontOfSize:14];
     [_scrollView addSubview:text];
     
-    UIImageView *imageView = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
-    imageView.layer.borderWidth = 1;
-    imageView.layer.borderColor = BlueRGBColor.CGColor;
-    imageView.layer.cornerRadius = 5;
-    imageView.userInteractionEnabled = YES;
-    [_scrollView addSubview:imageView];
+    _frontPicture = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, text.frame.origin.y+text.frame.size.height, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
+    _frontPicture.layer.borderWidth = 1;
+    _frontPicture.layer.borderColor = BlueRGBColor.CGColor;
+    _frontPicture.layer.cornerRadius = 5;
+    _frontPicture.userInteractionEnabled = YES;
+    [_scrollView addSubview:_frontPicture];
     
-    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(imageView.frame.size.width/2-6, imageView.frame.size.height/2-6, 16, 12)];
+    UIButton *button = [[UIButton alloc]initWithFrame:CGRectMake(_frontPicture.frame.size.width/2-6, _frontPicture.frame.size.height/2-6, 16, 12)];
     [button setBackgroundImage:[UIImage imageNamed:@"添加照片按钮"] forState:UIControlStateNormal];
     [button addTarget:self action:@selector(addFrontPicture) forControlEvents:UIControlEventTouchUpInside];
-    [imageView addSubview:button];
+    [_frontPicture addSubview:button];
     
-    UILabel *information = [[UILabel alloc]initWithFrame:CGRectMake(imageView.frame.size.width/2-100, button.frame.origin.y+button.frame.size.height+10, 200, 10)];
+    UILabel *information = [[UILabel alloc]initWithFrame:CGRectMake(_frontPicture.frame.size.width/2-100, button.frame.origin.y+button.frame.size.height+10, 200, 10)];
     information.text = @"上传正面照证件";
     information.textColor = GrayRGBColor;
     information.textAlignment = NSTextAlignmentCenter;
     information.font  = [UIFont systemFontOfSize:10];
-    [imageView addSubview:information];
+    [_frontPicture addSubview:information];
     
-    UIImageView *imageView1 = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, imageView.frame.origin.y+imageView.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
-    imageView1.layer.borderWidth = 1;
-    imageView1.layer.borderColor = BlueRGBColor.CGColor;
-    imageView1.layer.cornerRadius = 5;
-    imageView1.userInteractionEnabled = YES;
-    [_scrollView addSubview:imageView1];
+    _backPicture = [[UIImageView alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, _frontPicture.frame.origin.y+_frontPicture.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH-36*2*WIDTH_SCALE, 186*HEIGHT_SCALE)];
+    _backPicture.layer.borderWidth = 1;
+    _backPicture.layer.borderColor = BlueRGBColor.CGColor;
+    _backPicture.layer.cornerRadius = 5;
+    _backPicture.userInteractionEnabled = YES;
+    [_scrollView addSubview:_backPicture];
     
-    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(imageView1.frame.size.width/2-6, imageView1.frame.size.height/2-6, 16, 12)];
+    UIButton *button1 = [[UIButton alloc]initWithFrame:CGRectMake(_backPicture.frame.size.width/2-6, _backPicture.frame.size.height/2-6, 16, 12)];
     [button1 setBackgroundImage:[UIImage imageNamed:@"添加照片按钮"] forState:UIControlStateNormal];
     [button1 addTarget:self action:@selector(addBackPicture) forControlEvents:UIControlEventTouchUpInside];
-    [imageView1 addSubview:button1];
+    [_backPicture addSubview:button1];
     
-    UILabel *information1 = [[UILabel alloc]initWithFrame:CGRectMake(imageView1.frame.size.width/2-100, button1.frame.origin.y+button1.frame.size.height+10, 200, 10)];
+    UILabel *information1 = [[UILabel alloc]initWithFrame:CGRectMake(_backPicture.frame.size.width/2-100, button1.frame.origin.y+button1.frame.size.height+10, 200, 10)];
     information1.text = @"上传反面照证件";
     information1.textColor = GrayRGBColor;
     information1.textAlignment = NSTextAlignmentCenter;
     information1.font = [UIFont systemFontOfSize:10];
-    [imageView1 addSubview:information1];
+    [_backPicture addSubview:information1];
 
-    UIView *background1 = [[UIView alloc]initWithFrame:CGRectMake(0, imageView1.frame.origin.y+imageView1.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH, 20*HEIGHT_SCALE)];
+    UIView *background1 = [[UIView alloc]initWithFrame:CGRectMake(0, _backPicture.frame.origin.y+_backPicture.frame.size.height+38*HEIGHT_SCALE, SCREEN_WIDTH, 20*HEIGHT_SCALE)];
     background1.backgroundColor = SepreateRGBColor;
     [_scrollView addSubview:background1];
 
@@ -538,11 +554,13 @@
     _lawPhone.password.font=[UIFont systemFontOfSize:12];
     _lawPhone.textField.font=[UIFont systemFontOfSize:13];
     [_lawPhone addSubview:_lawPhone.cancelButton];
+    _lawPhone.textField.delegate = self;
     [_scrollView addSubview:_lawPhone];
     
     
     _verifyCode = [[GetVerifyCodeView alloc]initWithFrame:CGRectMake(0, _lawPhone.frame.origin.y+_lawPhone.frame.size.height, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
     _verifyCode.delegate=self;
+    _verifyCode.textField.delegate = self;
     [_scrollView addSubview:_verifyCode];
 
 }
@@ -607,6 +625,12 @@
     
     [_verifyCode.textField resignFirstResponder];
     
+    _scrollView.frame = CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT);
+}
+
+#pragma mark uitextfield delegate
+- (void)textFieldDidBeginEditing:(UITextField *)textField{
+    _scrollView.frame = CGRectMake(0, -200, SCREEN_WIDTH, SCREEN_HEIGHT);
 }
 
 #pragma mark 三证合一点击事件
@@ -747,13 +771,12 @@
                 _pictureType = 4;
                 break;
                 
-
-                
             default:
                 break;
         }
     }];
 }
+
 
 #pragma mark - UIImagePickerControllerDelegate
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary *)info
@@ -761,8 +784,6 @@
     [self dismissViewControllerAnimated:YES completion:^{
         
         UIImage *image = [info objectForKey:UIImagePickerControllerOriginalImage];
-        _viceCertificatePicture.image=image;
-        
         
         switch (_pictureType) {
             case 0:
@@ -868,12 +889,89 @@
             break;
     }
 
-    
-    
     return;
     
 }
 
+
+-(void)commitData{
+    if (self.token==nil) {
+        return;
+    }
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ENTERPRISE_VERIFY];
+    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+
+    
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    NSString *signType = [NSString stringWithFormat:@"%d",_signType];
+    
+    if ([StringUtil isNullOrBlank:_enterpriseName.textField.text]
+        || [StringUtil isNullOrBlank:_enterpriseBankCardNum.textField.text]
+        || [StringUtil isNullOrBlank:_lawName.textField.text]
+        || [StringUtil isNullOrBlank:_lawPhone.textField.text]
+        || [StringUtil isNullOrBlank:_lawIdNum.textField.text]
+        || [StringUtil isNullOrBlank:_verifyCode.textField.text]) {
+        
+        
+        [self createAlertView];
+        self.alertView.title=@"输入内容不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+    
+    [dic setObject:_enterpriseName.textField.text forKey:@"name"];
+    [dic setObject:_enterpriseBankCardNum.textField.text forKey:@"bankid"];
+    [dic setObject:signType forKey:@"siden"];
+    
+    [dic setObject:_registerNum.textField.text forKey:@"businessid"];
+    [dic setObject:_viceCertificatePicturePath forKey:@"businesspath"];
+    [dic setObject:_organizationCode.textField.text forKey:@"ocode"];
+    [dic setObject:_organizationPicturePath forKey:@"oripath"];
+    
+    [dic setObject:_taxiPicturePath forKey:@"taxpath"];
+    
+    /********************************无以下提交参数***************************/
+    //统一社会信用代码	string	N	三证合一
+    //businesspath3	证件执照副本照片	string	N	三证合一
+    //businessid5	统一社会信用代码	string	N	五证合一
+    //businesspath5	证件执照副本照片
+    
+    [dic setObject:_lawName.textField.text forKey:@"sname"];
+    [dic setObject:_lawIdNum.textField.text forKey:@"sfz"];
+    [dic setObject:_lawPhone.textField.text forKey:@"mobile"];
+    [dic setObject:_verifyCode.textField.text forKey:@"mobile_code"];
+    
+    
+    NSLog(@"json data is : %@" ,dic);
+    
+    
+    __weak typeof(self) weakSelf=self;
+    
+    self.netSucessBlock=^(id result){
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        NSLog(@"%@",info);
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            FaceSucessVC *VC =[[FaceSucessVC alloc]init];
+            [weakSelf.navigationController pushViewController:VC animated:YES];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+    };
+    
+    [self netRequestWithUrl:appendUrlString Data:dic];
+}
 
 
 @end

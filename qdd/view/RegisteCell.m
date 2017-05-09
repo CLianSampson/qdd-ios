@@ -52,11 +52,9 @@
         
         [self addTap:_verfyCode];
         
-        
-            
-        
         _verfyCode  = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 27*HEIGHT_SCALE, 120*WIDTH_SCALE, 50-(22+27)*HEIGHT_SCALE)];
-        _verfyCode.backgroundColor=[UIColor yellowColor];
+//        _verfyCode.backgroundColor=[UIColor yellowColor];
+        [_verfyCode setTitle:@"验证码" forState:UIControlStateNormal];
         [_verfyCode addTarget:self action:@selector(picrureCode) forControlEvents:UIControlEventTouchUpInside];
                
     }

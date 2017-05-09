@@ -23,7 +23,7 @@
         
         _chooseImage = [[UIImageView alloc]initWithFrame:CGRectMake(_unChooseImage.frame.origin.x+4.5, _unChooseImage.frame.origin.y+4.5, 9, 9)];
         _chooseImage.image=[UIImage imageNamed:@"选中圆点"];
-        [self addSubview:_chooseImage];
+//        [self addSubview:_chooseImage];
         
         _deleteButton = [[UIButton alloc]initWithFrame:CGRectMake(self.frame.size.width-(25+110)*WIDTH_SCALE, self.frame.size.height-(32+44)*HEIGHT_SCALE, 110*WIDTH_SCALE, 44*HEIGHT_SCALE)];
         _deleteButton.backgroundColor = BlueRGBColor;
@@ -31,7 +31,7 @@
         [_deleteButton addTarget:self action:@selector(deleteClick:) forControlEvents:UIControlEventTouchUpInside];
         _deleteButton.titleLabel.font = [UIFont systemFontOfSize:12];
         _deleteButton.layer.cornerRadius = 5;
-        [self addSubview:_deleteButton];
+//        [self addSubview:_deleteButton];
         
     }
     

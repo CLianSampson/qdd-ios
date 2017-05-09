@@ -82,7 +82,11 @@
     
     
     UIButton *confirm = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-678*WIDTH_SCALE/2, failReson.frame.origin.y+failReson.frame.size.height+188*HEIGHT_SCALE, 678*WIDTH_SCALE, 80*HEIGHT_SCALE)];
-    [confirm setTitle:@"购买套餐" forState:UIControlStateNormal];
+    
+    //暂时设置为返回首页
+//    [confirm setTitle:@"购买套餐" forState:UIControlStateNormal];
+    [confirm setTitle:@"返回首页" forState:UIControlStateNormal];
+    
     [confirm setBackgroundImage:[UIImage imageNamed:@"登录按钮"] forState:UIControlStateNormal];
     confirm.titleLabel.font=[UIFont systemFontOfSize:18];
     confirm.layer.cornerRadius=5;

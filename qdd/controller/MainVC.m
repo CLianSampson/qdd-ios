@@ -81,7 +81,6 @@
     [_rightButton addTarget:self action:@selector(showRight) forControlEvents:UIControlEventTouchUpInside];
     
     
-    
     _label = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-50, 31,100,22)];
     _label.text=@"签多多";
     _label.textAlignment=NSTextAlignmentCenter;
@@ -89,12 +88,17 @@
     
     [self.view addSubview:_label];
     
-    _scrolView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*3, 120)];
-    _scrolView.backgroundColor=RGBColor(235, 239, 242);;
+    //暂时隐藏 _scrolView
+//    _scrolView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*3, 120)];
+    _scrolView = [[UIScrollView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH*3, 1)];
+    _scrolView.backgroundColor=RGBColor(235, 239, 242);
     [self.view addSubview:_scrolView];
     
-    [self creatView];
+//    UIView *sepreate  = [[UIView alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 1)];
+//    sepreate.backgroundColor = RGBColor(235, 239, 242);
+//    [self.view addSubview:sepreate];
     
+    [self creatView];
 }
 
 
@@ -170,7 +174,7 @@
     _myTableView.backgroundColor=RGBColor(200, 200, 200);
 
     
-    [self addMjRefresh:_myTableView];
+//    [self addMjRefresh:_myTableView];
     
     [self addLoadIndicator];
     
@@ -216,6 +220,7 @@
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
 
     [_myTableView removeFromSuperview];
+    _myTableView.footer = nil;
     [self netReauest];
     
     
@@ -238,6 +243,7 @@
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
     [_myTableView removeFromSuperview];
+    _myTableView.footer = nil;
     [self netReauest];
 }
 
@@ -253,10 +259,11 @@
     [_complete setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
     [_myTableView removeFromSuperview];
+    _myTableView.footer = nil;
     [self netReauest];
     
 }
@@ -277,6 +284,7 @@
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
     [_myTableView removeFromSuperview];
+    _myTableView.footer = nil;
     [self netReauest];
 
 }
@@ -538,8 +546,7 @@
         }
         
         [_mutableArry addObject:signModel];
-        
-        
+    
     }
     
     

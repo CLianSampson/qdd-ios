@@ -326,6 +326,8 @@
     [_personal setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
     _flag=2;
+    
+    [self sendPictureCode];
     [_myTableView reloadData];
 }
 

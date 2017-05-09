@@ -83,24 +83,6 @@
     
     [self createBottomButton];
     
-    switch (_signState) {
-        case 1:
-            [_bottomButton setTitle:@"确定" forState:UIControlStateNormal];
-            break;
-        case 2:
-            [_bottomButton setTitle:@"确定" forState:UIControlStateNormal];
-            break;
-        case 3:
-            [_bottomButton removeFromSuperview];
-            break;
-        case 4:
-            [_bottomButton removeFromSuperview];
-            break;
-            
-        default:
-            break;
-    }
-
     
     [self addLoadIndicator];
     [self netReauest];
@@ -109,25 +91,51 @@
 
 
 -(void)createBottomButton{
-//    _bottomButton = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
-//    _bottomButton.titleLabel.font=[UIFont systemFontOfSize:14];
-//    [_bottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
-//    [_bottomButton addTarget:self action:@selector(signSign) forControlEvents:UIControlEventTouchUpInside];
-//    [self.view addSubview:_bottomButton];
+    switch (_signState) {
+        case WAIT_FOR_ME:
+            _leftBottomButton  = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH/2-0.5, 81*HEIGHT_SCALE)];
+            _leftBottomButton.titleLabel.font=[UIFont systemFontOfSize:16];
+            [_leftBottomButton setTitle:@"驳回" forState:UIControlStateNormal];
+            [_leftBottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
+            [_leftBottomButton addTarget:self action:@selector(refuseSign) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:_leftBottomButton];
+            
+            _rightBottomButton  = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+0.5, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH/2-0.5, 81*HEIGHT_SCALE)];
+            _rightBottomButton.titleLabel.font=[UIFont systemFontOfSize:16];
+            [_rightBottomButton setTitle:@"签署" forState:UIControlStateNormal];
+            [_rightBottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
+            [_rightBottomButton addTarget:self action:@selector(signSign) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:_rightBottomButton];
+            
+            break;
+        case WAIT_FOR_OTHER:
+            _bottomButton = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
+            _bottomButton.titleLabel.font=[UIFont systemFontOfSize:14];
+            [_bottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
+            [_bottomButton addTarget:self action:@selector(signSign) forControlEvents:UIControlEventTouchUpInside];
+            [self.view addSubview:_bottomButton];
+
+            [_bottomButton setTitle:@"撤销" forState:UIControlStateNormal];
+            
+            break;
+        case COMPLETE:
+            [_bottomButton removeFromSuperview];
+            break;
+        case TIME_OUT:
+            [_bottomButton removeFromSuperview];
+            break;
+            
+        default:
+            break;
+    }
+
     
-     _leftBottomButton  = [[UIButton alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH/2-0.5, 81*HEIGHT_SCALE)];
-    _leftBottomButton.titleLabel.font=[UIFont systemFontOfSize:16];
-    [_leftBottomButton setTitle:@"驳回" forState:UIControlStateNormal];
-    [_leftBottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
-    [_leftBottomButton addTarget:self action:@selector(refuseSign) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_leftBottomButton];
     
-    _rightBottomButton  = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2+0.5, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH/2-0.5, 81*HEIGHT_SCALE)];
-    _rightBottomButton.titleLabel.font=[UIFont systemFontOfSize:16];
-    [_rightBottomButton setTitle:@"签署" forState:UIControlStateNormal];
-    [_rightBottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
-    [_rightBottomButton addTarget:self action:@selector(signSign) forControlEvents:UIControlEventTouchUpInside];
-    [self.view addSubview:_rightBottomButton];
+    
+    
+    
+    
+    
     
 }
 

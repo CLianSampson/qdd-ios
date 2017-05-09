@@ -76,6 +76,9 @@ static NSString *URL_ADD_USER=@"https://www.qiandd.com/mobile/Contacts/add/token
 //个人认证
 static NSString *URL_USER_VERIFY=@"https://www.qiandd.com/mobile/Iden/iden_post/token/";
 
+//企业认证
+static NSString *URL_ENTERPRISE_VERIFY=@"https://www.qiandd.com/mobile/Iden/comiden_post/token/";
+
 //判断用户是否授权
 static NSString *URL_IS_AUTH=@"https://www.qiandd.com/mobile/Contract/auth/token/";
 

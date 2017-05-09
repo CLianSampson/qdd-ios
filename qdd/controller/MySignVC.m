@@ -119,20 +119,19 @@
 
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
-    
     return 2;
 }
 
 - (SignatureCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    static NSString *cellIdentifier = @"Cell";
+//    static NSString *cellIdentifier = @"Cell";
     
     
     if (indexPath.section==0) {
         
-        SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+        SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
         if (cell == nil) {
-            cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+            cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         }
         
         
@@ -154,31 +153,27 @@
         AFNetRequest *request = [[AFNetRequest alloc]init];
         request.pictureBlock=^(id result){
             cell.signImageView.image=[UIImage imageWithData:result];
+            
+            //默认选择第一个签章
+            if (indexPath.row != 0) {
+                
+                [cell.signImageView addSubview:cell.signImageView.deleteButton];
+                
+            }
+            
+            cell.signImageView.deleteSignatureDelegate = self;
         };
         [request downLoadPicture:appendUrlString];
-        
-        
-        [cell.signImageView.chooseImage removeFromSuperview];
-        
-        //默认选择第一个签章
-        if (indexPath.row == 0) {
-            [cell.signImageView addSubview:cell.signImageView.chooseImage];
-            [cell.signImageView addSubview:cell.signImageView.unChooseImage];
-            
-            [cell.signImageView.deleteButton removeFromSuperview];
-            
-        }
-        
-        cell.signImageView.deleteSignatureDelegate = self;
         
         return cell;
         
     }
     
     
+    
     static NSString *enterpriseCellIdentifier = @"enterpriseCell";
     //企业签章
-    SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:enterpriseCellIdentifier];
     if (cell == nil) {
         cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:enterpriseCellIdentifier];
     }
@@ -284,7 +279,9 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -305,7 +302,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -313,7 +310,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    [request netRequestGetWithUrl:appendUrlString Data:nil];
 }
 
 
@@ -388,9 +385,12 @@
     NSString *string2 = [string1 stringByAppendingString:signId];
     
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -413,7 +413,7 @@
         
     };
     
-    [self netRequestGetWithUrl:string2 Data:nil];
+    [request netRequestGetWithUrl:string2 Data:nil];
 }
 
 
@@ -437,9 +437,12 @@
     NSString *string1 = [appendUrlString stringByAppendingString:@"/signid/"];
     NSString *string2 = [string1 stringByAppendingString:model.signatureId];
     
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -463,7 +466,7 @@
     };
     
     
-    [self netRequestGetWithUrl:string2 Data:nil];
+    [request netRequestGetWithUrl:string2 Data:nil];
 
 }
 
