@@ -75,6 +75,7 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 @property(nonatomic,assign)VERIFY_STATE verifyState;
 
 
+
 -(void)createBackgroungView;
 
 -(void)createAlertView;
@@ -92,5 +93,7 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 -(void)addLoadIndicator;
 
 -(void)upLoad:(NSString *)urlString image:(UIImage *)image;
+
+-(void)gotoMainController;
 
 @end

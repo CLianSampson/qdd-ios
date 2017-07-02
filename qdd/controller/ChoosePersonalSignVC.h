@@ -10,9 +10,10 @@
 
 @interface ChoosePersonalSignVC : BaseVC
 
-@property(nonatomic,assign)int signId; //合同id
 @property(nonatomic,strong)NSString *signatureId; //签章id
 
-@property(nonatomic,assign)int status; //合同签署状态 0：本人签署 1：授权签署
+@property(nonatomic,strong)NSString *signId; //合同id
+
+@property(nonatomic,strong)NSString *signTitle; //合同名称
 
 @end

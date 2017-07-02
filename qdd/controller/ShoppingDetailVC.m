@@ -16,6 +16,14 @@
     
     
 }
+
+@property(nonatomic,strong)UILabel *type;
+@property(nonatomic,strong)UILabel *time;
+@property(nonatomic,strong)UILabel *total;
+@property(nonatomic,strong)UILabel *introduction;
+@property(nonatomic,strong)UILabel *number;
+
+
 @end
 
 @implementation ShoppingDetailVC
@@ -42,6 +50,8 @@
     [self.view addSubview:label];
     
     [self creatView];
+    
+    [self netRequest];
 }
 
 
@@ -56,34 +66,34 @@
     [self.view addSubview:backGroundLabel];
     
     
-    UILabel *type = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
-    type.text=@"套餐类型:  个人套餐A";
-    type.textColor=RGBColor(51, 51, 51);
-    type.font=[UIFont boldSystemFontOfSize:13];
-    [self.view addSubview:type];
+    _type = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
+    _type.text=@"套餐类型:  个人套餐A";
+    _type.textColor=RGBColor(51, 51, 51);
+    _type.font=[UIFont boldSystemFontOfSize:13];
+    [self.view addSubview:_type];
     
     
     
-    UILabel *time = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-52*WIDTH_SCALE-300, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
-    time.text=@"有效期:  10天";
-    time.textColor=RGBColor(255, 0, 0);
-    time.font=[UIFont systemFontOfSize:11];
-    time.textAlignment=NSTextAlignmentRight;
-    [self.view addSubview:time];
+    _time = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-52*WIDTH_SCALE-300, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
+    _time.text=@"有效期:  10天";
+    _time.textColor=RGBColor(255, 0, 0);
+    _time.font=[UIFont systemFontOfSize:11];
+    _time.textAlignment=NSTextAlignmentRight;
+    [self.view addSubview:_time];
     
     
-    UILabel *total = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE,time.frame.origin.y+time.frame.size.height+57*HEIGHT_SCALE , 300, 12*SCALE)];
-    total.text=@"总次数:  10次";
-    total.font=[UIFont systemFontOfSize:12];
-    total.textColor=RGBColor(0, 0, 0);
-    [self.view addSubview:total];
+    _total = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE,_time.frame.origin.y+_time.frame.size.height+57*HEIGHT_SCALE , 300, 12*SCALE)];
+    _total.text=@"总次数:  10次";
+    _total.font=[UIFont systemFontOfSize:12];
+    _total.textColor=RGBColor(0, 0, 0);
+    [self.view addSubview:_total];
     
     
-    UILabel *introduction = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, total.frame.origin.y+total.frame.size.height+22*HEIGHT_SCALE, SCREEN_WIDTH-2*52*WIDTH_SCALE, 24+15*HEIGHT_SCALE)];
-    introduction.text=@"购买标准化电子合同服务，该套餐可以签发合同一次，有效期为永久";
-    introduction.numberOfLines = 0; ///相当于不限制行数
-    introduction.font=[UIFont systemFontOfSize:12];
-    [self.view addSubview:introduction];
+    _introduction = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, _total.frame.origin.y+_total.frame.size.height+22*HEIGHT_SCALE, SCREEN_WIDTH-2*52*WIDTH_SCALE, 24+15*HEIGHT_SCALE)];
+    _introduction.text=@"购买标准化电子合同服务，该套餐可以签发合同一次，有效期为永久";
+    _introduction.numberOfLines = 0; ///相当于不限制行数
+    _introduction.font=[UIFont systemFontOfSize:12];
+    [self.view addSubview:_introduction];
     
 
     
@@ -99,12 +109,12 @@
     money.textAlignment=NSTextAlignmentRight;
     [self.view addSubview:money];
     
-    UILabel *number = [[UILabel alloc]initWithFrame:CGRectMake(money.frame.size.width, SCREEN_HEIGHT-98*HEIGHT_SCALE, 60, 98*HEIGHT_SCALE)];
-    number.text=@"100";
-    number.font=[UIFont systemFontOfSize:14];
-    number.textColor=RGBColor(255, 0, 0);
-    number.textAlignment=NSTextAlignmentLeft;
-    [self.view addSubview:number];
+    _number = [[UILabel alloc]initWithFrame:CGRectMake(money.frame.size.width, SCREEN_HEIGHT-98*HEIGHT_SCALE, 60, 98*HEIGHT_SCALE)];
+    _number.text=@"100";
+    _number.font=[UIFont systemFontOfSize:14];
+    _number.textColor=RGBColor(255, 0, 0);
+    _number.textAlignment=NSTextAlignmentLeft;
+    [self.view addSubview:_number];
     
     
     UIButton *pay = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-100, SCREEN_HEIGHT-98*HEIGHT_SCALE+(98*HEIGHT_SCALE-28)/2, 80, 28)];
@@ -131,5 +141,125 @@
     [self.navigationController pushViewController:VC animated:YES];
     
 }
+
+
+-(void)netRequest{
+    //https://www.qiandd.com/mobile/goods/goods/token/4add3a80c92238fef58691fddd450c26/id/11/p/1
+    _setId=1;
+    
+    NSLog(@"token is :%@",self.token);
+    
+    NSString *idstring = [NSString stringWithFormat:@"%d",_setId];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GOODS_DETAIL];
+    [urlstring appendString:self.token];
+    [urlstring appendString:@"id/"];
+    [urlstring appendString:idstring];
+    [urlstring appendString:@"/p/1"];
+    
+    __weak typeof(self) weakSelf=self;
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
+    request.netSucessBlock=^(id result){
+        
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf doSucess:result];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    request.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
+    
+}
+
+-(void)doSucess:(id )result{
+    NSDictionary *data = [result objectForKey:@"data"];
+    if (data==nil || [data isEqual:[NSNull null]]) {
+        return ;
+    }
+    
+    NSArray *arry = [data objectForKey:@"goods"];
+    if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
+        
+        [self createAlertView];
+        self.alertView.title=@"没有套餐信息";
+        [self.alertView show];
+    }else{
+        
+        for (NSDictionary *data in arry) {
+            NSString *name = [data objectForKey:@"name"];
+            if ([StringUtil isNullOrBlank:name]) {
+                name = @" ";
+            }
+            NSString *type = [data objectForKey:@"name"];
+            if ([type isEqual:@"0"]) {
+                type = @"个人套餐";
+            }else{
+                type = @"企业套餐";
+            }
+            NSMutableString *mutableString = [[NSMutableString alloc]initWithString:type];
+            [mutableString appendString:@"  "];
+            [mutableString appendString:name];
+            _type.text = mutableString;
+            
+            NSString *contents = [data objectForKey:@"contents"];
+            if ([StringUtil isNullOrBlank:contents]) {
+                contents = @" ";
+            }
+            _introduction.text = contents;
+            
+            NSString *price = [data objectForKey:@"price"];
+            if ([StringUtil isNullOrBlank:price]) {
+                price = @" ";
+            }
+            
+            
+            NSString *num = [data objectForKey:@"num"];
+            if ([StringUtil isNullOrBlank:num]) {
+                num = @" ";
+            }
+            NSMutableString *mutableNum = [[NSMutableString alloc]initWithString:num];
+            [mutableNum appendString:@"次"];
+            _total.text = mutableNum;
+            
+            
+            NSString *dtime = [data objectForKey:@"dtime"];
+            if ([StringUtil isNullOrBlank:dtime]) {
+                dtime = @" ";
+            }
+            NSMutableString *mutabledtime = [[NSMutableString alloc]initWithString:dtime];
+            [mutabledtime appendString:@"天"];
+            _time.text = mutabledtime;
+        }
+    }
+    
+}
+
+
+
+
+
 
 @end

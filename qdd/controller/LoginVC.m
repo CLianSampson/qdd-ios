@@ -429,6 +429,8 @@
         
         leftVC.verifyState = self.verifyState;
         
+        leftVC.phone = _userName.text;
+        
         if ([StringUtil isPhoneNum:_userName.text]) {
             leftVC.accountFlag = USER_ACCOUNT;
         }else{

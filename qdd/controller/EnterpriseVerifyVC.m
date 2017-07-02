@@ -93,6 +93,8 @@
     
     [self createScrollView];
     
+    [self addNotification];
+    
 }
 
 
@@ -959,6 +961,10 @@
         if ([state isEqualToString:@"success"]) {
             
             FaceSucessVC *VC =[[FaceSucessVC alloc]init];
+            VC.token = weakSelf.token;
+            VC.authState = weakSelf.authState;
+            VC.verifyState = weakSelf.verifyState;
+            VC.accountFlag = weakSelf.accountFlag;
             [weakSelf.navigationController pushViewController:VC animated:YES];
             
         }else if ([state isEqualToString:@"fail"]){
@@ -972,6 +978,13 @@
     
     [self netRequestWithUrl:appendUrlString Data:dic];
 }
+
+
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:@"GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER" object:nil];
+}
+
+
 
 
 @end

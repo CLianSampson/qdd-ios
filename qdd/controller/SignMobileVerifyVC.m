@@ -228,7 +228,9 @@
     [self.navigationController popViewControllerAnimated:YES];
 }
 
-
+-(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
+    [_code.textField resignFirstResponder];
+}
 
 
 

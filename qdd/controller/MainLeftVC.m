@@ -31,6 +31,8 @@
     
     self.view.backgroundColor=RGBColor(233 , 233, 233);
     
+    //添加认证成功后的通知
+    [self addNotification];
     
     float selfWidth = 445*WIDTH_SCALE;
     
@@ -42,7 +44,10 @@
     
     //高度加10
     UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(selfWidth/2-100, iconButton.frame.origin.y+iconButton.frame.size.height+33*HEIGHT_SCALE, 200, 13)];
-    phoneLabel.text=@"136 6666 6666";
+    NSMutableString *mutableString = [[NSMutableString alloc]initWithString:_phone];
+    [mutableString insertString:@"  " atIndex:3];
+    [mutableString insertString:@"  " atIndex:9];
+    phoneLabel.text=mutableString;
     phoneLabel.font=[UIFont systemFontOfSize:13];
     phoneLabel.textAlignment=NSTextAlignmentCenter;
     [self.view addSubview:phoneLabel];
@@ -78,56 +83,15 @@
     //以下宽度设置为300是为了居中对齐
     //暂时去掉购买套餐和我的订单
     
-//    UIButton *shoppingBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y, 200*WIDTH_SCALE, 14)];
-//    [shoppingBtn setTitle:@"购买套餐" forState:UIControlStateNormal];
-//    [shoppingBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
-//    shoppingBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-//    shoppingBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-//    [self.view addSubview:shoppingBtn];
-//    
-//    
-//    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, shoppingBtn.frame.origin.y+ shoppingBtn.frame.size.height+ 82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
-//    [mySignBtn setTitle:@"我的签名" forState:UIControlStateNormal];
-//    [mySignBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
-//    mySignBtn.titleLabel.font=[UIFont systemFontOfSize:14];
-//    mySignBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-//    [self.view addSubview:mySignBtn];
-//    
-//    
-//    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+mySignBtn.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
-//    [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
-//    [contactPeopel setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
-//    contactPeopel.titleLabel.font=[UIFont systemFontOfSize:14];
-//    contactPeopel.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-//    [self.view addSubview:contactPeopel];
-//    
-//    
-//    UIButton *myOrder = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+contactPeopel.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
-//    [myOrder setTitle:@"我的订单" forState:UIControlStateNormal];
-//    [myOrder setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
-//    myOrder.titleLabel.font=[UIFont systemFontOfSize:14];
-//    myOrder.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-//    [self.view addSubview:myOrder];
-//    
-//    
-//    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, myOrder.frame.origin.y+myOrder.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
-//    [set setTitle:@"设置" forState:UIControlStateNormal];
-//    [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
-//    set.titleLabel.font=[UIFont systemFontOfSize:14];
-//    set.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
-//    [self.view addSubview:set];
-//    
-//    
-//    [shoppingBtn addTarget:self action:@selector(shooping) forControlEvents:UIControlEventTouchUpInside];
-//    [mySignBtn addTarget:self action:@selector(mySign) forControlEvents:UIControlEventTouchUpInside];
-//    [contactPeopel addTarget:self action:@selector(contact) forControlEvents:UIControlEventTouchUpInside];
-//    [myOrder addTarget:self action:@selector(myOrder) forControlEvents:UIControlEventTouchUpInside];
-//    [set addTarget:self action:@selector(set) forControlEvents:UIControlEventTouchUpInside];
+    UIButton *shoppingBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y, 200*WIDTH_SCALE, 14)];
+    [shoppingBtn setTitle:@"购买套餐" forState:UIControlStateNormal];
+    [shoppingBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    shoppingBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+    shoppingBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+    [self.view addSubview:shoppingBtn];
     
     
-    
-    
-    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y, 200*WIDTH_SCALE, 14)];
+    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, shoppingBtn.frame.origin.y+ shoppingBtn.frame.size.height+ 82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [mySignBtn setTitle:@"我的签名" forState:UIControlStateNormal];
     [mySignBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
     mySignBtn.titleLabel.font=[UIFont systemFontOfSize:14];
@@ -135,7 +99,7 @@
     [self.view addSubview:mySignBtn];
     
     
-    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+ mySignBtn.frame.size.height+ 82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
+    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+mySignBtn.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
     [contactPeopel setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
     contactPeopel.titleLabel.font=[UIFont systemFontOfSize:14];
@@ -143,7 +107,15 @@
     [self.view addSubview:contactPeopel];
     
     
-    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+contactPeopel.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
+    UIButton *myOrder = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+contactPeopel.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
+    [myOrder setTitle:@"我的订单" forState:UIControlStateNormal];
+    [myOrder setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+    myOrder.titleLabel.font=[UIFont systemFontOfSize:14];
+    myOrder.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+    [self.view addSubview:myOrder];
+    
+    
+    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, myOrder.frame.origin.y+myOrder.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
     [set setTitle:@"设置" forState:UIControlStateNormal];
     [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
     set.titleLabel.font=[UIFont systemFontOfSize:14];
@@ -151,10 +123,43 @@
     [self.view addSubview:set];
     
     
-    
+    [shoppingBtn addTarget:self action:@selector(shooping) forControlEvents:UIControlEventTouchUpInside];
     [mySignBtn addTarget:self action:@selector(mySign) forControlEvents:UIControlEventTouchUpInside];
     [contactPeopel addTarget:self action:@selector(contact) forControlEvents:UIControlEventTouchUpInside];
+    [myOrder addTarget:self action:@selector(myOrder) forControlEvents:UIControlEventTouchUpInside];
     [set addTarget:self action:@selector(set) forControlEvents:UIControlEventTouchUpInside];
+    
+    
+    
+    
+//    UIButton *mySignBtn = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, y, 200*WIDTH_SCALE, 14)];
+//    [mySignBtn setTitle:@"我的签名" forState:UIControlStateNormal];
+//    [mySignBtn setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+//    mySignBtn.titleLabel.font=[UIFont systemFontOfSize:14];
+//    mySignBtn.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+//    [self.view addSubview:mySignBtn];
+//    
+//    
+//    UIButton *contactPeopel = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, mySignBtn.frame.origin.y+ mySignBtn.frame.size.height+ 82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
+//    [contactPeopel setTitle:@"联系人" forState:UIControlStateNormal];
+//    [contactPeopel setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+//    contactPeopel.titleLabel.font=[UIFont systemFontOfSize:14];
+//    contactPeopel.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+//    [self.view addSubview:contactPeopel];
+//    
+//    
+//    UIButton *set = [[UIButton alloc]initWithFrame:CGRectMake( (445-200)*WIDTH_SCALE/2, contactPeopel.frame.origin.y+contactPeopel.frame.size.height+82*HEIGHT_SCALE, 200*WIDTH_SCALE, 14)];
+//    [set setTitle:@"设置" forState:UIControlStateNormal];
+//    [set setTitleColor:RGBColor(36, 36, 36) forState:UIControlStateNormal];
+//    set.titleLabel.font=[UIFont systemFontOfSize:14];
+//    set.contentHorizontalAlignment=UIControlContentHorizontalAlignmentCenter;
+//    [self.view addSubview:set];
+//    
+//    
+//    
+//    [mySignBtn addTarget:self action:@selector(mySign) forControlEvents:UIControlEventTouchUpInside];
+//    [contactPeopel addTarget:self action:@selector(contact) forControlEvents:UIControlEventTouchUpInside];
+//    [set addTarget:self action:@selector(set) forControlEvents:UIControlEventTouchUpInside];
 
 }
 
@@ -165,7 +170,7 @@
     
     ShoppingVC *VC = [[ShoppingVC alloc]init];
     VC.VC=self.sideMenuViewController.contentViewController;
-    
+    VC.token = self.token;
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
@@ -248,59 +253,66 @@
 -(void)goToVerifyVC{
     
     EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
-    VC.token=self.token;
     VC.VC=self.sideMenuViewController.contentViewController;
-    UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
-    [self.sideMenuViewController setContentViewController:nav];
+    VC.token=self.token;
+    VC.authState = self.authState;
+    VC.verifyState = self.verifyState;
+    VC.accountFlag = self.accountFlag;
     
-    [self.sideMenuViewController hideMenuViewController];
+
+    //审核通过和正在审核中，暂时设置为这样
+    if (self.verifyState == HAVE_VERIFY
+        || self.verifyState == UNDER_VERIFYING) {
+        VerifyStateVC *VC =[[VerifyStateVC alloc]init];
+        VC.token = self.token;
+        VC.verifyState = self.verifyState;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+        
+        
+        return;
+    }
     
     
-//    if (self.verifyState == HAVE_VERIFY) {
-//        VerifyStateVC *VC =[[VerifyStateVC alloc]init];
-//        VC.token=self.token;
-//        VC.VC=self.sideMenuViewController.contentViewController;
-//        
-//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-//        
-//        [self.sideMenuViewController setContentViewController:nav];
-//        
-//        [self.sideMenuViewController hideMenuViewController];
-//        
-//        
-//        return;
-//    }
-//    
-//    
-//    
-//    if (self.accountFlag == USER_ACCOUNT) {
-//        VerifyVC *VC =[[VerifyVC alloc]init];
-//        VC.token=self.token;
-//        VC.VC=self.sideMenuViewController.contentViewController;
-//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-//        
-//        [self.sideMenuViewController setContentViewController:nav];
-//        
-//        [self.sideMenuViewController hideMenuViewController];
-//
-//    }else{
-//        EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
-//        VC.token=self.token;
-//        VC.VC=self.sideMenuViewController.contentViewController;
-//        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
-//        
-//        [self.sideMenuViewController setContentViewController:nav];
-//        
-//        [self.sideMenuViewController hideMenuViewController];
-//    }
+    
+    if (self.accountFlag == USER_ACCOUNT) {
+        VerifyVC *VC =[[VerifyVC alloc]init];
+        VC.token=self.token;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+
+    }else{
+        EnterpriseVerifyVC *VC =[[EnterpriseVerifyVC alloc]init];
+        VC.token=self.token;
+        VC.VC=self.sideMenuViewController.contentViewController;
+        UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
+        
+        [self.sideMenuViewController setContentViewController:nav];
+        
+        [self.sideMenuViewController hideMenuViewController];
+    }
    
-    
     
 }
 
 
+//添加认证通过的通知
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeaAuthState) name:@"GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER" object:nil];
+}
 
-
+-(void)changeaAuthState{
+    self.verifyState = UNDER_VERIFYING;
+}
 
 @end

@@ -10,9 +10,12 @@
 #import "Macro.h"
 #import "AFNetRequest.h"
 #import "AFNetworking.h"
-
+#import "MainVC.h"
+#import "MainLeftVC.h"
+#import "MainRigthVC.h"
 
 @implementation BaseVC
+
 
 -(void)viewDidLoad{
     self.view.backgroundColor = [UIColor whiteColor];
@@ -328,5 +331,33 @@
     };
 
 }
+
+
+-(void)gotoMainController{
+    MainVC *VC = [[MainVC alloc]init];
+    VC.token=self.token;
+    
+    
+    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+    
+    
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+    leftVC.token=self.token;
+    rightVC.token=nil;
+    
+    leftVC.authState = self.authState;
+    
+    leftVC.verifyState = self.verifyState;
+    
+    leftVC.accountFlag = self.accountFlag;
+    
+    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    
+    MenuVC.contentViewScaleValue=(float)305/445;
+    
+    [self presentViewController:MenuVC animated:YES completion:nil];
+}
+
 
 @end

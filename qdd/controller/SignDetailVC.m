@@ -176,10 +176,22 @@
     
    
     _sendMobile = [data objectForKey:@"smobile"];
+    if ([StringUtil isNullOrBlank:_sendMobile]) {
+        _sendMobile = @"";
+    }
     _sendMail = [data objectForKey:@"smail"];
+    if ([StringUtil isNullOrBlank:_sendMail]) {
+        _sendMail = @"";
+    }
 
     _toMobile = [data objectForKey:@"tmobile"];
+    if ([StringUtil isNullOrBlank:_toMobile]) {
+        _toMobile = @"";
+    }
     _toMail = [data objectForKey:@"tmail"];
+    if ([StringUtil isNullOrBlank:_toMail]) {
+        _toMail = @"";
+    }
 
     [_tableView reloadData];
 }

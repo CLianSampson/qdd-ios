@@ -27,6 +27,10 @@
         return true;
     }
     
+    if ([string isEqual:@"<null>"]) {
+        return true;
+    }
+    
 //    if ([string isEqualToString:@""]) {
 //        return true;
 //    }

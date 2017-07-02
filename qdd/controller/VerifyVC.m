@@ -47,6 +47,8 @@
     
     [self creteView];
     
+    [self addNotification];
+    
 }
 
 
@@ -263,6 +265,10 @@
     [self netRequestGetWithUrl:appendUrlString Data:nil];
 }
 
+#pragma mark 认证成功后的通知
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:@"GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER" object:nil];
+}
 
 
 @end

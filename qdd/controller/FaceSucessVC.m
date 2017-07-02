@@ -13,6 +13,8 @@
 #import "RESideMenu.h"
 #import "MainRigthVC.h"
 #import "MainLeftVC.h"
+#import "StringUtil.h"
+#import "Constants.h"
 
 @implementation FaceSucessVC
 
@@ -92,52 +94,23 @@
     confirm.layer.cornerRadius=5;
     [confirm addTarget:self action:@selector(buy) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:confirm];
-    
-
-
 }
 
 
 
 
 -(void)complete{
-    MainVC *VC = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-    
-    
-    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-    
-    
-    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-    
-    MenuVC.contentViewScaleValue=(float)305/445;
-    
-    
-    [self presentViewController:MenuVC animated:YES completion:nil];
-
+    [self showLeft];
 }
 
 -(void)buy{
-    MainVC *VC = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-    
-    
-    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-    
-    
-    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-    
-    MenuVC.contentViewScaleValue=(float)305/445;
-    
-    
-    [self presentViewController:MenuVC animated:YES completion:nil];
-
+    [self showLeft];
 }
 
 -(void)showLeft{
-    [self.navigationController popViewControllerAnimated:YES];
+    //退回到主视图，并改变左侧试图的认证状态，并使照片不能点击
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
 }
 
 @end

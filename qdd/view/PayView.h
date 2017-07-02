@@ -8,11 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+typedef void(^PayBlock)();
+
 @interface PayView : UIView
 
 @property(nonatomic,strong) UIImageView *icon;
 @property(nonatomic,strong) UIButton *choose;
 @property(nonatomic,strong) UILabel *name;
 
+
+@property(nonatomic,copy) PayBlock payBlock;
 
 @end

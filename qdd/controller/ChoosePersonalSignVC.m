@@ -10,6 +10,7 @@
 #import "SignatureCell.h"
 #import "SignatureModel.h"
 #import "SignMobileVerifyVC.h"
+#import "SetSignaturePositionVC.h"
 
 @interface ChoosePersonalSignVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -18,6 +19,10 @@
 
 @property(nonatomic,strong)UITableView *myTableView;
 
+
+@property(nonatomic,strong)UIImage *personalSignatureImage; //个人签章图片
+
+@property(nonatomic,strong)NSString *personalSignatureId; //个人签章id
 
 @end
 
@@ -85,7 +90,13 @@
 
 
 -(void)complete{
-    SignMobileVerifyVC *VC = [[SignMobileVerifyVC alloc]init];
+    SetSignaturePositionVC *VC = [[SetSignaturePositionVC alloc]init];
+    VC.signId = self.signId;
+    VC.signTitle = self.signTitle;
+    VC.token = self.token;
+    VC.personaSignaturelImage = self.personalSignatureImage;
+    VC.personaSignaturelId = _personalSignatureId;
+    VC.signStatus = 0;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -121,7 +132,8 @@
     
     NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
     
-    
+    _personalSignatureId = model.signatureId;
+
     //为同一个block
     //    self.pictureBlock=^(id result){
     //        cell.signImageView.image=[UIImage imageWithData:result];
@@ -132,6 +144,8 @@
     AFNetRequest *request = [[AFNetRequest alloc]init];
     request.pictureBlock=^(id result){
         cell.signImageView.image=[UIImage imageWithData:result];
+        
+         _personalSignatureImage = [UIImage imageWithData:result];
     };
     [request downLoadPicture:appendUrlString];
     
@@ -158,6 +172,7 @@
     
     SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
     self.signatureId = model.signatureId;
+    
     
     return;
 }

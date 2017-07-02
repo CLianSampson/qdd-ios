@@ -38,7 +38,13 @@
     [self.view addSubview:icon];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(0, icon.frame.origin.y+icon.frame.size.height + 56*HEIGHT_SCALE, SCREEN_WIDTH, 18)];
-    label.text = @"您已经过实名认证";
+    
+    if (self.verifyState == HAVE_VERIFY) {
+        label.text = @"您已经过实名认证";
+    }else{
+        label.text = @"您正在实名认证中";
+    }
+    
     label.textAlignment = NSTextAlignmentCenter;
     label.font = [UIFont systemFontOfSize:18];
     [self.view addSubview:label];

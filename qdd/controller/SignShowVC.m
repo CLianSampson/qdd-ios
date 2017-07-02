@@ -232,6 +232,8 @@
 -(void)personalSign{
     ChoosePersonalSignVC *VC = [[ChoosePersonalSignVC alloc]init];
     VC.token = self.token;
+    VC.signId = self.signId;
+    VC.signTitle = self.signTitle;
     [self.navigationController pushViewController:VC animated:YES];
 }
 

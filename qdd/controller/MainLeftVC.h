@@ -10,4 +10,6 @@
 
 @interface MainLeftVC : BaseVC
 
+@property(nonatomic,strong)NSString *phone;
+
 @end

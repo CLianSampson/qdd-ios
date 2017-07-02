@@ -104,6 +104,11 @@ static NSString *URL_SET_SIGN_TYPE=@"https://www.qiandd.com/mobile/Contract/sets
 //签合同
 static NSString *URL_SIGN_SIGNATURE=@"https://www.qiandd.com/mobile/Contract/signend/token/";
 
+//购买合同(我的套餐)
+static NSString *URL_BUY_GOODS=@"https://www.qiandd.com/mobile/goods/goodsindex/token/";
+
+//套餐详情
+static NSString *URL_GOODS_DETAIL=@"https://www.qiandd.com/mobile/goods/goods/token/";
 
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();

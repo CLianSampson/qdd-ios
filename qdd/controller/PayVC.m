@@ -10,6 +10,12 @@
 #import "Macro.h"
 #import "PayView.h"
 
+@interface PayVC()
+
+@property(nonatomic,assign) int payFlag; //1微信 2支付宝
+
+@end
+
 @implementation PayVC
 
 
@@ -70,6 +76,9 @@
     PayView *ailPay = [[PayView alloc]initWithFrame:CGRectMake(0, type.frame.origin.y+type.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
     [ailPay.icon setImage:[UIImage imageNamed:@"支付宝图标"]];
     ailPay.name.font=[UIFont systemFontOfSize:13];
+    //默认支付宝
+    [ailPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];2;
+    _payFlag = 2;
     [self.view addSubview:ailPay];
    
     
@@ -80,6 +89,19 @@
     weChat.name.font=[UIFont systemFontOfSize:13];
     [self.view addSubview:weChat];
     
+    ailPay.payBlock = ^(){
+        [ailPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+        [weChat.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
+        _payFlag = 2;
+    };
+
+    weChat.payBlock = ^(){
+        [weChat.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+        [ailPay.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
+        _payFlag = 1;
+    };
+    
+
     
     UIButton *confirm = [[UIButton alloc]initWithFrame:CGRectMake(50*WIDTH_SCALE, weChat.frame.origin.y+weChat.frame.size.height+178*HEIGHT_SCALE, 650*WIDTH_SCALE, 80*HEIGHT_SCALE)];
     [confirm setTitle:@"确定" forState:UIControlStateNormal];
@@ -95,6 +117,14 @@
 
 
 -(void)confirm{
+    if (_payFlag == 1) {
+        //微信
+        
+    }else{
+        //支付宝
+        
+    }
+    
     [super createAlertView];
     self.alertView.title=@"您已成功支付123.56元";
     [self.alertView show];

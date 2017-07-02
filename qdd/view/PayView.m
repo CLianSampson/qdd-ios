@@ -25,7 +25,7 @@
         
         _choose = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-30-14, (frame.size.height-14)/2, 14, 14)];
         [_choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-        
+        [_choose setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
         
         
         UILabel *line = [[UILabel alloc]initWithFrame:CGRectMake(0, frame.size.height, SCREEN_WIDTH, 1)];
@@ -38,9 +38,22 @@
         [self addSubview:_choose];
         [self addSubview:line];
         
+        UITapGestureRecognizer* singleTap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(handleSingleTap:)];
+        [self addGestureRecognizer:singleTap];
+        
     }
     
     return  self;
 }
+
+
+
+-(void)handleSingleTap:(UITapGestureRecognizer *)sender
+
+{
+    
+    self.payBlock();
+}
+
 
 @end

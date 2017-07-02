@@ -233,8 +233,6 @@
 
 
 
-
-
 #pragma mark -tableView dataSourceDelegate
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _pictureNameArry.count;
@@ -279,8 +277,6 @@
     };
     
     [request downLoadPicture:appendUrlString];
-    
-    
     
     
     return cell;

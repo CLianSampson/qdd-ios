@@ -169,6 +169,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		180EEDB61F0255B3002A8C15 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
 		180F11831E757DD40082F385 /* PhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoVC.h; sourceTree = "<group>"; };
 		180F11841E757DD40082F385 /* PhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoVC.m; sourceTree = "<group>"; };
 		180F11861E7590090082F385 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
@@ -1036,6 +1037,7 @@
 				18B9F3D21E863D6000A3A1EC /* TimeUtil.m */,
 				18B9F3D41E86500100A3A1EC /* StringUtil.h */,
 				18B9F3D51E86500100A3A1EC /* StringUtil.m */,
+				180EEDB61F0255B3002A8C15 /* Constants.h */,
 			);
 			path = util;
 			sourceTree = "<group>";
