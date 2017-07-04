@@ -1424,6 +1424,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
+					"$(PROJECT_DIR)/qdd/pay",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1431,6 +1432,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
+					"$(PROJECT_DIR)/qdd/pay",
+					"$(PROJECT_DIR)/qdd/pay/SDKExport",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
 				PRODUCT_NAME = "签多多";
@@ -1448,6 +1451,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
+					"$(PROJECT_DIR)/qdd/pay",
 				);
 				INFOPLIST_FILE = qdd/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 7.0;
@@ -1455,6 +1459,8 @@
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)/qdd/sdk",
+					"$(PROJECT_DIR)/qdd/pay",
+					"$(PROJECT_DIR)/qdd/pay/SDKExport",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
 				PRODUCT_NAME = "签多多";

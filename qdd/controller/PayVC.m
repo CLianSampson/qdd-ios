@@ -59,7 +59,13 @@
     
     
     UILabel *price = [[UILabel alloc]initWithFrame:CGRectMake(0, background.frame.origin.y+background.frame.size.height, SCREEN_WIDTH, 96*HEIGHT_SCALE)];
-    price.text=@"   需要支付: 123.56元 ";
+    NSString *pricetsr = [NSString stringWithFormat:@"%d",_price];
+    
+    NSMutableString *mutableStr = [[NSMutableString alloc]initWithString:@"   需要支付: "];
+    [mutableStr appendString:pricetsr];
+    [mutableStr appendString:@"元"];
+    
+    price.text=mutableStr;
     price.font=[UIFont systemFontOfSize:14];
     price.textColor=RGBColor(0, 0, 0);
     [self.view addSubview:price];

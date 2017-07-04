@@ -67,7 +67,7 @@
     
     
     _type = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
-    _type.text=@"套餐类型:  个人套餐A";
+//    _type.text=@"套餐类型:  个人套餐A";
     _type.textColor=RGBColor(51, 51, 51);
     _type.font=[UIFont boldSystemFontOfSize:13];
     [self.view addSubview:_type];
@@ -75,7 +75,7 @@
     
     
     _time = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-52*WIDTH_SCALE-300, backGroundLabel.frame.origin.y+backGroundLabel.frame.size.height, 300, 13*SCALE)];
-    _time.text=@"有效期:  10天";
+//    _time.text=@"有效期:  10天";
     _time.textColor=RGBColor(255, 0, 0);
     _time.font=[UIFont systemFontOfSize:11];
     _time.textAlignment=NSTextAlignmentRight;
@@ -83,14 +83,14 @@
     
     
     _total = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE,_time.frame.origin.y+_time.frame.size.height+57*HEIGHT_SCALE , 300, 12*SCALE)];
-    _total.text=@"总次数:  10次";
+//    _total.text=@"总次数:  10次";
     _total.font=[UIFont systemFontOfSize:12];
     _total.textColor=RGBColor(0, 0, 0);
     [self.view addSubview:_total];
     
     
     _introduction = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, _total.frame.origin.y+_total.frame.size.height+22*HEIGHT_SCALE, SCREEN_WIDTH-2*52*WIDTH_SCALE, 24+15*HEIGHT_SCALE)];
-    _introduction.text=@"购买标准化电子合同服务，该套餐可以签发合同一次，有效期为永久";
+//    _introduction.text=@"购买标准化电子合同服务，该套餐可以签发合同一次，有效期为永久";
     _introduction.numberOfLines = 0; ///相当于不限制行数
     _introduction.font=[UIFont systemFontOfSize:12];
     [self.view addSubview:_introduction];
@@ -110,7 +110,7 @@
     [self.view addSubview:money];
     
     _number = [[UILabel alloc]initWithFrame:CGRectMake(money.frame.size.width, SCREEN_HEIGHT-98*HEIGHT_SCALE, 60, 98*HEIGHT_SCALE)];
-    _number.text=@"100";
+//    _number.text=@"100";
     _number.font=[UIFont systemFontOfSize:14];
     _number.textColor=RGBColor(255, 0, 0);
     _number.textAlignment=NSTextAlignmentLeft;
@@ -137,6 +137,7 @@
 
 -(void)pay{
     PayVC *VC = [[PayVC alloc]init];
+    VC.price = [_number.text intValue];
     
     [self.navigationController pushViewController:VC animated:YES];
     
@@ -145,13 +146,14 @@
 
 -(void)netRequest{
     //https://www.qiandd.com/mobile/goods/goods/token/4add3a80c92238fef58691fddd450c26/id/11/p/1
-    _setId=1;
+//    _setId=1;
     
     NSLog(@"token is :%@",self.token);
     
     NSString *idstring = [NSString stringWithFormat:@"%d",_setId];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GOODS_DETAIL];
     [urlstring appendString:self.token];
+    [urlstring appendString:@"/"];
     [urlstring appendString:@"id/"];
     [urlstring appendString:idstring];
     [urlstring appendString:@"/p/1"];
@@ -189,6 +191,8 @@
         weakSelf.alertView.title=@"网络有点问题哦，无法加载";
         [weakSelf.alertView show];
     };
+    
+    NSLog(@"套餐详情url is : %@",urlstring);
     
     [request netRequestGetWithUrl:urlstring Data:nil];
     
@@ -252,6 +256,8 @@
             NSMutableString *mutabledtime = [[NSMutableString alloc]initWithString:dtime];
             [mutabledtime appendString:@"天"];
             _time.text = mutabledtime;
+            
+            _number.text = [data objectForKey:@"price"];
         }
     }
     

@@ -127,10 +127,6 @@
     _three.delegate=self;
 
     
-    _one.setId=1;
-    _two.setId=2;
-    _three.setId=3;
-    
     [self netRequest];
     
 }
@@ -258,6 +254,8 @@
                 [mutableString appendString:[dic objectForKey:@"num"]];
                 [mutableString appendString:@"次"];
                 _one.times.text = mutableString;
+                
+                _one.setId = [[dic objectForKey:@"id"] intValue];
             }
             
             if (1==i) {
@@ -271,6 +269,8 @@
                 [mutableString appendString:[dic objectForKey:@"num"]];
                 [mutableString appendString:@"次"];
                 _two.times.text = mutableString;
+                
+                _two.setId = [[dic objectForKey:@"id"] intValue];
 
             }
             
@@ -285,6 +285,8 @@
                 [mutableString appendString:[dic objectForKey:@"num"]];
                 [mutableString appendString:@"次"];
                 _three.times.text = mutableString;
+                
+                _three.setId = [[dic objectForKey:@"id"] intValue];
 
             }
             
