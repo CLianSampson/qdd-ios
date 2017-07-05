@@ -116,6 +116,9 @@ static NSString *URL_GET_ORDERID=@"https://www.qiandd.com/mobile/goods/orderinfo
 //微信支付，获取prepayid
 static NSString *URL_WXPAY=@"https://www.qiandd.com/mobile/pays/wxpay/token/";
 
+//支付宝支付，获取tradeno
+static NSString *URL_AILPAY=@"https://www.qiandd.com/mobile/pays/alipay/token/";
+
 typedef void (^PictureBlock)(id result);
 typedef void(^PictureFailedBlock)();
 
