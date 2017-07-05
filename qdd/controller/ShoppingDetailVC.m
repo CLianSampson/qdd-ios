@@ -136,19 +136,66 @@
 
 
 -(void)pay{
-    PayVC *VC = [[PayVC alloc]init];
-    VC.price = [_number.text intValue];
     
-    [self.navigationController pushViewController:VC animated:YES];
+    //先获取订单号
+    NSString *idstring = [NSString stringWithFormat:@"%d",_setId];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ORDERID];
+    [urlstring appendString:self.token];
+    [urlstring appendString:@"/"];
+    [urlstring appendString:@"id/"];
+    [urlstring appendString:idstring];
+   
+    
+    __weak typeof(self) weakSelf=self;
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
+    request.netSucessBlock=^(id result){
+        
+        NSString *state = [result objectForKey:@"state"];
+        NSString *info = [result objectForKey:@"info"];
+        
+        if ([state isEqualToString:@"success"]) {
+            [weakSelf.indicator removeFromSuperview];
+            
+            NSString *orderId = [result objectForKey:@"orderid"];
+            
+            PayVC *VC = [[PayVC alloc]init];
+            VC.token = self.token;
+            VC.price = [_number.text intValue];
+            VC.orderId = orderId;
+            
+            [self.navigationController pushViewController:VC animated:YES];
+            
+        }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+        
+        
+    };
+    
+    request.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    NSLog(@"套餐详情url is : %@",urlstring);
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
+
     
 }
 
-
+//获取订单详情
 -(void)netRequest{
-    //https://www.qiandd.com/mobile/goods/goods/token/4add3a80c92238fef58691fddd450c26/id/11/p/1
-//    _setId=1;
-    
-    NSLog(@"token is :%@",self.token);
     
     NSString *idstring = [NSString stringWithFormat:@"%d",_setId];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GOODS_DETAIL];

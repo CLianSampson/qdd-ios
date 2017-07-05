@@ -10,6 +10,9 @@
 #import "Macro.h"
 #import "PayView.h"
 
+#import "WXApi.h"
+#import "payRequsestHandler.h"
+
 @interface PayVC()
 
 @property(nonatomic,assign) int payFlag; //1微信 2支付宝
@@ -83,7 +86,7 @@
     [ailPay.icon setImage:[UIImage imageNamed:@"支付宝图标"]];
     ailPay.name.font=[UIFont systemFontOfSize:13];
     //默认支付宝
-    [ailPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];2;
+    [ailPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
     _payFlag = 2;
     [self.view addSubview:ailPay];
    
@@ -95,14 +98,17 @@
     weChat.name.font=[UIFont systemFontOfSize:13];
     [self.view addSubview:weChat];
     
+    
+    __weak typeof(ailPay) weakAilPay = ailPay;
     ailPay.payBlock = ^(){
-        [ailPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+        [weakAilPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
         [weChat.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
         _payFlag = 2;
     };
 
+    __weak typeof(weChat) weakWeChat = weChat;
     weChat.payBlock = ^(){
-        [weChat.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+        [weakWeChat.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
         [ailPay.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
         _payFlag = 1;
     };
@@ -125,24 +131,122 @@
 -(void)confirm{
     if (_payFlag == 1) {
         //微信
+        [self wechatPay];
         
     }else{
         //支付宝
         
     }
     
-    [super createAlertView];
-    self.alertView.title=@"您已成功支付123.56元";
-    [self.alertView show];
+//    [super createAlertView];
+//    self.alertView.title=@"您已成功支付123.56元";
+//    [self.alertView show];
 }
 
 
 -(void)showLeft{
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+-(void)wechatPay{
     
+    NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
+    
+    [dic setObject:_orderId forKey:@"orderid"];
+    [dic setObject:@"套餐" forKey:@"name"];
+    [dic setObject:[NSString stringWithFormat:@"%d",_price] forKey:@"price"];
+
+    
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_WXPAY];
+    [urlstring appendString:self.token];
+
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    __weak typeof(self) weakSelf = self;
+    
+    request.netSucessBlock=^(id result){
+        NSLog(@"获取微信 prepayid成功");
+        NSLog(@"result is :%@",result);
+        
+        
+        NSString *state = [result objectForKey:@"return_code"];
+        NSString *info = [result objectForKey:@"return_msg"];
+        
+//        state = @"success";
+        
+        if ([state isEqualToString:@"success"]) {
+            
+            //支付请求发送成功后移除网络等待指示图标
+            [weakSelf.indicator removeFromSuperview];
+            if ([WXApi isWXAppInstalled]) {
+                //创建支付签名对象
+                payRequsestHandler *req = [payRequsestHandler alloc];
+                //初始化支付签名对象
+                [req init:APP_ID mch_id:MCH_ID];
+                //设置密钥
+                [req setKey:PARTNER_ID];
+                
+                //获取到实际调起微信支付的参数后，在app端调起支付
+                NSString *PriceStr = [[NSString alloc]initWithFormat:@"%d",weakSelf.price];
+                NSMutableDictionary *dict = [req sendPay_demo:PriceStr atprepayid:result[@"item"][@"prepayid"]];
+                if(dict == nil){
+                    //错误提示
+                    NSString *debug = [req getDebugifo];
+                    NSLog(@"%@\n\n",debug);
+                }else{
+                    NSLog(@"%@\n\n",[req getDebugifo]);
+                    //[self alert:@"确认" msg:@"下单成功，点击OK后调起支付！"];
+                    
+                    NSMutableString *stamp  = [dict objectForKey:@"timestamp"];
+                    //调起微信支付
+                    PayReq* req             = [[PayReq alloc] init];
+                    req.openID              = [dict objectForKey:@"appid"];
+                    req.partnerId           = [dict objectForKey:@"partnerid"];
+                    req.prepayId            = [dict objectForKey:@"prepayid"];
+                    req.nonceStr            = [dict objectForKey:@"noncestr"];
+                    req.timeStamp           = stamp.intValue;
+                    req.package             = [dict objectForKey:@"package"];
+                    req.sign                = [dict objectForKey:@"sign"];
+                    
+                    [WXApi sendReq:req];
+                    
+                }
+            }else{
+                UIAlertView *alertNo = [[UIAlertView alloc]initWithTitle:@"提示" message:@"您未安装微信!" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                [alertNo show];
+            }
+
+            
+        }else if ([state isEqualToString:@"FAIL"]){
+            [weakSelf.indicator removeFromSuperview];
+            
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
+            
+        }
+
+        
+        
+    };
+    
+    request.netFailedBlock=^(id result){
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestWithUrl:urlstring Data:dic];
+
 }
 
 
-
+-(void)ailPay{
+    
+}
 
 @end

@@ -12,4 +12,6 @@
 
 @property(nonatomic,assign) int price;
 
+@property(nonatomic,strong) NSString *orderId;
+
 @end

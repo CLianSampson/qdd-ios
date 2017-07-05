@@ -74,6 +74,21 @@
     _myTableView.scrollEnabled=NO;
     _myTableView.backgroundColor=[UIColor whiteColor];
     [self .view addSubview:_myTableView];
+    
+    UILabel *copyRight = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-200, SCREEN_WIDTH, 12)];
+//    copyRight.text = @"C版权所有@2012-2017 京ICP备12015529号-1 京ICP证130317号";
+    copyRight.text = @"版权所有@2012-2017 京ICP证130317号";
+    copyRight.font = [UIFont systemFontOfSize:12];
+    copyRight.textColor = GrayRGBColor;
+    copyRight.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:copyRight];
+    
+    UILabel *companyName = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-180, SCREEN_WIDTH, 12)];
+    companyName.text = @"北京好一点文化传播有限公司";
+    companyName.font = [UIFont systemFontOfSize:12];
+    companyName.textColor = GrayRGBColor;
+    companyName.textAlignment = NSTextAlignmentCenter;
+    [self.view addSubview:companyName];
 }
 
 
