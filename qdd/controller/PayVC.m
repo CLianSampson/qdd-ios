@@ -14,7 +14,9 @@
 #import "payRequsestHandler.h"
 #import "Order.h"
 #import "PayUtil.h"
-#import "DataSigner.h"
+
+//支付宝头文件
+//#import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
 
 @interface PayVC()
@@ -139,6 +141,7 @@
         
     }else{
         //支付宝
+        [self ailPay];
         
     }
     
@@ -272,37 +275,30 @@
         //支付宝
         AFNetRequest *request = [[AFNetRequest alloc]init];
         request.netSucessBlock=^(id result){
-            NSLog(@"获取微信 prepayid成功");
+            NSLog(@"获取支付宝paysign成功");
             NSLog(@"result is :%@",result);
             
-            NSString *state = [result objectForKey:@"return_code"];
-            NSString *info = [result objectForKey:@"return_msg"];
-            
+            NSString *orderString = [[NSString alloc] initWithData:result  encoding:NSUTF8StringEncoding];
            
-            if ([state isEqualToString:@"success"]) {
+            NSString *appScheme = @"addalipay";
+            
+            [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+                            NSLog(@"reslut = %@",resultDic);
+                            if ([[resultDic objectForKey:@"resultStatus"]integerValue] == 9000) {
+                                UIAlertView * alert1 = [[UIAlertView alloc]initWithTitle:@"您已成功支付" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                [alert1 show];
+                
+                                
+                            }else{
+                                UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"充支付失败" message:@"请重新支付" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+                                [alert2 show];
+                            }
+                        }];
 
-                //支付请求发送成功后移除网络等待指示图标
-                [self.indicator removeFromSuperview];
-                
-                NSString *tradeno=result[@"item"][@"tradeno"];
-                
-                NSMutableString *ailPayCallbackUrl = [[NSMutableString alloc]initWithString:AIL_PAY_CALLBACK_URL];
-                [ailPayCallbackUrl appendString:self.token];
-                
-                NSString *price = [NSString stringWithFormat:@"%d",_price];
-                
-                [self payToPrice:price andId:tradeno withURL:ailPayCallbackUrl];
-                
-            }else if ([state isEqualToString:@"FAIL"]){
-                [weakSelf.indicator removeFromSuperview];
-                
-                [weakSelf createAlertView];
-                weakSelf.alertView.title=info;
-                [weakSelf.alertView show];
-                
-            }
             
         };
+        
+    
         
         request.netFailedBlock=^(id result){
             [weakSelf.indicator removeFromSuperview];
@@ -311,99 +307,101 @@
             weakSelf.alertView.title=@"网络有点问题哦，无法加载";
             [weakSelf.alertView show];
         };
-        [request netRequestWithUrl:urlstring Data:dic];
-
-
+        NSLog(@"支付宝支付的url is : %@",urlstring);
+        NSLog(@"支付宝支付发送的参数 is : %@",dic);
+        [request netAlipay:urlstring Data:dic];
 
     }
 
 }
 
-#pragma 支付宝
-- (void)payToPrice:(NSString *)price andId:(NSString *)payid withURL:(NSString *)url{
-    
-    NSLog(@"订单号是 ：%@",payid);
-    
-    NSString *partner = @"2088021957265821";
-    NSString *seller = @"pay@yaotaxi.com";
-    NSString *privateKey = @"MIICdgIBADANBgkqhkiG9w0BAQEFAASCAmAwggJcAgEAAoGBALNwSB8G2BKWTrMnhMPjIP3U4CoYzrbcdxlOM8pdfTULq5TZekaVkNnlHUKgzfmZMEq9JxMJIQc6vCm3mSOylNnLO0f4Ty060UEJ0932Y/LdLU2UlhtDUhJnqjlt9b4Oax/woqhmVEP6jBLfJenwMnSVWw6wlnLAZlh9c6DTMuRNAgMBAAECgYAHnfaRypqVf2fr1vudzSBzZfv2DYOI46byng04w+syu0IXWXwFTwgNF9q8H1NfCw+vvIPSHQsX4XhnVPHdQBFtcyRmW6ls/k7GcFzGX0YCySgvXNXj9BYNhLOKDFLrs5ky7c5BEdTg3nEgEbbtP9Uf5DMjGXh5KG1XJTDmaovIQQJBAOUorkbnu7/Zr8bpPRbVWobImY7t+ZKd256vEbjgklbTHC6eMcJ6he4VUN3chrIDtZr1KPDLXZ75WziIdDg8O9UCQQDIdL1kIIcJnpt2hSeWFvakhWogx4emlMeOLMbqLmHG+Gc7MOuuh5iRKE9FSjgbjHKp4Ld/yV5LtYphEphR4ZqZAkAOaqfEKDIEmNJZJjVEqXl/f0FB37DSy4GUkxj/U4mBUti0ChnBTWn9l3O18Xi73EXhkMjZlUG3jaJyhQsiuo9dAkAJ6ox76YgEl84E/O1KZXRqCxeG65fwS6fbhqeIaib4Gs2whekCxz5q392cBeHkqvv5H160eZeqkx53Ut4qHsjxAkEAr7dRanOvbJGq1M4wDxcXIld668fF7huVu0cE4PDI2lGn+XsW2wXTcz5h8EfK9ZnhmLYRNtJc7XK0JGC4guyt0g==";
-    
-    
-    //partner和seller获取失败,提示
-    if ([partner length] == 0 ||
-        [seller length] == 0 ||
-        [privateKey length] == 0)
-    {
-        UIAlertView *alertt = [[UIAlertView alloc] initWithTitle:@"提示"
-                                                         message:@"缺少partner或者seller或者私钥。"
-                                                        delegate:self
-                                               cancelButtonTitle:@"确定"
-                                               otherButtonTitles:nil];
-        [alertt show];
-        return;
-    }
-    
-    /*
-     *生成订单信息及签名
-     */
-    //将商品信息赋予AlixPayOrder的成员变量
-    Order *order = [[Order alloc] init];
-    order.partner = partner;
-    order.seller = seller;
-    
-//    order.tradeNO=_tradnedo;
-    order.tradeNO=payid; //服务端返回的交易号
-    order.productName = @"支付"; //商品标题
-    order.productDescription = @"支付"; //商品描述
-    
-//    order.amount = _pricestr; //商品价格
-    order.amount = [NSString stringWithFormat:@"%d",_price];
-    
-    order.notifyURL = url; //回调URL
-    
-    order.service = @"mobile.securitypay.pay";
-    order.paymentType = @"1";
-    order.inputCharset = @"utf-8";
-    order.itBPay = @"30m";
-    order.showUrl = @"m.alipay.com";
-    
-    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
-    NSString *appScheme = @"alisdkdemo";
-    
-    //将商品信息拼接成字符串
-    NSString *orderSpec = [order description];
-    NSLog(@"orderSpec = %@",orderSpec);
-    
-    //    获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
-    id<DataSigner> signer = CreateRSADataSigner(privateKey);
-    NSString *signedString = [signer signString:orderSpec];
-    
-    //将签名成功字符串格式化为订单字符串,请严格按照该格式
-    NSString *orderString = nil;
-    if (signedString != nil) {
-        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
-                       orderSpec, signedString, @"RSA"];
-        
-        NSLog(@"支付宝开始支付了");
-        
-        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
-            NSLog(@"reslut = %@",resultDic);
-            if ([[resultDic objectForKey:@"resultStatus"]integerValue] == 9000) {
-                UIAlertView * alert1 = [[UIAlertView alloc]initWithTitle:@"您已成功充值" message:@"请支付" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                alert1.tag=2222;
-                [alert1 show];
-                
-                //              [self notifyServerAfterPaySucess];
-                
-            }else{
-                UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"充值失败" message:@"请重新充值" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
-                [alert2 show];
-            }
-        }];
-        
-        NSLog(@"支付宝支付之后 ....");
-    }
-}
+//#pragma 支付宝
+//- (void)payToPrice:(NSString *)price andId:(NSString *)payid withURL:(NSString *)url{
+//    
+//    NSLog(@"订单号是 ：%@",payid);
+//    
+//    NSString *partner = @"2088021957265821";
+//    NSString *seller = @"pay@yaotaxi.com";
+//    NSString *privateKey = @"MIIEpAIBAAKCAQEAt5aMEMXWDIMLLb3921o/W4aOXR/YyMH+Shj9pqLAWgwYme/JTBXNXdyjsmBHXn0mjpTJuHYCcxL3n9W988/hyJRbI18UApu/Wf5LVfmwdlrcoeP/mUMltGalcfiJp5VXvHyrIKEGzj5vm7RcP1wbrM7A2i3dzLUAPdi9+P90CrJgo1MUVuMainaQwAR5tH4DMucDOxWELYklICAwqFwWeetKRvBva/DlVW2X+eWCmrfSW8OegYYgjqxRJSH03ciypOrXjAK2qwcvMuF9z4GoxHgFjiwOKCORM0U7FN13Daqqc6uZ/JegCnsOKGP4azkWmHoTnCFOdUc4CF4yK2BTSQIDAQABAoIBAB1ZXujrh62WYXodjnC7u7c5CpdOmQx3Htzfo+U4zYFXv7MUR1z3e05PEIhape4wGbLfjGQF0Zxt4tJVjDlm+VRkizFbaMqF9ZBAe/Cxqwkwu2bSGTF6L5PoePiAYBk/YbhLQdxEgd8E0jjVG44xfmcg4mm+vV+VbAV3Gd+tjvKKjiI3ji3EnNGqJpEAS5EGp4DfiODlS/I7OV1boOjr4s9fYTwxRk0w4Na6k2rl9ondhMa9N+BDpFLc2hZQ9nmfa+YSroV6EBi/vmpgHI8DZZ88LgNtxohcwQSCvkmbkMZv2zOTKX2Z6AZYIbtQ2x7gmCStS5ZAde/b5c3oh46mF5ECgYEA6+w4LN6M0gsVs0hO+eR1nCVaSDGzbEt9gDY2HyeitOUEMHXGeCXFCVHbOZI3s1SYC5t19UIgSYTsRdDrNe5dUm+R/2xiHFIqtSwxmP8nk8Vq5kbM73UhoggEZOigKfS33MWpqyyzkYxoDQi/HHCWMDuehsRCy9HCOVIiEC7avhUCgYEAxzYsBehTSbAmfEm6B7vYNG+tepepLVLUs3AiEM4jNqTak1cTq2sJ3s8gD4sZgZOUe/Nx4eY/iWv/NWapIPO48UnI1lxCax6vyDBohbY7hf2ESHXgIog3PbHkoDaBakWsLBWAy4jTYINMpLnV6b3/NnoLzUN6OgL9MkX5iZWQQWUCgYB59mw0BfkWvNRDEqaBWTHTvxulJsxyt7PxjBT+libvDVXVF426nwv1fXOvl39kHd9cYMniOIUofKcIkLCH+OoVq8f2G7m8ml2pu2cIiR+UrQJOeVuIjy0L7skWwYvLJM/IOgc0jq9mFwfTdSoXMbzywl95nAxMAew+Zc9mPlKm4QKBgQCl76vP5+uoj8Ae+1KoKoI3e2bnnPjgtgRSy260zOBsHfmrjXbm7Kw2GhW8nMNMOeAPN4N/Bcma8IiOtMrgleNRqYJPfF4e2FrXx+rophkCzV+o8/cVDJ3nGA02nvBB03NM7URxRbG8zOHEvL9AinDRseuuuSxQsjix7bOkNR8KOQKBgQCGGMMiVcNQIR/6JtnP9SKrI2m4tOMiCcNXBRZmgQMAcstMJ8bARxWDJ0Mq8US7b5tb11r9efg998c1pi1X+VTFmhIUM5azT8zCwnY01TEOmbog9uS/nZ2/QWFNEomNYF54NEVjOQhfsVBX4LOlae9zU7em5ZaR5K/7ZNiWcX0AaQ==";
+//    
+//    
+//    
+//
+//    //partner和seller获取失败,提示
+//    if ([partner length] == 0 ||
+//        [seller length] == 0 ||
+//        [privateKey length] == 0)
+//    {
+//        UIAlertView *alertt = [[UIAlertView alloc] initWithTitle:@"提示"
+//                                                         message:@"缺少partner或者seller或者私钥。"
+//                                                        delegate:self
+//                                               cancelButtonTitle:@"确定"
+//                                               otherButtonTitles:nil];
+//        [alertt show];
+//        return;
+//    }
+//    
+//    /*
+//     *生成订单信息及签名
+//     */
+//    //将商品信息赋予AlixPayOrder的成员变量
+//    Order *order = [[Order alloc] init];
+//    order.partner = partner;
+//    order.seller = seller;
+//    
+////    order.tradeNO=_tradnedo;
+//    order.tradeNO=payid; //服务端返回的交易号
+//    order.productName = @"支付"; //商品标题
+//    order.productDescription = @"支付"; //商品描述
+//    
+////    order.amount = _pricestr; //商品价格
+//    order.amount = [NSString stringWithFormat:@"%d",_price];
+//    
+//    order.notifyURL = url; //回调URL
+//    
+//    order.service = @"mobile.securitypay.pay";
+//    order.paymentType = @"1";
+//    order.inputCharset = @"utf-8";
+//    order.itBPay = @"30m";
+//    order.showUrl = @"m.alipay.com";
+//    
+//    //应用注册scheme,在AlixPayDemo-Info.plist定义URL types
+//    NSString *appScheme = @"alisdkdemo";
+//    
+//    //将商品信息拼接成字符串
+//    NSString *orderSpec = [order description];
+//    NSLog(@"orderSpec = %@",orderSpec);
+//    
+//    //    获取私钥并将商户信息签名,外部商户可以根据情况存放私钥和签名,只需要遵循RSA签名规范,并将签名字符串base64编码和UrlEncode
+//    id<DataSigner> signer = CreateRSADataSigner(privateKey);
+//    NSString *signedString = [signer signString:orderSpec];
+//    
+//    //将签名成功字符串格式化为订单字符串,请严格按照该格式
+//    NSString *orderString = nil;
+//    if (signedString != nil) {
+//        orderString = [NSString stringWithFormat:@"%@&sign=\"%@\"&sign_type=\"%@\"",
+//                       orderSpec, signedString, @"RSA"];
+//        
+//        NSLog(@"支付宝开始支付了");
+//        
+//        [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
+//            NSLog(@"reslut = %@",resultDic);
+//            if ([[resultDic objectForKey:@"resultStatus"]integerValue] == 9000) {
+//                UIAlertView * alert1 = [[UIAlertView alloc]initWithTitle:@"您已成功充值" message:@"请支付" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                alert1.tag=2222;
+//                [alert1 show];
+//                
+//                //              [self notifyServerAfterPaySucess];
+//                
+//            }else{
+//                UIAlertView * alert2 = [[UIAlertView alloc]initWithTitle:@"充值失败" message:@"请重新充值" delegate:self cancelButtonTitle:@"确定" otherButtonTitles:nil, nil];
+//                [alert2 show];
+//            }
+//        }];
+//        
+//        NSLog(@"支付宝支付之后 ....");
+//    }
+//}
 
 
 @end

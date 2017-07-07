@@ -147,11 +147,13 @@
     
     
     
-//    [dic setObject:@"17600170189" forKey:@"username"];
-//    [dic setObject:@"613200" forKey:@"password"];
+    [dic setObject:@"18771098004" forKey:@"username"];
+    [dic setObject:@"123456" forKey:@"password"];
     
-    [dic setObject:_userName.text forKey:@"username"];
-    [dic setObject:_passWord.text forKey:@"password"];
+    _userName.text = @"18771098004";
+    
+//    [dic setObject:_userName.text forKey:@"username"];
+//    [dic setObject:_passWord.text forKey:@"password"];
 
     
     NSLog(@"json data is : %@" ,dic);

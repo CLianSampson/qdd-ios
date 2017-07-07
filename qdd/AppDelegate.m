@@ -20,7 +20,12 @@
 //#import "ViewController.h"
 #import "iflyMSC/IFlyFaceSDK.h"
 
+//微信头文件
 #import "WXApi.h"
+
+//支付宝头文件
+//#import "DataSigner.h"
+#import <AlipaySDK/AlipaySDK.h>
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -92,8 +97,6 @@
 }
 
 
-
-
 - (BOOL)application:(UIApplication *)application handleOpenURL:(NSURL *)url
 {
     return  [WXApi handleOpenURL:url delegate:self];
@@ -102,6 +105,7 @@
 - (BOOL)application:(UIApplication *)application openURL:(NSURL *)url sourceApplication:(NSString *)sourceApplication annotation:(id)annotation
 {
 //    BOOL result = [UMSocialSnsService handleOpenURL:url];
+//    BOOL result = false;
 //    if (result == FALSE) {
 //        //调用其他SDK，例如支付宝SDK等
 //        if ([url.host isEqualToString:@"safepay"]) {
@@ -131,8 +135,32 @@
 //
 //    return result;
     
+    NSLog(@"url is : %@",url);
+    
+    [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+         NSLog(@"result = %@",resultDic);//返回的支付结果
+     }];
     return true;
 }
+
+
+
+
+// NOTE: 9.0以后使用新API接口
+- (BOOL)application:(UIApplication *)app openURL:(NSURL *)url options:(NSDictionary<NSString*, id> *)options
+{
+    
+    NSLog(@"支付宝微信回调成功，url is ：%@",url);
+    if ([url.host isEqualToString:@"safepay"]) {
+        //跳转支付宝钱包进行支付，处理支付结果
+        [[AlipaySDK defaultService] processOrderWithPaymentResult:url standbyCallback:^(NSDictionary *resultDic) {
+            NSLog(@"result = %@",resultDic);
+        }];
+    }
+    return YES;
+}
+
+
 
 //微信支付回调
 -(void) onResp:(BaseResp*)resp

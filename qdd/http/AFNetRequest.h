@@ -140,6 +140,9 @@ typedef void (^NetFailedBlock)(id result);
 
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 
+//针对支付宝单独一个接口
+-(void)netAlipay:(NSString *)url Data:(id )data;
+
 -(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
 
 @end

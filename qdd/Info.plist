@@ -30,9 +30,25 @@
 				<string>wxc4b128dfb589574c</string>
 			</array>
 		</dict>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLName</key>
+			<string>alipay</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<string>addalipay</string>
+			</array>
+		</dict>
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<key>LSApplicationQueriesSchemes</key>
+	<array>
+		<string>alipay</string>
+		<string>wechat</string>
+		<string>weixin</string>
+	</array>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -40,8 +56,6 @@
 		<key>NSAllowsArbitraryLoads</key>
 		<true/>
 	</dict>
-	<key>UILaunchStoryboardName</key>
-	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
 	<array>
 		<string>armv7</string>
@@ -52,20 +66,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-
-	<key>LSApplicationQueriesSchemes</key>
-	<array>
-		<string>wechat</string>
-		<string>weixin</string>
-		<string>wx1a3c30d3c661e4c1</string>
-		<string>sinaweibohd</string>
-		<string>sinaweibo</string>
-		<string>sinaweibosso</string>
-		<string>weibosdk</string>
-		<string>weibosdk2.5</string>
-		<string>mai</string>
-	</array>
-
-
 </dict>
 </plist>

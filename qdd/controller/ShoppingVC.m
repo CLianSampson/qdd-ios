@@ -157,7 +157,10 @@
 -(void)netRequest{
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_BUY_GOODS];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
+    [urlstring appendString:@"/"];
+    [urlstring appendString:@"p/2"];
+    
     
     __weak typeof(self) weakSelf=self;
     
@@ -193,7 +196,7 @@
         [weakSelf.alertView show];
     };
     
-    [request netRequestGetWithUrl:appendUrlString Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 
 }
 
