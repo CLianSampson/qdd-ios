@@ -29,6 +29,7 @@
 @property(nonatomic,assign)int price;
 @property(nonatomic,strong)NSString *orderId;
 
+
 @end
 
 @implementation MyOrderVC
@@ -42,7 +43,7 @@
 -(void)viewDidLoad{
    
     
-    _pageNo=0;
+    _pageNo=1;
     _orstatus=2;
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
@@ -139,16 +140,22 @@
 
 -(void)addMjRefresh:(UITableView *)tableView{
     
-    if ((_mutableArry.count*96)>(SCREEN_HEIGHT-64-49)) {
-        
-    }
-    
     //上拉加载
     tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        
         _pageNo++;
         [self netReauest];
         //停止刷新
         [tableView.footer endRefreshing];
+    }];
+    
+    tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _mutableArry = nil;
+        
+        _pageNo = 1;
+        [self netReauest];
+        //停止刷新
+        [tableView.header endRefreshing];
     }];
 }
 

@@ -61,7 +61,7 @@
 }
 
 -(void)viewDidLoad{
-    _pageNo=0;
+    _pageNo=1;
     _status=1;
     
    
@@ -172,9 +172,9 @@
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     _myTableView.backgroundColor=RGBColor(200, 200, 200);
-
+    [self.view addSubview:_myTableView];
     
-//    [self addMjRefresh:_myTableView];
+    [self addMjRefresh:_myTableView];
     
     [self addLoadIndicator];
     
@@ -183,29 +183,47 @@
 
 
 -(void)addMjRefresh:(UITableView *)tableView{
-    float cellHeight = (44+28+46+20+29)*HEIGHT_SCALE+13+11+11 ;
-    float headViewHeight = 10;
-    float height = _mutableArry.count*cellHeight + headViewHeight;
+//    float cellHeight = (44+28+46+20+29)*HEIGHT_SCALE+13+11+11 ;
+//    float headViewHeight = 10;
+//    float height = _mutableArry.count*cellHeight + headViewHeight;
+//    
+//    if (height>_myTableView.frame.size.height) {
+//        //上拉加载
+//        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            _pageNo++;
+//            [self netReauest];
+//            //停止刷新
+//            [tableView.footer endRefreshing];
+//        }];
+//    }
     
-    if (height>_myTableView.frame.size.height) {
-        //上拉加载
-        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            _pageNo++;
-            [self netReauest];
-            //停止刷新
-            [tableView.footer endRefreshing];
-        }];
-    }
     
+    //上拉加载
+    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNo++;
+        [self netReauest];
+        //停止刷新
+        [tableView.footer endRefreshing];
+    }];
+
     
+    tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _mutableArry = nil;
+        
+        _pageNo = 1;
+        [self netReauest];
+        //停止刷新
+        [tableView.header endRefreshing];
+    }];
 }
 
 
 -(void)waitForMeMethod{
     _status=1;
-    _pageNo=0;
+    _pageNo=1;
     
     _mutableArry=nil;
+    [_myTableView reloadData];
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -216,8 +234,6 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
 
-    [_myTableView removeFromSuperview];
-    _myTableView.footer = nil;
     [self netReauest];
     
     
@@ -225,9 +241,10 @@
 
 -(void)waitForOtherMethod{
     _status=2;
-    _pageNo=0;
+    _pageNo=1;
     
      _mutableArry=nil;
+    [_myTableView reloadData];
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -239,14 +256,12 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-    [_myTableView removeFromSuperview];
-    _myTableView.footer = nil;
     [self netReauest];
 }
 
 -(void)completeMethod{
     _status=3;
-    _pageNo=0;
+    _pageNo=1;
     
      _mutableArry=nil;
     [UIView animateWithDuration:0.5 animations:^{
@@ -259,17 +274,17 @@
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-    [_myTableView removeFromSuperview];
-    _myTableView.footer = nil;
+
     [self netReauest];
     
 }
 
 -(void)timeOutMethod{
     _status=4;
-    _pageNo=0;
+    _pageNo=1;
     
      _mutableArry=nil;
+    [_myTableView reloadData];
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];
@@ -280,8 +295,7 @@
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
-    [_myTableView removeFromSuperview];
-    _myTableView.footer = nil;
+
     [self netReauest];
 
 }
@@ -505,6 +519,7 @@
         [weakSelf.alertView show];
     };
     
+    NSLog(@"获取首页合同，url is: %@",string2);
     [self netRequestGetWithUrl:string2 Data:nil];
 }
 
@@ -518,9 +533,9 @@
     NSArray *arry = [data objectForKey:@"contract"];
     if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
         
-        [self createAlertView];
-        self.alertView.title=@"没有更多合同了";
-        [self.alertView show];
+//        [self createAlertView];
+//        self.alertView.title=@"没有更多合同了";
+//        [self.alertView show];
         return;
     }
     
@@ -547,8 +562,8 @@
     }
     
     
-    [self.view addSubview:_myTableView];
-    [self addMjRefresh:_myTableView];
+//    [self.view addSubview:_myTableView];
+//    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
 
 }

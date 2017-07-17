@@ -33,6 +33,8 @@
 @property(nonatomic,strong)UITableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 
+
+
 @end
 
 
