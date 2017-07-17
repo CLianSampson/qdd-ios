@@ -12,6 +12,7 @@
 #import "RESideMenu.h"
 #import "MainLeftVC.h"
 #import "MainRigthVC.h"
+#import "Constants.h"
 
 @implementation BindMailVC
 
@@ -117,19 +118,23 @@
 }
 
 -(void)goToHome{
-    MainVC *VC = [[MainVC alloc]init];
-    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-
-
-    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-
-
-     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-     MenuVC.contentViewScaleValue=0.69;
+//    MainVC *VC = [[MainVC alloc]init];
+//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+//
+//
+//    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+//    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+//
+//
+//     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+//     MenuVC.contentViewScaleValue=0.69;
+//    
+//    
+//    [self presentViewController:MenuVC animated:YES completion:nil];
     
-    
-    [self presentViewController:MenuVC animated:YES completion:nil];
+    //退回到主视图，并改变左侧试图的认证状态，并使照片不能点击
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:GOTO_MAIN_CONTROLLER_FROM_BIND_MAIL_SUCESS_CONTROLLER object:nil];
 }
 
 @end

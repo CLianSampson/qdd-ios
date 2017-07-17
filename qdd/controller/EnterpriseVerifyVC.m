@@ -10,6 +10,7 @@
 #import "PasswordView.h"
 #import "GetVerifyCodeView.h"
 #import "FaceSucessVC.h"
+#import "Constants.h"
 
 @interface EnterpriseVerifyVC()<SendSmsCodeDelegete,UIImagePickerControllerDelegate,UINavigationControllerDelegate,UITextFieldDelegate>
 
@@ -981,7 +982,7 @@
 
 
 -(void)addNotification{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:@"GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
 }
 
 

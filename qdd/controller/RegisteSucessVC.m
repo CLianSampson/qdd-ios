@@ -8,6 +8,7 @@
 
 #import "RegisteSucessVC.h"
 #import "Macro.h"
+#import "LoginVC.h"
 
 @implementation RegisteSucessVC
 
@@ -69,7 +70,9 @@
 }
 
 -(void)confirm{
-
+    LoginVC *VC = [[LoginVC alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
+    
 }
 
 -(void)showLeft{

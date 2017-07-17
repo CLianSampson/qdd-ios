@@ -14,7 +14,6 @@
 
 @interface PhotoVC()<UIImagePickerControllerDelegate,UINavigationControllerDelegate>
 
-
 @property(nonatomic,strong)UIImageView *icon;
 @property(nonatomic,assign)int netFlag; //0失败  1成功
 

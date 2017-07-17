@@ -160,6 +160,7 @@
 		18FC4E991EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */; };
 		18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C11E718DA600AA54CF /* RegisteCell.m */; };
 		18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */; };
+		DB399BF71F1C5A8A00533956 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB399BF61F1C5A8A00533956 /* GoodsCell.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -181,8 +182,8 @@
 
 /* Begin PBXFileReference section */
 		180EEDB61F0255B3002A8C15 /* Constants.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Constants.h; sourceTree = "<group>"; };
-		180F11831E757DD40082F385 /* PhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PhotoVC.h; sourceTree = "<group>"; };
-		180F11841E757DD40082F385 /* PhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PhotoVC.m; sourceTree = "<group>"; };
+		180F11831E757DD40082F385 /* PhotoVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PhotoVC.h; path = ../PhotoVC.h; sourceTree = "<group>"; };
+		180F11841E757DD40082F385 /* PhotoVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PhotoVC.m; path = ../PhotoVC.m; sourceTree = "<group>"; };
 		180F11861E7590090082F385 /* iflyMSC.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = iflyMSC.framework; sourceTree = "<group>"; };
 		180F118A1E75907C0082F385 /* FaceStreamDetectorViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceStreamDetectorViewController.h; sourceTree = "<group>"; };
 		180F118B1E75907C0082F385 /* FaceStreamDetectorViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceStreamDetectorViewController.m; sourceTree = "<group>"; };
@@ -222,44 +223,44 @@
 		180F11CF1E759B620082F385 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Security.framework; sourceTree = "<group>"; };
 		180F11D01E759B620082F385 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = SystemConfiguration.framework; sourceTree = "<group>"; };
 		180F11D11E759B620082F385 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UIKit.framework; sourceTree = "<group>"; };
-		180F11E21E75B4490082F385 /* FaceDetectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceDetectVC.h; sourceTree = "<group>"; };
-		180F11E31E75B4490082F385 /* FaceDetectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceDetectVC.m; sourceTree = "<group>"; };
-		180F11E51E75B9B40082F385 /* FaceSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = FaceSucessVC.h; sourceTree = "<group>"; };
-		180F11E61E75B9B40082F385 /* FaceSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = FaceSucessVC.m; sourceTree = "<group>"; };
-		18177FEC1E90F3E900BE54D0 /* SignShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignShowVC.h; sourceTree = "<group>"; };
-		18177FED1E90F3E900BE54D0 /* SignShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignShowVC.m; sourceTree = "<group>"; };
-		18177FEF1E90FCBE00BE54D0 /* SignDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignDetailVC.h; sourceTree = "<group>"; };
-		18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignDetailVC.m; sourceTree = "<group>"; };
+		180F11E21E75B4490082F385 /* FaceDetectVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceDetectVC.h; path = ../FaceDetectVC.h; sourceTree = "<group>"; };
+		180F11E31E75B4490082F385 /* FaceDetectVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FaceDetectVC.m; path = ../FaceDetectVC.m; sourceTree = "<group>"; };
+		180F11E51E75B9B40082F385 /* FaceSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FaceSucessVC.h; path = ../FaceSucessVC.h; sourceTree = "<group>"; };
+		180F11E61E75B9B40082F385 /* FaceSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FaceSucessVC.m; path = ../FaceSucessVC.m; sourceTree = "<group>"; };
+		18177FEC1E90F3E900BE54D0 /* SignShowVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignShowVC.h; path = ../SignShowVC.h; sourceTree = "<group>"; };
+		18177FED1E90F3E900BE54D0 /* SignShowVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignShowVC.m; path = ../SignShowVC.m; sourceTree = "<group>"; };
+		18177FEF1E90FCBE00BE54D0 /* SignDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignDetailVC.h; path = ../SignDetailVC.h; sourceTree = "<group>"; };
+		18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignDetailVC.m; path = ../SignDetailVC.m; sourceTree = "<group>"; };
 		18177FF21E91017D00BE54D0 /* SignContentCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignContentCell.h; sourceTree = "<group>"; };
 		18177FF31E91017D00BE54D0 /* SignContentCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignContentCell.m; sourceTree = "<group>"; };
-		1818A1311EA86400003B4274 /* HelpListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpListVC.h; sourceTree = "<group>"; };
-		1818A1321EA86400003B4274 /* HelpListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpListVC.m; sourceTree = "<group>"; };
+		1818A1311EA86400003B4274 /* HelpListVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpListVC.h; path = ../HelpListVC.h; sourceTree = "<group>"; };
+		1818A1321EA86400003B4274 /* HelpListVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpListVC.m; path = ../HelpListVC.m; sourceTree = "<group>"; };
 		1818A1341EA86639003B4274 /* HelpModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpModel.h; sourceTree = "<group>"; };
 		1818A1351EA86639003B4274 /* HelpModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpModel.m; sourceTree = "<group>"; };
-		1818A1371EA896B6003B4274 /* VerifyStateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyStateVC.h; sourceTree = "<group>"; };
-		1818A1381EA896B6003B4274 /* VerifyStateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyStateVC.m; sourceTree = "<group>"; };
+		1818A1371EA896B6003B4274 /* VerifyStateVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerifyStateVC.h; path = ../VerifyStateVC.h; sourceTree = "<group>"; };
+		1818A1381EA896B6003B4274 /* VerifyStateVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerifyStateVC.m; path = ../VerifyStateVC.m; sourceTree = "<group>"; };
 		1818E4481E750A9D003B8865 /* AccountCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AccountCell.h; sourceTree = "<group>"; };
 		1818E4491E750A9D003B8865 /* AccountCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccountCell.m; sourceTree = "<group>"; };
-		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindingMailVC.h; sourceTree = "<group>"; };
-		1818E44C1E751518003B8865 /* BindingMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindingMailVC.m; sourceTree = "<group>"; };
+		1818E44B1E751518003B8865 /* BindingMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BindingMailVC.h; path = ../BindingMailVC.h; sourceTree = "<group>"; };
+		1818E44C1E751518003B8865 /* BindingMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BindingMailVC.m; path = ../BindingMailVC.m; sourceTree = "<group>"; };
 		1818E4511E753210003B8865 /* MessageDetailView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageDetailView.h; sourceTree = "<group>"; };
 		1818E4521E753210003B8865 /* MessageDetailView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageDetailView.m; sourceTree = "<group>"; };
-		1818E4541E754FBE003B8865 /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyVC.h; sourceTree = "<group>"; };
-		1818E4551E754FBE003B8865 /* VerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyVC.m; sourceTree = "<group>"; };
+		1818E4541E754FBE003B8865 /* VerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = VerifyVC.h; path = ../VerifyVC.h; sourceTree = "<group>"; };
+		1818E4551E754FBE003B8865 /* VerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = VerifyVC.m; path = ../VerifyVC.m; sourceTree = "<group>"; };
 		1818E4571E75544C003B8865 /* VerifyTypeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VerifyTypeView.h; sourceTree = "<group>"; };
 		1818E4581E75544C003B8865 /* VerifyTypeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VerifyTypeView.m; sourceTree = "<group>"; };
-		18236D1E1E9679DC005A7C83 /* AddContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactVC.h; sourceTree = "<group>"; };
-		18236D1F1E9679DC005A7C83 /* AddContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactVC.m; sourceTree = "<group>"; };
+		18236D1E1E9679DC005A7C83 /* AddContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddContactVC.h; path = ../AddContactVC.h; sourceTree = "<group>"; };
+		18236D1F1E9679DC005A7C83 /* AddContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddContactVC.m; path = ../AddContactVC.m; sourceTree = "<group>"; };
 		18236D211E968751005A7C83 /* SignatureCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureCell.h; sourceTree = "<group>"; };
 		18236D221E968751005A7C83 /* SignatureCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureCell.m; sourceTree = "<group>"; };
 		1824ADDA1E87B818002221C3 /* MainLeftVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainLeftVC.h; sourceTree = "<group>"; };
 		1824ADDB1E87B818002221C3 /* MainLeftVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainLeftVC.m; sourceTree = "<group>"; };
 		1824ADDD1E87BFC5002221C3 /* OrderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = OrderModel.h; sourceTree = "<group>"; };
 		1824ADDE1E87BFC5002221C3 /* OrderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = OrderModel.m; sourceTree = "<group>"; };
-		182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordVC.h; sourceTree = "<group>"; };
-		182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordVC.m; sourceTree = "<group>"; };
-		182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetSignaturePositionVC.h; sourceTree = "<group>"; };
-		182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetSignaturePositionVC.m; sourceTree = "<group>"; };
+		182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetPasswordVC.h; path = ../SetPasswordVC.h; sourceTree = "<group>"; };
+		182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetPasswordVC.m; path = ../SetPasswordVC.m; sourceTree = "<group>"; };
+		182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetSignaturePositionVC.h; path = ../SetSignaturePositionVC.h; sourceTree = "<group>"; };
+		182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetSignaturePositionVC.m; path = ../SetSignaturePositionVC.m; sourceTree = "<group>"; };
 		182E5F901F0E3EA100B1A272 /* AlipaySDK.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = AlipaySDK.bundle; sourceTree = "<group>"; };
 		182E5F911F0E3EA100B1A272 /* AlipaySDK.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AlipaySDK.framework; sourceTree = "<group>"; };
 		18314D911E62ABB50046A127 /* SKGraphicView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SKGraphicView.h; sourceTree = "<group>"; };
@@ -315,52 +316,52 @@
 		1831BCF51E575E0A00AAE0E5 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
 		1832C8D01E8959E100C3DB37 /* SignatureModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignatureModel.h; sourceTree = "<group>"; };
 		1832C8D11E8959E100C3DB37 /* SignatureModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignatureModel.m; sourceTree = "<group>"; };
-		183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddSignatureVC.h; sourceTree = "<group>"; };
-		183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddSignatureVC.m; sourceTree = "<group>"; };
-		1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnterpriseVerifyVC.h; sourceTree = "<group>"; };
-		1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EnterpriseVerifyVC.m; sourceTree = "<group>"; };
+		183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AddSignatureVC.h; path = ../AddSignatureVC.h; sourceTree = "<group>"; };
+		183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AddSignatureVC.m; path = ../AddSignatureVC.m; sourceTree = "<group>"; };
+		1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = EnterpriseVerifyVC.h; path = ../EnterpriseVerifyVC.h; sourceTree = "<group>"; };
+		1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = EnterpriseVerifyVC.m; path = ../EnterpriseVerifyVC.m; sourceTree = "<group>"; };
 		184935D11E6F035200195071 /* SignCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignCell.h; sourceTree = "<group>"; };
 		184935D21E6F035200195071 /* SignCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignCell.m; sourceTree = "<group>"; };
-		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingVC.h; sourceTree = "<group>"; };
-		185A03111E61412B00EB9325 /* ShoppingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingVC.m; sourceTree = "<group>"; };
-		185A03131E61415000EB9325 /* MySignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MySignVC.h; sourceTree = "<group>"; };
-		185A03141E61415000EB9325 /* MySignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MySignVC.m; sourceTree = "<group>"; };
-		185A03161E61415E00EB9325 /* ContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ContactVC.h; sourceTree = "<group>"; };
-		185A03171E61415E00EB9325 /* ContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactVC.m; sourceTree = "<group>"; };
-		185A03191E61416B00EB9325 /* MyOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyOrderVC.h; sourceTree = "<group>"; };
-		185A031A1E61416B00EB9325 /* MyOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyOrderVC.m; sourceTree = "<group>"; };
-		185A031C1E61417900EB9325 /* SetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetVC.h; sourceTree = "<group>"; };
-		185A031D1E61417900EB9325 /* SetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetVC.m; sourceTree = "<group>"; };
+		185A03101E61412B00EB9325 /* ShoppingVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingVC.h; path = ../ShoppingVC.h; sourceTree = "<group>"; };
+		185A03111E61412B00EB9325 /* ShoppingVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingVC.m; path = ../ShoppingVC.m; sourceTree = "<group>"; };
+		185A03131E61415000EB9325 /* MySignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MySignVC.h; path = ../MySignVC.h; sourceTree = "<group>"; };
+		185A03141E61415000EB9325 /* MySignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MySignVC.m; path = ../MySignVC.m; sourceTree = "<group>"; };
+		185A03161E61415E00EB9325 /* ContactVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ContactVC.h; path = ../ContactVC.h; sourceTree = "<group>"; };
+		185A03171E61415E00EB9325 /* ContactVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ContactVC.m; path = ../ContactVC.m; sourceTree = "<group>"; };
+		185A03191E61416B00EB9325 /* MyOrderVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MyOrderVC.h; path = ../MyOrderVC.h; sourceTree = "<group>"; };
+		185A031A1E61416B00EB9325 /* MyOrderVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MyOrderVC.m; path = ../MyOrderVC.m; sourceTree = "<group>"; };
+		185A031C1E61417900EB9325 /* SetVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetVC.h; path = ../SetVC.h; sourceTree = "<group>"; };
+		185A031D1E61417900EB9325 /* SetVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetVC.m; path = ../SetVC.m; sourceTree = "<group>"; };
 		185A031F1E6165DE00EB9325 /* SetView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetView.h; sourceTree = "<group>"; };
 		185A03201E6165DE00EB9325 /* SetView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetView.m; sourceTree = "<group>"; };
-		185A03231E6173C300EB9325 /* ShoppingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ShoppingDetailVC.h; sourceTree = "<group>"; };
-		185A03241E6173C300EB9325 /* ShoppingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ShoppingDetailVC.m; sourceTree = "<group>"; };
-		185A032A1E618AEE00EB9325 /* PayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayVC.h; sourceTree = "<group>"; };
-		185A032B1E618AEE00EB9325 /* PayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayVC.m; sourceTree = "<group>"; };
+		185A03231E6173C300EB9325 /* ShoppingDetailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShoppingDetailVC.h; path = ../ShoppingDetailVC.h; sourceTree = "<group>"; };
+		185A03241E6173C300EB9325 /* ShoppingDetailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShoppingDetailVC.m; path = ../ShoppingDetailVC.m; sourceTree = "<group>"; };
+		185A032A1E618AEE00EB9325 /* PayVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PayVC.h; path = ../PayVC.h; sourceTree = "<group>"; };
+		185A032B1E618AEE00EB9325 /* PayVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PayVC.m; path = ../PayVC.m; sourceTree = "<group>"; };
 		185A032D1E61916700EB9325 /* PayView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PayView.h; sourceTree = "<group>"; };
 		185A032E1E61916700EB9325 /* PayView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PayView.m; sourceTree = "<group>"; };
 		187CEABC1E98BC7200CDA372 /* SignShowCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignShowCell.h; sourceTree = "<group>"; };
 		187CEABD1E98BC7200CDA372 /* SignShowCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignShowCell.m; sourceTree = "<group>"; };
-		18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignMobileVerifyVC.h; sourceTree = "<group>"; };
-		18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignMobileVerifyVC.m; sourceTree = "<group>"; };
-		18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignSucessVC.h; sourceTree = "<group>"; };
-		18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignSucessVC.m; sourceTree = "<group>"; };
-		18ABF8D21E73922A00022368 /* RegisteFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteFailedVC.h; sourceTree = "<group>"; };
-		18ABF8D31E73922A00022368 /* RegisteFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteFailedVC.m; sourceTree = "<group>"; };
-		18ABF8D51E739C7B00022368 /* BindMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BindMailVC.h; sourceTree = "<group>"; };
-		18ABF8D61E739C7B00022368 /* BindMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BindMailVC.m; sourceTree = "<group>"; };
-		18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetAndSetPasswordVC.h; sourceTree = "<group>"; };
-		18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetAndSetPasswordVC.m; sourceTree = "<group>"; };
+		18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignMobileVerifyVC.h; path = ../SignMobileVerifyVC.h; sourceTree = "<group>"; };
+		18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignMobileVerifyVC.m; path = ../SignMobileVerifyVC.m; sourceTree = "<group>"; };
+		18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SignSucessVC.h; path = ../SignSucessVC.h; sourceTree = "<group>"; };
+		18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SignSucessVC.m; path = ../SignSucessVC.m; sourceTree = "<group>"; };
+		18ABF8D21E73922A00022368 /* RegisteFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisteFailedVC.h; path = ../RegisteFailedVC.h; sourceTree = "<group>"; };
+		18ABF8D31E73922A00022368 /* RegisteFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisteFailedVC.m; path = ../RegisteFailedVC.m; sourceTree = "<group>"; };
+		18ABF8D51E739C7B00022368 /* BindMailVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BindMailVC.h; path = ../BindMailVC.h; sourceTree = "<group>"; };
+		18ABF8D61E739C7B00022368 /* BindMailVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BindMailVC.m; path = ../BindMailVC.m; sourceTree = "<group>"; };
+		18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ForgetAndSetPasswordVC.h; path = ../ForgetAndSetPasswordVC.h; sourceTree = "<group>"; };
+		18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ForgetAndSetPasswordVC.m; path = ../ForgetAndSetPasswordVC.m; sourceTree = "<group>"; };
 		18ABF8DB1E73CBBA00022368 /* GetVerifyCodeView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GetVerifyCodeView.h; sourceTree = "<group>"; };
 		18ABF8DC1E73CBBA00022368 /* GetVerifyCodeView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GetVerifyCodeView.m; sourceTree = "<group>"; };
-		18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordSucessVC.h; sourceTree = "<group>"; };
-		18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordSucessVC.m; sourceTree = "<group>"; };
-		18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetPasswordFailedVC.h; sourceTree = "<group>"; };
-		18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetPasswordFailedVC.m; sourceTree = "<group>"; };
-		18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ResetPasswordVC.h; sourceTree = "<group>"; };
-		18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ResetPasswordVC.m; sourceTree = "<group>"; };
-		18ABF8E71E73FE2700022368 /* CommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CommentVC.h; sourceTree = "<group>"; };
-		18ABF8E81E73FE2700022368 /* CommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CommentVC.m; sourceTree = "<group>"; };
+		18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetPasswordSucessVC.h; path = ../SetPasswordSucessVC.h; sourceTree = "<group>"; };
+		18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetPasswordSucessVC.m; path = ../SetPasswordSucessVC.m; sourceTree = "<group>"; };
+		18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SetPasswordFailedVC.h; path = ../SetPasswordFailedVC.h; sourceTree = "<group>"; };
+		18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SetPasswordFailedVC.m; path = ../SetPasswordFailedVC.m; sourceTree = "<group>"; };
+		18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResetPasswordVC.h; path = ../ResetPasswordVC.h; sourceTree = "<group>"; };
+		18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResetPasswordVC.m; path = ../ResetPasswordVC.m; sourceTree = "<group>"; };
+		18ABF8E71E73FE2700022368 /* CommentVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CommentVC.h; path = ../CommentVC.h; sourceTree = "<group>"; };
+		18ABF8E81E73FE2700022368 /* CommentVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CommentVC.m; path = ../CommentVC.m; sourceTree = "<group>"; };
 		18B9F38E1E8633FA00A3A1EC /* SignModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SignModel.h; sourceTree = "<group>"; };
 		18B9F38F1E8633FA00A3A1EC /* SignModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SignModel.m; sourceTree = "<group>"; };
 		18B9F3931E86374800A3A1EC /* MJRefreshAutoFooter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MJRefreshAutoFooter.h; sourceTree = "<group>"; };
@@ -427,8 +428,8 @@
 		18D064081E953E2300264F6E /* ContactModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ContactModel.m; sourceTree = "<group>"; };
 		18D9380C1E704836000EC118 /* LoginVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginVC.h; sourceTree = "<group>"; };
 		18D9380D1E704836000EC118 /* LoginVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginVC.m; sourceTree = "<group>"; };
-		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteVC.h; sourceTree = "<group>"; };
-		18D938101E705EF0000EC118 /* RegisteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteVC.m; sourceTree = "<group>"; };
+		18D9380F1E705EF0000EC118 /* RegisteVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisteVC.h; path = ../RegisteVC.h; sourceTree = "<group>"; };
+		18D938101E705EF0000EC118 /* RegisteVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisteVC.m; path = ../RegisteVC.m; sourceTree = "<group>"; };
 		18DC3A611E5971AC00151834 /* Macro.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		18DC3A681E598D7400151834 /* MessageCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MessageCell.h; sourceTree = "<group>"; };
 		18DC3A691E598D7400151834 /* MessageCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MessageCell.m; sourceTree = "<group>"; };
@@ -440,28 +441,30 @@
 		18F494001E6BD2B50033AC03 /* NSString+PinYin.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+PinYin.m"; sourceTree = "<group>"; };
 		18F494051E6BE9120033AC03 /* AddContactView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AddContactView.h; sourceTree = "<group>"; };
 		18F494061E6BE9120033AC03 /* AddContactView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AddContactView.m; sourceTree = "<group>"; };
-		18F4940B1E6BFFDA0033AC03 /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = AboutVC.h; sourceTree = "<group>"; };
-		18F4940C1E6BFFDA0033AC03 /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AboutVC.m; sourceTree = "<group>"; };
-		18F4940E1E6C06060033AC03 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HelpVC.h; sourceTree = "<group>"; };
-		18F4940F1E6C06060033AC03 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HelpVC.m; sourceTree = "<group>"; };
+		18F4940B1E6BFFDA0033AC03 /* AboutVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AboutVC.h; path = ../AboutVC.h; sourceTree = "<group>"; };
+		18F4940C1E6BFFDA0033AC03 /* AboutVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AboutVC.m; path = ../AboutVC.m; sourceTree = "<group>"; };
+		18F4940E1E6C06060033AC03 /* HelpVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = HelpVC.h; path = ../HelpVC.h; sourceTree = "<group>"; };
+		18F4940F1E6C06060033AC03 /* HelpVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = HelpVC.m; path = ../HelpVC.m; sourceTree = "<group>"; };
 		18F494111E6C086C0033AC03 /* UILabel+Adjust.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UILabel+Adjust.h"; sourceTree = "<group>"; };
 		18F494121E6C086C0033AC03 /* UILabel+Adjust.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UILabel+Adjust.m"; sourceTree = "<group>"; };
-		18F494141E6C14310033AC03 /* SecurityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SecurityVC.h; sourceTree = "<group>"; };
-		18F494151E6C14310033AC03 /* SecurityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SecurityVC.m; sourceTree = "<group>"; };
+		18F494141E6C14310033AC03 /* SecurityVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = SecurityVC.h; path = ../SecurityVC.h; sourceTree = "<group>"; };
+		18F494151E6C14310033AC03 /* SecurityVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = SecurityVC.m; path = ../SecurityVC.m; sourceTree = "<group>"; };
 		18F4941A1E6C1B9D0033AC03 /* PasswordView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PasswordView.h; sourceTree = "<group>"; };
 		18F4941B1E6C1B9D0033AC03 /* PasswordView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PasswordView.m; sourceTree = "<group>"; };
-		18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserAccountVC.h; sourceTree = "<group>"; };
-		18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserAccountVC.m; sourceTree = "<group>"; };
+		18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UserAccountVC.h; path = ../UserAccountVC.h; sourceTree = "<group>"; };
+		18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UserAccountVC.m; path = ../UserAccountVC.m; sourceTree = "<group>"; };
 		18F55C7C1F0D34090032F538 /* CoreText.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreText.framework; path = System/Library/Frameworks/CoreText.framework; sourceTree = SDKROOT; };
 		18F55C7E1F0D3AF50032F538 /* PayUtil.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PayUtil.h; sourceTree = "<group>"; };
-		18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChoosePersonalSignVC.h; sourceTree = "<group>"; };
-		18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChoosePersonalSignVC.m; sourceTree = "<group>"; };
-		18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChooseEnterpriseSignatureVC.h; sourceTree = "<group>"; };
-		18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChooseEnterpriseSignatureVC.m; sourceTree = "<group>"; };
+		18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChoosePersonalSignVC.h; path = ../ChoosePersonalSignVC.h; sourceTree = "<group>"; };
+		18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChoosePersonalSignVC.m; path = ../ChoosePersonalSignVC.m; sourceTree = "<group>"; };
+		18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ChooseEnterpriseSignatureVC.h; path = ../ChooseEnterpriseSignatureVC.h; sourceTree = "<group>"; };
+		18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ChooseEnterpriseSignatureVC.m; path = ../ChooseEnterpriseSignatureVC.m; sourceTree = "<group>"; };
 		18FD19C01E718DA600AA54CF /* RegisteCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteCell.h; sourceTree = "<group>"; };
 		18FD19C11E718DA600AA54CF /* RegisteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteCell.m; sourceTree = "<group>"; };
-		18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RegisteSucessVC.h; sourceTree = "<group>"; };
-		18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteSucessVC.m; sourceTree = "<group>"; };
+		18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisteSucessVC.h; path = ../RegisteSucessVC.h; sourceTree = "<group>"; };
+		18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisteSucessVC.m; path = ../RegisteSucessVC.m; sourceTree = "<group>"; };
+		DB399BF51F1C5A8A00533956 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
+		DB399BF61F1C5A8A00533956 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -705,9 +708,13 @@
 		1831BCC81E575E0A00AAE0E5 /* controller */ = {
 			isa = PBXGroup;
 			children = (
-				185A03261E618A7800EB9325 /* four */,
-				185A03221E6173A300EB9325 /* three */,
-				185A030F1E6140E900EB9325 /* second */,
+				DB9E12231F1CA3D500586089 /* signature */,
+				DB9E12221F1CA33000586089 /* verify */,
+				DB399BEF1F1C587500533956 /* setting */,
+				DB399BED1F1C587500533956 /* contact */,
+				DB399BEE1F1C587500533956 /* order */,
+				DB399BF01F1C587500533956 /* shopping */,
+				DB399BF11F1C587500533956 /* sign */,
 				1831BCC91E575E0A00AAE0E5 /* BaseVC.h */,
 				1831BCCA1E575E0A00AAE0E5 /* BaseVC.m */,
 				1831BCCB1E575E0A00AAE0E5 /* MainVC.h */,
@@ -867,103 +874,6 @@
 				187CEABD1E98BC7200CDA372 /* SignShowCell.m */,
 			);
 			path = view;
-			sourceTree = "<group>";
-		};
-		185A030F1E6140E900EB9325 /* second */ = {
-			isa = PBXGroup;
-			children = (
-				185A03101E61412B00EB9325 /* ShoppingVC.h */,
-				185A03111E61412B00EB9325 /* ShoppingVC.m */,
-				185A03131E61415000EB9325 /* MySignVC.h */,
-				185A03141E61415000EB9325 /* MySignVC.m */,
-				185A03161E61415E00EB9325 /* ContactVC.h */,
-				185A03171E61415E00EB9325 /* ContactVC.m */,
-				185A03191E61416B00EB9325 /* MyOrderVC.h */,
-				185A031A1E61416B00EB9325 /* MyOrderVC.m */,
-				185A031C1E61417900EB9325 /* SetVC.h */,
-				185A031D1E61417900EB9325 /* SetVC.m */,
-				18D9380F1E705EF0000EC118 /* RegisteVC.h */,
-				18D938101E705EF0000EC118 /* RegisteVC.m */,
-				1818E4541E754FBE003B8865 /* VerifyVC.h */,
-				1818E4551E754FBE003B8865 /* VerifyVC.m */,
-				1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */,
-				1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */,
-				18177FEC1E90F3E900BE54D0 /* SignShowVC.h */,
-				18177FED1E90F3E900BE54D0 /* SignShowVC.m */,
-				1818A1371EA896B6003B4274 /* VerifyStateVC.h */,
-				1818A1381EA896B6003B4274 /* VerifyStateVC.m */,
-			);
-			name = second;
-			sourceTree = "<group>";
-		};
-		185A03221E6173A300EB9325 /* three */ = {
-			isa = PBXGroup;
-			children = (
-				185A03231E6173C300EB9325 /* ShoppingDetailVC.h */,
-				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
-				18F4940B1E6BFFDA0033AC03 /* AboutVC.h */,
-				18F4940C1E6BFFDA0033AC03 /* AboutVC.m */,
-				18F494141E6C14310033AC03 /* SecurityVC.h */,
-				18F494151E6C14310033AC03 /* SecurityVC.m */,
-				18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */,
-				18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */,
-				18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */,
-				18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */,
-				18ABF8D21E73922A00022368 /* RegisteFailedVC.h */,
-				18ABF8D31E73922A00022368 /* RegisteFailedVC.m */,
-				18ABF8D51E739C7B00022368 /* BindMailVC.h */,
-				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
-				18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */,
-				18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */,
-				180F11831E757DD40082F385 /* PhotoVC.h */,
-				180F11841E757DD40082F385 /* PhotoVC.m */,
-				180F11E21E75B4490082F385 /* FaceDetectVC.h */,
-				180F11E31E75B4490082F385 /* FaceDetectVC.m */,
-				18177FEF1E90FCBE00BE54D0 /* SignDetailVC.h */,
-				18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */,
-				18236D1E1E9679DC005A7C83 /* AddContactVC.h */,
-				18236D1F1E9679DC005A7C83 /* AddContactVC.m */,
-				18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */,
-				18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */,
-				18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */,
-				18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */,
-				183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */,
-				183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */,
-			);
-			name = three;
-			sourceTree = "<group>";
-		};
-		185A03261E618A7800EB9325 /* four */ = {
-			isa = PBXGroup;
-			children = (
-				185A032A1E618AEE00EB9325 /* PayVC.h */,
-				185A032B1E618AEE00EB9325 /* PayVC.m */,
-				18F4940E1E6C06060033AC03 /* HelpVC.h */,
-				18F4940F1E6C06060033AC03 /* HelpVC.m */,
-				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
-				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
-				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
-				18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */,
-				18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */,
-				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
-				18ABF8E71E73FE2700022368 /* CommentVC.h */,
-				18ABF8E81E73FE2700022368 /* CommentVC.m */,
-				1818E44B1E751518003B8865 /* BindingMailVC.h */,
-				1818E44C1E751518003B8865 /* BindingMailVC.m */,
-				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
-				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
-				18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */,
-				18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */,
-				18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */,
-				18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */,
-				1818A1311EA86400003B4274 /* HelpListVC.h */,
-				1818A1321EA86400003B4274 /* HelpListVC.m */,
-				182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */,
-				182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */,
-				182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */,
-				182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */,
-			);
-			name = four;
 			sourceTree = "<group>";
 		};
 		18B9F38D1E8633CE00A3A1EC /* model */ = {
@@ -1135,6 +1045,133 @@
 			path = util;
 			sourceTree = "<group>";
 		};
+		DB399BED1F1C587500533956 /* contact */ = {
+			isa = PBXGroup;
+			children = (
+				18236D1E1E9679DC005A7C83 /* AddContactVC.h */,
+				18236D1F1E9679DC005A7C83 /* AddContactVC.m */,
+				185A03161E61415E00EB9325 /* ContactVC.h */,
+				185A03171E61415E00EB9325 /* ContactVC.m */,
+			);
+			path = contact;
+			sourceTree = "<group>";
+		};
+		DB399BEE1F1C587500533956 /* order */ = {
+			isa = PBXGroup;
+			children = (
+				185A03191E61416B00EB9325 /* MyOrderVC.h */,
+				185A031A1E61416B00EB9325 /* MyOrderVC.m */,
+			);
+			path = order;
+			sourceTree = "<group>";
+		};
+		DB399BEF1F1C587500533956 /* setting */ = {
+			isa = PBXGroup;
+			children = (
+				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
+				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
+				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
+				18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */,
+				18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */,
+				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
+				182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */,
+				182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */,
+				18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */,
+				18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */,
+				18F494141E6C14310033AC03 /* SecurityVC.h */,
+				18F494151E6C14310033AC03 /* SecurityVC.m */,
+				18D9380F1E705EF0000EC118 /* RegisteVC.h */,
+				18D938101E705EF0000EC118 /* RegisteVC.m */,
+				18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */,
+				18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */,
+				18ABF8D21E73922A00022368 /* RegisteFailedVC.h */,
+				18ABF8D31E73922A00022368 /* RegisteFailedVC.m */,
+				18ABF8E71E73FE2700022368 /* CommentVC.h */,
+				18ABF8E81E73FE2700022368 /* CommentVC.m */,
+				18ABF8D51E739C7B00022368 /* BindMailVC.h */,
+				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
+				1818E44B1E751518003B8865 /* BindingMailVC.h */,
+				1818E44C1E751518003B8865 /* BindingMailVC.m */,
+				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
+				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
+				1818A1311EA86400003B4274 /* HelpListVC.h */,
+				1818A1321EA86400003B4274 /* HelpListVC.m */,
+				18F4940E1E6C06060033AC03 /* HelpVC.h */,
+				18F4940F1E6C06060033AC03 /* HelpVC.m */,
+				18F4940B1E6BFFDA0033AC03 /* AboutVC.h */,
+				18F4940C1E6BFFDA0033AC03 /* AboutVC.m */,
+				185A031C1E61417900EB9325 /* SetVC.h */,
+				185A031D1E61417900EB9325 /* SetVC.m */,
+				18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */,
+				18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */,
+			);
+			path = setting;
+			sourceTree = "<group>";
+		};
+		DB399BF01F1C587500533956 /* shopping */ = {
+			isa = PBXGroup;
+			children = (
+				185A032A1E618AEE00EB9325 /* PayVC.h */,
+				185A032B1E618AEE00EB9325 /* PayVC.m */,
+				185A03101E61412B00EB9325 /* ShoppingVC.h */,
+				185A03111E61412B00EB9325 /* ShoppingVC.m */,
+				185A03231E6173C300EB9325 /* ShoppingDetailVC.h */,
+				185A03241E6173C300EB9325 /* ShoppingDetailVC.m */,
+				DB399BF51F1C5A8A00533956 /* GoodsCell.h */,
+				DB399BF61F1C5A8A00533956 /* GoodsCell.m */,
+			);
+			path = shopping;
+			sourceTree = "<group>";
+		};
+		DB399BF11F1C587500533956 /* sign */ = {
+			isa = PBXGroup;
+			children = (
+				182B4CCE1EA9EB3D00C49874 /* SetSignaturePositionVC.h */,
+				182B4CCF1EA9EB3D00C49874 /* SetSignaturePositionVC.m */,
+				18A4853A1EA4FD1E00A1FE12 /* SignMobileVerifyVC.h */,
+				18A4853B1EA4FD1E00A1FE12 /* SignMobileVerifyVC.m */,
+				18A4853D1EA50F9100A1FE12 /* SignSucessVC.h */,
+				18A4853E1EA50F9100A1FE12 /* SignSucessVC.m */,
+				18177FEC1E90F3E900BE54D0 /* SignShowVC.h */,
+				18177FED1E90F3E900BE54D0 /* SignShowVC.m */,
+				18177FEF1E90FCBE00BE54D0 /* SignDetailVC.h */,
+				18177FF01E90FCBE00BE54D0 /* SignDetailVC.m */,
+				18FC4E971EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.h */,
+				18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */,
+				18FC4E941EA2279200C7BC2E /* ChoosePersonalSignVC.h */,
+				18FC4E951EA2279300C7BC2E /* ChoosePersonalSignVC.m */,
+			);
+			path = sign;
+			sourceTree = "<group>";
+		};
+		DB9E12221F1CA33000586089 /* verify */ = {
+			isa = PBXGroup;
+			children = (
+				180F11E21E75B4490082F385 /* FaceDetectVC.h */,
+				180F11E31E75B4490082F385 /* FaceDetectVC.m */,
+				180F11831E757DD40082F385 /* PhotoVC.h */,
+				180F11841E757DD40082F385 /* PhotoVC.m */,
+				1818A1371EA896B6003B4274 /* VerifyStateVC.h */,
+				1818A1381EA896B6003B4274 /* VerifyStateVC.m */,
+				1818E4541E754FBE003B8865 /* VerifyVC.h */,
+				1818E4551E754FBE003B8865 /* VerifyVC.m */,
+				1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */,
+				1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */,
+			);
+			path = verify;
+			sourceTree = "<group>";
+		};
+		DB9E12231F1CA3D500586089 /* signature */ = {
+			isa = PBXGroup;
+			children = (
+				183FC0BA1EA63A6200DB9A58 /* AddSignatureVC.h */,
+				183FC0BB1EA63A6200DB9A58 /* AddSignatureVC.m */,
+				185A03131E61415000EB9325 /* MySignVC.h */,
+				185A03141E61415000EB9325 /* MySignVC.m */,
+			);
+			path = signature;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1202,7 +1239,7 @@
 				TargetAttributes = {
 					1831BC901E575CC900AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = X9EVRZTDAY;
+						DevelopmentTeam = JP26SR7265;
 					};
 					1831BCA91E575CCA00AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1383,6 +1420,7 @@
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 				180F11A31E75907C0082F385 /* FaceStreamDetectorViewController.m in Sources */,
 				18B9F3DC1E865FFF00A3A1EC /* MessageModel.m in Sources */,
+				DB399BF71F1C5A8A00533956 /* GoodsCell.m in Sources */,
 				1818A1361EA86639003B4274 /* HelpModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1542,7 +1580,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1578,7 +1616,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
 				PROVISIONING_PROFILE = "";
 			};

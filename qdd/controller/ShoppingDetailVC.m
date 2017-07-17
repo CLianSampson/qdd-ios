@@ -24,6 +24,8 @@
 @property(nonatomic,strong)UILabel *number;
 
 
+@property(nonatomic,assign)int price;//获取到的套餐价格
+
 @end
 
 @implementation ShoppingDetailVC
@@ -136,7 +138,6 @@
 
 
 -(void)pay{
-    
     //先获取订单号
     NSString *idstring = [NSString stringWithFormat:@"%d",_setId];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ORDERID];
@@ -162,7 +163,7 @@
             
             PayVC *VC = [[PayVC alloc]init];
             VC.token = self.token;
-            VC.price = [_number.text intValue];
+            VC.price = _price;
             VC.orderId = orderId;
             
             [self.navigationController pushViewController:VC animated:YES];
@@ -281,10 +282,19 @@
             }
             _introduction.text = contents;
             
-            NSString *price = [data objectForKey:@"price"];
-            if ([StringUtil isNullOrBlank:price]) {
-                price = @" ";
+            NSString *priceStr = [data objectForKey:@"price"] ;
+            if ([StringUtil isNullOrBlank:priceStr]) {
+                priceStr = @" ";
             }
+            float priceFloat = [priceStr floatValue]/100;
+            NSString *price = [NSString stringWithFormat:@"%.2f",priceFloat];
+            
+            NSMutableString *priceMutable = [[NSMutableString alloc]initWithString:price];
+            [priceMutable appendString:@"元"];
+            _number.text = priceMutable;
+
+            _price = [priceStr intValue];
+            
             
             
             NSString *num = [data objectForKey:@"num"];
@@ -300,19 +310,19 @@
             if ([StringUtil isNullOrBlank:dtime]) {
                 dtime = @" ";
             }
-            NSMutableString *mutabledtime = [[NSMutableString alloc]initWithString:dtime];
+            NSMutableString *mutabledtime = [[NSMutableString alloc]initWithString:@"有效期: "];
+            [mutabledtime appendString:dtime];
             [mutabledtime appendString:@"天"];
             _time.text = mutabledtime;
             
-            _number.text = [data objectForKey:@"price"];
-        }
+                    }
     }
     
 }
 
 
-
-
-
-
 @end
+
+
+
+

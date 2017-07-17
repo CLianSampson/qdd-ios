@@ -179,8 +179,6 @@
     [self addLoadIndicator];
     
     [self netReauest];
-
-    
 }
 
 
@@ -197,7 +195,6 @@
             //停止刷新
             [tableView.footer endRefreshing];
         }];
-
     }
     
     

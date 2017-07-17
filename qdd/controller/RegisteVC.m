@@ -14,6 +14,7 @@
 #import "RegisteFailedVC.h"
 #import "BindMailVC.h"
 #import "AFNetRequest.h"
+#import "StringUtil.h"
 
 @interface RegisteVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -164,8 +165,6 @@
     if (cell == nil) {
         cell = [[RegisteCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-    
     
     
     if (_flag==1) {
@@ -432,9 +431,24 @@
 }
 
 -(void)netRequest{
+    if ([StringUtil isNullOrBlank:_account] ||
+        [StringUtil isNullOrBlank:_verifyCode] ||
+        [StringUtil isNullOrBlank:_password] ||
+        [StringUtil isNullOrBlank:_repassword] ||
+        [StringUtil isNullOrBlank:_verifyCode] ) {
+        
+        [self createAlertView];
+        self.alertView.title = @"输入内容不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+    
+    
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
+        
         [dic setObject:_account forKey:@"mobile"];
         [dic setObject:_verifyCode forKey:@"mobilecode"];
 

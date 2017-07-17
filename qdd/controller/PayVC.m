@@ -68,7 +68,7 @@
     
     
     UILabel *price = [[UILabel alloc]initWithFrame:CGRectMake(0, background.frame.origin.y+background.frame.size.height, SCREEN_WIDTH, 96*HEIGHT_SCALE)];
-    NSString *pricetsr = [NSString stringWithFormat:@"%d",_price];
+    NSString *pricetsr = [NSString stringWithFormat:@"%.2f",(float)_price/100];
     
     NSMutableString *mutableStr = [[NSMutableString alloc]initWithString:@"   需要支付: "];
     [mutableStr appendString:pricetsr];
@@ -196,7 +196,7 @@
                 [req setKey:PARTNER_ID];
                 
                 //获取到实际调起微信支付的参数后，在app端调起支付
-                NSString *PriceStr = [[NSString alloc]initWithFormat:@"%d",weakSelf.price];
+                NSString *PriceStr = [[NSString alloc]initWithFormat:@"%d",(int)weakSelf.price*100];
                 NSMutableDictionary *dict = [req sendPay_demo:PriceStr atprepayid:result[@"item"][@"prepayid"]];
                 if(dict == nil){
                     //错误提示
@@ -281,6 +281,10 @@
             NSString *orderString = [[NSString alloc] initWithData:result  encoding:NSUTF8StringEncoding];
            
             NSString *appScheme = @"addalipay";
+            
+//            orderString = @"alipay_sdk=alipay-sdk-java-dynamicVersionNo&app_id=2017041206666762&biz_content=%7B%22body%22%3A%22%E6%88%91%E6%98%AF1%E6%95%B0%E6%8D%AE%22%2C%22out_trade_no%22%3A%222017071215462882370%22%2C%22product_code%22%3A%22QUICK_MSECURITY_PAY%22%2C%22subject%22%3A%22%E9%AD%85%E6%A0%BCss%22%2C%22timeout_express%22%3A%2230m%22%2C%22total_amount%22%3A%220.01%22%7D&charset=utf-8&format=JSON&method=alipay.trade.app.pay&notify_url=https%3A%2F%2Ftaxipassenger.yaotaxi.com%2Fssm-crud%2Fcallbacks.do&sign=ZT5eygFAI4Bh%2F9MFAj5UXDy7aGMV2sxzoiBk7EBZTSQSIrTl6x194Ni5POOeqgL7idVY6u2deIFVNhYOOHyDpNWLPiM%2FaawFZe9IkfMuWee58a0GdywXD1vJ2iE3ZjN7JG3rVXGOzrWh7KpyLHV7m7AkOnEyzjCBZPJojCrV6RVtxbcfydAITx2q2iXMts0TrEkI%2FM%2BsO%2FfmJzLkYkvo0%2FotlonY%2BCUWjaikUvkevFF1WnKCB2iO4UlK8a8jqUakNRp49hv83YsnYuhqEpAFdw2ZJTg%2F3dB8wJ23ZDSzJ7vIby%2F2rBHhn5n26QTULyP6rEUCNm8%2Fxb03Dc7bW3Ee6g%3D%3D&sign_type=RSA×tamp=2017-07-12+15%3A46%3A28&version=1.0";
+            
+            NSLog(@"orderString is : %@",orderString);
             
             [[AlipaySDK defaultService] payOrder:orderString fromScheme:appScheme callback:^(NSDictionary *resultDic) {
                             NSLog(@"reslut = %@",resultDic);

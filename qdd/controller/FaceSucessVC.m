@@ -100,17 +100,18 @@
 
 
 -(void)complete{
-    [self showLeft];
-}
+    //退回到主视图，并改变左侧试图的认证状态，并使照片不能点击
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];}
 
 -(void)buy{
-    [self showLeft];
-}
-
--(void)showLeft{
     //退回到主视图，并改变左侧试图的认证状态，并使照片不能点击
     [self.navigationController popToRootViewControllerAnimated:YES];
     [[NSNotificationCenter defaultCenter]postNotificationName:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
+}
+
+-(void)showLeft{
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 @end

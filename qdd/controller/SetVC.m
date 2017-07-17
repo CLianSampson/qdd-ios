@@ -12,6 +12,8 @@
 #import "AboutVC.h"
 #import "SecurityVC.h"
 #import "UserAccountVC.h"
+#import "Constants.h"
+#import "LoginVC.h"
 
 @interface SetVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -49,6 +51,7 @@
     
     [self creteView];
     
+    [self addNotification];
 }
 
 
@@ -76,6 +79,7 @@
     _logoutButton=[[UIButton alloc]initWithFrame:CGRectMake((SCREEN_WIDTH-300)/2, _myTableView.frame.origin.y+_myTableView.frame.size.height+140*HEIGHT_SCALE, 300, 41)];
     [_logoutButton setBackgroundImage:[UIImage imageNamed:@"退出登陆"] forState:UIControlStateNormal];
     [_logoutButton setTitle:@"退出登陆" forState:UIControlStateNormal];
+    [_logoutButton addTarget:self action:@selector(logout) forControlEvents:UIControlEventTouchUpInside];
     
     [self.view addSubview:_logoutButton];
 }
@@ -158,17 +162,20 @@
 
 
 -(void)showLeft{
-    
-    
-    
-    
     [self.sideMenuViewController setContentViewController:self.VC];
 //    [self.sideMenuViewController hideMenuViewController];
     [self.sideMenuViewController presentLeftMenuViewController];
 }
 
 -(void)logout{
-    
+    LoginVC *VC = [[LoginVC alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
+}
+
+
+#pragma mark 认证成功后的通知
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_BIND_MAIL_SUCESS_CONTROLLER object:nil];
 }
 
 

@@ -14,6 +14,7 @@
 #import "PasswordView.h"
 #import "PhotoVC.h"
 #import "FaceDetectVC.h"
+#import "Constants.h"
 
 @interface VerifyVC()<SendSmsCodeDelegete>
 
@@ -131,8 +132,8 @@
 //        
 //        return;
 //    }
-//    
-//    [self netRequest];
+    
+    [self netRequest];
     
     PhotoVC *VC =[[PhotoVC alloc]init];
     VC.token=self.token;
@@ -267,7 +268,7 @@
 
 #pragma mark 认证成功后的通知
 -(void)addNotification{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:@"GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER" object:nil];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
 }
 
 

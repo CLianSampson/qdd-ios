@@ -14,6 +14,8 @@
 
 @property(nonatomic,strong)NSString *content;
 
+@property(nonatomic,strong)UIWebView *webView;
+
 @end
 
 @implementation HelpVC
@@ -40,6 +42,14 @@
     [self.view addSubview:label];
     
     
+    UILabel *sepreate = [[UILabel alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH, 1)];
+    sepreate.backgroundColor = SepreateRGBColor;
+    [self.view addSubview:sepreate];
+    
+    _webView = [[UIWebView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT-61)];
+    [self.view addSubview:_webView];
+    
+    
     [self netReauest];
     
     
@@ -50,7 +60,7 @@
     [self createBackgroungView];
     
     UILabel *label = [[UILabel alloc]initWithFrame:CGRectMake(52*WIDTH_SCALE, 64+62*HEIGHT_SCALE, SCREEN_WIDTH-52*2*WIDTH_SCALE, 30)];
-//    label.text=@"帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助";
+    //label.text=@"帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助帮助";
     
     label.text=_content;
     label.textColor=RGBColor(51, 51, 51);
@@ -59,7 +69,6 @@
     CGFloat height = [UILabel getHeightByWidth:label.frame.size.width title:label.text font:label.font];
     
     label.frame=CGRectMake(52*WIDTH_SCALE, 64+62*HEIGHT_SCALE, SCREEN_WIDTH-52*2*WIDTH_SCALE, height);
-//    label.backgroundColor=[UIColor redColor];
     [self.view addSubview:label];
     
 }
@@ -119,7 +128,9 @@
     
     _content = [data objectForKey:@"content"];
     
-    [self createView];
+//    [self createView];
+    
+    [_webView loadHTMLString:_content baseURL:nil];
 }
 
 

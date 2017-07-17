@@ -32,7 +32,7 @@
     [self.view addSubview:label];
     
     
-    UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 66, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
+    UIView *backgroundView  =[[UIView alloc]initWithFrame:CGRectMake(0, 65, SCREEN_WIDTH, SCREEN_HEIGHT-64)];
     backgroundView.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:backgroundView];
     
@@ -128,15 +128,14 @@
         
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"raw response is : %@",responseObject);
+        
         id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"responseObject is : %@",result);
+        NSLog(@"response jaon is : %@",result);
         
         
         weakSelf.netSucessBlock(result);
             
-        
-
-        
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is : %@",error);
     }];

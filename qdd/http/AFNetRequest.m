@@ -154,8 +154,10 @@
     [manager GET:url parameters:nil progress:^(NSProgress * _Nonnull downloadProgress) {
         
     } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"raw responseObject is : %@",responseObject);
+        
         id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
-        NSLog(@"responseObject is : %@",result);
+        NSLog(@"response json is : %@",result);
         
         self.netSucessBlock(result);
         
@@ -356,5 +358,8 @@
 
 }
 
-
 @end
+
+
+
+

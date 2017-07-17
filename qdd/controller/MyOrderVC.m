@@ -26,6 +26,9 @@
 @property(nonatomic,assign)int orstatus;  //订单状态 未完成0 已完成1 全部 2
 @property(nonatomic,assign)int pageNo;
 
+@property(nonatomic,assign)int price;
+@property(nonatomic,strong)NSString *orderId;
+
 @end
 
 @implementation MyOrderVC
@@ -68,7 +71,7 @@
     
     allButton = [[UIButton alloc]initWithFrame:CGRectMake(0, 64, SCREEN_WIDTH/3, 49)];
 //    allButton.backgroundColor=[UIColor redColor];
-    [allButton addTarget:self action:@selector(all) forControlEvents:UIControlEventTouchUpInside];
+    [allButton addTarget:self action:@selector(allClick) forControlEvents:UIControlEventTouchUpInside];
     [allButton setTitle:@"全部" forState:UIControlStateNormal];
     allButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
@@ -76,7 +79,7 @@
     
     unPayButton = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/3, 64, SCREEN_WIDTH/3, 49)];
 //    unPayButton.backgroundColor=[UIColor yellowColor];
-    [unPayButton addTarget:self action:@selector(unPay) forControlEvents:UIControlEventTouchUpInside];
+    [unPayButton addTarget:self action:@selector(unPayClick) forControlEvents:UIControlEventTouchUpInside];
     [unPayButton setTitle:@"未支付" forState:UIControlStateNormal];
      unPayButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
@@ -85,7 +88,7 @@
     
     payButton = [[UIButton alloc]initWithFrame:CGRectMake(2*SCREEN_WIDTH/3, 64, SCREEN_WIDTH/3, 49)];
 //    payButton.backgroundColor=[UIColor greenColor];
-    [payButton addTarget:self action:@selector(pay) forControlEvents:UIControlEventTouchUpInside];
+    [payButton addTarget:self action:@selector(payClick) forControlEvents:UIControlEventTouchUpInside];
     [payButton setTitle:@"已支付" forState:UIControlStateNormal];
      payButton.titleLabel.font=[UIFont systemFontOfSize:12];
     [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
@@ -146,29 +149,26 @@
 }
 
 
--(void)all{
-    _mutableArry=nil;
-    _pageNo=0;
-    [self netReauest];
-    _orstatus=2;
+-(void)allClick{
     [UIView animateWithDuration:0.5 animations:^{
         [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
         
         [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
         
         [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-
+        
         
         _underLabel.frame=CGRectMake(0+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
     }];
+    
+    _mutableArry=nil;
+    _pageNo=0;
+    _orstatus=2;
+    [self netReauest];
 }
 
 
--(void)unPay{
-    _mutableArry=nil;
-    _pageNo=0;
-    [self netReauest];
-    _orstatus=0;
+-(void)unPayClick{
     [UIView animateWithDuration:0.5 animations:^{
         
         [unPayButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
@@ -178,17 +178,19 @@
         [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
         
         _underLabel.frame= CGRectMake(SCREEN_WIDTH/3+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
-
+        
     }];
+
     
-   }
-
-
--(void)pay{
     _mutableArry=nil;
     _pageNo=0;
+     _orstatus=0;
     [self netReauest];
-    _orstatus=1;
+    
+}
+
+
+-(void)payClick{
     [UIView animateWithDuration:0.5 animations:^{
         
         [payButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
@@ -202,7 +204,10 @@
     }];
 
     
-   
+    _mutableArry=nil;
+    _pageNo=0;
+    _orstatus=1;
+    [self netReauest];
 }
 
 -(void)showLeft{
@@ -298,6 +303,9 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
+    OrderModel *model = (OrderModel *)_mutableArry[indexPath.row];
+    _price = (int)([model.price floatValue]*100);
+    _orderId = model.orderId;
     
     OrderCell *cell = (OrderCell*) [tableView cellForRowAtIndexPath:indexPath];
     cell.delegate=self;
@@ -323,6 +331,9 @@
 #pragma mark -OrderCell delegate
 -(void)payMoney{
     PayVC *VC = [[PayVC alloc]init];
+    VC.price = _price;
+    VC.orderId = _orderId;
+    VC.token = self.token;
     [self.navigationController pushViewController:VC animated:YES];
 }
 
@@ -374,6 +385,7 @@
         [weakSelf.alertView show];
     };
     
+    NSLog(@"获取订单的url is : %@",string2);
     [self netRequestGetWithUrl:string2 Data:nil];
 }
 
@@ -402,6 +414,7 @@
         model.status= [temp objectForKey:@"status"];
         
         model.creatTime = [temp objectForKey:@"ctime"];
+        model.endTime = [temp objectForKey:@"etime"];
         
         model.name = [temp objectForKey:@"name"];
         model.number = [temp objectForKey:@"num"];
@@ -422,10 +435,8 @@
     
 }
 
-
-
-
-
-
-
 @end
+
+
+
+

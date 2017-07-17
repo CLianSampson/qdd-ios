@@ -84,7 +84,7 @@
     [self.view addSubview:copyRight];
     
     UILabel *companyName = [[UILabel alloc]initWithFrame:CGRectMake(0, SCREEN_HEIGHT-180, SCREEN_WIDTH, 12)];
-    companyName.text = @"北京好一点文化传播有限公司";
+    companyName.text = @"北京市律购信息技术有限责任公司";
     companyName.font = [UIFont systemFontOfSize:12];
     companyName.textColor = GrayRGBColor;
     companyName.textAlignment = NSTextAlignmentCenter;

@@ -142,18 +142,28 @@
 
 
 -(void)netRequest{
+    if ([StringUtil isNullOrBlank:_userName.text] || [StringUtil isNullOrBlank:_passWord.text] ) {
+        
+        [self createAlertView];
+        self.alertView.title = @"输入内容不能为空";
+        [self.alertView show];
+        
+        return;
+    }
+    
+
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
     
+//    
+//    [dic setObject:@"18771098004" forKey:@"username"];
+//    [dic setObject:@"1234567" forKey:@"password"];
+//    
+//    _userName.text = @"18771098004";
     
-    [dic setObject:@"18771098004" forKey:@"username"];
-    [dic setObject:@"123456" forKey:@"password"];
-    
-    _userName.text = @"18771098004";
-    
-//    [dic setObject:_userName.text forKey:@"username"];
-//    [dic setObject:_passWord.text forKey:@"password"];
+    [dic setObject:_userName.text forKey:@"username"];
+    [dic setObject:_passWord.text forKey:@"password"];
 
     
     NSLog(@"json data is : %@" ,dic);
@@ -187,7 +197,7 @@
         weakSelf.alertView.title=@"网络有点问题哦，无法加载";
         [weakSelf.alertView show];
     };
-    
+    NSLog(@"登录");
     [self netRequestWithUrl:URL_LOGIN Data:dic];
 }
 
@@ -204,9 +214,6 @@
 
 //判断用户是否授权
 -(void)auth{
-    
-    
-    
     
     if ([StringUtil isNullOrBlank:_tokenString]) {
         [self createAlertView];

@@ -8,6 +8,7 @@
 
 #import "SetPasswordFailedVC.h"
 #import "Macro.h"
+#import "LoginVC.h"
 
 @implementation SetPasswordFailedVC
 
@@ -75,7 +76,9 @@
 
 
 -(void)login{
-    
+    LoginVC *VC = [[LoginVC alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
+
 }
 
 
