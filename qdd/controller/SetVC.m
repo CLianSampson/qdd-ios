@@ -14,6 +14,7 @@
 #import "UserAccountVC.h"
 #import "Constants.h"
 #import "LoginVC.h"
+#import "SaveToMemory.h"
 
 @interface SetVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -168,6 +169,12 @@
 }
 
 -(void)logout{
+    //清空存储的内容
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    [saveToMemory SaveDictionary:dic ToMemory:filePath];
+    
     LoginVC *VC = [[LoginVC alloc]init];
     [self presentViewController:VC animated:YES completion:nil];
 }

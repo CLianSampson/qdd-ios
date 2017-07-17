@@ -27,6 +27,11 @@
 //#import "DataSigner.h"
 #import <AlipaySDK/AlipaySDK.h>
 
+
+#import "SaveToMemory.h"
+#import "Constants.h"
+
+
 @interface AppDelegate ()<WXApiDelegate>
 
 @end
@@ -37,42 +42,58 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     self.window=[[UIWindow alloc]initWithFrame:[UIScreen mainScreen].bounds];
     self.window.backgroundColor=[UIColor whiteColor];
-//    MainVC *VC = [[MainVC alloc]init];
-//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-//   
-//    
-//    LeftVC *leftVC = [[LeftVC alloc] init];
-//    RightVC *rightVC = [[RightVC alloc] init];
-//    
-//     UINavigationController *leftNav =[[UINavigationController alloc]initWithRootViewController:leftVC];
-//    
-//    
-//     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-//    
-//    
-//    self.window.rootViewController=MenuVC;
-//    
-//     MenuVC.contentViewScaleValue=0.69;
     
     
-    
-    LoginVC *VC = [[LoginVC alloc]init];
-    self.window.rootViewController=VC;
-    
-    
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    NSDictionary *dic = [saveToMemory GetDictionary:filePath];
+    if (nil != dic && [dic.allKeys count]!=0) {
+        [self gotoMainVC:dic];
+    }else{
+        LoginVC *VC = [[LoginVC alloc]init];
+        self.window.rootViewController=VC;
+    }
+
     [self.window makeKeyAndVisible];
-    
     
     //配置文件
     [self makeConfiguration];
 
-    
     //向微信注册
     [WXApi registerApp:@"wxc4b128dfb589574c"];
     
     return YES;
 }
 
+
+-(void)gotoMainVC:(NSDictionary *)dic{
+    
+    MainVC *VC = [[MainVC alloc]init];
+    VC.token=[dic objectForKey:TOKEN_KEY];;
+    
+    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
+    
+    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
+    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
+    leftVC.token=[dic objectForKey:TOKEN_KEY];
+
+    rightVC.token=nil;
+    
+    leftVC.authState = [dic objectForKey:AUTH_STATE_KEY];
+    
+    leftVC.verifyState = [dic objectForKey:VERIFY_STATE_KEY];
+    
+    leftVC.phone = [dic objectForKey:PHONE_KEY];
+    
+    leftVC.accountFlag = [dic objectForKey:ACCOUNT_FLAG_KEY];
+
+    
+    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
+    
+    MenuVC.contentViewScaleValue=(float)305/445;
+    
+    self.window.rootViewController=MenuVC;
+}
 
 
 #pragma mark --- 配置文件

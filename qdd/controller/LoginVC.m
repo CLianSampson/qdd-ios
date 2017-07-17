@@ -15,6 +15,9 @@
 #import "AFNetRequest.h"
 #import "MainRigthVC.h"
 #import "MainLeftVC.h"
+#import "SaveToMemory.h"
+#import "Constants.h"
+
 
 
 @interface LoginVC()
@@ -25,6 +28,8 @@
 @property(nonatomic,strong)NSString *tokenString;
 
 @property(nonatomic,assign)int observeState; //观察者状态，监控授权和认证成功
+
+@property(nonatomic,strong)NSMutableDictionary *saveDic; //存储token和其他状态值
 
 @end
 
@@ -150,8 +155,6 @@
         
         return;
     }
-    
-
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
@@ -424,8 +427,6 @@
         MainVC *VC = [[MainVC alloc]init];
         VC.token=_tokenString;
         
-        
-        
         UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
         
         
@@ -446,6 +447,8 @@
             leftVC.accountFlag = ENTERPRISE_ACCOUNT;
         }
         
+        [self saveToMemory];
+        
         
         RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
         
@@ -455,7 +458,26 @@
     }
 }
 
-
+-(void)saveToMemory{
+    //存储到磁盘
+    _saveDic = [[NSMutableDictionary alloc]init];
+    [_saveDic setValue:_tokenString forKey:TOKEN_KEY];
+    [_saveDic setValue:[NSNumber numberWithInt:self.authState] forKey:AUTH_STATE_KEY];
+    [_saveDic setValue:[NSNumber numberWithInt:self.verifyState] forKey:VERIFY_STATE_KEY];
+    [_saveDic setValue:_userName.text forKey:PHONE_KEY];
+    
+    if ([StringUtil isPhoneNum:_userName.text]) {
+        self.accountFlag = USER_ACCOUNT;
+    }else{
+        self.accountFlag = ENTERPRISE_ACCOUNT;
+    }
+    [_saveDic setValue:[NSNumber numberWithInt:self.accountFlag] forKey:ACCOUNT_FLAG_KEY];
+    
+    
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    [saveToMemory SaveDictionary:_saveDic ToMemory:filePath];
+}
 
 
 

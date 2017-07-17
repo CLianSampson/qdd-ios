@@ -75,35 +75,43 @@
 
 -(void)addMjRefresh:(UITableView *)tableView{
     
-    float cellHeight = (48+32+26+28+50)*HEIGHT_SCALE ;
-    float headViewHeight = 0;
-    float height = _mutableArry.count*cellHeight + headViewHeight;
+//    float cellHeight = (48+32+26+28+50)*HEIGHT_SCALE ;
+//    float headViewHeight = 0;
+//    float height = _mutableArry.count*cellHeight + headViewHeight;
+//    
+//    //float比较大于
+//    if (height - _myTableView.frame.size.height > 0.000001) {
+//        //上拉加载
+//        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            _pageNo++;
+//            [self netReauest];
+//            //停止刷新
+//            [tableView.footer endRefreshing];
+//        }];
+//        
+//    }
+//    
+//    //float比较等于
+//    if (fabs(height - _myTableView.frame.size.height) < 0.000001 ||
+//        fabs(_myTableView.frame.size.height - height) < 0.000001) {
+//        
+//        //上拉加载
+//        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+//            _pageNo++;
+//            [self netReauest];
+//            //停止刷新
+//            [tableView.footer endRefreshing];
+//        }];
+//    }
     
-    //float比较大于
-    if (height - _myTableView.frame.size.height > 0.000001) {
-        //上拉加载
-        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            _pageNo++;
-            [self netReauest];
-            //停止刷新
-            [tableView.footer endRefreshing];
-        }];
-        
-    }
-    
-    //float比较等于
-    if (fabs(height - _myTableView.frame.size.height) < 0.000001 ||
-        fabs(_myTableView.frame.size.height - height) < 0.000001) {
-        
-        //上拉加载
-        tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
-            _pageNo++;
-            [self netReauest];
-            //停止刷新
-            [tableView.footer endRefreshing];
-        }];
-    }
-    
+    //上拉加载
+    tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
+        _pageNo++;
+        [self netReauest];
+        //停止刷新
+        [tableView.footer endRefreshing];
+    }];
+
     
 }
 
@@ -259,9 +267,9 @@
     NSArray *arry = [data objectForKey:@"message"];
     if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
         
-        [self createAlertView];
-        self.alertView.title=@"没有更多消息了";
-        [self.alertView show];
+//        [self createAlertView];
+//        self.alertView.title=@"没有更多消息了";
+//        [self.alertView show];
         return;
     }
     

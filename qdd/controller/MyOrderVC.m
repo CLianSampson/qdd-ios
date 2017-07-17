@@ -139,6 +139,10 @@
 
 -(void)addMjRefresh:(UITableView *)tableView{
     
+    if ((_mutableArry.count*96)>(SCREEN_HEIGHT-64-49)) {
+        
+    }
+    
     //上拉加载
     tableView.footer = [MJRefreshAutoNormalFooter footerWithRefreshingBlock:^{
         _pageNo++;
@@ -162,6 +166,7 @@
     }];
     
     _mutableArry=nil;
+    [_myTableView reloadData];
     _pageNo=0;
     _orstatus=2;
     [self netReauest];
@@ -183,6 +188,7 @@
 
     
     _mutableArry=nil;
+    [_myTableView reloadData];
     _pageNo=0;
      _orstatus=0;
     [self netReauest];
@@ -205,6 +211,7 @@
 
     
     _mutableArry=nil;
+    [_myTableView reloadData];
     _pageNo=0;
     _orstatus=1;
     [self netReauest];
@@ -341,9 +348,7 @@
 
 
 -(void)netReauest{
-    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_ORDER];
-    
     
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
@@ -373,8 +378,6 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
     self.netFailedBlock=^(id result){
@@ -425,8 +428,6 @@
         }
         
         [_mutableArry addObject:model];
-        
-        
     }
     
     

@@ -310,9 +310,10 @@
     NSArray *arry = [data objectForKey:@"goods"];
     if (arry==nil ||  [arry isEqual:[NSNull null]] || arry.count==0 ) {
         
-        [self createAlertView];
-        self.alertView.title=@"没有套餐信息";
-        [self.alertView show];
+//        [self createAlertView];
+//        self.alertView.title=@"没有套餐信息";
+//        [self.alertView show];
+        return;
     }else{
         
         if (nil==_mutableArry) {

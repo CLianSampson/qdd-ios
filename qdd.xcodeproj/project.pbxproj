@@ -161,6 +161,7 @@
 		18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C11E718DA600AA54CF /* RegisteCell.m */; };
 		18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */; };
 		DB399BF71F1C5A8A00533956 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB399BF61F1C5A8A00533956 /* GoodsCell.m */; };
+		DBD25C2B1F1CB1B200B4FF99 /* SaveToMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -465,6 +466,8 @@
 		18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisteSucessVC.m; path = ../RegisteSucessVC.m; sourceTree = "<group>"; };
 		DB399BF51F1C5A8A00533956 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
 		DB399BF61F1C5A8A00533956 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
+		DBD25C291F1CB1B200B4FF99 /* SaveToMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToMemory.h; sourceTree = "<group>"; };
+		DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToMemory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -1034,6 +1037,8 @@
 		18DC3A5F1E59707900151834 /* util */ = {
 			isa = PBXGroup;
 			children = (
+				DBD25C291F1CB1B200B4FF99 /* SaveToMemory.h */,
+				DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */,
 				18DC3A611E5971AC00151834 /* Macro.h */,
 				18B9F3D11E863D6000A3A1EC /* TimeUtil.h */,
 				18B9F3D21E863D6000A3A1EC /* TimeUtil.m */,
@@ -1372,6 +1377,7 @@
 				18B9F3C21E86374800A3A1EC /* MJRefreshHeader.m in Sources */,
 				18F494131E6C086C0033AC03 /* UILabel+Adjust.m in Sources */,
 				180F11AA1E75907C0082F385 /* PermissionDetector.m in Sources */,
+				DBD25C2B1F1CB1B200B4FF99 /* SaveToMemory.m in Sources */,
 				1831BD061E575E0A00AAE0E5 /* AFURLRequestSerialization.m in Sources */,
 				1831BC961E575CCA00AAE0E5 /* main.m in Sources */,
 				18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */,
