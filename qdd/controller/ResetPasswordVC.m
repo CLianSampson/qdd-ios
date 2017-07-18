@@ -141,10 +141,10 @@
     
     NSLog(@"json data is : %@" ,dic);
     
-    
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -165,7 +165,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -173,7 +173,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestWithUrl:URL_FORGET_PASSWORD Data:dic];
+    [request netRequestWithUrl:URL_FORGET_PASSWORD Data:dic];
 }
 
 

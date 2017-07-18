@@ -210,22 +210,18 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_MESSAGE];
     
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-    
-    
+    [urlstring appendString:self.token];
     NSString *pageNo =[NSString stringWithFormat:@"/p/%d",_pageNo];
+    [urlstring appendString:pageNo];
     
-    
-    NSString *string1=[appendUrlString stringByAppendingString:pageNo];
-    
-    NSLog(@"string1 is : %@",string1 );
+    NSLog(@"string1 is : %@",urlstring );
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -246,7 +242,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -254,7 +250,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:string1 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

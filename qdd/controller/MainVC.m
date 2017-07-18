@@ -476,21 +476,20 @@
 
 -(void)netReauest{
     
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN];
-
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+   [urlstring appendString:self.token];
     
     NSString *statusString = [NSString stringWithFormat:@"?status=%d",_status];
     NSString *pageNo =[NSString stringWithFormat:@"&p=%d",_pageNo];
     
     
-    NSString *string1=[appendUrlString stringByAppendingString:statusString];
-    NSString *string2=[string1 stringByAppendingString:pageNo];
+    [urlstring appendString:statusString];
+    [urlstring appendString:pageNo];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -511,7 +510,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -519,8 +518,8 @@
         [weakSelf.alertView show];
     };
     
-    NSLog(@"获取首页合同，url is: %@",string2);
-    [self netRequestGetWithUrl:string2 Data:nil];
+    NSLog(@"获取首页合同，url is: %@",urlstring);
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
@@ -565,7 +564,6 @@
 //    [self.view addSubview:_myTableView];
 //    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
-
 }
 
 @end

@@ -116,12 +116,13 @@
 
 
 -(void)netReauest{
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_HELP];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -142,7 +143,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -150,7 +151,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:urlstring Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

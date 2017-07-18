@@ -92,6 +92,9 @@ static NSString *URL_LIST_SIGN_SIGNATURE=@"https://www.qiandd.com/mobile/Contrac
 //获取用户手机号
 static NSString *URL_GET_USER_PHONE=@"https://www.qiandd.com/mobile/Contract/change/token/";
 
+//获取签合同时短信验证码
+static NSString *URL_SIGN_GET_SMS_CODE=@"https://www.qiandd.com/mobile/Contract/sms/token/";
+
 //验证手机验证码
 static NSString *URL_VERIFY_MOBILE_CODE=@"https://www.qiandd.com/mobile/Contract/refre_post/token/";
 
@@ -126,6 +129,7 @@ typedef void (^NetSucessBlock)(id result);
 typedef void (^NetFailedBlock)(id result);
 
 
+
 @interface AFNetRequest : NSObject
 
 @property(nonatomic,copy)PictureBlock pictureBlock;
@@ -134,6 +138,10 @@ typedef void (^NetFailedBlock)(id result);
 @property(nonatomic,copy)NetSucessBlock netSucessBlock;
 @property(nonatomic,copy)NetFailedBlock netFailedBlock;
 
+
+- (void)downLoad:(NSString *)urlString;
+
+- (void)upLoad:(NSString *)urlString image:(UIImage *)image;
 
 -(void)downLoadPicture:(NSString *)urlString;
 
@@ -146,3 +154,7 @@ typedef void (^NetFailedBlock)(id result);
 -(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
 
 @end
+
+
+
+

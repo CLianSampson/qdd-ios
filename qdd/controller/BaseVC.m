@@ -83,7 +83,6 @@
     [_indicator startAnimating];
     
     [self.view addSubview:_indicator];
-    
 }
 
 //AlertView已经消失时执行的事件,alertView代理
@@ -110,14 +109,8 @@
     securityPolicy.validatesDomainName=NO;
     /***************************https**********************************/
     
-   
-    
-    
-
-    
     //设置返回值的解析方式
     manager.responseSerializer = [AFHTTPResponseSerializer serializer];
-    
     
     manager.responseSerializer.acceptableContentTypes = [NSSet setWithObjects:@"application/json", @"text/json", @"text/javascript", @"text/html", nil];
     
@@ -146,7 +139,6 @@
 -(void)netRequestGetWithUrl:(NSString *)url Data:(id )data{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
-    
     //AFSSLPinningModeNone 这个模式表示不做 SSL pinning，只跟浏览器一样在系统的信任机构列表里验证服务端返回的证书。若证书是信任机构签发的就会通过，若是自己服务器生成的证书，这里是不会通过的。
     //AFSSLPinningModeCertificate 这个模式表示用证书绑定方式验证证书，需要客户端保存有服务端的证书拷贝，这里验证分两步，第一步验证证书的域名/有效期等信息，第二步是对比服务端返回的证书跟客户端返回的是否一致。
     //AFSSLPinningModePublicKey 这个模式同样是用证书绑定方式验证，客户端要有服务端的证书拷贝，只是验证时只验证证书里的公钥，不验证证书的有效期等信息。只要公钥是正确的，就能保证通信不会被窃听，因为中间人没有私钥，无法解开通过公钥加密的数据。
@@ -160,9 +152,6 @@
     securityPolicy.validatesDomainName=NO;
     /***************************https**********************************/
     
-    
-
-
     [manager.requestSerializer setValue:@"text/json;charset=UTF-8" forHTTPHeaderField:@"Content-Type"];
     
     //设置返回值的解析方式
@@ -181,8 +170,6 @@
         id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"responseObject is : %@",result);
         
-       
-            
         weakSelf.netSucessBlock(result);
 
         
@@ -190,8 +177,6 @@
         NSLog(@"%@",error);
         weakSelf.netFailedBlock(nil);
     }];
-    
-    
 }
 
 
@@ -213,8 +198,6 @@
         NSLog(@"失败");
         NSLog(@"%@",error);
     }];
-    
-    
 }
 
 

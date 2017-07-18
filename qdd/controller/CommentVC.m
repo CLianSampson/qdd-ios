@@ -262,9 +262,10 @@
 
 
 -(void)netRequest{
-    
-    NSString *mutableUrl =[NSMutableString stringWithString:URL_COMMENT];
-    NSString *url = [mutableUrl stringByAppendingString:self.token];
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    NSString *urlString =[NSMutableString stringWithString:URL_COMMENT];
+    [urlString stringByAppendingString:self.token];
     
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
@@ -280,7 +281,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -299,7 +300,17 @@
         
     };
     
-    [self netRequestWithUrl:url Data:dic];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestWithUrl:urlString Data:dic];
 }
 
 

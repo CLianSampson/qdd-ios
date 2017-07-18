@@ -171,16 +171,16 @@
 
 
 -(void)netReauest{
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSLog(@"appendUrlString is : %@",appendUrlString);
+    NSLog(@"appendUrlString is : %@",urlstring);
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -207,7 +207,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         
         _netFlag = 0;
         
@@ -218,7 +218,7 @@
         [weakSelf.alertView show];
     };
     
-    [self upLoad:appendUrlString image:_icon.image];
+    [request upLoad:urlstring image:_icon.image];
 }
 
 

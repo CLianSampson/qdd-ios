@@ -120,8 +120,10 @@
 
 #pragma  mark store signature
 -(void)storeSignature{
+    
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_STORE_AND_DELETE_SIGNATURE];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
     NSString *signStatus = [NSString stringWithFormat:@"%d",_signStatus];
@@ -157,7 +159,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -176,7 +178,17 @@
         
     };
     
-    [self netRequestWithUrl:appendUrlString Data:paramasDic];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestWithUrl:urlstring Data:paramasDic];
     
 }
 
@@ -185,14 +197,15 @@
 
 
 -(void)gotoMobileVerify{
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_USER_PHONE];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -226,8 +239,19 @@
         
     };
     
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    
+
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
 
 }
 
@@ -317,20 +341,20 @@
         
         return;
     }
-    
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_SHOW];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/id/"];
-    NSString *string2 = [string1 stringByAppendingString:self.signId];
+    [urlstring appendString:@"/id/"];
+    [urlstring appendString:self.signId];
     
-    NSString *string3 = [NSString stringWithFormat:@"p/%d",_pageNo];
-    NSString *string4 = [string2 stringByAppendingString:string3];
+    NSString *string = [NSString stringWithFormat:@"p/%d",_pageNo];
+    [urlstring appendString:string];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -351,7 +375,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -359,7 +383,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:string4 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

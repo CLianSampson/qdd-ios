@@ -572,7 +572,6 @@
 
 #pragma mark  sendSmsCode delegate
 -(void)sendSmsCode{
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     
     
     if (_lawPhone.textField.text==nil
@@ -584,13 +583,15 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_lawPhone.textField.text];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    [urlstring appendString:urlParameters];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -602,11 +603,19 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
@@ -825,15 +834,16 @@
 -(void)uploadPicture:(UIImage *)image{
     [self.view addSubview:self.indicator];
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSLog(@"appendUrlString is : %@",appendUrlString);
+    NSLog(@"appendUrlString is : %@",urlstring);
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -853,11 +863,19 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
-    [self upLoad:appendUrlString image:image];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    
+    [request upLoad:urlstring image:image];
 }
 
 
@@ -902,8 +920,9 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ENTERPRISE_VERIFY];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
 
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
@@ -953,7 +972,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -974,10 +993,18 @@
             [weakSelf.alertView show];
             
         }
-        
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 

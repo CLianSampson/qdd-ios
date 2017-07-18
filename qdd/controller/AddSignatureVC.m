@@ -11,6 +11,8 @@
 #import "SKGraphicView.h"
 #import "Macro.h"
 
+#import "AFNetRequest.h"
+
 @interface AddSignatureVC()
 
 @property(nonatomic,strong)SKGraphicView *drawView; //签名区域
@@ -78,25 +80,16 @@
 
 //上传签名图片获取图片路径
 -(void)netReauest{
-    
-//    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
-    
-//    NSString *path = @"http://192.168.16.34:8082/passengerImpl/test/uploadHeadPicture";
-    
-   
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_SIGNATURE];
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     NSLog(@"appendUrlString is : %@",appendUrlString);
     
-    
-//    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
-//    [dic setObject:@"" forKey:@"sign"];
-    
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
@@ -124,7 +117,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         
         [weakSelf.indicator removeFromSuperview];
         
@@ -133,7 +126,7 @@
         [weakSelf.alertView show];
     };
         
-    [self upLoad:appendUrlString image:_drawView.getDrawingImg];
+    [request upLoad:appendUrlString image:_drawView.getDrawingImg];
 }
 
 

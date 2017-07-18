@@ -10,6 +10,7 @@
 #import "Macro.h"
 
 
+
 @implementation AFNetRequest
 
 
@@ -169,6 +170,36 @@
     
     
 }
+
+
+
+- (void)downLoad:(NSString *)urlString{
+    
+    AFHTTPSessionManager *session = [AFHTTPSessionManager manager];
+    
+    AFHTTPResponseSerializer *serializer=[AFHTTPResponseSerializer serializer];
+    //    serializer.acceptableContentTypes = [NSSet setWithObject:@"image/png"]; // 设置相应的 http header Content-Type
+    serializer.acceptableContentTypes = [NSSet setWithObjects:@"image/png",@"image/jpg",@"image/gif",@"image/jpeg", nil];
+    session.responseSerializer=serializer;
+    
+    [session GET:urlString parameters:nil success:^(NSURLSessionDataTask *task, id responseObject) {
+        
+        NSLog(@"down load sucess");
+        
+        self.pictureBlock(responseObject);
+    } failure:^(NSURLSessionDataTask *task, NSError *error) {
+        NSLog(@"失败");
+        NSLog(@"%@",error);
+    }];
+    
+    
+}
+
+
+
+
+
+
 
 
 
@@ -357,6 +388,40 @@
     }];
 
 }
+
+
+
+- (void)upLoad:(NSString *)urlString image:(UIImage *)image{
+    
+    //1。创建管理者对象
+    AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
+    
+    [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
+        //上传文件参数
+        NSData *data = UIImagePNGRepresentation(image);
+        //这个就是参数
+        [formData appendPartWithFileData:data name:@"sign" fileName:@"123.png" mimeType:@"image/png"];
+        
+    } progress:^(NSProgress * _Nonnull uploadProgress) {
+        
+        //打印下上传进度
+        NSLog(@"%lf",1.0 *uploadProgress.completedUnitCount / uploadProgress.totalUnitCount);
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        
+        //请求成功
+        NSLog(@"请求成功：%@",responseObject);
+        
+        self.netSucessBlock(responseObject);
+        
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        
+        //请求失败
+        NSLog(@"请求失败：%@",error);
+        self.netFailedBlock(nil);
+    }];
+}
+
+
 
 @end
 

@@ -210,20 +210,21 @@
 
 -(void)netReauest{
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGN_SIGNATURE];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/status/"];
+    [urlstring appendString:@"/status/"];
     
     NSString *status = @"0";  //签章状态，0代表个人签章 1代表企业签章
     
-    NSString *string2 = [string1 stringByAppendingString:status];
+    [urlstring appendString:status];
     
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -244,7 +245,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -252,7 +253,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:string2 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

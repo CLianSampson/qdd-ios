@@ -170,8 +170,10 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_USER_VERIFY];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
@@ -188,7 +190,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -207,7 +209,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -215,7 +217,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 -(void)doSucess:(id )result{
@@ -227,7 +229,6 @@
 
 -(void)sendSmsCode{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     
     if ([StringUtil isNullOrBlank:_phone.textField.text]) {
         [self createAlertView];
@@ -237,15 +238,16 @@
         return;
     }
     
-    
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phone.textField.text];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+   [urlstring appendString:urlParameters];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -259,11 +261,19 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 #pragma mark 认证成功后的通知

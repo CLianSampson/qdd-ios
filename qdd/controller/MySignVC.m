@@ -357,9 +357,9 @@
     if (dic==nil
         || [dic isEqual:[NSNull null]]) {
         
-        [self createAlertView];
-        self.alertView.title=@"没有企业签章";
-        [self.alertView show];
+//        [self createAlertView];
+//        self.alertView.title=@"没有企业签章";
+//        [self.alertView show];
         
     }else{
         _enterpriseSignatureModel = [[SignatureModel alloc]init];
@@ -367,8 +367,6 @@
         _enterpriseSignatureModel.path= [dic objectForKey:@"path"];
         _enterpriseSignatureModel.uid = [dic objectForKey:@"uid"];
     }
-    
-    
     
     [_myTableView reloadData];
     
@@ -421,21 +419,21 @@
 -(void)deleteSignature:(UIButton *)sender{
     NSLog(@"delete button click sucess");
     
-    //获取model
-    SignatureCell *cell = (SignatureCell *)[sender superview];
+    //获取model[
+    SignatureCell *cell = (SignatureCell *)[[sender superview] superview];
     
     NSIndexPath * indexPath = [_myTableView indexPathForCell:cell];
     
     SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
     
-    
+    NSLog(@"删除签章 cell 行数 是 : %ld",(long)indexPath.row);
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_DELETE_SLGNATURE];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/signid/"];
-    NSString *string2 = [string1 stringByAppendingString:model.signatureId];
+    [urlstring appendString:@"/signid/"];
+    [urlstring appendString:model.signatureId];
     
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
@@ -449,9 +447,13 @@
         if ([state isEqualToString:@"success"]) {
             [weakSelf.indicator removeFromSuperview];
             
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
+//            [weakSelf createAlertView];
+//            weakSelf.alertView.title=info;
+//            [weakSelf.alertView show];
+            
+            //重新刷新tableview
+            _mutableArry = nil;
+            [self netReauest];
             
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf.indicator removeFromSuperview];
@@ -465,8 +467,8 @@
         
     };
     
-    
-    [request netRequestGetWithUrl:string2 Data:nil];
+    NSLog(@"删除签章 url is : %@",urlstring);
+    [request netRequestGetWithUrl:urlstring Data:nil];
 
 }
 

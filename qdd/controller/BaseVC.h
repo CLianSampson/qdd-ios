@@ -84,15 +84,15 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 
 -(void)showLeft;
 
--(void)netRequestWithUrl:(NSString *)url Data:(id )data;
-
--(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
-
-- (void)downLoad:(NSString *)urlString;
+//-(void)netRequestWithUrl:(NSString *)url Data:(id )data;
+//
+//-(void)netRequestGetWithUrl:(NSString *)url Data:(id )data;
+//
+//- (void)downLoad:(NSString *)urlString;
 
 -(void)addLoadIndicator;
 
--(void)upLoad:(NSString *)urlString image:(UIImage *)image;
+//-(void)upLoad:(NSString *)urlString image:(UIImage *)image;
 
 -(void)gotoMainController;
 

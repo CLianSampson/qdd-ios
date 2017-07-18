@@ -79,13 +79,13 @@
 
     rightVC.token=nil;
     
-    leftVC.authState = [dic objectForKey:AUTH_STATE_KEY];
+    leftVC.authState = [( (NSNumber *)[dic objectForKey:AUTH_STATE_KEY] ) intValue];
     
-    leftVC.verifyState = [dic objectForKey:VERIFY_STATE_KEY];
+    leftVC.verifyState =[( (NSNumber *)[dic objectForKey:VERIFY_STATE_KEY] ) intValue];
     
     leftVC.phone = [dic objectForKey:PHONE_KEY];
     
-    leftVC.accountFlag = [dic objectForKey:ACCOUNT_FLAG_KEY];
+    leftVC.accountFlag = [( (NSNumber *)[dic objectForKey:ACCOUNT_FLAG_KEY] ) intValue];
 
     
     RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];

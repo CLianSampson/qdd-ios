@@ -376,8 +376,6 @@
 
 -(void)sendSmsCode{
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
-    
     if (_flag==1) {
         if (_account==nil) {
             [self createAlertView];
@@ -388,14 +386,15 @@
         }
     }
     
-   
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_account];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    [urlstring appendString:urlParameters];
     
     __weak typeof(self) weakSelf=self;
 
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
       
@@ -413,21 +412,31 @@
         
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 -(void)sendPictureCode{
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     __weak typeof(self) weakSelf=self;
 
-    self.pictureBlock=^(id result){
+    request.pictureBlock=^(id result){
         
         weakSelf.verifyCodeImage =[UIImage imageWithData:result];
               [weakSelf.myTableView reloadData];
     
     };
     
-    [self downLoad:URL_PICTURE_CODE];
+    [request downLoad:URL_PICTURE_CODE];
 }
 
 -(void)netRequest{
@@ -445,7 +454,7 @@
     }
     
     
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
         
@@ -468,7 +477,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
        
@@ -487,7 +496,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -495,9 +504,12 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestWithUrl:URL_REGISTER Data:dic];
+    [request netRequestWithUrl:URL_REGISTER Data:dic];
 }
 
-
-
 @end
+
+
+
+
+

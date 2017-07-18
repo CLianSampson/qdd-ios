@@ -9,6 +9,7 @@
 #import "SetPasswordVC.h"
 #import "Macro.h"
 #import "PasswordView.h"
+#import "AFNetRequest.h"
 
 @interface SetPasswordVC()
 
@@ -163,9 +164,10 @@
 
 -(void)netRequest{
     
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_RESET_PASSWORD];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     
@@ -179,7 +181,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -202,7 +204,7 @@
         
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 

@@ -137,20 +137,21 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SEARCH_USER];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-    
-    
+    [urlstring appendString:self.token];
     
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:_searchBar.text forKey:@"idname"];
     
-    NSLog(@"%@",appendUrlString);
+    NSLog(@"%@",urlstring);
     NSLog(@"dic is %@",dic);
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -171,7 +172,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -179,7 +180,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 
@@ -226,8 +227,11 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_USER];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     
     
@@ -239,7 +243,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -262,7 +266,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -270,7 +274,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 

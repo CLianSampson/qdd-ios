@@ -120,6 +120,7 @@
 
 
 -(void)netReauest{
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
     
@@ -127,7 +128,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -144,11 +145,9 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    [request netRequestGetWithUrl:appendUrlString Data:nil];
 }
 
 

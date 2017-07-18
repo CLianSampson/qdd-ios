@@ -345,6 +345,7 @@
 
 
 -(void)netReauest{
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     
     if ([StringUtil isNullOrBlank:self.token]
         || [StringUtil isNullOrBlank:self.signId]) {
@@ -354,17 +355,17 @@
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_SHOW];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/id/"];
-    NSString *string2 = [string1 stringByAppendingString:self.signId];
+    [urlstring appendString:@"/id/"];
+    [urlstring appendString:self.signId];
     
-    NSString *string3 = [NSString stringWithFormat:@"p/%d",_pageNo];
-    NSString *string4 = [string2 stringByAppendingString:string3];
+    NSString *string = [NSString stringWithFormat:@"p/%d",_pageNo];
+    [urlstring appendString:string];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -385,7 +386,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -393,7 +394,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:string4 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
@@ -433,16 +434,17 @@
         return;
     }
     
+    AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_REFUSE_SIGN];
     
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/id/"];
-    NSString *string2 = [string1 stringByAppendingString:self.signId];
+    [urlstring appendString:@"/id/"];
+    [urlstring appendString:self.signId];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -465,7 +467,7 @@
         
     };
     
-    self.netFailedBlock=^(id result){
+    request.netFailedBlock=^(id result){
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -473,7 +475,7 @@
         [weakSelf.alertView show];
     };
     
-    [self netRequestGetWithUrl:string2 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

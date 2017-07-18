@@ -131,18 +131,16 @@
 
 
 -(void)netReauest{
-    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_DETAIL];
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
-    
-    NSString *string1=[appendUrlString stringByAppendingString:@"/id/"];
-    
-    NSString *string2=[string1 stringByAppendingString:_signId];
+    [urlstring appendString:self.token];
+    [urlstring appendString:@"/id/"];
+    [urlstring appendString:_signId];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -159,12 +157,19 @@
             [weakSelf.alertView show];
             
         }
+    };
+    
+    request.netFailedBlock=^(id result){
         
+        [weakSelf.indicator removeFromSuperview];
         
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
     };
     
     
-    [self netRequestGetWithUrl:string2 Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 

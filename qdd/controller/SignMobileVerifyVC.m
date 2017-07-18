@@ -113,39 +113,54 @@
 
 #pragma mark GetVerifyCodeView delegate
 -(void)sendSmsCode{
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_GET_SMS_CODE];
+    [urlstring appendString:self.token];
     
-    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phoneNum];
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:urlParameters];
+    NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
+    [dic setObject:_phoneNum forKey:@"mobile"];
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
         if ([state isEqualToString:@"success"]) {
-           
+            [weakSelf createAlertView];
+            weakSelf.alertView.title=info;
+            [weakSelf.alertView show];
             
         }else if ([state isEqualToString:@"fail"]){
+            [weakSelf.indicator removeFromSuperview];
+            
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
             
         }
         
-        
     };
     
-    [self netRequestGetWithUrl:appendUrlString Data:nil];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [request netRequestWithUrl:urlstring Data:dic];
+    
 }
 
 
 -(void)verifySmsCode{
     
+    AFNetRequest *request =[[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_VERIFY_MOBILE_CODE];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
     
     NSMutableDictionary *dic = [[NSMutableDictionary alloc]init];
     [dic setObject:_phoneNum forKey:@"mobile"];
@@ -154,7 +169,7 @@
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -173,28 +188,37 @@
         
     };
     
-    [self netRequestWithUrl:appendUrlString Data:dic];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+    
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 
 #pragma mark   //签合同
 -(void)signSignature{
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_SIGNATURE];
-    NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
+    [urlstring appendString:self.token];
+    [urlstring appendString:@"/id/"];
+    [urlstring appendString:_signId];
     
-    NSString *string1 = [appendUrlString stringByAppendingString:@"/id/"];
+    NSString *string= [NSString stringWithFormat:@"/status/%d",_signStatus];
     
-    NSString *string2 = [string1 stringByAppendingString:_signId];
+   [urlstring appendString:string];
     
-    NSString *string3 = [NSString stringWithFormat:@"/status/%d",_signStatus];
-    
-    NSString *string4 = [string2 stringByAppendingString:string3];
-    
-    NSLog(@"url is : %@",string4);
+    NSLog(@"url is : %@",urlstring);
     
     __weak typeof(self) weakSelf=self;
     
-    self.netSucessBlock=^(id result){
+    request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -219,7 +243,17 @@
     };
     
     
-    [self netRequestGetWithUrl:string4 Data:nil];
+    request.netFailedBlock=^(id result){
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
+        [weakSelf.alertView show];
+    };
+
+    
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
@@ -231,7 +265,5 @@
 -(void)touchesBegan:(NSSet *)touches withEvent:(UIEvent *)event{
     [_code.textField resignFirstResponder];
 }
-
-
 
 @end

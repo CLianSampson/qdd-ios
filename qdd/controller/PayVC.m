@@ -98,39 +98,36 @@
    
     
     
-    PayView *weChat = [[PayView alloc]initWithFrame:CGRectMake(0, ailPay.frame.origin.y+ailPay.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
-    weChat.name.text=@"微信";
-     [weChat.icon setImage:[UIImage imageNamed:@"微信图标"]];
-    weChat.name.font=[UIFont systemFontOfSize:13];
-    [self.view addSubview:weChat];
+//    PayView *weChat = [[PayView alloc]initWithFrame:CGRectMake(0, ailPay.frame.origin.y+ailPay.frame.size.height, SCREEN_WIDTH, 97*HEIGHT_SCALE)];
+//    weChat.name.text=@"微信";
+//     [weChat.icon setImage:[UIImage imageNamed:@"微信图标"]];
+//    weChat.name.font=[UIFont systemFontOfSize:13];
+//    [self.view addSubview:weChat];
     
     
     __weak typeof(ailPay) weakAilPay = ailPay;
     ailPay.payBlock = ^(){
         [weakAilPay.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-        [weChat.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
+//        [weChat.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
         _payFlag = 2;
     };
 
-    __weak typeof(weChat) weakWeChat = weChat;
-    weChat.payBlock = ^(){
-        [weakWeChat.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
-        [ailPay.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
-        _payFlag = 1;
-    };
+//    __weak typeof(weChat) weakWeChat = weChat;
+//    weChat.payBlock = ^(){
+//        [weakWeChat.choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
+//        [ailPay.choose  setBackgroundImage:[UIImage imageNamed:@"未选中按钮"] forState:UIControlStateNormal];
+//        _payFlag = 1;
+//    };
     
 
     
-    UIButton *confirm = [[UIButton alloc]initWithFrame:CGRectMake(50*WIDTH_SCALE, weChat.frame.origin.y+weChat.frame.size.height+178*HEIGHT_SCALE, 650*WIDTH_SCALE, 80*HEIGHT_SCALE)];
+    UIButton *confirm = [[UIButton alloc]initWithFrame:CGRectMake(50*WIDTH_SCALE, ailPay.frame.origin.y+ailPay.frame.size.height+178*HEIGHT_SCALE, 650*WIDTH_SCALE, 80*HEIGHT_SCALE)];
     [confirm setTitle:@"确定" forState:UIControlStateNormal];
     [confirm setBackgroundColor:RGBColor(0, 54, 99)];
     confirm.titleLabel.font=[UIFont systemFontOfSize:17];
     [confirm addTarget:self action:@selector(confirm) forControlEvents:UIControlEventTouchUpInside];
     confirm.layer.cornerRadius=5;
     [self.view addSubview:confirm];
-    
-    
-    
 }
 
 
