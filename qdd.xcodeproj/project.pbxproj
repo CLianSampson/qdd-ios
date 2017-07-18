@@ -160,6 +160,8 @@
 		18FC4E991EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FC4E981EA2378600C7BC2E /* ChooseEnterpriseSignatureVC.m */; };
 		18FD19C21E718DA600AA54CF /* RegisteCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C11E718DA600AA54CF /* RegisteCell.m */; };
 		18FD19C51E71B5CF00AA54CF /* RegisteSucessVC.m in Sources */ = {isa = PBXBuildFile; fileRef = 18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */; };
+		DB32046B1F1E5FF000C017FD /* ChangePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32046A1F1E5FF000C017FD /* ChangePhoneVC.m */; };
+		DB32046E1F1E65F600C017FD /* UserPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32046D1F1E65F600C017FD /* UserPhoneVC.m */; };
 		DB399BF71F1C5A8A00533956 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB399BF61F1C5A8A00533956 /* GoodsCell.m */; };
 		DBD25C2B1F1CB1B200B4FF99 /* SaveToMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */; };
 /* End PBXBuildFile section */
@@ -464,6 +466,10 @@
 		18FD19C11E718DA600AA54CF /* RegisteCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RegisteCell.m; sourceTree = "<group>"; };
 		18FD19C31E71B5CF00AA54CF /* RegisteSucessVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = RegisteSucessVC.h; path = ../RegisteSucessVC.h; sourceTree = "<group>"; };
 		18FD19C41E71B5CF00AA54CF /* RegisteSucessVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = RegisteSucessVC.m; path = ../RegisteSucessVC.m; sourceTree = "<group>"; };
+		DB3204691F1E5FF000C017FD /* ChangePhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ChangePhoneVC.h; sourceTree = "<group>"; };
+		DB32046A1F1E5FF000C017FD /* ChangePhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChangePhoneVC.m; sourceTree = "<group>"; };
+		DB32046C1F1E65F600C017FD /* UserPhoneVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UserPhoneVC.h; sourceTree = "<group>"; };
+		DB32046D1F1E65F600C017FD /* UserPhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPhoneVC.m; sourceTree = "<group>"; };
 		DB399BF51F1C5A8A00533956 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
 		DB399BF61F1C5A8A00533956 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
 		DBD25C291F1CB1B200B4FF99 /* SaveToMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToMemory.h; sourceTree = "<group>"; };
@@ -1109,6 +1115,10 @@
 				185A031D1E61417900EB9325 /* SetVC.m */,
 				18F4941D1E6C2BB70033AC03 /* UserAccountVC.h */,
 				18F4941E1E6C2BB70033AC03 /* UserAccountVC.m */,
+				DB3204691F1E5FF000C017FD /* ChangePhoneVC.h */,
+				DB32046A1F1E5FF000C017FD /* ChangePhoneVC.m */,
+				DB32046C1F1E65F600C017FD /* UserPhoneVC.h */,
+				DB32046D1F1E65F600C017FD /* UserPhoneVC.m */,
 			);
 			path = setting;
 			sourceTree = "<group>";
@@ -1330,6 +1340,7 @@
 				18314D991E62C0B20046A127 /* SignImageView.m in Sources */,
 				180F11E41E75B4490082F385 /* FaceDetectVC.m in Sources */,
 				182B4CCD1EA9E28D00C49874 /* SetPasswordVC.m in Sources */,
+				DB32046B1F1E5FF000C017FD /* ChangePhoneVC.m in Sources */,
 				1831BD041E575E0A00AAE0E5 /* AFNetworkReachabilityManager.m in Sources */,
 				18D064091E953E2300264F6E /* ContactModel.m in Sources */,
 				18B9F3D31E863D6000A3A1EC /* TimeUtil.m in Sources */,
@@ -1386,6 +1397,7 @@
 				18B9F3CE1E86374800A3A1EC /* UIScrollView+MJExtension.m in Sources */,
 				18ABF8D41E73922A00022368 /* RegisteFailedVC.m in Sources */,
 				185A03151E61415000EB9325 /* MySignVC.m in Sources */,
+				DB32046E1F1E65F600C017FD /* UserPhoneVC.m in Sources */,
 				18177FF11E90FCBE00BE54D0 /* SignDetailVC.m in Sources */,
 				185A032F1E61916700EB9325 /* PayView.m in Sources */,
 				185A031E1E61417900EB9325 /* SetVC.m in Sources */,

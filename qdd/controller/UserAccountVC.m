@@ -11,6 +11,7 @@
 #import "AccountCell.h"
 #import "BindingMailVC.h"
 #import "AFNetRequest.h"
+#import "UserPhoneVC.h"
 
 @interface UserAccountVC()<UITableViewDelegate,UITableViewDataSource>
 
@@ -197,14 +198,23 @@
 
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.section == 0) {
+        return;
+    }
     
-    if (indexPath.section==1) {
+    
+    if (self.accountFlag == USER_ACCOUNT) {
         BindingMailVC *VC =[[BindingMailVC alloc]init];
         VC.token=self.token;
         [self.navigationController pushViewController:VC animated:YES];
+    }else{
+        UserPhoneVC *VC = [[UserPhoneVC alloc]init];
+        VC.token = self.token;
+        VC.phone = _phone;
+        [self.navigationController pushViewController:VC animated:YES];
     }
     
-    return;
+    
 }
 
 
@@ -226,7 +236,7 @@
         return nil;
     }
     
-    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 10)];
+    UIView *header = [[UIView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, 26*HEIGHT_SCALE)];
     header.backgroundColor=RGBColor(241, 241, 241);
     
     
@@ -234,7 +244,7 @@
     upperSeprate.backgroundColor=SepreateRGBColor;
     [header addSubview:upperSeprate];
     
-    UILabel *underSeprate =[[UILabel alloc]initWithFrame:CGRectMake(0, 9, SCREEN_WIDTH, 1)];
+    UILabel *underSeprate =[[UILabel alloc]initWithFrame:CGRectMake(0, 26*HEIGHT_SCALE-1, SCREEN_WIDTH, 1)];
     underSeprate.backgroundColor=SepreateRGBColor;
     [header addSubview:underSeprate];
     
