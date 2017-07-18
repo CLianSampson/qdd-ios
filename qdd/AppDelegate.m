@@ -69,7 +69,9 @@
 -(void)gotoMainVC:(NSDictionary *)dic{
     
     MainVC *VC = [[MainVC alloc]init];
-    VC.token=[dic objectForKey:TOKEN_KEY];;
+    VC.token=[dic objectForKey:TOKEN_KEY];
+    VC.authState = [( (NSNumber *)[dic objectForKey:AUTH_STATE_KEY] ) intValue];
+
     
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     

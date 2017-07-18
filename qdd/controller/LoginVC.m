@@ -229,9 +229,7 @@
     AFNetRequest *request = [[AFNetRequest alloc]init];
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_IS_AUTH];
-    
-    
-    NSString *appendUrlString=[urlstring stringByAppendingString:_tokenString];
+    [urlstring appendString:_tokenString];
     
     
     __weak typeof(self) weakSelf=self;
@@ -265,7 +263,7 @@
         [weakSelf.alertView show];
     };
     
-    [request netRequestGetWithUrl:appendUrlString Data:nil];
+    [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
@@ -289,55 +287,15 @@
     }
     
     //设置授权状态
-    if (authStateStr.intValue==0) {
+    if ([authStateStr intValue]==0) {
         self.authState = NOT_AUTH;
-    }else if (authStateStr.intValue==1){
+    }else if ([authStateStr intValue]==1){
         self.authState = HAVE_AUTH;
     }else{
         [self createAlertView];
         self.alertView.title=@"系统有点问题";
         [self.alertView show];
     }
-
-    
-    
-//    MainVC *VC = [[MainVC alloc]init];
-//    VC.token=_tokenString;
-//    
-//    
-//    
-//    UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
-//    
-//    
-//    MainLeftVC *leftVC = [[MainLeftVC alloc] init];
-//    MainRigthVC *rightVC = [[MainRigthVC alloc] init];
-//    leftVC.token=_tokenString;
-//    rightVC.token=nil;
-//    
-//    //设置授权状态
-//    if (authStateStr.intValue==0) {
-//        leftVC.authState = NOT_AUTH;
-//    }else if (authStateStr.intValue==1){
-//        leftVC.authState = HAVE_AUTH;
-//    }else{
-//        [self createAlertView];
-//        self.alertView.title=@"系统有点问题";
-//        [self.alertView show];
-//    }
-//    
-//    
-//    if ([StringUtil isPhoneNum:_userName.text]) {
-//        leftVC.accountFlag = USER_ACCOUNT;
-//    }else{
-//        leftVC.accountFlag = ENTERPRISE_ACCOUNT;
-//    }
-//    
-//    
-//    RESideMenu *MenuVC=[[RESideMenu alloc]initWithContentViewController:nav leftMenuViewController:leftVC rightMenuViewController:rightVC];
-//    
-//    MenuVC.contentViewScaleValue=(float)305/445;
-//    
-//    [self presentViewController:MenuVC animated:YES completion:nil];
     
     [self updateObserverState];
 }

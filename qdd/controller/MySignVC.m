@@ -69,7 +69,7 @@
     
     
     
-    UILabel *under = [[UILabel alloc]initWithFrame:CGRectMake(0, backGround.frame.origin.y+backGround.frame.size.height+1, SCREEN_WIDTH, 1)];
+    UILabel *under = [[UILabel alloc]initWithFrame:CGRectMake(0, backGround.frame.origin.y+backGround.frame.size.height, SCREEN_WIDTH, 1)];
     under.backgroundColor=RGBColor(209, 209, 209);
     [self.view addSubview:under];
     

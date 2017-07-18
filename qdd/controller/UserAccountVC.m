@@ -114,9 +114,9 @@
                 cell.leftLabel.text=@"邮箱";
                 
                 NSMutableString *mustableString = [NSMutableString stringWithString:_mail];
-                NSString *string =[mustableString stringByAppendingString:@" >"];
+                [mustableString appendString:@" >"];
                 
-                cell.rightLabel.text=string;
+                cell.rightLabel.text=mustableString;
                 
             }
             
@@ -157,9 +157,9 @@
                 cell.leftLabel.text=@"法人手机号";
                 
                 NSMutableString *mustableString = [NSMutableString stringWithString:_phone];
-                NSString *string =[mustableString stringByAppendingString:@" >"];
+                [mustableString appendString:@" >"];
                 
-                cell.rightLabel.text=string;
+                cell.rightLabel.text=mustableString;
                 
             }
             
@@ -192,10 +192,6 @@
         
         return cell;
     }
-    
-    
-    
-   
 }
 
 
@@ -307,9 +303,6 @@
      _account =[data objectForKey:@"idname"];
      _mail =[data objectForKey:@"mail"];
      _phone =[data objectForKey:@"tel"];
-    
-    
-   
     
     [_tableView reloadData];
     

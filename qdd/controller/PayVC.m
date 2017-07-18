@@ -57,12 +57,12 @@
     upperLine.backgroundColor=SepreateRGBColor;
     [self.view addSubview:upperLine];
     
-    UILabel *background = [[UILabel alloc]initWithFrame:CGRectMake(0, 64+2, SCREEN_WIDTH, 24*HEIGHT_SCALE)];
+    UILabel *background = [[UILabel alloc]initWithFrame:CGRectMake(0, 64+1, SCREEN_WIDTH, 24*HEIGHT_SCALE)];
     background.backgroundColor=RGBColor(241, 241, 241);
     [self.view addSubview:background];
     
     
-    UILabel *underLine = [[UILabel alloc]initWithFrame:CGRectMake(0, background.frame.origin.y+background.frame.size.height+1, SCREEN_WIDTH, 1)];
+    UILabel *underLine = [[UILabel alloc]initWithFrame:CGRectMake(0, background.frame.origin.y+background.frame.size.height, SCREEN_WIDTH, 1)];
     underLine.backgroundColor=SepreateRGBColor;
     [self.view addSubview:underLine];
     
