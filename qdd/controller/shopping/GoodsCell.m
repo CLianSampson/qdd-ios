@@ -18,7 +18,7 @@
     
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
-        _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 7, 100, 30)];
+        _priceLabel = [[UILabel alloc]initWithFrame:CGRectMake(10, 10, 100, 40)];
 //        _priceLabel.text = @"100元／1次";
         _priceLabel.font = [UIFont systemFontOfSize:13];
         _priceLabel.layer.borderWidth = 1;
@@ -28,18 +28,19 @@
         
         [self addSubview:_priceLabel];
         
-        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width + 10, 7, SCREEN_WIDTH-130, 15)];
+        _titleLabel = [[UILabel alloc]initWithFrame:CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width + 10, 10, SCREEN_WIDTH-130, 20)];
 //        _title.text = @"套餐A";
         _titleLabel.font = [UIFont boldSystemFontOfSize:13];
         [self addSubview:_titleLabel];
         
         
-        _subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width + 10, 22, SCREEN_WIDTH-130, 15)];
+        _subTitleLabel = [[UILabel alloc]initWithFrame:CGRectMake(_priceLabel.frame.origin.x + _priceLabel.frame.size.width + 10, 30, SCREEN_WIDTH-130, 20)];
 //        _title.text = @"一次100，买不了吃亏，买不了上当";
         _subTitleLabel.font = [UIFont systemFontOfSize:13];
         [self addSubview:_subTitleLabel];
         
 
+        
     }
     
     return self;
