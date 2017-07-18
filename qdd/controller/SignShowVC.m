@@ -113,7 +113,7 @@
             _bottomButton = [[UIButton alloc]initWithFrame:CGRectMake(36*WIDTH_SCALE, SCREEN_HEIGHT-81*HEIGHT_SCALE-3, SCREEN_WIDTH-2*36*WIDTH_SCALE, 81*HEIGHT_SCALE)];
             _bottomButton.titleLabel.font=[UIFont systemFontOfSize:14];
             [_bottomButton setBackgroundImage:[UIImage imageNamed:@"合同确定按钮"] forState:UIControlStateNormal];
-            [_bottomButton addTarget:self action:@selector(signSign) forControlEvents:UIControlEventTouchUpInside];
+            [_bottomButton addTarget:self action:@selector(refuseSign) forControlEvents:UIControlEventTouchUpInside];
             [self.view addSubview:_bottomButton];
 
             [_bottomButton setTitle:@"撤销" forState:UIControlStateNormal];
