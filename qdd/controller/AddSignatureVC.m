@@ -113,8 +113,6 @@
             [weakSelf.alertView show];
             
         }
-        
-        
     };
     
     request.netFailedBlock=^(id result){
@@ -190,3 +188,8 @@
 
 
 @end
+
+
+
+
+

@@ -71,8 +71,9 @@
     [self.view addSubview:upper];
 
     
-//    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 67, SCREEN_WIDTH, SCREEN_HEIGHT-67)];
-     _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-160, 67, 320, 544)];
+
+//     _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(SCREEN_WIDTH/2-160, 67, 320, 544)];
+     _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, 67, SCREEN_WIDTH, SCREEN_HEIGHT-67)];
     _myTableView.delegate=self;
     _myTableView.dataSource=self;
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;

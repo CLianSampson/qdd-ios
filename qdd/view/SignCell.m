@@ -23,14 +23,14 @@
         [self addSubview:_signName];
         
         
-        _state = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width-34*WIDTH_SCALE-200, 44*HEIGHT_SCALE, 200, 13)];
+        _state = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-34*2*WIDTH_SCALE-200, 44*HEIGHT_SCALE, 200, 13)];
         _state.textColor=RGBColor(255, 0, 23);
         _state.text=@"待我签署";
         _state.textAlignment=NSTextAlignmentRight;
         _state.font=[UIFont systemFontOfSize:13];
         [self addSubview:_state];
         
-        UILabel *sepreate =[[UILabel alloc]initWithFrame:CGRectMake(34*WIDTH_SCALE, _signName.frame.origin.y+_signName.frame.size.height+28*HEIGHT_SCALE, self.frame.size.width-2*34*WIDTH_SCALE, 1)];
+        UILabel *sepreate =[[UILabel alloc]initWithFrame:CGRectMake(34*WIDTH_SCALE, _signName.frame.origin.y+_signName.frame.size.height+28*HEIGHT_SCALE, SCREEN_WIDTH-2*34*WIDTH_SCALE, 1)];
         sepreate.backgroundColor=RGBColor(209, 209, 209);
         [self addSubview:sepreate];
         
@@ -44,7 +44,7 @@
         _sendTime.font=[UIFont systemFontOfSize:12];
         [self addSubview:_sendTime];
         
-        _duration = [[UILabel alloc]initWithFrame:CGRectMake(self.frame.size.width-34*WIDTH_SCALE-200, _sendPerson.frame.origin.y+_sendPerson.frame.size.height+20*HEIGHT_SCALE, 200, 11)];
+        _duration = [[UILabel alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-34*2*WIDTH_SCALE-200, _sendPerson.frame.origin.y+_sendPerson.frame.size.height+20*HEIGHT_SCALE, 200, 11)];
         _duration.text=@"签约有限期: 15天";
         _duration.font=[UIFont systemFontOfSize:12];
         _duration.textAlignment=NSTextAlignmentRight;

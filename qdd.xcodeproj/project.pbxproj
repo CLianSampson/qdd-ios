@@ -1244,7 +1244,7 @@
 				TargetAttributes = {
 					1831BC901E575CC900AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = X9EVRZTDAY;
+						DevelopmentTeam = JP26SR7265;
 					};
 					1831BCA91E575CCA00AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1563,7 +1563,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1586,9 +1586,9 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
-				PROVISIONING_PROFILE = "205793c8-0195-47c8-9dd2-1411bfd26ab7";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -1599,7 +1599,7 @@
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1622,9 +1622,9 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
-				PROVISIONING_PROFILE = "205793c8-0195-47c8-9dd2-1411bfd26ab7";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};
