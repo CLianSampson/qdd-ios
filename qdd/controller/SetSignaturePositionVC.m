@@ -187,7 +187,8 @@
         [weakSelf.alertView show];
     };
 
-    
+    NSLog(@"存储签章合同信息 url : %@",urlstring);
+    NSLog(@"存储签章合同信息 参数 : %@",paramasDic);
     [request netRequestWithUrl:urlstring Data:paramasDic];
     
 }
