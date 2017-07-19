@@ -384,6 +384,7 @@
       
         MainVC *VC = [[MainVC alloc]init];
         VC.token=_tokenString;
+        VC.authState = self.authState;
         
         UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
         

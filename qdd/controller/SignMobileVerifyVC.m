@@ -197,6 +197,8 @@
         [weakSelf.alertView show];
     };
     
+    NSLog(@"验证手机验证码 url  : %@", urlstring);
+    NSLog(@"验证手机验证码 参数 : %@",dic);
     [request netRequestWithUrl:urlstring Data:dic];
 }
 
@@ -213,8 +215,6 @@
     NSString *string= [NSString stringWithFormat:@"/status/%d",_signStatus];
     
    [urlstring appendString:string];
-    
-    NSLog(@"url is : %@",urlstring);
     
     __weak typeof(self) weakSelf=self;
     
@@ -252,7 +252,7 @@
         [weakSelf.alertView show];
     };
 
-    
+    NSLog(@"签合同 url  : %@", urlstring);
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
@@ -267,3 +267,7 @@
 }
 
 @end
+
+
+
+

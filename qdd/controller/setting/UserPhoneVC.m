@@ -111,6 +111,7 @@
     
     if (indexPath.row == 1) {
         ChangePhoneVC *VC = [[ChangePhoneVC alloc]init];
+        VC.token = self.token;
         [self.navigationController pushViewController:VC animated:YES];
     }
     

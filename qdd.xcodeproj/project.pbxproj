@@ -163,6 +163,7 @@
 		DB32046B1F1E5FF000C017FD /* ChangePhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32046A1F1E5FF000C017FD /* ChangePhoneVC.m */; };
 		DB32046E1F1E65F600C017FD /* UserPhoneVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DB32046D1F1E65F600C017FD /* UserPhoneVC.m */; };
 		DB399BF71F1C5A8A00533956 /* GoodsCell.m in Sources */ = {isa = PBXBuildFile; fileRef = DB399BF61F1C5A8A00533956 /* GoodsCell.m */; };
+		DB65A8D31F1F0DCA001327C6 /* comment.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB65A8D21F1F0DCA001327C6 /* comment.strings */; };
 		DBD25C2B1F1CB1B200B4FF99 /* SaveToMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */; };
 /* End PBXBuildFile section */
 
@@ -472,6 +473,7 @@
 		DB32046D1F1E65F600C017FD /* UserPhoneVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UserPhoneVC.m; sourceTree = "<group>"; };
 		DB399BF51F1C5A8A00533956 /* GoodsCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GoodsCell.h; sourceTree = "<group>"; };
 		DB399BF61F1C5A8A00533956 /* GoodsCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GoodsCell.m; sourceTree = "<group>"; };
+		DB65A8D21F1F0DCA001327C6 /* comment.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = comment.strings; sourceTree = "<group>"; };
 		DBD25C291F1CB1B200B4FF99 /* SaveToMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToMemory.h; sourceTree = "<group>"; };
 		DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToMemory.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -673,6 +675,7 @@
 				1831BCA01E575CCA00AAE0E5 /* Assets.xcassets */,
 				1831BCA51E575CCA00AAE0E5 /* Info.plist */,
 				1831BC941E575CCA00AAE0E5 /* Supporting Files */,
+				DB65A8D21F1F0DCA001327C6 /* comment.strings */,
 			);
 			path = qdd;
 			sourceTree = "<group>";
@@ -1291,6 +1294,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DB65A8D31F1F0DCA001327C6 /* comment.strings in Resources */,
 				182E5F921F0E3EA100B1A272 /* AlipaySDK.bundle in Resources */,
 				1831BD091E575E0A00AAE0E5 /* LICENSE in Resources */,
 				1831BCA11E575CCA00AAE0E5 /* Assets.xcassets in Resources */,
