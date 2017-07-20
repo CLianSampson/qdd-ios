@@ -78,7 +78,7 @@
         [_pay setBackgroundImage:[UIImage imageNamed:@"去付款按钮"] forState:UIControlStateNormal];
         [_pay addTarget:self action:@selector(payMoney) forControlEvents:UIControlEventTouchUpInside];
         
-        [self addSubview:_pay];
+//        [self addSubview:_pay];
 
     }
     

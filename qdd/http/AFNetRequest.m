@@ -46,8 +46,8 @@
     securityPolicy.validatesDomainName=NO;
     /***************************https**********************************/
     
-    
-    
+    //设置请求头序列化方式为json  （如果设置后台有可能收不到）
+//    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
     
     
@@ -97,6 +97,8 @@
     securityPolicy.validatesDomainName=NO;
     /***************************https**********************************/
     
+    //设置请求头序列化方式为json  （如果设置后台有可能收不到）
+    //    manager.requestSerializer = [AFJSONRequestSerializer serializer];
     
 
     //设置返回值的解析方式

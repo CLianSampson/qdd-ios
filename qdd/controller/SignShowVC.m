@@ -11,6 +11,7 @@
 #import "SignShowCell.h"
 #import "ChoosePersonalSignVC.h"
 #import "ChooseEnterpriseSignatureVC.h"
+#import "Constants.h"
 
 @interface SignShowVC()<UITableViewDelegate,UITableViewDataSource,UIAlertViewDelegate>
 
@@ -59,7 +60,7 @@
     
     [self creteView];
     
-    
+    [self addNotification];
     
 }
 
@@ -477,6 +478,12 @@
     };
     
     [request netRequestGetWithUrl:urlstring Data:nil];
+}
+
+
+#pragma mark 签署成功后的通知
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_SIGN_SUCESS_CONTROLLER object:nil];
 }
 
 

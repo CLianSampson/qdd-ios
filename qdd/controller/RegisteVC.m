@@ -118,7 +118,8 @@
     [self.view addSubview:remind];
     
     UIButton *choose = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, remind.frame.origin.y+remind.frame.size.height+30*HEIGHT_SCALE, 10, 10)];
-    [choose setBackgroundImage:[UIImage imageNamed:@"阅读选中按钮"] forState:UIControlStateNormal];
+//    [choose setBackgroundImage:[UIImage imageNamed:@"阅读选中按钮"] forState:UIControlStateNormal];
+    [choose setBackgroundImage:[UIImage imageNamed:@"选中"] forState:UIControlStateNormal];
     [self.view addSubview:choose];
     
     UILabel *agreeLabel =[[UILabel alloc]initWithFrame:CGRectMake(choose.frame.origin.x+choose.frame.size.width+20*WIDTH_SCALE, remind.frame.origin.y+remind.frame.size.height+30*HEIGHT_SCALE, 100, 10)];

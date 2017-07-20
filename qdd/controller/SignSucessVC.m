@@ -7,6 +7,7 @@
 //
 
 #import "SignSucessVC.h"
+#import "Constants.h"
 
 @implementation SignSucessVC
 
@@ -83,7 +84,8 @@
 
 
 -(void)goBack{
-    
+    [self.navigationController popToRootViewControllerAnimated:YES];
+    [[NSNotificationCenter defaultCenter]postNotificationName:GOTO_MAIN_CONTROLLER_FROM_SIGN_SUCESS_CONTROLLER object:nil];
 }
 
 

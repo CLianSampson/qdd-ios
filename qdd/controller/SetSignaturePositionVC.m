@@ -10,6 +10,7 @@
 #import "SignDetailVC.h"
 #import "SignShowCell.h"
 #import "SignMobileVerifyVC.h"
+#import "JsonUtil.h"
 
 @interface SetSignaturePositionVC()<UITableViewDelegate,UITableViewDataSource,UIScrollViewDelegate>
 
@@ -125,23 +126,20 @@
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_STORE_AND_DELETE_SIGNATURE];
     [urlstring appendString:self.token];
     
-    NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
+   
     NSString *signStatus = [NSString stringWithFormat:@"%d",_signStatus];
-    [paramasDic setObject:signStatus forKey:@"status"];  //status：合同签章类型（0，个人签署，1授权签署）
-    [paramasDic setObject:_signId forKey:@"id"];
-    
     
     NSMutableArray *addArry = [[NSMutableArray alloc]init];
     NSMutableDictionary *personalSignature = [[NSMutableDictionary alloc]init];
     
     NSString *xPosition = [NSString stringWithFormat:@"%f",_personalImageView.frame.origin.x];
     NSString *yPosition = [NSString stringWithFormat:@"%f",_personalImageView.frame.origin.y];
-    NSString *pageNumStr = [NSString stringWithFormat:@"%d",_pageNum];
+    NSString *pageNumStr = [NSString stringWithFormat:@"%d",_pageNum+1];
     
-    [personalSignature setObject:_personaSignaturelId forKey:@"signid"];
-    [personalSignature setObject:pageNumStr forKey:@"num"];
-    [personalSignature setObject:xPosition forKey:@"posX"];
-    [personalSignature setObject:yPosition forKey:@"posY"];
+    [personalSignature setValue:_personaSignaturelId forKey:@"signid"];
+    [personalSignature setValue:pageNumStr forKey:@"num"];
+    [personalSignature setValue:xPosition forKey:@"posX"];
+    [personalSignature setValue:yPosition forKey:@"posY"];
     
 //    NSMutableDictionary *enterpriseDic = [[NSMutableDictionary alloc]init];
 //    [enterpriseDic setObject:@"" forKey:@"signid"];
@@ -152,10 +150,16 @@
     [addArry addObject:personalSignature];
 //    [addArry addObject:enterpriseDic];
     
-    [paramasDic setObject:addArry forKey:@"add"];
+//    NSMutableDictionary *paramasDic = [[NSMutableDictionary alloc]init];
+//
+//    [paramasDic setValue:signStatus forKey:@"status"];  //status：合同签章类型（0，个人签署，1授权签署）
+//    [paramasDic setValue:_signId forKey:@"id"];
+//    [paramasDic setValue:addArry forKey:@"add"];
     
-    NSLog(@"params is : %@" ,paramasDic);
+    NSDictionary *paramasDic = @{@"status":signStatus, @"id":_signId,@"add":addArry};
     
+    
+    NSDictionary *paramsDic2 = @{@"sign":[JsonUtil convertToJsonData:paramasDic]};
     
     __weak typeof(self) weakSelf=self;
     
@@ -186,10 +190,12 @@
         weakSelf.alertView.title=@"网络有点问题哦，无法加载";
         [weakSelf.alertView show];
     };
-
+    
     NSLog(@"存储签章合同信息 url : %@",urlstring);
-    NSLog(@"存储签章合同信息 参数 : %@",paramasDic);
-    [request netRequestWithUrl:urlstring Data:paramasDic];
+    NSLog(@"存储签章合同信息 参数 : %@",paramsDic2);
+    
+//    NSString *tetUrl = @"http://192.168.1.101:8080/http/iostest";
+    [request netRequestWithUrl:urlstring Data:paramsDic2];
     
 }
 
@@ -500,7 +506,6 @@ float lastContentOffset;
         
         NSIndexPath *scrollIndexPath = [arry objectAtIndex:0];
         
-       
         [_myTableView scrollToRowAtIndexPath:scrollIndexPath atScrollPosition:UITableViewScrollPositionTop animated:NO];
         
         NSArray *newArry = [_myTableView indexPathsForVisibleRows];

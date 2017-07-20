@@ -33,7 +33,7 @@
         
         //tableViewCell的默认高度是44
         
-        _textField = [[UITextField alloc]initWithFrame:CGRectMake(100+32*WIDTH_SCALE, 0, 100, 50)];
+        _textField = [[UITextField alloc]initWithFrame:CGRectMake(100+32*WIDTH_SCALE, (108*HEIGHT_SCALE-50)/2, 100, 50)];
         
         _textField.textAlignment=NSTextAlignmentLeft;
         _textField.contentVerticalAlignment=UIControlContentVerticalAlignmentCenter;

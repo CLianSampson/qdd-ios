@@ -30,5 +30,8 @@ static  NSString *const GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER =
 //绑定邮箱成功之后发送的通知
 static  NSString *const GOTO_MAIN_CONTROLLER_FROM_BIND_MAIL_SUCESS_CONTROLLER = @"go to main controller from bind mail sucess controller";
 
+//签完合同发送的通知
+static  NSString *const GOTO_MAIN_CONTROLLER_FROM_SIGN_SUCESS_CONTROLLER = @"go to main controller from sign sucess sucess controller";
+
 
 #endif /* Constants_h */

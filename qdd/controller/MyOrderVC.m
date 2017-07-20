@@ -128,7 +128,7 @@
     
     _myTableView.separatorStyle=UITableViewCellSeparatorStyleNone;
     
-//    [self.view addSubview:_myTableView];
+    [self.view addSubview:_myTableView];
     
     [self addMjRefresh:_myTableView];
     
@@ -174,7 +174,7 @@
     
     _mutableArry=nil;
     [_myTableView reloadData];
-    _pageNo=0;
+    _pageNo=1;
     _orstatus=2;
     [self netReauest];
 }
@@ -196,7 +196,7 @@
     
     _mutableArry=nil;
     [_myTableView reloadData];
-    _pageNo=0;
+    _pageNo=1;
      _orstatus=0;
     [self netReauest];
     
@@ -217,9 +217,9 @@
     }];
 
     
-    _mutableArry=nil;
+    _mutableArry = nil;
     [_myTableView reloadData];
-    _pageNo=0;
+    _pageNo=1;
     _orstatus=1;
     [self netReauest];
 }
@@ -233,18 +233,19 @@
 
 
 #pragma mark -tableView dataSourceDelegate
-
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
     return _mutableArry.count;
 }
 
 
 - (OrderCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    static NSString *cellIdentifier = @"Cell";
+    //不使用重用功能
+//    static NSString *cellIdentifier = @"Cell";
     
-    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+//    OrderCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
+    OrderCell *cell;
     if (cell == nil) {
-        cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         
         
         OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
@@ -303,10 +304,15 @@
         
         if ([model.status intValue]==0) {
             
+            
+            [cell addSubview:cell.pay];
         }else if ([model.status intValue]==1) {
-            [cell.pay removeFromSuperview];
+           
+
         }
         
+        NSLog(@"status : %d",[model.status intValue]);
+
     }
     
     
@@ -323,21 +329,19 @@
     
     OrderCell *cell = (OrderCell*) [tableView cellForRowAtIndexPath:indexPath];
     cell.delegate=self;
-    
-    return;
 }
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
   
-    
     OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
-    
     
     if ( [model.status intValue]==0) {
         return (30+45+38+30+32+32+32+32+107)*HEIGHT_SCALE+13+12+12+12+12;
-    }else {
+    }else if([model.status intValue]==1){
         return (30+45+38+30+32+32+32+32)*HEIGHT_SCALE+13+12+12+12+12;
+    }else{
+        return 0;
     }
 }
 
@@ -361,12 +365,11 @@
     
     [urlstring appendString:self.token];
     
-    NSString *statusString = [NSString stringWithFormat:@"?status=%d",_orstatus];
-    NSString *pageNo =[NSString stringWithFormat:@"&p=%d",_pageNo];
+    NSString *pageNo =[NSString stringWithFormat:@"/p/%d",_pageNo];
     
-    
-    [urlstring appendString:statusString];
     [urlstring appendString:pageNo];
+    
+    NSDictionary *dic = @{@"orstatus":[NSString stringWithFormat:@"%d",_orstatus]};
     
     __weak typeof(self) weakSelf=self;
     
@@ -398,7 +401,8 @@
     };
     
     NSLog(@"获取订单的url is : %@",urlstring);
-    [request netRequestGetWithUrl:urlstring Data:nil];
+    NSLog(@"获取订单的参数 is : %@",dic);
+    [request netRequestWithUrl:urlstring Data:dic];
 }
 
 
@@ -440,7 +444,6 @@
     }
     
     
-    [self.view addSubview:_myTableView];
     [_myTableView reloadData];
     
 }
