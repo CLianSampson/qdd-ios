@@ -7,11 +7,14 @@
 //
 
 #import "TimeUtil.h"
+#import "StringUtil.h"
 
 @implementation TimeUtil
 
 +(long)transStringToTimestap:(NSString *)timeString{
-    
+    if ([StringUtil isNullOrBlank:timeString]) {
+        return 0;
+    }
     
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init] ;
     [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss"];

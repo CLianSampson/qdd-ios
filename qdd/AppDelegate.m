@@ -31,6 +31,9 @@
 #import "SaveToMemory.h"
 #import "Constants.h"
 
+//友盟
+#import "UMMobClick/MobClick.h"
+
 
 @interface AppDelegate ()<WXApiDelegate>
 
@@ -98,7 +101,7 @@
 }
 
 
-#pragma mark --- 配置文件
+#pragma mark --- 讯飞 配置文件
 -(void)makeConfiguration
 {
     //设置log等级，此处log为默认在app沙盒目录下的msc.log文件
@@ -117,6 +120,13 @@
     
     //所有服务启动前，需要确保执行createUtility
     [IFlySpeechUtility createUtility:initString];
+}
+
+
+-(void)UMMobClick{
+    UMConfigInstance.appKey = @"59717162734be448be00021c";
+    [MobClick startWithConfigure:UMConfigInstance];
+
 }
 
 
