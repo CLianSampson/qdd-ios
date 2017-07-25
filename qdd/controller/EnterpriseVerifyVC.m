@@ -921,6 +921,8 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ENTERPRISE_VERIFY];
     [urlstring appendString:self.token];
 

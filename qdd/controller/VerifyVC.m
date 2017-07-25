@@ -171,6 +171,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
 
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_USER_VERIFY];
     [urlstring appendString:self.token];
@@ -239,6 +240,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
 
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phone.textField.text];

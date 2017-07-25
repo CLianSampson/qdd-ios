@@ -360,6 +360,7 @@
 
 -(void)netReauest{
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
 
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_ORDER];
     

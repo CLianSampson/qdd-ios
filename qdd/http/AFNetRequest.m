@@ -8,20 +8,26 @@
 
 #import "AFNetRequest.h"
 #import "Macro.h"
+#import "SaveToMemory.h"
+#import "Constants.h"
+#import "LoginVC.h"
 
 
 
 @implementation AFNetRequest
 
 
--(instancetype)init{
+-(instancetype)initWithController:(UIViewController *)controller{
     if (self == [super init]) {
+        
         self.netFailedBlock = ^(id result){
             UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"网络有点问题哦，无法加载" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
             alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
             [alertView show];
 
         };
+        
+        _context = controller;
     }
     
     return self;
@@ -67,7 +73,8 @@
         id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"responseObject is : %@",result);
         
-        
+        [self loginFail:result];
+
         self.netSucessBlock(result);
         
         
@@ -162,6 +169,8 @@
         id result = [NSJSONSerialization JSONObjectWithData:responseObject options:NSJSONReadingMutableContainers error:nil];
         NSLog(@"response json is : %@",result);
         
+        [self loginFail:result];
+        
         self.netSucessBlock(result);
         
         
@@ -196,6 +205,31 @@
     
     
 }
+
+
+
+
+-(void)loginFail:(id )result{
+    NSString *state = [result objectForKey:@"state"];
+    NSString *info = [result objectForKey:@"info"];
+    
+    if ([state isEqualToString:@"fail"] && [info isEqualToString:@"登录验证失败！"]) {
+        
+        [self logout];
+    }
+}
+
+-(void)logout{
+    //清空存储的内容
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    [saveToMemory SaveDictionary:dic ToMemory:filePath];
+    
+    LoginVC *VC = [[LoginVC alloc]init];
+    [_context presentViewController:VC animated:YES completion:nil];
+}
+
 
 
 

@@ -138,7 +138,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
-
+    request.context = self;
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SEARCH_USER];
     [urlstring appendString:self.token];
@@ -228,7 +228,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
-
+    request.context = self;
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_USER];
     [urlstring appendString:self.token];

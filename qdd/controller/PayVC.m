@@ -167,6 +167,7 @@
     [urlstring appendString:self.token];
 
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
 
     __weak typeof(self) weakSelf = self;
     

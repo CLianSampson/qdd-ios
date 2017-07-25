@@ -247,6 +247,8 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_CONTACT];
     [urlstring appendString:self.token];
     

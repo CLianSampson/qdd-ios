@@ -165,6 +165,8 @@
 -(void)netRequest{
     
     AFNetRequest *request =[[AFNetRequest alloc]init];
+    request.context = self;
+    
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_RESET_PASSWORD];
     
     [urlstring appendString:self.token];

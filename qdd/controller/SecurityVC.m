@@ -97,6 +97,7 @@
 -(void)netReauest{
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
 
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_GET_ACCOUNT_INFO];
     [urlstring appendString:self.token];

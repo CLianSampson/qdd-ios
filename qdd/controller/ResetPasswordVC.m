@@ -142,6 +142,8 @@
     NSLog(@"json data is : %@" ,dic);
     
     AFNetRequest *request =[[AFNetRequest alloc]init];
+    request.context = self;
+    
     __weak typeof(self) weakSelf=self;
     
     request.netSucessBlock=^(id result){

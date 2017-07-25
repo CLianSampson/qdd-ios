@@ -164,9 +164,6 @@
     
    
     [self createView];
-    
-    
-    
 }
 
 

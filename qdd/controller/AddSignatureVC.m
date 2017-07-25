@@ -81,6 +81,7 @@
 //上传签名图片获取图片路径
 -(void)netReauest{
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_ADD_SIGNATURE];
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];

@@ -135,6 +135,8 @@ typedef void (^NetFailedBlock)(id result);
 
 @interface AFNetRequest : NSObject
 
+@property(nonatomic,strong)UIViewController *context;
+
 @property(nonatomic,copy)PictureBlock pictureBlock;
 @property(nonatomic,copy)PictureFailedBlock pictureFailedBlock;
 

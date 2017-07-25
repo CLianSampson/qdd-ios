@@ -172,6 +172,7 @@
 
 -(void)netReauest{
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_UPLOAD_PICTURE];
     
     [urlstring appendString:self.token];

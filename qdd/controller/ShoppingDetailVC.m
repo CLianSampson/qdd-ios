@@ -150,6 +150,7 @@
     __weak typeof(self) weakSelf=self;
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
     
     request.netSucessBlock=^(id result){
         

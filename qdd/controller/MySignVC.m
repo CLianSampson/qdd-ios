@@ -275,11 +275,13 @@
     
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_LIST_SIGNATURE];
     
+    
     NSString *appendUrlString=[urlstring stringByAppendingString:self.token];
     
     __weak typeof(self) weakSelf=self;
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
     
     request.netSucessBlock=^(id result){
         NSString *state = [result objectForKey:@"state"];
