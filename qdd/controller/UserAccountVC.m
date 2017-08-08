@@ -204,7 +204,8 @@
     
     
     if (self.accountFlag == USER_ACCOUNT) {
-        BindingMailVC *VC =[[BindingMailVC alloc]init];
+        BindingMailVC *VC =[[BindingMailVC alloc]init
+                            ];
         VC.token=self.token;
         [self.navigationController pushViewController:VC animated:YES];
     }else{

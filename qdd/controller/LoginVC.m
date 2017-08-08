@@ -193,13 +193,6 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
     NSLog(@"登录");
     [request netRequestWithUrl:URL_LOGIN Data:dic];
 }
@@ -253,14 +246,6 @@
         }
         
         
-    };
-    
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
     };
     
     [request netRequestGetWithUrl:urlstring Data:nil];

@@ -27,13 +27,19 @@
 
 @property(nonatomic,assign)int flag;//1代表个人注册，2代表企业注册
 
-@property(nonatomic,strong)NSString *account;
-@property(nonatomic,strong)NSString *password;
-@property(nonatomic,strong)NSString *verifyCode;
-@property(nonatomic,strong)NSString *repassword;
+//@property(nonatomic,strong)NSString *account;
+//@property(nonatomic,strong)NSString *password;
+//@property(nonatomic,strong)NSString *verifyCode;
+//@property(nonatomic,strong)NSString *repassword;
 
 
 @property(nonatomic,strong)UIImage *verifyCodeImage;
+
+@property(nonatomic,strong)NSIndexPath *indexPathPhone; //用来获取手机号的值
+@property(nonatomic,strong)NSIndexPath *indexPathSmsCode;
+@property(nonatomic,strong)NSIndexPath *indexPathPassword;
+@property(nonatomic,strong)NSIndexPath *indexPathRepassword;
+
 
 @end
 
@@ -173,6 +179,8 @@
         if (indexPath.row==0) {
             cell.icon.image=[UIImage imageNamed:@"Phone-副本-2"];
             cell.textField.placeholder=@"请输入手机号";
+            
+            _indexPathPhone = indexPath;
 
         }else if (indexPath.row==1){
             cell.icon.image=[UIImage imageNamed:@"手机验证码箭头"];
@@ -181,6 +189,8 @@
             
             [cell.change removeFromSuperview];
             [cell.verfyCode removeFromSuperview];
+            
+            _indexPathSmsCode = indexPath;
             
             cell.smsCodeBlock=^{
                 [self sendSmsCode];
@@ -191,6 +201,8 @@
         if (indexPath.row==0) {
             cell.icon.image=[UIImage imageNamed:@"Phone-副本-2"];
             cell.textField.placeholder=@"请输入邮箱";
+            
+            _indexPathPhone = indexPath;
             
         }else if (indexPath.row==1){
             cell.icon.image=[UIImage imageNamed:@"手机验证码箭头"];
@@ -203,6 +215,8 @@
             [cell.verfyCode setBackgroundImage:_verifyCodeImage forState:UIControlStateNormal];
             
             [cell.smsCode removeFromSuperview];
+            
+            _indexPathSmsCode = indexPath;
             
             cell.pictureCodeBlock=^{
                 [self sendPictureCode];
@@ -218,9 +232,15 @@
         cell.icon.image=[UIImage imageNamed:@"hover"];
         cell.textField.placeholder=@"请输入密码";
 
+        _indexPathPassword = indexPath;
+        
     }else if (indexPath.row==3){
         cell.icon.image=[UIImage imageNamed:@"hover-副本"];
         cell.textField.placeholder=@"请再次输入密码";
+        
+        
+        _indexPathRepassword = indexPath;
+
     }
     
     
@@ -230,36 +250,36 @@
 
 
 #pragma mark -tableView delegate
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    
-    RegisteCell *cell ;
-    switch (indexPath.row) {
-        case 0:
-            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
-            _account = cell.textField.text;
-            break;
-        
-        case 1:
-            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
-            _verifyCode = cell.textField.text;
-            break;
-            
-        case 2:
-            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
-            _password = cell.textField.text;
-            break;
-            
-        case 3:
-            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
-            _repassword = cell.textField.text;
-            break;
-            
-        default:
-            break;
-    }
-    
-    return;
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+//    
+//    RegisteCell *cell ;
+//    switch (indexPath.row) {
+//        case 0:
+//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            _account = cell.textField.text;
+//            break;
+//        
+//        case 1:
+//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            _verifyCode = cell.textField.text;
+//            break;
+//            
+//        case 2:
+//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            _password = cell.textField.text;
+//            break;
+//            
+//        case 3:
+//            cell = (RegisteCell*)[tableView cellForRowAtIndexPath:indexPath];
+//            _repassword = cell.textField.text;
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    return;
+//}
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -268,42 +288,42 @@
 
 
 //取消键盘第一响应
--(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-    NSArray *arry = [_myTableView visibleCells];
-    
-    for (int i=0; i<[arry count]; i++) {
-        RegisteCell *cell = (RegisteCell*)arry[i];
-        [cell.textField resignFirstResponder];
-        
-        switch (i) {
-            case 0:
-                 _account = cell.value;
-                break;
-                
-            case 1:
-                _verifyCode = cell.value;
-                break;
-            case 2:
-                _password = cell.value;
-                break;
-            case 3:
-                _repassword = cell.value;
-                break;
-                
-            default:
-                break;
-        }
-        
-    }
-    
-    
-    
-    for (id object in arry) {
-        RegisteCell *cell = (RegisteCell*)object;
-        [cell.textField resignFirstResponder];
-        
-    }
-}
+//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+//    NSArray *arry = [_myTableView visibleCells];
+//    
+//    for (int i=0; i<[arry count]; i++) {
+//        RegisteCell *cell = (RegisteCell*)arry[i];
+//        [cell.textField resignFirstResponder];
+//        
+//        switch (i) {
+//            case 0:
+//                 _account = cell.value;
+//                break;
+//                
+//            case 1:
+//                _verifyCode = cell.value;
+//                break;
+//            case 2:
+//                _password = cell.value;
+//                break;
+//            case 3:
+//                _repassword = cell.value;
+//                break;
+//                
+//            default:
+//                break;
+//        }
+//        
+//    }
+//    
+//    
+//    
+//    for (id object in arry) {
+//        RegisteCell *cell = (RegisteCell*)object;
+//        [cell.textField resignFirstResponder];
+//        
+//    }
+//}
 
 
 -(void)personalClick{
@@ -376,9 +396,12 @@
 
 
 -(void)sendSmsCode{
-    
+    NSString *account;
     if (_flag==1) {
-        if (_account==nil) {
+        
+        RegisteCell *cell = [_myTableView cellForRowAtIndexPath:_indexPathPhone];
+        account = cell.textField.text;
+        if ([StringUtil isNullOrBlank:account]) {
             [self createAlertView];
             self.alertView.title=@"手机号不能为空";
             [self.alertView show];
@@ -389,7 +412,7 @@
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
-    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_account];
+    NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",account];
     
     [urlstring appendString:urlParameters];
     
@@ -441,11 +464,17 @@
 }
 
 -(void)netRequest{
-    if ([StringUtil isNullOrBlank:_account] ||
-        [StringUtil isNullOrBlank:_verifyCode] ||
-        [StringUtil isNullOrBlank:_password] ||
-        [StringUtil isNullOrBlank:_repassword] ||
-        [StringUtil isNullOrBlank:_verifyCode] ) {
+    RegisteCell *phoneCell = [_myTableView cellForRowAtIndexPath:_indexPathPhone];
+    RegisteCell *verifyCodeCell = [_myTableView cellForRowAtIndexPath:_indexPathSmsCode];
+    RegisteCell *passwordCell = [_myTableView cellForRowAtIndexPath:_indexPathPassword];
+    RegisteCell *repasswordCell = [_myTableView cellForRowAtIndexPath:_indexPathRepassword];
+
+    
+    
+    if ([StringUtil isNullOrBlank:phoneCell.textField.text] ||
+        [StringUtil isNullOrBlank:verifyCodeCell.textField.text] ||
+        [StringUtil isNullOrBlank:passwordCell.textField.text] ||
+        [StringUtil isNullOrBlank:repasswordCell.textField.text]) {
         
         [self createAlertView];
         self.alertView.title = @"输入内容不能为空";
@@ -459,18 +488,18 @@
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     if (_flag==1) {
         
-        [dic setObject:_account forKey:@"mobile"];
-        [dic setObject:_verifyCode forKey:@"mobilecode"];
+        [dic setObject:phoneCell.textField.text forKey:@"mobile"];
+        [dic setObject:verifyCodeCell.textField.text forKey:@"mobilecode"];
 
     }else if (_flag==2){
-         [dic setObject:_account forKey:@"email"];
-        [dic setObject:_verifyCode forKey:@"verify"];
+         [dic setObject:phoneCell.textField.text forKey:@"email"];
+        [dic setObject:verifyCodeCell.textField.text forKey:@"verify"];
 
     }
     
     
-    [dic setObject:_password forKey:@"password"];
-    [dic setObject:_repassword forKey:@"repassword"];
+    [dic setObject:passwordCell.textField.text forKey:@"password"];
+    [dic setObject:repasswordCell.textField.text forKey:@"repassword"];
     [dic setObject:@"on" forKey:@"read"];
     
     NSLog(@"json data is : %@" ,dic);
@@ -495,14 +524,6 @@
 
         }
         
-    };
-    
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
     };
     
     [request netRequestWithUrl:URL_REGISTER Data:dic];

@@ -80,6 +80,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is : %@",error);
+        [self createAlertView];
+
     }];
     
 }
@@ -126,6 +128,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"error is : %@",error);
+        [self createAlertView];
+
     }];
     
 }
@@ -176,7 +180,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
-        self.netFailedBlock(nil);
+        [self createAlertView];
+
     }];
     
     
@@ -201,6 +206,8 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"失败");
         NSLog(@"%@",error);
+        [self createAlertView];
+
     }];
     
     
@@ -420,7 +427,9 @@
     } failure:^(NSURLSessionDataTask *task, NSError *error) {
         NSLog(@"失败");
         NSLog(@"%@",error);
-        _pictureFailedBlock();
+//        _pictureFailedBlock();
+        [self createAlertView];
+
     }];
 
 }
@@ -453,10 +462,20 @@
         
         //请求失败
         NSLog(@"请求失败：%@",error);
-        self.netFailedBlock(nil);
+//        self.netFailedBlock(nil);
+        [self createAlertView];
     }];
 }
 
+
+
+-(void)createAlertView{
+    
+    UIAlertView *_alertView =[[UIAlertView alloc]initWithTitle:@"网络有点问题" message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil];
+    _alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
+    [_alertView show];
+    
+}
 
 
 @end
