@@ -288,16 +288,7 @@
         }
     };
     
-    request.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-
-    
+    NSLog(@"获取个人信息: %@",urlstring);
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 

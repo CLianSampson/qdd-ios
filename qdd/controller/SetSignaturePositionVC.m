@@ -182,15 +182,7 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
+
     NSLog(@"存储签章合同信息 url : %@",urlstring);
     NSLog(@"存储签章合同信息 参数 : %@",paramsDic2);
     

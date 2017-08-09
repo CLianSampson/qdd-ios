@@ -78,6 +78,7 @@
     _passWord.placeholder=@"请输入密码";
     [_passWord setFont:[UIFont systemFontOfSize:18]];
     [_passWord setTextColor:RGBColor(172, 172, 172)];
+    _passWord.secureTextEntry = YES;
     [self.view addSubview:_passWord];
 
     

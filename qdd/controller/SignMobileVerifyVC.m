@@ -142,15 +142,7 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
+    NSLog(@"签署合同获取短信验证码  url : %@",urlstring);
     [request netRequestWithUrl:urlstring Data:dic];
     
 }

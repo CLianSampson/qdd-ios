@@ -264,6 +264,7 @@
     _pageNo=1;
     
      _mutableArry=nil;
+    [_myTableView reloadData];
     [UIView animateWithDuration:0.5 animations:^{
         _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
     }];

@@ -22,7 +22,7 @@
 
 @property(nonatomic,strong)UITextField *textField;
 
-@property(nonatomic,strong)UIButton *smsCode;
+@property(nonatomic,strong)UILabel *smsCode;
 
 @property(nonatomic,assign)id<SendSmsCodeDelegete> delegate;
 

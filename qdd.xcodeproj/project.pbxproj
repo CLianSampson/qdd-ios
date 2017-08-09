@@ -1270,7 +1270,7 @@
 				TargetAttributes = {
 					1831BC901E575CC900AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = X9EVRZTDAY;
+						DevelopmentTeam = JP26SR7265;
 					};
 					1831BCA91E575CCA00AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1616,7 +1616,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
 				PROVISIONING_PROFILE = "";
 			};
@@ -1652,7 +1652,7 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
 				PRODUCT_NAME = "签多多";
 				PROVISIONING_PROFILE = "";
 			};

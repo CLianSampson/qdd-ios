@@ -111,6 +111,16 @@
         //停止刷新
         [tableView.footer endRefreshing];
     }];
+    
+    
+    tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
+        _mutableArry = nil;
+        
+        _pageNo = 1;
+        [self netReauest];
+        //停止刷新
+        [tableView.header endRefreshing];
+    }];
 
     
 }

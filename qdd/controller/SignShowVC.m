@@ -469,14 +469,7 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
+    NSLog(@"驳回合同的url  :  %@",urlstring);
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
