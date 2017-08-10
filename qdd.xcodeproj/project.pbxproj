@@ -1270,7 +1270,7 @@
 				TargetAttributes = {
 					1831BC901E575CC900AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
-						DevelopmentTeam = JP26SR7265;
+						DevelopmentTeam = X9EVRZTDAY;
 					};
 					1831BCA91E575CCA00AAE0E5 = {
 						CreatedOnToolsVersion = 7.3.1;
@@ -1592,8 +1592,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1616,9 +1616,9 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
 				PRODUCT_NAME = "签多多";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "568b081d-8f0a-415b-bc61-cbbe1cdf990b";
 			};
 			name = Debug;
 		};
@@ -1628,8 +1628,8 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_IDENTITY = "iPhone Developer";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				ENABLE_BITCODE = NO;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -1652,9 +1652,9 @@
 					"-Objc",
 					"-all_load",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qddd;
+				PRODUCT_BUNDLE_IDENTIFIER = com.lvgou.qdd;
 				PRODUCT_NAME = "签多多";
-				PROVISIONING_PROFILE = "";
+				PROVISIONING_PROFILE = "568b081d-8f0a-415b-bc61-cbbe1cdf990b";
 			};
 			name = Release;
 		};

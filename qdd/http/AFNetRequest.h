@@ -86,6 +86,9 @@ static NSString *URL_ENTERPRISE_VERIFY=@"https://www.qiandd.com/mobile/Iden/comi
 static NSString *URL_IS_AUTH=@"https://www.qiandd.com/mobile/Contract/auth/token/";
 
 
+//驳回合同
+static NSString *URL_REJECT_SIGN=@"https://www.qiandd.com/mobile/Contract/reject/token/";
+
 //撤销合同
 static NSString *URL_REFUSE_SIGN=@"https://www.qiandd.com/mobile/Contract/repeal/token/";
 

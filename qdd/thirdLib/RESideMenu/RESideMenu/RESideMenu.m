@@ -102,7 +102,8 @@
     
     _bouncesHorizontally = YES;
     
-    _panGestureEnabled = YES;
+    //change by chenlian   2017 08-10 ,使其不支持手势
+    _panGestureEnabled = NO;
     _panFromEdge = YES;
     _panMinimumOpenThreshold = 60.0;
     

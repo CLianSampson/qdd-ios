@@ -13,6 +13,9 @@
 #import "MainVC.h"
 #import "MainLeftVC.h"
 #import "MainRigthVC.h"
+#import "SaveToMemory.h"
+#import "Constants.h"
+#import "LoginVC.h"
 
 @implementation BaseVC
 
@@ -340,6 +343,25 @@
     
     [self presentViewController:MenuVC animated:YES completion:nil];
 }
+
+
+
+-(void)logout{
+    //清空存储的内容
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    NSDictionary *dic = [[NSDictionary alloc]init];
+    [saveToMemory SaveDictionary:dic ToMemory:filePath];
+    
+    NSMutableArray * array =[[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    [array removeAllObjects];
+    
+    
+    
+    LoginVC *VC = [[LoginVC alloc]init];
+    [self presentViewController:VC animated:YES completion:nil];
+}
+
 
 
 @end

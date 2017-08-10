@@ -300,12 +300,29 @@
     }
     
     _idNum =[data objectForKey:@"sfz"];
-     _checkStatus =[data objectForKey:@"cherk"];
-     _name =[data objectForKey:@"name"];
-     _account =[data objectForKey:@"idname"];
-     _mail =[data objectForKey:@"mail"];
-     _phone =[data objectForKey:@"tel"];
     
+    NSMutableString *mutableString = [[NSMutableString alloc]init];
+    
+    for (int i=0; i<_idNum.length; i++) {
+        
+        NSString *string =[_idNum substringWithRange:NSMakeRange(i, 1)];
+        NSLog(@"%@",string);
+        
+        if (i>2 && i<_idNum.length-4) {
+            [mutableString appendString:@"*"];
+        }else{
+            [mutableString appendString:string];
+        }
+        
+    }
+    
+    _idNum = mutableString;
+    _checkStatus =[data objectForKey:@"cherk"];
+    _name =[data objectForKey:@"name"];
+    _account =[data objectForKey:@"idname"];
+    _mail =[data objectForKey:@"mail"];
+    _phone =[data objectForKey:@"tel"];
+
     [_tableView reloadData];
     
 }

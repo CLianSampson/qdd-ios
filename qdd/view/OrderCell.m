@@ -14,6 +14,8 @@
 
 -(instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self==[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        
+        self.userInteractionEnabled = YES;
       
         UILabel *upperBackground = [[UILabel alloc]initWithFrame:CGRectMake(0, 0, SCREEN_HEIGHT, 30*HEIGHT_SCALE)];
         upperBackground.backgroundColor=RGBColor(245, 245, 245);
@@ -76,7 +78,8 @@
         [_pay setTitle:@"去付款" forState:UIControlStateNormal];
         [_pay setTitleColor:[UIColor whiteColor] forState:UIControlStateNormal];
         [_pay setBackgroundImage:[UIImage imageNamed:@"去付款按钮"] forState:UIControlStateNormal];
-        [_pay addTarget:self action:@selector(payMoney) forControlEvents:UIControlEventTouchUpInside];
+        _pay.titleLabel.font = [UIFont systemFontOfSize:13];
+        [_pay addTarget:self action:@selector(payMoneySelf:) forControlEvents:UIControlEventTouchUpInside];
         
 //        [self addSubview:_pay];
 
@@ -86,8 +89,8 @@
 }
 
 
--(void)payMoney{
-    [self.delegate payMoney];
+-(void)payMoneySelf:(id) sender{
+    [self.delegate payMoney:sender];
 }
 
 @end

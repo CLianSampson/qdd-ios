@@ -9,7 +9,11 @@
 #import "SetPasswordVC.h"
 #import "Macro.h"
 #import "PasswordView.h"
+#import "SaveToMemory.h"
+#import "LoginVC.h"
+#import "Constants.h"
 #import "AFNetRequest.h"
+
 
 @interface SetPasswordVC()
 
@@ -144,6 +148,8 @@
         [self createAlertView];
         self.alertView.title=@"输入内容不能为空";
         [self.alertView show];
+        
+        return;
     }
     
     [self addLoadIndicator];
@@ -197,6 +203,8 @@
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
             
+            [self logout];
+            
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
@@ -208,6 +216,7 @@
     
     [request netRequestWithUrl:urlstring Data:dic];
 }
+
 
 
 

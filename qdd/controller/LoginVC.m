@@ -169,6 +169,10 @@
     [dic setObject:_userName.text forKey:@"username"];
     [dic setObject:_passWord.text forKey:@"password"];
 
+//    [dic setObject:@"wangnanqiao@qiandd.com" forKey:@"username"];
+//    [dic setObject:@"lingxi0502" forKey:@"password"];
+
+//    _userName.text = @"wangnanqiao@qiandd.com";
     
     NSLog(@"json data is : %@" ,dic);
     

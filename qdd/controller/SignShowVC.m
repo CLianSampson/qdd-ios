@@ -32,7 +32,9 @@
 @property(nonatomic,strong)UIButton *enterpriseSignButton;
 @property(nonatomic,strong)UIView *sepreateLine;
 
-@property(nonatomic,strong)UIView *alphaView;
+//@property(nonatomic,strong)UIView *alphaView;
+
+
 
 @end
 
@@ -126,20 +128,17 @@
         case TIME_OUT:
             [_bottomButton removeFromSuperview];
             break;
-            
+        case HAVE_REFUSE:
+            [_bottomButton removeFromSuperview];
+            break;
+
         default:
             break;
     }
-
-    
-    
-    
-    
-    
-    
-    
-    
 }
+
+
+
 
 -(void)refuseSign{
     UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"是否驳回" message:nil delegate:self cancelButtonTitle:@"取消" otherButtonTitles: @"确定", nil];
@@ -153,10 +152,10 @@
     [_rightBottomButton removeFromSuperview];
     [_leftBottomButton removeFromSuperview];
     
-    _alphaView = [[UIView alloc]initWithFrame:self.view.frame];
-    _alphaView.backgroundColor = [UIColor blackColor];
-    _alphaView.alpha = 0.16;
-    [self.view addSubview:_alphaView];
+//    _alphaView = [[UIView alloc]initWithFrame:self.view.frame];
+//    _alphaView.backgroundColor = [UIColor blackColor];
+//    _alphaView.alpha = 0.16;
+//    [self.view addSubview:_alphaView];
     
     
     _cancelButton = [[UIButton alloc]initWithFrame:CGRectMake(23*WIDTH_SCALE, SCREEN_HEIGHT-(9+114)*HEIGHT_SCALE, SCREEN_WIDTH-46*WIDTH_SCALE, 114*HEIGHT_SCALE)];
@@ -220,7 +219,7 @@
 
 
 -(void)cancel{
-    [_alphaView removeFromSuperview];
+//    [_alphaView removeFromSuperview];
     [_cancelButton removeFromSuperview];
     
     [_personalSignButton removeFromSuperview];
@@ -293,9 +292,6 @@
     
     [request downLoadPicture:appendUrlString];
     
-    
-    
-    
     return cell;
 }
 
@@ -310,7 +306,9 @@
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
     
 //    return SCREEN_HEIGHT-66-49;
-    return 544;
+//    return 544;
+    
+    return SCREEN_HEIGHT-67;
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section{
@@ -388,14 +386,6 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-    
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
@@ -437,7 +427,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_REFUSE_SIGN];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_REJECT_SIGN];
     
     [urlstring appendString:self.token];
     
@@ -456,6 +446,12 @@
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
+            
+            [self showLeft];
+            
+            self.refuseSignBlock();
+            
+            return;
 
         }else if ([state isEqualToString:@"fail"]){
             [weakSelf.indicator removeFromSuperview];
@@ -463,10 +459,7 @@
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
-            
         }
-        
-        
     };
     
     NSLog(@"驳回合同的url  :  %@",urlstring);

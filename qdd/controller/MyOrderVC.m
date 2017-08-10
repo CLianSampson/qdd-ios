@@ -247,6 +247,7 @@
     if (cell == nil) {
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         
+        cell.delegate=self;
         
         OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
         
@@ -323,12 +324,12 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
-    OrderModel *model = (OrderModel *)_mutableArry[indexPath.row];
-    _price = (int)([model.price floatValue]*100);
-    _orderId = model.orderId;
-    
-    OrderCell *cell = (OrderCell*) [tableView cellForRowAtIndexPath:indexPath];
-    cell.delegate=self;
+//    OrderModel *model = (OrderModel *)_mutableArry[indexPath.row];
+//    _price = (int)([model.price floatValue]*100);
+//    _orderId = model.orderId;
+//    
+//    OrderCell *cell = (OrderCell*) [tableView cellForRowAtIndexPath:indexPath];
+//    cell.delegate=self;
 }
 
 
@@ -347,7 +348,17 @@
 
 
 #pragma mark -OrderCell delegate
--(void)payMoney{
+-(void)payMoney:(id) sender{
+    UIButton *button = (UIButton *)sender;
+    OrderCell *cell = (OrderCell *)[button superview];
+    
+    NSIndexPath *indexPath = [_myTableView indexPathForCell:cell];
+    OrderModel *model = (OrderModel *)_mutableArry[indexPath.row];
+    _price = (int)([model.price floatValue]*100);
+    _orderId = model.orderId;
+
+    
+    
     PayVC *VC = [[PayVC alloc]init];
     VC.price = _price;
     VC.orderId = _orderId;

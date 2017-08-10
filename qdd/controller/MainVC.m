@@ -36,6 +36,8 @@
 @property(nonatomic,strong)UIButton *complete;
 @property(nonatomic,strong)UIButton *timeOut;
 
+@property(nonatomic,strong)UIButton *haveReject;
+
 @property(nonatomic,strong)UILabel *underLabel;
 
 
@@ -47,6 +49,10 @@
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 
 @property(nonatomic,assign)int pageNo;
+
+
+@property(nonatomic,strong)UILabel *noDataLabel;//没有数据时展示
+
 
 @end
 
@@ -105,9 +111,11 @@
 
 -(void)creatView{
     if (iPhone4||iPhone5) {
-        interval = 30;
+        interval = 1;
+        fontSize = 10;
     }else{
-        interval = 60;
+        interval = 10;
+        fontSize=12;
     }
     
     
@@ -117,9 +125,9 @@
         buttonWidth = (SCREEN_WIDTH-interval*5*WIDTH_SCALE)/4;
     }
     
+    buttonWidth = (SCREEN_WIDTH - interval*WIDTH_SCALE*4)/5;
     
     
-    fontSize=12;
     
     
     buttonOrginalY = _scrolView.frame.origin.y+_scrolView.frame.size.height;
@@ -154,6 +162,14 @@
     [_timeOut addTarget:self action:@selector(timeOutMethod) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_timeOut];
     
+    
+    _haveReject = [[UIButton alloc]initWithFrame:CGRectMake(_timeOut.frame.origin.x+_timeOut.frame.size.width+interval*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
+    [_haveReject setTitle:@"已驳回" forState:UIControlStateNormal];
+    _haveReject.titleLabel.font=[UIFont systemFontOfSize:fontSize];
+    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    [_haveReject addTarget:self action:@selector(haveRefuse) forControlEvents:UIControlEventTouchUpInside];
+    [self.view addSubview:_haveReject];
+    
 //    _underLabel = [[UILabel alloc]initWithFrame:CGRectMakeCGRectMake(60*WIDTH_SCALE, buttonOrginalY, buttonWidth, 89*HEIGHT_SCALE)];
     
     _underLabel = [[UILabel alloc]initWithFrame:CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2)];
@@ -165,6 +181,13 @@
     background.backgroundColor=RGBColor(200, 200, 200);
     [self.view addSubview:background];
     
+    
+    //没有数据时展示
+    _noDataLabel =  [[UILabel alloc]initWithFrame:CGRectMake(0, _underLabel.frame.origin.y+_underLabel.frame.size.height + 50, SCREEN_WIDTH, 60)];
+    _noDataLabel.text = @"暂无数据";
+    _noDataLabel.textAlignment = NSTextAlignmentCenter;
+    _noDataLabel.font = [UIFont systemFontOfSize:12];
+    _noDataLabel.textColor = RGBColor(133, 133, 133);
     
 //    _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(20*WIDTH_SCALE, _underLabel.frame.origin.y+_underLabel.frame.size.height, SCREEN_WIDTH-2*20*WIDTH_SCALE, SCREEN_HEIGHT-_underLabel.frame.origin.y-_underLabel.frame.size.height)];
     _myTableView = [[UITableView alloc]initWithFrame:CGRectMake(0, _underLabel.frame.origin.y+_underLabel.frame.size.height, SCREEN_WIDTH, SCREEN_HEIGHT-_underLabel.frame.origin.y-_underLabel.frame.size.height)];
@@ -179,6 +202,10 @@
     [self addLoadIndicator];
     
     [self netReauest];
+    
+    
+    
+   
 }
 
 
@@ -233,6 +260,8 @@
 
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+
 
     [self netReauest];
     
@@ -256,6 +285,9 @@
     [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
+    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+
+    
     [self netReauest];
 }
 
@@ -274,6 +306,9 @@
     
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    
+    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+
     
 
     [self netReauest];
@@ -296,13 +331,38 @@
     [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
     
+    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+
+    
 
     [self netReauest];
 
 }
 
 
+-(void)haveRefuse{
+    _status=5;
+    _pageNo=1;
+    
+    _mutableArry=nil;
+    [_myTableView reloadData];
+    [UIView animateWithDuration:0.5 animations:^{
+        //buttonWidth-3  为了不让下划线挨到顶边
+        
+        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_timeOut.frame.origin.x+_timeOut.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth-10, 2);
+    }];
+    
+    [_haveReject setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
 
+    [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    
+    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    
+    
+    [self netReauest];
+}
 
 
 #pragma mark -tableView dataSourceDelegate
@@ -314,10 +374,18 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
     
+    if (nil==_mutableArry || _mutableArry.count==0) {
+        [self.view addSubview:_noDataLabel];
+    }else{
+        [_noDataLabel removeFromSuperview];
+    }
+
+    
     return _mutableArry.count;
 }
 
 - (SignCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    
     
     static NSString *cellIdentifier = @"Cell";
     
@@ -325,8 +393,6 @@
     if (cell == nil) {
         cell = [[SignCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     }
-    
-   
     
     
     switch (_status) {
@@ -346,6 +412,9 @@
             cell.state.text=@"过期未签署";
             break;
             
+        case 5:
+            cell.state.text=@"已驳回";
+            
         default:
             break;
     }
@@ -354,7 +423,7 @@
     cell.clipsToBounds=YES;
     
     
-    SignModel *model  = (SignModel *)[_mutableArry objectAtIndex:indexPath.row];
+    SignModel *model  = (SignModel *)[_mutableArry objectAtIndex:indexPath.section];
     
     long startTimestap = [TimeUtil transStringToTimestap:model.startTime];
     long endTimestap = [TimeUtil transStringToTimestap:model.endTime];
@@ -424,13 +493,17 @@
         case 4:
             VC.signState=TIME_OUT;
             break;
+        case 5:
+            VC.signState = HAVE_REFUSE;
             
         default:
             break;
     }
     
     VC.VC = self.sideMenuViewController.contentViewController;
-
+    VC.refuseSignBlock=^(){
+        [self haveRefuse];
+    };
     
     UINavigationController *nav = [[UINavigationController alloc]initWithRootViewController:VC];
     
@@ -537,8 +610,12 @@
 //        [self createAlertView];
 //        self.alertView.title=@"没有更多合同了";
 //        [self.alertView show];
+        
+        
+        
         return;
     }
+    
     
    
     for (NSDictionary *temp in arry) {

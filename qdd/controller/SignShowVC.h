@@ -10,6 +10,9 @@
 
 #import "BaseVC.h"
 
+
+typedef void(^RefuseSignBlock)();
+
 @interface SignShowVC : BaseVC
 
 @property(nonatomic,strong)UIViewController *VC;
@@ -19,5 +22,10 @@
 @property(nonatomic,strong)NSString *signId;
 
 @property(nonatomic,assign)SIGN_STATE signState;
+
+
+@property(nonatomic,copy)RefuseSignBlock refuseSignBlock;
+
+
 
 @end

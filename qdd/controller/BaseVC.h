@@ -34,7 +34,8 @@ typedef NS_ENUM(NSInteger, SIGN_STATE) {
     WAIT_FOR_ME = 1,
     WAIT_FOR_OTHER =2,
     COMPLETE = 3,
-    TIME_OUT,
+    TIME_OUT = 4,
+    HAVE_REFUSE = 5,
 };
 
 //授权状态
@@ -83,6 +84,8 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 -(void)createNavition;
 
 -(void)showLeft;
+
+-(void)logout;
 
 //-(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 //

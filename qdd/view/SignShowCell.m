@@ -16,7 +16,7 @@
     if (self=[super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         
        
-        _imageShow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT)];
+        _imageShow = [[UIImageView alloc]initWithFrame:CGRectMake(0, 0, SCREEN_WIDTH, SCREEN_HEIGHT-67)];
         [self addSubview:_imageShow];
         
     }

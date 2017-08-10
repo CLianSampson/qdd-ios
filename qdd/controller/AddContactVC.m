@@ -146,6 +146,7 @@
     NSMutableDictionary *dic =[[NSMutableDictionary alloc]init];
     [dic setObject:_searchBar.text forKey:@"idname"];
     
+    
     NSLog(@"%@",urlstring);
     NSLog(@"dic is %@",dic);
     
@@ -192,10 +193,11 @@
     }
     
     
-    if (! [[data objectForKey:@"res"] isKindOfClass:[NSDictionary class]]) {
+    if (! ([[data objectForKey:@"res"] isKindOfClass:[NSDictionary class]])) {
         [self createAlertView];
         self.alertView.title=@"联系人已添加";
         [self.alertView show];
+        return;
     }
     
     

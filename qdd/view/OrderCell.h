@@ -10,7 +10,7 @@
 
 @protocol payMoneyProtocol <NSObject>
 
--(void)payMoney;
+-(void)payMoney:(id) sender;
 
 @end
 
