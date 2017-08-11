@@ -26,4 +26,7 @@
 
 @property(nonatomic,assign)id<SendSmsCodeDelegete> delegate;
 
+
+@property(nonatomic,strong)NSString *phone;  //获取手机号，判断是否为空
+
 @end

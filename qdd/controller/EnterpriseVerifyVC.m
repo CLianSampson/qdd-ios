@@ -573,9 +573,9 @@
 #pragma mark  sendSmsCode delegate
 -(void)sendSmsCode{
     
+    _verifyCode.phone = _lawPhone.textField.text;
     
-    if (_lawPhone.textField.text==nil
-        || [StringUtil isNullOrBlank:_lawPhone.textField.text]) {
+    if ([StringUtil isNullOrBlank:_lawPhone.textField.text]) {
         [self createAlertView];
         self.alertView.title=@"手机号不能为空";
         [self.alertView show];

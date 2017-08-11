@@ -231,6 +231,8 @@
 
 -(void)sendSmsCode{
     
+    _code.phone = _phone.textField.text;
+    
     
     if ([StringUtil isNullOrBlank:_phone.textField.text]) {
         [self createAlertView];

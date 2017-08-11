@@ -395,6 +395,7 @@
 }
 
 
+//注册时获取短信验证码，如果注册过则提示已注册过，不发短信
 -(void)sendSmsCode{
     NSString *account;
     if (_flag==1) {
@@ -411,7 +412,7 @@
     }
     
     AFNetRequest *request = [[AFNetRequest alloc]init];
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_REGISTER_SMS];
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",account];
     
     [urlstring appendString:urlParameters];
@@ -436,15 +437,7 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-
+    NSLog(@"注册时获取短信验证码 : %@",urlstring);
     
     [request netRequestGetWithUrl:urlstring Data:nil];
 }

@@ -8,6 +8,7 @@
 
 #import "GetVerifyCodeView.h"
 #import "Macro.h"
+#import "StringUtil.h"
 
 @interface GetVerifyCodeView(){
 }
@@ -92,10 +93,16 @@ static int timerFlag = 60;
 }
 
 -(void)sendSmsCodeClick{
-     _timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(updateButtonText) userInfo:nil repeats:YES];
-    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
+    //以下三步，顺序不能改变
     
     [self.delegate sendSmsCode];
+    
+    if ([StringUtil isNullOrBlank:_phone]) {
+        return;
+    }
+    
+     _timer = [NSTimer timerWithTimeInterval:1 target:self selector:@selector(updateButtonText) userInfo:nil repeats:YES];
+    [[NSRunLoop currentRunLoop] addTimer:_timer forMode:NSDefaultRunLoopMode];
     
 }
                       

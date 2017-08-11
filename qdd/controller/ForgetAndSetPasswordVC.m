@@ -111,14 +111,10 @@
 }
 
 -(void)sendSmsCode{
-    AFNetRequest *request = [[AFNetRequest alloc]init];
-    request.context = self;
+    //如果手机号为空，则不使用动画
+    _code.phone = _phone.textField.text;
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
-    
-   
-    if (_phone.textField.text==nil
-        || [StringUtil isNullOrBlank:_phone.textField.text]) {
+    if ([StringUtil isNullOrBlank:_phone.textField.text]) {
         [self createAlertView];
         self.alertView.title=@"手机号不能为空";
         [self.alertView show];
@@ -126,8 +122,12 @@
         return;
     }
 
-
     
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    request.context = self;
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phone.textField.text];
     

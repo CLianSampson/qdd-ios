@@ -113,6 +113,10 @@
 
 #pragma mark GetVerifyCodeView delegate
 -(void)sendSmsCode{
+    _code.phone = _phoneLabel.text;
+
+    
+    
     AFNetRequest *request = [[AFNetRequest alloc]init];
     NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_GET_SMS_CODE];
     [urlstring appendString:self.token];

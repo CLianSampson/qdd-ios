@@ -91,13 +91,10 @@
 
 
 -(void)sendSmsCode{
-    AFNetRequest *request = [[AFNetRequest alloc]init];
     
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
+    _verifyCode.phone = _phoneInput.textField.text;
     
-    
-    if (_phoneInput.textField.text==nil
-        || [StringUtil isNullOrBlank:_phoneInput.textField.text]) {
+    if ([StringUtil isNullOrBlank:_phoneInput.textField.text]) {
         [self createAlertView];
         self.alertView.title=@"手机号不能为空";
         [self.alertView show];
@@ -105,6 +102,10 @@
         return;
     }
 
+    
+    AFNetRequest *request = [[AFNetRequest alloc]init];
+    
+    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SMS];
     
     NSString *urlParameters=[NSString stringWithFormat:@"mobile=%@",_phoneInput.textField.text];
     

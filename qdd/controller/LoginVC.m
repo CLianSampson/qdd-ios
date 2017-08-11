@@ -56,7 +56,7 @@
     
     _userName = [[UITextField alloc]initWithFrame:CGRectMake(account.frame.origin.x+account.frame.size.width+60*WIDTH_SCALE, logo.frame.origin.y+logo.frame.size.height+100*HEIGHT_SCALE, 200, 18)];
     _userName.placeholder=@"请输入帐号";
-    [_userName setFont:[UIFont systemFontOfSize:18]];
+    [_userName setFont:[UIFont systemFontOfSize:14]];
     [_userName setTextColor:RGBColor(172, 172, 172)];
     [self.view addSubview:_userName];
     
@@ -76,7 +76,7 @@
 
     _passWord = [[UITextField alloc]initWithFrame:CGRectMake(pawword.frame.origin.x+pawword.frame.size.width+60*WIDTH_SCALE, upper.frame.origin.y+upper.frame.size.height+94*HEIGHT_SCALE, 200, 18)];
     _passWord.placeholder=@"请输入密码";
-    [_passWord setFont:[UIFont systemFontOfSize:18]];
+    [_passWord setFont:[UIFont systemFontOfSize:14]];
     [_passWord setTextColor:RGBColor(172, 172, 172)];
     _passWord.secureTextEntry = YES;
     [self.view addSubview:_passWord];

@@ -15,6 +15,8 @@ static  NSString *URL_SMS = @"https://www.qiandd.com/mobile/user/sms?"; //短信
 
 static  NSString *URL_REGISTER = @"https://www.qiandd.com/mobile/user/doregister"; //注册
 
+static NSString  *URL_REGISTER_SMS=  @"https://www.qiandd.com/mobile/user/registersms?";//注册时获取短信验证码，如果注册过则不让获取
+
 static  NSString *URL_PICTURE_CODE = @"https://www.qiandd.com/api/checkcode/index?length=4&font_size=14&width=100&height=26&charset=1234567890&use_noise=1&use_curve=0"; //图片验证码
 
 

@@ -37,7 +37,7 @@
 -(void)viewDidLoad{
     [super viewDidLoad];
     
-    _pageNo=2;
+    _pageNo=1;
     
     
 //    self.view.backgroundColor=[UIColor whiteColor];
@@ -252,13 +252,6 @@
         
     };
     
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
     
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
