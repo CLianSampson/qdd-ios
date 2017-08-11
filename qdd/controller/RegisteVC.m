@@ -288,9 +288,9 @@
 
 
 //取消键盘第一响应
-//-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
-//    NSArray *arry = [_myTableView visibleCells];
-//    
+-(void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event{
+    NSArray *arry = [_myTableView visibleCells];
+//
 //    for (int i=0; i<[arry count]; i++) {
 //        RegisteCell *cell = (RegisteCell*)arry[i];
 //        [cell.textField resignFirstResponder];
@@ -315,18 +315,20 @@
 //        }
 //        
 //    }
-//    
-//    
-//    
-//    for (id object in arry) {
-//        RegisteCell *cell = (RegisteCell*)object;
-//        [cell.textField resignFirstResponder];
-//        
-//    }
-//}
+    
+    
+    
+    for (id object in arry) {
+        RegisteCell *cell = (RegisteCell*)object;
+        [cell.textField resignFirstResponder];
+        
+    }
+}
 
 
 -(void)personalClick{
+    [self clearData];
+    
     [UIView animateWithDuration:0.5 animations:^{
         _flagView.frame=CGRectMake(0, _personal.frame.origin.y+_personal.frame.size.height+1, SCREEN_WIDTH/2, 2);
     }];
@@ -339,6 +341,8 @@
 
 
 -(void)enterpriseClick{
+    [self clearData];
+    
     [UIView animateWithDuration:0.5 animations:^{
         _flagView.frame=CGRectMake(SCREEN_WIDTH/2, _personal.frame.origin.y+_personal.frame.size.height+1, SCREEN_WIDTH/2, 2);
     }];
@@ -351,6 +355,18 @@
     [_myTableView reloadData];
 }
 
+//清空原数据
+-(void)clearData{
+    RegisteCell *phoneCell = [_myTableView cellForRowAtIndexPath:_indexPathPhone];
+    RegisteCell *verifyCodeCell = [_myTableView cellForRowAtIndexPath:_indexPathSmsCode];
+    RegisteCell *passwordCell = [_myTableView cellForRowAtIndexPath:_indexPathPassword];
+    RegisteCell *repasswordCell = [_myTableView cellForRowAtIndexPath:_indexPathRepassword];
+
+    phoneCell.textField.text=nil;
+    verifyCodeCell.textField.text=nil;
+    passwordCell.textField.text=nil;
+    repasswordCell.textField.text=nil;
+}
 
 -(void)confirmClick{
     

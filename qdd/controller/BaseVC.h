@@ -70,6 +70,8 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 @property(nonatomic,strong)UIActivityIndicatorView *indicator;
 
 @property(nonatomic,strong)NSString *token;
+@property(nonatomic,strong)NSString *phoneToSave;  //账号
+
 
 @property(nonatomic,assign)ACCOUNT_FLAG accountFlag;
 @property(nonatomic,assign)AUTH_STATE authState;
@@ -86,6 +88,8 @@ typedef NS_ENUM(NSInteger, VERIFY_STATE) {
 -(void)showLeft;
 
 -(void)logout;
+
+-(void)saveToMemory;//存储token 以及相关状态
 
 //-(void)netRequestWithUrl:(NSString *)url Data:(id )data;
 //

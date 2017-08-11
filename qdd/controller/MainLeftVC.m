@@ -44,7 +44,7 @@
     
     //高度加10
     UILabel *phoneLabel = [[UILabel alloc]initWithFrame:CGRectMake(selfWidth/2-100, iconButton.frame.origin.y+iconButton.frame.size.height+33*HEIGHT_SCALE, 200, 13)];
-    NSMutableString *mutableString = [[NSMutableString alloc]initWithString:_phone];
+    NSMutableString *mutableString = [[NSMutableString alloc]initWithString:self.phoneToSave];
     [mutableString insertString:@"  " atIndex:3];
     [mutableString insertString:@"  " atIndex:9];
     phoneLabel.text=mutableString;

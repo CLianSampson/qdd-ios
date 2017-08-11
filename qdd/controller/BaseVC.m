@@ -342,6 +342,10 @@
     MenuVC.contentViewScaleValue=(float)305/445;
     
     [self presentViewController:MenuVC animated:YES completion:nil];
+    
+    //清空navigationController
+    [self clearController];
+
 }
 
 
@@ -353,14 +357,39 @@
     NSDictionary *dic = [[NSDictionary alloc]init];
     [saveToMemory SaveDictionary:dic ToMemory:filePath];
     
-    NSMutableArray * array =[[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
-    [array removeAllObjects];
-    
-    
-    
+    [self clearController];
+
     LoginVC *VC = [[LoginVC alloc]init];
     [self presentViewController:VC animated:YES completion:nil];
 }
+
+-(void)clearController{
+    NSMutableArray * array =[[NSMutableArray alloc]initWithArray:self.navigationController.viewControllers];
+    [array removeAllObjects];
+}
+
+
+-(void)saveToMemory{
+    //存储到磁盘
+    NSDictionary *saveDic = [[NSMutableDictionary alloc]init];
+    [saveDic setValue:self.token forKey:TOKEN_KEY];
+    [saveDic setValue:[NSNumber numberWithInt:self.authState] forKey:AUTH_STATE_KEY];
+    [saveDic setValue:[NSNumber numberWithInt:self.verifyState] forKey:VERIFY_STATE_KEY];
+    [saveDic setValue:self.phoneToSave forKey:PHONE_KEY];
+    
+    if ([StringUtil isPhoneNum:self.phoneToSave]) {
+        self.accountFlag = USER_ACCOUNT;
+    }else{
+        self.accountFlag = ENTERPRISE_ACCOUNT;
+    }
+    [saveDic setValue:[NSNumber numberWithInt:self.accountFlag] forKey:ACCOUNT_FLAG_KEY];
+    
+    
+    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
+    NSString *filePath = [saveToMemory filePath:STORE_PATH];
+    [saveToMemory SaveDictionary:saveDic ToMemory:filePath];
+}
+
 
 
 

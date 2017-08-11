@@ -24,7 +24,10 @@ static NSString *const PHONE_KEY = @"phone";
 static NSString *const ACCOUNT_FLAG_KEY = @"accountFlag";
 
 
-//认证成功之后的发送的通知
+//个人认证成功之后的发送的通知
+static  NSString *const CHANGE_VERIFY_STATE_AFTER_USER_VERIFY = @"change verify state after user verify";
+
+//企业认证成功之后的发送的通知
 static  NSString *const GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER = @"go to main controller from enterpeise controller";
 
 //绑定邮箱成功之后发送的通知

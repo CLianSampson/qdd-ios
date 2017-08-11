@@ -66,6 +66,8 @@
     _myTableView.dataSource=self;
     
     _myTableView.autoresizingMask=UIViewAutoresizingFlexibleTopMargin|UIViewAutoresizingFlexibleBottomMargin|UIViewAutoresizingFlexibleHeight;
+    [self.view addSubview:_myTableView];
+
     
     [self addMjRefresh:_myTableView];
     [self addLoadIndicator];
@@ -150,10 +152,6 @@
     MessageModel *model  = (MessageModel *)[_mutableArry objectAtIndex:indexPath.row];
    
     
-    NSString *mainTitle = nil;
-    NSString *subTitle=nil;
-    NSString *time =nil;
-    
     if ([StringUtil isNullOrBlank:model.status]) {
         cell.icon.image=[UIImage imageNamed:@"消息图标未读"];
     }else if ([model.status intValue]==0){
@@ -161,22 +159,22 @@
     }
     
     if (![StringUtil isNullOrBlank:model.title]) {
-        mainTitle = model.title;
+        cell.mainTitle.text = model.title;
     }else{
-        mainTitle = @"";
+        cell.mainTitle.text = @"";
         
     }
     
     if (![StringUtil isNullOrBlank:model.contents]) {
-        subTitle = model.contents;
+        cell.subTitle.text = model.contents;
     }else{
-        subTitle = @"";
+        cell.subTitle.text = @"";
     }
     
     if (![StringUtil isNullOrBlank:model.createTime]) {
-        time = model.createTime;
+        cell.time.text = model.createTime;
     }else{
-        time = @"";
+        cell.time.text = @"";
     }
     
 
@@ -198,7 +196,8 @@
     
     VC.backBlock=^{
         _mutableArry=nil;
-        _pageNo=0;
+        [tableView reloadData];
+        _pageNo=1;
         [self netReauest];
     };
     
@@ -284,6 +283,7 @@
         model.contents=[temp objectForKey:@"contents"];
         model.status=[temp objectForKey:@"status"];
         
+        NSLog(@"title is : %@",model.title);
         
         if (_mutableArry==nil) {
             _mutableArry=[[NSMutableArray alloc]init];
@@ -293,8 +293,8 @@
     }
     
     
-    [self.view addSubview:_myTableView];
-    [self addMjRefresh:_myTableView];
+//    [self.view addSubview:_myTableView];
+//    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
     
 }

@@ -173,7 +173,21 @@
 #pragma mark 认证成功后的通知
 -(void)addNotification{
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_BIND_MAIL_SUCESS_CONTROLLER object:nil];
+    
+    //个人认证成功后更改认证状态
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(changeVerifyState) name:CHANGE_VERIFY_STATE_AFTER_USER_VERIFY object:nil];
 }
+
+-(void)changeVerifyState{
+    self.verifyState = HAVE_VERIFY;
+    
+    //重新存储
+    [self saveToMemory];
+    
+}
+
+
+
 
 
 @end

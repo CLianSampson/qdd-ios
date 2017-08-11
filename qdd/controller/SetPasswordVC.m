@@ -88,20 +88,20 @@
     _oldPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _accountLabel.frame.origin.y+_accountLabel.frame.size.height, SCREEN_WIDTH, 40)];
     _oldPassword.password.text=@"原始密码";
     _oldPassword.textField.placeholder=@"请输入原始密码";
+    _oldPassword.textField.secureTextEntry = YES;
     [self.view addSubview:_oldPassword];
     
     _newingPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _oldPassword.frame.origin.y+_oldPassword.frame.size.height+1, SCREEN_WIDTH, 40)];
     _newingPassword.password.text=@"新密码";
     _newingPassword.textField.placeholder=@"请输入新密码";
+    _newingPassword.textField.secureTextEntry = YES;
     [self.view addSubview:_newingPassword];
     
     _confirmPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _newingPassword.frame.origin.y+_newingPassword.frame.size.height+1, SCREEN_WIDTH, 40)];
     _confirmPassword.password.text=@"确认密码";
     _confirmPassword.textField.placeholder=@"确认登陆新密码";
+    _confirmPassword.textField.secureTextEntry = YES;
     [self.view addSubview:_confirmPassword];
-    
-    
-    
 }
 
 

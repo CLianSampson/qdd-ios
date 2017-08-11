@@ -124,12 +124,12 @@
 
 - (SignatureCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     
-//    static NSString *cellIdentifier = @"Cell";
+    static NSString *cellIdentifier = @"Cell";
     
     
     if (indexPath.section==0) {
         
-        SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:nil];
+        SignatureCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
         if (cell == nil) {
             cell = [[SignatureCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         }
@@ -137,7 +137,6 @@
         
         
         SignatureModel *model = (SignatureModel*)[_mutableArry objectAtIndex:indexPath.row];
-        
         NSMutableString  *urlstring=[NSMutableString stringWithString:@"https://www.qiandd.com"];
         
         NSString *appendUrlString=[urlstring stringByAppendingString:model.path];
@@ -155,6 +154,9 @@
             cell.signImageView.image=[UIImage imageWithData:result];
             
             //默认选择第一个签章
+//            if (indexPath.row == 0) {
+//                [cell.signImageView.deleteButton removeFromSuperview];
+//            }
             if (indexPath.row != 0) {
                 
                 [cell.signImageView addSubview:cell.signImageView.deleteButton];
@@ -166,10 +168,7 @@
         [request downLoadPicture:appendUrlString];
         
         return cell;
-        
     }
-    
-    
     
     static NSString *enterpriseCellIdentifier = @"enterpriseCell";
     //企业签章
@@ -198,7 +197,6 @@
     [cell.signImageView.deleteButton removeFromSuperview];
     
     return cell;
-    
 }
 
 
@@ -206,14 +204,22 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     
     if (indexPath.section==0) {
+        
+        //设置默认签章
         SignatureCell *cell = [tableView cellForRowAtIndexPath:indexPath];
         [cell.signImageView addSubview:cell.signImageView.chooseImage];
         
         SignatureModel *model = [_mutableArry objectAtIndex:indexPath.row];
         
         [self setDefaultSign:model.signatureId];
+        
+        //重新加载
+        _mutableArry = nil;
+        [_myTableView reloadData];
+        [self netReauest];
+        
     }
-    
+  
     
     return;
 }

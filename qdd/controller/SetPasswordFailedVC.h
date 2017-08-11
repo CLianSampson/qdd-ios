@@ -10,4 +10,6 @@
 
 @interface SetPasswordFailedVC : BaseVC
 
+@property(nonatomic,strong)NSString *reason;
+
 @end

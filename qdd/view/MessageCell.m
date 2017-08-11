@@ -21,7 +21,7 @@
         
         
         _mainTitle = [[UILabel alloc]initWithFrame:CGRectMake((30+32)*WIDTH_SCALE+50, 48*HEIGHT_SCALE, 150, 32*HEIGHT_SCALE)];
-        _mainTitle.text = @"签多多电子章上线了";
+//        _mainTitle.text = @"签多多电子章上线了";
         _mainTitle.textAlignment=NSTextAlignmentLeft;
         _mainTitle.font=[UIFont systemFontOfSize:16];
         _mainTitle.textColor=RGBColor(0, 0, 0);
@@ -29,7 +29,7 @@
         
         
         _subTitle = [[UILabel alloc]initWithFrame:CGRectMake((30+32)*WIDTH_SCALE+50, (48+32+26)*HEIGHT_SCALE, 150, 28*HEIGHT_SCALE)];
-        _subTitle.text = @"一键签约，多功能同步，提升工作效率，降低人工成本，保障合同安全 ";
+//        _subTitle.text = @"一键签约，多功能同步，提升工作效率，降低人工成本，保障合同安全 ";
         _subTitle.textAlignment=NSTextAlignmentLeft;
         _subTitle.font=[UIFont systemFontOfSize:14];
         _subTitle.textColor=RGBColor(136 , 136, 136);

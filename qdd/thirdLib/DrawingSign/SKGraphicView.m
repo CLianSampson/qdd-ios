@@ -21,22 +21,30 @@
         
         //创建保存功能
         UIButton *but = [UIButton buttonWithType:UIButtonTypeSystem];
-        but.frame = CGRectMake(0, self.bounds.size.height-60, 100, 60);
+        but.frame = CGRectMake(0, self.bounds.size.height-40, 100, 40);
         [but setTitle:@"保存至相册" forState:UIControlStateNormal];
         [but addTarget:self action:@selector(savePhoto) forControlEvents:UIControlEventTouchUpInside];
+        but.backgroundColor = [UIColor grayColor];
+        but.titleLabel.textColor = [UIColor whiteColor];
+        but.layer.cornerRadius = 5;
+        but.layer.masksToBounds = YES;
         [self addSubview:but];
         
         
-        UIButton *undoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        undoBtn.frame = CGRectMake(110, self.bounds.size.height-60, 100, 60);
-        [undoBtn setTitle:@"撤销" forState:UIControlStateNormal];
-        [undoBtn addTarget:self action:@selector(undoBtnEvent) forControlEvents:UIControlEventTouchUpInside];
-        [self addSubview:undoBtn];
+//        UIButton *undoBtn = [UIButton buttonWithType:UIButtonTypeSystem];
+//        undoBtn.frame = CGRectMake(110, self.bounds.size.height-60, 100, 60);
+//        [undoBtn setTitle:@"撤销" forState:UIControlStateNormal];
+//        [undoBtn addTarget:self action:@selector(undoBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+//        [self addSubview:undoBtn];
         
         UIButton *clearBtn = [UIButton buttonWithType:UIButtonTypeSystem];
-        clearBtn.frame = CGRectMake(220, self.bounds.size.height-60, 100, 60);
+        clearBtn.frame = CGRectMake(self.bounds.size.width-100, self.bounds.size.height-40, 100, 40);
         [clearBtn setTitle:@"清除" forState:UIControlStateNormal];
         [clearBtn addTarget:self action:@selector(clearBtnEvent) forControlEvents:UIControlEventTouchUpInside];
+        clearBtn.backgroundColor = [UIColor grayColor];
+        clearBtn.titleLabel.textColor = [UIColor whiteColor];
+        clearBtn.layer.cornerRadius = 5;
+        clearBtn.layer.masksToBounds = YES;
         [self addSubview:clearBtn];
         
     }
@@ -104,6 +112,10 @@
         
         UIImage *image = UIGraphicsGetImageFromCurrentImageContext();
         UIImageWriteToSavedPhotosAlbum(image, self, nil, NULL);
+        
+        UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"已保存到相册" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+        [alert show];
+
     }
     else{
             UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"请您先绘制图形" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
@@ -124,7 +136,7 @@
 
         return image;
     }
-    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"alert" message:@"请您先绘制图形" delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
+    UIAlertView* alert = [[UIAlertView alloc]initWithTitle:@"请您先绘制图形" message:nil delegate:nil cancelButtonTitle:nil otherButtonTitles:@"确定", nil];
         [alert show];
     return nil;
 }

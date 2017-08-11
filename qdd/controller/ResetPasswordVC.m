@@ -161,6 +161,7 @@
         }else if ([state isEqualToString:@"fail"]){
            
             SetPasswordFailedVC *VC=[[SetPasswordFailedVC alloc]init];
+            VC.reason = info;
             [weakSelf.navigationController pushViewController:VC animated:YES];
 
         }

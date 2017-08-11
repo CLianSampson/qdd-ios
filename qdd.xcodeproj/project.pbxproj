@@ -1119,8 +1119,6 @@
 				18ABF8D61E739C7B00022368 /* BindMailVC.m */,
 				1818E44B1E751518003B8865 /* BindingMailVC.h */,
 				1818E44C1E751518003B8865 /* BindingMailVC.m */,
-				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
-				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
 				1818A1311EA86400003B4274 /* HelpListVC.h */,
 				1818A1321EA86400003B4274 /* HelpListVC.m */,
 				18F4940E1E6C06060033AC03 /* HelpVC.h */,
@@ -1188,6 +1186,8 @@
 				1818E4551E754FBE003B8865 /* VerifyVC.m */,
 				1843843A1EB77221006B2142 /* EnterpriseVerifyVC.h */,
 				1843843B1EB77221006B2142 /* EnterpriseVerifyVC.m */,
+				180F11E51E75B9B40082F385 /* FaceSucessVC.h */,
+				180F11E61E75B9B40082F385 /* FaceSucessVC.m */,
 			);
 			path = verify;
 			sourceTree = "<group>";

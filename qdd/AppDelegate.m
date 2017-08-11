@@ -88,7 +88,7 @@
     
     leftVC.verifyState =[( (NSNumber *)[dic objectForKey:VERIFY_STATE_KEY] ) intValue];
     
-    leftVC.phone = [dic objectForKey:PHONE_KEY];
+    leftVC.phoneToSave = [dic objectForKey:PHONE_KEY];
     
     leftVC.accountFlag = [( (NSNumber *)[dic objectForKey:ACCOUNT_FLAG_KEY] ) intValue];
 

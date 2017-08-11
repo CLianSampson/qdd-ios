@@ -9,6 +9,7 @@
 #import "BaseVC.h"
 
 
+
 @interface MessageDetailVC : BaseVC
 
 @property(nonatomic,strong)NSString *mainTitle;

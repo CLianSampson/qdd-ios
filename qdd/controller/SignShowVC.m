@@ -167,6 +167,8 @@
     [_cancelButton addTarget:self action:@selector(cancel) forControlEvents:UIControlEventTouchUpInside];
     [self.view addSubview:_cancelButton];
     
+    _cancelButton.backgroundColor = PlaceHoderRGBColor;
+    
     if (self.authState == NOT_AUTH) {
         _personalSignButton = [[UIButton alloc]initWithFrame:CGRectMake(23*WIDTH_SCALE, _cancelButton.frame.origin.y-20*HEIGHT_SCALE-114*HEIGHT_SCALE, SCREEN_WIDTH-46*WIDTH_SCALE, 114*HEIGHT_SCALE)];
         [_personalSignButton setTitle:@"个人签署" forState:UIControlStateNormal];
@@ -176,6 +178,8 @@
         _personalSignButton.layer.cornerRadius=6;
         [_personalSignButton addTarget:self action:@selector(personalSign) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_personalSignButton];
+        
+        _personalSignButton.backgroundColor = PlaceHoderRGBColor;
     }else{
         _enterpriseSignButton = [[UIButton alloc]initWithFrame:CGRectMake(23*WIDTH_SCALE, _cancelButton.frame.origin.y-20*HEIGHT_SCALE-114*HEIGHT_SCALE, SCREEN_WIDTH-46*WIDTH_SCALE, 114*HEIGHT_SCALE)];
         [_enterpriseSignButton setTitle:@"代表企业签署" forState:UIControlStateNormal];
@@ -184,6 +188,8 @@
         [_enterpriseSignButton setTitleColor:RGBColor(25, 136, 246) forState:UIControlStateNormal];
         [_enterpriseSignButton addTarget:self action:@selector(enterpriseSign) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_enterpriseSignButton];
+        
+        _enterpriseSignButton.backgroundColor = PlaceHoderRGBColor;
         
         //设置下面圆角
         UIBezierPath *maskPath = [UIBezierPath bezierPathWithRoundedRect:_enterpriseSignButton.bounds      byRoundingCorners:UIRectCornerBottomLeft | UIRectCornerBottomRight    cornerRadii:CGSizeMake(10, 10)];
@@ -205,6 +211,8 @@
         [_personalSignButton setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_personalSignButton addTarget:self action:@selector(personalSign) forControlEvents:UIControlEventTouchUpInside];
         [self.view addSubview:_personalSignButton];
+        
+        _personalSignButton.backgroundColor = PlaceHoderRGBColor;
         
         //设置上面圆角
         UIBezierPath *maskPathUp = [UIBezierPath bezierPathWithRoundedRect:_personalSignButton.bounds      byRoundingCorners:UIRectCornerTopLeft | UIRectCornerTopRight    cornerRadii:CGSizeMake(10, 10)];

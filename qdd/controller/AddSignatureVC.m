@@ -13,9 +13,11 @@
 
 #import "AFNetRequest.h"
 
-@interface AddSignatureVC()
+@interface AddSignatureVC()<UIAlertViewDelegate>
 
 @property(nonatomic,strong)SKGraphicView *drawView; //签名区域
+
+@property(nonatomic,assign)BOOL clickFlag;  //完成按钮是否可点击标志
 
 
 @end
@@ -31,6 +33,8 @@
 }
 
 -(void)viewDidLoad{
+    
+    _clickFlag = YES; //可点击
     
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -67,13 +71,16 @@
 
 
 -(void)complete{
-    [self netReauest];
-    
+    if (_clickFlag==YES) {
+        
+        _clickFlag = NO;
+        
+        [self netReauest];
+    }
 }
 
 
 -(void)showLeft{
-    self.backBlock();
     [self.navigationController popViewControllerAnimated:YES];
 }
 
@@ -99,9 +106,15 @@
             
             [weakSelf.indicator removeFromSuperview];
             
-            [weakSelf createAlertView];
-            weakSelf.alertView.title=info;
-            [weakSelf.alertView show];
+//            [weakSelf createAlertView];
+//            weakSelf.alertView.title=info;
+//            [weakSelf.alertView show];
+            
+            UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:info message:nil delegate:self cancelButtonTitle:@"确定" otherButtonTitles: nil, nil];
+            alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
+            alertView.delegate=self;
+            [alertView show];
+
             
         }else if ([state isEqualToString:@"fail"]){
             
@@ -116,15 +129,6 @@
         }
     };
     
-    request.netFailedBlock=^(id result){
-        
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
-    };
-        
     [request upLoad:appendUrlString image:_drawView.getDrawingImg];
 }
 
@@ -186,6 +190,16 @@
 //    
 //    [self netRequestWithUrl:appendUrlString Data:dic];
 //}
+
+
+
+#pragma mark UIAlertView delegate
+-(void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if (buttonIndex==0) {
+        self.backBlock();
+        [self showLeft];
+    }
+}
 
 
 @end

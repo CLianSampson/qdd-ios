@@ -120,18 +120,18 @@
 
 
 -(void)confirm{
-//    if ([_name.textField.text isEqualToString:@""]
-//        || [_idNum.textField.text isEqualToString:@""]
-//        || [_bankNum.textField.text isEqualToString:@""]
-//        || [_phone.textField.text isEqualToString:@""]
-//        || [_code.textField.text isEqualToString:@""]) {
-//        
-//        [super createAlertView];
-//        self.alertView.title=@"输入内容不能为空";
-//        [self.alertView show];
-//        
-//        return;
-//    }
+    if ([_name.textField.text isEqualToString:@""]
+        || [_idNum.textField.text isEqualToString:@""]
+        || [_bankNum.textField.text isEqualToString:@""]
+        || [_phone.textField.text isEqualToString:@""]
+        || [_code.textField.text isEqualToString:@""]) {
+        
+        [super createAlertView];
+        self.alertView.title=@"输入内容不能为空";
+        [self.alertView show];
+        
+        return;
+    }
     
     [self netRequest];
     
@@ -224,9 +224,15 @@
 
 -(void)doSucess:(id )result{
     
-    PhotoVC *VC =[[PhotoVC alloc]init];
-    VC.token=self.token;
-    [self.navigationController pushViewController:VC animated:YES];
+//    PhotoVC *VC =[[PhotoVC alloc]init];
+//    VC.token=self.token;
+//    [self.navigationController pushViewController:VC animated:YES];
+    
+    //更改左侧视图的审核状态
+    [[NSNotificationCenter defaultCenter]postNotificationName:CHANGE_VERIFY_STATE_AFTER_USER_VERIFY object:nil];
+    
+    //认证成功后直接返回到主页
+    [self gotoMainController];
 }
 
 -(void)sendSmsCode{

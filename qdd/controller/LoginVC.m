@@ -29,7 +29,7 @@
 
 @property(nonatomic,assign)int observeState; //观察者状态，监控授权和认证成功
 
-@property(nonatomic,strong)NSMutableDictionary *saveDic; //存储token和其他状态值
+//@property(nonatomic,strong)NSMutableDictionary *saveDic; //存储token和其他状态值
 
 @end
 
@@ -388,7 +388,7 @@
         
         leftVC.verifyState = self.verifyState;
         
-        leftVC.phone = _userName.text;
+        leftVC.phoneToSave = _userName.text;
         
         if ([StringUtil isPhoneNum:_userName.text]) {
             leftVC.accountFlag = USER_ACCOUNT;
@@ -396,6 +396,9 @@
             leftVC.accountFlag = ENTERPRISE_ACCOUNT;
         }
         
+        
+        self.token = _tokenString;
+        self.phoneToSave = _userName.text;
         [self saveToMemory];
         
         
@@ -407,26 +410,6 @@
     }
 }
 
--(void)saveToMemory{
-    //存储到磁盘
-    _saveDic = [[NSMutableDictionary alloc]init];
-    [_saveDic setValue:_tokenString forKey:TOKEN_KEY];
-    [_saveDic setValue:[NSNumber numberWithInt:self.authState] forKey:AUTH_STATE_KEY];
-    [_saveDic setValue:[NSNumber numberWithInt:self.verifyState] forKey:VERIFY_STATE_KEY];
-    [_saveDic setValue:_userName.text forKey:PHONE_KEY];
-    
-    if ([StringUtil isPhoneNum:_userName.text]) {
-        self.accountFlag = USER_ACCOUNT;
-    }else{
-        self.accountFlag = ENTERPRISE_ACCOUNT;
-    }
-    [_saveDic setValue:[NSNumber numberWithInt:self.accountFlag] forKey:ACCOUNT_FLAG_KEY];
-    
-    
-    SaveToMemory *saveToMemory = [[SaveToMemory alloc]init];
-    NSString *filePath = [saveToMemory filePath:STORE_PATH];
-    [saveToMemory SaveDictionary:_saveDic ToMemory:filePath];
-}
 
 @end
 

@@ -49,7 +49,7 @@
     [self.view addSubview:remind];
     
     UILabel *reason = [[UILabel alloc]initWithFrame:CGRectMake(0, remind.frame.origin.y+remind.frame.size.height+10, SCREEN_WIDTH, 13)];
-    reason.text=@"失败原因: 密码不等";
+    reason.text=_reason;
     reason.font=[UIFont systemFontOfSize:13];
     reason.textColor=RedRGBColor;
     reason.textAlignment=NSTextAlignmentCenter;
