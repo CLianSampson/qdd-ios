@@ -10,4 +10,7 @@
 
 @interface ForgetAndSetPasswordVC : BaseVC
 
+@property(nonatomic,strong)NSString *mobile;
+@property(nonatomic,strong)NSString *verifyCode;
+
 @end

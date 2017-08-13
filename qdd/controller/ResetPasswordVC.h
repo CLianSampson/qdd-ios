@@ -10,6 +10,10 @@
 
 @interface ResetPasswordVC : BaseVC
 
+
+@property(nonatomic,strong)NSString *verifyCode;
+
+
 @property(nonatomic,strong)NSString *mobile_code;
 @property(nonatomic,strong)NSString *mobile;
 

@@ -71,6 +71,9 @@
     _newingPassword.password.textColor=TextRGBColor;
     _newingPassword.textField.font=[UIFont systemFontOfSize:14];
     _newingPassword.textField.textColor=PlaceHoderRGBColor;
+    
+    _newingPassword.textField.secureTextEntry = YES;
+    
     [self.view addSubview:_newingPassword];
     
     _confirmPassword = [[PasswordView alloc]initWithFrame:CGRectMake(0, _newingPassword.frame.origin.y+_newingPassword.frame.size.height+1, SCREEN_WIDTH, 108*HEIGHT_SCALE)];
@@ -80,6 +83,9 @@
     _confirmPassword.password.textColor=TextRGBColor;
     _confirmPassword.textField.font=[UIFont systemFontOfSize:14];
     _confirmPassword.textField.textColor=PlaceHoderRGBColor;
+    
+     _confirmPassword.textField.secureTextEntry = YES;
+    
     [self.view addSubview:_confirmPassword];
     
     
@@ -137,7 +143,10 @@
     [dic setObject:_newingPassword.textField.text forKey:@"password"];
     [dic setObject:_confirmPassword.textField.text forKey:@"repassword"];
     [dic setObject:_mobile forKey:@"mobile"];
-    [dic setObject:_mobile_code forKey:@"mobile_code"];
+    [dic setObject:_mobile_code forKey:@"mobilecode"];
+    
+    [dic setObject:_verifyCode forKey:@"verify"];
+
     
     NSLog(@"json data is : %@" ,dic);
     

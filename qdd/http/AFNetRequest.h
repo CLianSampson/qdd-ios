@@ -61,6 +61,13 @@ static NSString *URL_FORGET_PASSWORD=@"https://www.qiandd.com/mobile/user/do_mob
 
 static NSString *URL_RESET_PASSWORD=@"https://www.qiandd.com/mobile/Set/changepwd_post/token/";//修改密码
 
+static NSString *URL_FORGET_PASSWORD_NEW=@"https://www.qiandd.com/mobile/user/doforgot_password";//忘记密码新接口
+
+static NSString *URL_FORGET_PASSWORD_GET_SMS=@"https://www.qiandd.com/mobile/user/forgetsms/";//忘记密码时获取短信验证码
+
+
+
+
 static NSString *URL_GET_ACCOUNT_INFO=@"https://www.qiandd.com/mobile/set/userinfo/token/";//获取用户资料
 
 static NSString *URL_BIND_MAIL=@"https://www.qiandd.com/mobile/Set/bound_post/token/";//绑定邮箱，发送邮件

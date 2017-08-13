@@ -48,10 +48,24 @@
 
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 
+//@property(nonatomic,strong)NSMutableArray *waitForOtherMutableArry;
+//
+//@property(nonatomic,strong)NSMutableArray *waitForMeMutableArry;
+//
+//@property(nonatomic,strong)NSMutableArray *completeMutableArry;
+//
+//@property(nonatomic,strong)NSMutableArray *timeOutMutableArry;
+//
+//@property(nonatomic,strong)NSMutableArray *haveRejectMutableArry;
+
+
+
 @property(nonatomic,assign)int pageNo;
 
 
 @property(nonatomic,strong)UILabel *noDataLabel;//没有数据时展示
+
+@property(nonatomic,assign)BOOL refreshFlag; //下拉刷新标志
 
 
 @end
@@ -61,16 +75,23 @@
 -(void)viewWillAppear:(BOOL)animated{
     self.navigationController.navigationBarHidden=YES;
     
+//    [_myTableView deselectRowAtIndexPath:[_myTableView indexPathForSelectedRow] animated:YES];
+    
+    
     NSLog(@"widthscale is : %f" ,WIDTH_SCALE);
    
     NSLog(@"widthscale is : %f" ,(float)1080/750/3);
+}
+
+-(void)clearCellSelect{
+    [_myTableView deselectRowAtIndexPath:[_myTableView indexPathForSelectedRow] animated:YES];
 }
 
 -(void)viewDidLoad{
     _pageNo=1;
     _status=1;
     
-   
+    _refreshFlag = YES; //可以下拉刷新
 
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -201,9 +222,10 @@
     
     [self addLoadIndicator];
     
-    [self netReauest];
-    
-    
+    if (_refreshFlag == YES) {
+        [self netReauest];
+        _refreshFlag = NO;
+    }
     
    
 }
@@ -235,133 +257,182 @@
 
     
     tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _mutableArry = nil;
-        
-        _pageNo = 1;
-        [self netReauest];
         //停止刷新
         [tableView.header endRefreshing];
+        
+        if (_refreshFlag == YES) {
+             _refreshFlag = NO;
+            
+            _mutableArry = nil;
+            //不能使用 [_mutableArry removeAllObjects] 方法，因为当下拉刷新时， _mutableArry为空，tableview会超出屏幕的范围会重新绘制，会崩
+            
+            _pageNo = 1;
+            [self netReauest];
+        }
     }];
 }
 
 
 -(void)waitForMeMethod{
-    _status=1;
-    _pageNo=1;
-    
-    _mutableArry=nil;
-    [_myTableView reloadData];
-    [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
-    }];
-    
-     [_waitForMe setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
-    [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
 
-    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-
-
-    [self netReauest];
+    if (_refreshFlag == YES) {
+        
+        [self addLoadIndicator];
+        
+        _status=1;
+        _pageNo=1;
+        
+        _mutableArry = nil;
+        [_myTableView reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _underLabel.frame=CGRectMake(interval*WIDTH_SCALE, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        }];
+        
+        [_waitForMe setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+         [self netReauest];
+        _refreshFlag = NO;
+    }
+   
     
     
 }
 
 -(void)waitForOtherMethod{
-    _status=2;
-    _pageNo=1;
     
-     _mutableArry=nil;
-    [_myTableView reloadData];
-    [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
-    }];
-    
-    
-    [_waitForOther setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
-    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    if (_refreshFlag == YES) {
+        [self addLoadIndicator];
 
-    
-    [self netReauest];
+        
+        _status=2;
+        _pageNo=1;
+        
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForMe.frame.origin.x+_waitForMe.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        }];
+        
+        
+        [_waitForOther setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [self netReauest];
+        _refreshFlag = NO;
+    }
 }
 
 -(void)completeMethod{
-    _status=3;
-    _pageNo=1;
-    
-     _mutableArry=nil;
-    [_myTableView reloadData];
-    [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
-    }];
-    
-    [_complete setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
-    [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-
     
 
-    [self netReauest];
-    
+    if (_refreshFlag == YES) {
+        [self addLoadIndicator];
+
+        
+        _status=3;
+        _pageNo=1;
+        
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_waitForOther.frame.origin.x+_waitForOther.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        }];
+        
+        [_complete setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+
+        
+        [self netReauest];
+        _refreshFlag = NO;
+    }
 }
 
+
+
 -(void)timeOutMethod{
-    _status=4;
-    _pageNo=1;
     
-     _mutableArry=nil;
-    [_myTableView reloadData];
-    [UIView animateWithDuration:0.5 animations:^{
-        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
-    }];
-    
-    [_timeOut setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
-    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+    if (_refreshFlag == YES) {
+        
+        [self addLoadIndicator];
 
-    
+        
+        _status=4;
+        _pageNo=1;
+        
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_complete.frame.origin.x+_complete.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth, 2);
+        }];
+        
+        [_timeOut setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_haveReject setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
 
-    [self netReauest];
+        
+        [self netReauest];
+        _refreshFlag = NO;
+    }
 
 }
 
 
 -(void)haveRefuse{
-    _status=5;
-    _pageNo=1;
     
-    _mutableArry=nil;
-    [_myTableView reloadData];
-    [UIView animateWithDuration:0.5 animations:^{
-        //buttonWidth-3  为了不让下划线挨到顶边
+    if (_refreshFlag == YES) {
         
-        _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_timeOut.frame.origin.x+_timeOut.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth-10, 2);
-    }];
-    
-    [_haveReject setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        [self addLoadIndicator];
 
-    [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-    
-    
-    [self netReauest];
+        
+        _status=5;
+        _pageNo=1;
+        
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            //buttonWidth-3  为了不让下划线挨到顶边
+            
+            _underLabel.frame=CGRectMake(interval*WIDTH_SCALE+_timeOut.frame.origin.x+_timeOut.frame.size.width, buttonOrginalY+89*HEIGHT_SCALE-2, buttonWidth-10, 2);
+        }];
+        
+        [_haveReject setTitleColor:RGBColor(0, 51, 192) forState:UIControlStateNormal];
+        
+        [_timeOut setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_complete setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        
+        [_waitForMe setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [_waitForOther setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+
+        
+        [self netReauest];
+        _refreshFlag = NO;
+    }
 }
 
 
@@ -376,22 +447,27 @@
     
     if (nil==_mutableArry || _mutableArry.count==0) {
         [self.view addSubview:_noDataLabel];
+        
     }else{
         [_noDataLabel removeFromSuperview];
     }
-
     
+    NSLog(@"_mutableArry is : %@",_mutableArry);
+    NSLog(@"清空后的count is : %ld",_mutableArry.count);
     return _mutableArry.count;
+
 }
 
+
 - (SignCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     
     static NSString *cellIdentifier = @"Cell";
     
     SignCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[SignCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
+        
+        cell.selectionStyle = UITableViewCellSelectionStyleDefault;
     }
     
     
@@ -422,6 +498,9 @@
     cell.layer.cornerRadius=3;
     cell.clipsToBounds=YES;
     
+    
+    NSLog(@"count is : %ld",_mutableArry.count);
+    NSLog(@"section is : %ld",indexPath.section);
     
     SignModel *model  = (SignModel *)[_mutableArry objectAtIndex:indexPath.section];
     
@@ -454,12 +533,8 @@
         sendTime = @"发送时间: ";
     }
     
-    
-    
-
     duration =[NSString stringWithFormat:@"签约有限期: %d天",intervalTime];
     
-   
     cell.signName.text=signName;
     cell.sendPerson.text=sendPerson;
     cell.sendTime.text=sendTime;
@@ -471,6 +546,8 @@
 
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    //清除cell点击效果
+    [self performSelector:@selector(clearCellSelect) withObject:self afterDelay:0.5f];
     
     SignModel *model = (SignModel *)[_mutableArry objectAtIndex:indexPath.row];
     
@@ -565,6 +642,10 @@
     __weak typeof(self) weakSelf=self;
     
     request.netSucessBlock=^(id result){
+        /***************************************/
+        _refreshFlag = YES;
+
+        
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -591,6 +672,9 @@
         [weakSelf createAlertView];
         weakSelf.alertView.title=@"网络有点问题哦，无法加载";
         [weakSelf.alertView show];
+        
+        /***************************************/
+        _refreshFlag = YES;
     };
     
     NSLog(@"获取首页合同，url is: %@",urlstring);
@@ -599,6 +683,7 @@
 
 
 -(void)sucessDo:(id )result{
+    
     NSDictionary *data = [result objectForKey:@"data"];
     if (data==nil || [data isEqual:[NSNull null]]) {
         return ;
@@ -640,9 +725,9 @@
     }
     
     
-//    [self.view addSubview:_myTableView];
-//    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
+    
+   
 }
 
 @end

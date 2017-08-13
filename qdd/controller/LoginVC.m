@@ -18,6 +18,8 @@
 #import "SaveToMemory.h"
 #import "Constants.h"
 
+#import "ForgetPasswordVC.h"
+
 
 
 @interface LoginVC()
@@ -134,7 +136,9 @@
 
 
 -(void)forgetPassword{
-    ForgetAndSetPasswordVC *VC = [[ForgetAndSetPasswordVC alloc]init];
+//    ForgetAndSetPasswordVC *VC = [[ForgetAndSetPasswordVC alloc]init];
+    ForgetPasswordVC *VC =[[ForgetPasswordVC alloc]init];
+    
     UINavigationController *nav =[[UINavigationController alloc]initWithRootViewController:VC];
     [self presentViewController:nav animated:YES completion:nil];
 

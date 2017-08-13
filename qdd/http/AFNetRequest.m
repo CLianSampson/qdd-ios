@@ -34,6 +34,19 @@
 }
 
 
+-(instancetype)init{
+    if (self == [super init]) {
+        self.netFailedBlock = ^(id result){
+            UIAlertView *alertView =[[UIAlertView alloc]initWithTitle:@"网络有点问题哦，无法加载" message:nil delegate:nil cancelButtonTitle:@"确定" otherButtonTitles: nil];
+            alertView.frame=CGRectMake(SCREEN_WIDTH/2-50, SCREEN_HEIGHT/2-30, 100, 60);
+            [alertView show];
+            
+        };
+    }
+    
+    return self;
+}
+
 
 -(void)netRequestWithUrl:(NSString *)url Data:(id )data{
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
@@ -180,7 +193,8 @@
         
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
         NSLog(@"%@",error);
-        [self createAlertView];
+//        [self createAlertView];
+        self.netFailedBlock(error);
 
     }];
     

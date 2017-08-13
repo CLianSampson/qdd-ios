@@ -18,6 +18,9 @@
 @property(nonatomic,strong)UITableView *myTableView;
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 @property(nonatomic,strong)NSArray *pictureNameArry;
+
+@property(nonatomic,strong)NSArray *signArry; //签章数组
+
 @property(nonatomic,assign)int pageNo;
 
 @property(nonatomic,strong)UIButton *rightButton;
@@ -46,7 +49,7 @@
 }
 
 -(void)viewDidLoad{
-    _pageNo=0;
+    _pageNo=1;
     
     [super viewDidLoad];
     
@@ -288,6 +291,34 @@
     AFNetRequest *request = [[AFNetRequest alloc]init];
     request.pictureBlock=^(id result){
         cell.imageShow.image=[UIImage imageWithData:result];
+        
+        if (_signArry!=nil && _signArry.count!=0) {
+            for (NSDictionary *temp in _signArry) {
+                if ((int)[temp objectForKey:@"num"] == indexPath.row) {
+                    int x = (int)[temp objectForKey:@"posX"];
+                    int y = (int)[temp objectForKey:@"posY"];
+                    
+                    UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, 60, 30)];
+                    [cell.imageShow addSubview:imageview];
+                    
+                    NSString *signPath = (NSString*)[_pictureNameArry objectAtIndex:indexPath.row];
+                    
+                    NSMutableString  *signUrlstring=[NSMutableString stringWithString:URL_COMMON];
+                    
+                    NSString *signAppendUrlString=[signUrlstring stringByAppendingString:signPath];
+                    
+                    AFNetRequest *signRequest = [[AFNetRequest alloc]init];
+                    signRequest.pictureBlock=^(id result){
+                        imageview.image = [UIImage imageWithData:result];
+                    };
+                    
+                    [signRequest downLoadPicture:signAppendUrlString];
+                    
+                    
+                }
+            }
+        }
+        
     };
     
     request.pictureFailedBlock=^{
@@ -368,7 +399,7 @@
     [urlstring appendString:@"/id/"];
     [urlstring appendString:self.signId];
     
-    NSString *string = [NSString stringWithFormat:@"p/%d",_pageNo];
+    NSString *string = [NSString stringWithFormat:@"/p/%d",_pageNo];
     [urlstring appendString:string];
     
     __weak typeof(self) weakSelf=self;
@@ -394,6 +425,7 @@
         
     };
     
+    NSLog(@"合同展示的url : %@",urlstring);
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
@@ -413,7 +445,7 @@
         return;
     }
     
-    
+    _signArry = [data objectForKey:@"sign"];
     
     [_myTableView reloadData];
     

@@ -68,6 +68,9 @@
     _phone.textField.textColor=RGBColor(172, 172, 172);
     _phone.password.font=[UIFont systemFontOfSize:14];
     _phone.textField.font=[UIFont systemFontOfSize:14];
+    
+    _phone.textField.text = _mobile;
+    
     [self.view addSubview:_phone];
     
     
@@ -104,6 +107,8 @@
     ResetPasswordVC *VC =[[ResetPasswordVC alloc]init];
     VC.mobile = _phone.textField.text;
     VC.mobile_code = _code.textField.text;
+    
+    VC.verifyCode = _verifyCode;
     
     VC.token = self.token;
     

@@ -166,6 +166,7 @@
 		DB65A8D31F1F0DCA001327C6 /* comment.strings in Resources */ = {isa = PBXBuildFile; fileRef = DB65A8D21F1F0DCA001327C6 /* comment.strings */; };
 		DB7DCA901F2081710046A3C1 /* JsonUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = DB7DCA8F1F2081710046A3C1 /* JsonUtil.m */; };
 		DBD25C2B1F1CB1B200B4FF99 /* SaveToMemory.m in Sources */ = {isa = PBXBuildFile; fileRef = DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */; };
+		DBEC37D01F40570B003A1339 /* ForgetPasswordVC.m in Sources */ = {isa = PBXBuildFile; fileRef = DBEC37CF1F40570B003A1339 /* ForgetPasswordVC.m */; };
 		DBF8B4361F21AE1400C48E81 /* UMMobClick.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF8B4351F21AE1400C48E81 /* UMMobClick.framework */; };
 		DBF8B4381F21AE7700C48E81 /* libsqlite3.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = DBF8B4371F21AE7700C48E81 /* libsqlite3.tbd */; };
 /* End PBXBuildFile section */
@@ -481,6 +482,8 @@
 		DB7DCA8F1F2081710046A3C1 /* JsonUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JsonUtil.m; sourceTree = "<group>"; };
 		DBD25C291F1CB1B200B4FF99 /* SaveToMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SaveToMemory.h; sourceTree = "<group>"; };
 		DBD25C2A1F1CB1B200B4FF99 /* SaveToMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SaveToMemory.m; sourceTree = "<group>"; };
+		DBEC37CE1F40570B003A1339 /* ForgetPasswordVC.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForgetPasswordVC.h; sourceTree = "<group>"; };
+		DBEC37CF1F40570B003A1339 /* ForgetPasswordVC.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForgetPasswordVC.m; sourceTree = "<group>"; };
 		DBF8B4351F21AE1400C48E81 /* UMMobClick.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = UMMobClick.framework; sourceTree = "<group>"; };
 		DBF8B4371F21AE7700C48E81 /* libsqlite3.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libsqlite3.tbd; path = usr/lib/libsqlite3.tbd; sourceTree = SDKROOT; };
 /* End PBXFileReference section */
@@ -729,6 +732,7 @@
 		1831BCC81E575E0A00AAE0E5 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				DBEC37CA1F40569B003A1339 /* forgetpassword */,
 				DB9E12231F1CA3D500586089 /* signature */,
 				DB9E12221F1CA33000586089 /* verify */,
 				DB399BEF1F1C587500533956 /* setting */,
@@ -1095,16 +1099,8 @@
 		DB399BEF1F1C587500533956 /* setting */ = {
 			isa = PBXGroup;
 			children = (
-				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
-				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
-				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
-				18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */,
-				18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */,
-				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
 				182B4CCB1EA9E28D00C49874 /* SetPasswordVC.h */,
 				182B4CCC1EA9E28D00C49874 /* SetPasswordVC.m */,
-				18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */,
-				18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */,
 				18F494141E6C14310033AC03 /* SecurityVC.h */,
 				18F494151E6C14310033AC03 /* SecurityVC.m */,
 				18D9380F1E705EF0000EC118 /* RegisteVC.h */,
@@ -1201,6 +1197,23 @@
 				185A03141E61415000EB9325 /* MySignVC.m */,
 			);
 			path = signature;
+			sourceTree = "<group>";
+		};
+		DBEC37CA1F40569B003A1339 /* forgetpassword */ = {
+			isa = PBXGroup;
+			children = (
+				18ABF8D81E73C52E00022368 /* ForgetAndSetPasswordVC.h */,
+				18ABF8D91E73C52E00022368 /* ForgetAndSetPasswordVC.m */,
+				18ABF8DE1E73D38700022368 /* SetPasswordSucessVC.h */,
+				18ABF8DF1E73D38700022368 /* SetPasswordSucessVC.m */,
+				18ABF8E11E73D39800022368 /* SetPasswordFailedVC.h */,
+				18ABF8E21E73D39800022368 /* SetPasswordFailedVC.m */,
+				DBEC37CE1F40570B003A1339 /* ForgetPasswordVC.h */,
+				DBEC37CF1F40570B003A1339 /* ForgetPasswordVC.m */,
+				18ABF8E41E73D9B900022368 /* ResetPasswordVC.h */,
+				18ABF8E51E73D9B900022368 /* ResetPasswordVC.m */,
+			);
+			path = forgetpassword;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1453,6 +1466,7 @@
 				18BCA4EB1F0CC71E00AF9286 /* ApiXml.mm in Sources */,
 				18B9F3C51E86374800A3A1EC /* MJRefreshAutoStateFooter.m in Sources */,
 				1831BD031E575E0A00AAE0E5 /* AFHTTPSessionManager.m in Sources */,
+				DBEC37D01F40570B003A1339 /* ForgetPasswordVC.m in Sources */,
 				1831BD0D1E575E0A00AAE0E5 /* UIViewController+RESideMenu.m in Sources */,
 				180F11A31E75907C0082F385 /* FaceStreamDetectorViewController.m in Sources */,
 				18B9F3DC1E865FFF00A3A1EC /* MessageModel.m in Sources */,

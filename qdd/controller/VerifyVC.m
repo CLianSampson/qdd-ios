@@ -48,7 +48,7 @@
     
     [self creteView];
     
-    [self addNotification];
+//    [self addNotification];
     
 }
 
@@ -120,11 +120,11 @@
 
 
 -(void)confirm{
-    if ([_name.textField.text isEqualToString:@""]
-        || [_idNum.textField.text isEqualToString:@""]
-        || [_bankNum.textField.text isEqualToString:@""]
-        || [_phone.textField.text isEqualToString:@""]
-        || [_code.textField.text isEqualToString:@""]) {
+    if([StringUtil isNullOrBlank:_name.textField.text]
+       || [StringUtil isNullOrBlank:_idNum.textField.text]
+       || [StringUtil isNullOrBlank:_bankNum.textField.text]
+       || [StringUtil isNullOrBlank:_phone.textField.text]
+       || [StringUtil isNullOrBlank:_code.textField.text]){
         
         [super createAlertView];
         self.alertView.title=@"输入内容不能为空";
@@ -134,14 +134,6 @@
     }
     
     [self netRequest];
-    
-    PhotoVC *VC =[[PhotoVC alloc]init];
-    VC.token=self.token;
-    [self.navigationController pushViewController:VC animated:YES];
-    
-   
-    
-
 }
 
 
@@ -209,14 +201,6 @@
             
         }
         
-    };
-    
-    request.netFailedBlock=^(id result){
-        [weakSelf.indicator removeFromSuperview];
-        
-        [weakSelf createAlertView];
-        weakSelf.alertView.title=@"网络有点问题哦，无法加载";
-        [weakSelf.alertView show];
     };
     
     [request netRequestWithUrl:urlstring Data:dic];
@@ -288,9 +272,9 @@
 }
 
 #pragma mark 认证成功后的通知
--(void)addNotification{
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
-}
+//-(void)addNotification{
+//    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(showLeft) name:GOTO_MAIN_CONTROLLER_FROM_ENTERPRISE_VERIFY_CONTROLLER object:nil];
+//}
 
 
 @end

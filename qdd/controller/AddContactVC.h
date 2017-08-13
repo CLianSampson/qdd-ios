@@ -10,4 +10,6 @@
 
 @interface AddContactVC : BaseVC
 
+@property(nonatomic,copy)BackBlock backBlock;
+
 @end

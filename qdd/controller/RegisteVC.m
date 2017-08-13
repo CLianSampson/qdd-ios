@@ -231,6 +231,8 @@
     if (indexPath.row==2) {
         cell.icon.image=[UIImage imageNamed:@"hover"];
         cell.textField.placeholder=@"请输入密码";
+        
+        cell.textField.secureTextEntry = YES;
 
         _indexPathPassword = indexPath;
         
@@ -238,7 +240,8 @@
         cell.icon.image=[UIImage imageNamed:@"hover-副本"];
         cell.textField.placeholder=@"请再次输入密码";
         
-        
+        cell.textField.secureTextEntry = YES;
+
         _indexPathRepassword = indexPath;
 
     }

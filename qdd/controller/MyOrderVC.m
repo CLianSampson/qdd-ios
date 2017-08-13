@@ -29,6 +29,7 @@
 @property(nonatomic,assign)int price;
 @property(nonatomic,strong)NSString *orderId;
 
+@property(nonatomic,assign)BOOL refreshFlag;  //下拉刷新标志
 
 @end
 
@@ -135,8 +136,8 @@
     [self addLoadIndicator];
     
     [self netReauest];
-
 }
+
 
 -(void)addMjRefresh:(UITableView *)tableView{
     
@@ -150,78 +151,116 @@
     }];
     
     tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _mutableArry = nil;
-        
-        _pageNo = 1;
-        [self netReauest];
         //停止刷新
         [tableView.header endRefreshing];
+        
+        if (_refreshFlag == YES) {
+            _mutableArry = nil;
+//            [_myTableView reloadData];
+            
+            _pageNo = 1;
+            [self netReauest];
+            
+            _refreshFlag = NO;
+        }
     }];
 }
 
 
 -(void)allClick{
-    [UIView animateWithDuration:0.5 animations:^{
-        [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
-        
-        [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-        
-        [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-        
-        
-        _underLabel.frame=CGRectMake(0+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
-    }];
     
-    _mutableArry=nil;
-    [_myTableView reloadData];
-    _pageNo=1;
-    _orstatus=2;
-    [self netReauest];
+    if (_refreshFlag == YES) {
+        
+        [self addLoadIndicator];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            [allButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
+            
+            [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            
+            _underLabel.frame=CGRectMake(0+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
+        }];
+        
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        _pageNo=1;
+        _orstatus=2;
+
+        
+        [self netReauest];
+        
+        _refreshFlag = NO;
+    }
+    
+    
 }
 
 
 -(void)unPayClick{
-    [UIView animateWithDuration:0.5 animations:^{
+    
+    if (_refreshFlag == YES) {
         
-        [unPayButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
+        [self addLoadIndicator];
         
-        [allButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [unPayButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
+            
+            [allButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            _underLabel.frame= CGRectMake(SCREEN_WIDTH/3+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
+            
+        }];
         
-        [payButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
         
-        _underLabel.frame= CGRectMake(SCREEN_WIDTH/3+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
-        
-    }];
+        _mutableArry=nil;
+        [_myTableView reloadData];
+        _pageNo=1;
+        _orstatus=0;
 
-    
-    _mutableArry=nil;
-    [_myTableView reloadData];
-    _pageNo=1;
-     _orstatus=0;
-    [self netReauest];
-    
+        
+        [self netReauest];
+        
+        _refreshFlag = NO;
+    }
+
 }
 
 
 -(void)payClick{
-    [UIView animateWithDuration:0.5 animations:^{
-        
-        [payButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
-        
-        [allButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-        
-        [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
-        
-        _underLabel.frame=  CGRectMake(2*SCREEN_WIDTH/3+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
-        
-    }];
-
     
-    _mutableArry = nil;
-    [_myTableView reloadData];
-    _pageNo=1;
-    _orstatus=1;
-    [self netReauest];
+    if (_refreshFlag == YES) {
+        [self addLoadIndicator];
+        
+        [UIView animateWithDuration:0.5 animations:^{
+            
+            [payButton setTitleColor:RGBColor(0, 51, 102) forState:UIControlStateNormal];
+            
+            [allButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            [unPayButton setTitleColor:RGBColor(102, 102, 102) forState:UIControlStateNormal];
+            
+            _underLabel.frame=  CGRectMake(2*SCREEN_WIDTH/3+SCREEN_WIDTH/12, 113-2, SCREEN_WIDTH/3/2, 2);
+            
+        }];
+        
+        
+        _mutableArry = nil;
+        [_myTableView reloadData];
+        _pageNo=1;
+        _orstatus=1;
+
+        
+        [self netReauest];
+        
+        _refreshFlag = NO;
+    }
+
 }
 
 -(void)showLeft{
@@ -248,6 +287,9 @@
         cell = [[OrderCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:nil];
         
         cell.delegate=self;
+        
+        //cell点击效果 设置为无
+        cell.selectionStyle = UITableViewCellSelectionStyleNone;
         
         OrderModel *model = (OrderModel *)[_mutableArry objectAtIndex:indexPath.row];
         
@@ -386,6 +428,9 @@
     __weak typeof(self) weakSelf=self;
     
     request.netSucessBlock=^(id result){
+        
+        _refreshFlag = YES;
+        
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -405,6 +450,9 @@
     };
     
     request.netFailedBlock=^(id result){
+        
+        _refreshFlag = NO;
+        
         [weakSelf.indicator removeFromSuperview];
         
         [weakSelf createAlertView];
@@ -419,6 +467,8 @@
 
 
 -(void)sucessDo:(id )result{
+    _refreshFlag = YES;
+    
     NSDictionary *data = [result objectForKey:@"data"];
     if (data==nil || [data isEqual:[NSNull null]]) {
         return ;

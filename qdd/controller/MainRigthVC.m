@@ -24,6 +24,9 @@
 @property(nonatomic,strong)NSMutableArray *mutableArry;
 @property(nonatomic,strong)UITableView *myTableView;
 
+@property(nonatomic,assign)BOOL refreshFlag; //下拉刷新标志
+
+
 @end
 
 @implementation MainRigthVC
@@ -38,6 +41,8 @@
     [super viewDidLoad];
     
     _pageNo=1;
+    
+    _refreshFlag = YES;
     
     
 //    self.view.backgroundColor=[UIColor whiteColor];
@@ -116,12 +121,19 @@
     
     
     tableView.header = [MJRefreshNormalHeader headerWithRefreshingBlock:^{
-        _mutableArry = nil;
-        
-        _pageNo = 1;
-        [self netReauest];
         //停止刷新
         [tableView.header endRefreshing];
+        
+        if (_refreshFlag == YES) {
+            _mutableArry = nil;
+//            [_myTableView reloadData];
+            
+            _pageNo = 1;
+            [self netReauest];
+            
+            _refreshFlag = NO;
+        }
+
     }];
 
     
@@ -231,6 +243,10 @@
     __weak typeof(self) weakSelf=self;
     
     request.netSucessBlock=^(id result){
+        
+        _refreshFlag = YES;
+        
+        
         NSString *state = [result objectForKey:@"state"];
         NSString *info = [result objectForKey:@"info"];
         
@@ -252,11 +268,23 @@
     };
     
     
+    request.netFailedBlock=^(id result){
+        _refreshFlag = YES;
+        
+        [weakSelf.indicator removeFromSuperview];
+        
+        [weakSelf createAlertView];
+        weakSelf.alertView.title=@"网络有点问题";
+        [weakSelf.alertView show];
+
+    };
+    
     [request netRequestGetWithUrl:urlstring Data:nil];
 }
 
 
 -(void)sucessDo:(id )result{
+    
     NSDictionary *data = [result objectForKey:@"data"];
     if (data==nil || [data isEqual:[NSNull null]]) {
         return ;
@@ -292,9 +320,6 @@
         [_mutableArry addObject:model];
     }
     
-    
-//    [self.view addSubview:_myTableView];
-//    [self addMjRefresh:_myTableView];
     [_myTableView reloadData];
     
 }

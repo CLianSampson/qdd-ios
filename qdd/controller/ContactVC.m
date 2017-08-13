@@ -38,6 +38,7 @@
 
 -(void)viewDidLoad{
     
+    self.view.backgroundColor = [UIColor whiteColor];
     
     UIButton *leftButton = [[UIButton alloc]initWithFrame:CGRectMake(30*WIDTH_SCALE, 31, 22, 22)];
     [self.view addSubview:leftButton];
