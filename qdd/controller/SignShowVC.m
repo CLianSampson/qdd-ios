@@ -276,60 +276,132 @@
     SignShowCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
         cell = [[SignShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
-    }
-    
-    
-    
-    NSString *path = (NSString*)[_pictureNameArry objectAtIndex:indexPath.row];
-
-    NSMutableString  *urlstring=[NSMutableString stringWithString:URL_COMMON];
-
-    NSString *appendUrlString=[urlstring stringByAppendingString:path];
-
-    
-    
-    AFNetRequest *request = [[AFNetRequest alloc]init];
-    request.pictureBlock=^(id result){
-        cell.imageShow.image=[UIImage imageWithData:result];
         
-        if (_signArry!=nil && _signArry.count!=0) {
-            for (NSDictionary *temp in _signArry) {
-                if ((int)[temp objectForKey:@"num"] == indexPath.row) {
-                    int x = (int)[temp objectForKey:@"posX"];
-                    int y = (int)[temp objectForKey:@"posY"];
+        
+        NSString *path = (NSString*)[_pictureNameArry objectAtIndex:indexPath.row];
+        
+        NSMutableString  *urlstring=[NSMutableString stringWithString:URL_COMMON];
+        
+        NSString *appendUrlString=[urlstring stringByAppendingString:path];
+        
+        
+        
+        AFNetRequest *request = [[AFNetRequest alloc]init];
+        request.pictureBlock=^(id result){
+            cell.imageShow.image=[UIImage imageWithData:result];
+            
+            
+            //请求图片对应的签章id
+            _pageNo = (int)(indexPath.row + 1);
+            AFNetRequest *request = [[AFNetRequest alloc]init];
+            
+            if ([StringUtil isNullOrBlank:self.token]
+                || [StringUtil isNullOrBlank:self.signId]) {
+                
+                return;
+            }
+            
+            NSMutableString  *urlstring=[NSMutableString stringWithString:URL_SIGN_SHOW];
+            
+            [urlstring appendString:self.token];
+            
+            [urlstring appendString:@"/id/"];
+            [urlstring appendString:self.signId];
+            
+            NSString *string = [NSString stringWithFormat:@"/p/%d",_pageNo];
+            [urlstring appendString:string];
+            
+            __weak typeof(self) weakSelf=self;
+            
+            request.netSucessBlock=^(id result){
+                NSString *state = [result objectForKey:@"state"];
+                NSString *info = [result objectForKey:@"info"];
+                
+                if ([state isEqualToString:@"success"]) {
+                    [weakSelf.indicator removeFromSuperview];
                     
-                    UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(x, y, 60, 30)];
-                    [cell.imageShow addSubview:imageview];
+                    NSDictionary *data = [result objectForKey:@"data"];
+                    if (data==nil || [data isEqual:[NSNull null]]) {
+                        return ;
+                    }
                     
-                    NSString *signPath = (NSString*)[_pictureNameArry objectAtIndex:indexPath.row];
                     
-                    NSMutableString  *signUrlstring=[NSMutableString stringWithString:URL_COMMON];
+                    NSArray *picArry = [data objectForKey:@"pic_name"];
                     
-                    NSString *signAppendUrlString=[signUrlstring stringByAppendingString:signPath];
+                    if (picArry==nil
+                        || (NSNull *)picArry==[NSNull null]
+                        || [picArry count]==0){
+                        return;
+                    }
                     
-                    AFNetRequest *signRequest = [[AFNetRequest alloc]init];
-                    signRequest.pictureBlock=^(id result){
-                        imageview.image = [UIImage imageWithData:result];
-                    };
+                    NSArray *signArry = [data objectForKey:@"sign"];
                     
-                    [signRequest downLoadPicture:signAppendUrlString];
+                    if (signArry!=nil && signArry.count!=0) {
+                        for (NSDictionary *temp in signArry) {
+                            
+                            int x = [[temp objectForKey:@"posX"] intValue] ;
+                            int y = [[temp objectForKey:@"posY"] intValue] ;
+                            
+                            NSLog(@"x is : %d",x);
+                            NSLog(@"y is : %d",y);
+                            
+                            int xPosition = ((float)x/758)*SCREEN_WIDTH;
+                            int yPosition = ((float)y/1072)*SCREEN_HEIGHT;
+                            
+                            NSLog(@"xPosition is : %d",xPosition);
+                            NSLog(@"yPosition is : %d",yPosition);
+                            
+                            
+                            UIImageView *imageview = [[UIImageView alloc]initWithFrame:CGRectMake(xPosition, yPosition, 60, 120)];
+                            [cell.imageShow addSubview:imageview];
+                            
+                            NSString *signPath = (NSString*)[temp objectForKey:@"path"];
+                            
+                            NSMutableString  *signUrlstring=[NSMutableString stringWithString:URL_COMMON];
+                            
+                            [signUrlstring appendString:signPath];
+                            
+                            AFNetRequest *signRequest = [[AFNetRequest alloc]init];
+                            signRequest.pictureBlock=^(id result){
+                                imageview.image = [UIImage imageWithData:result];
+                            };
+                            
+                            NSLog(@"下载签章图片的地址是 : %@",signUrlstring);
+                            [signRequest downLoadPicture:signUrlstring];
+                        }
+                    }
                     
+                    
+                    //                [_myTableView reloadData];
+                    
+                }else if ([state isEqualToString:@"fail"]){
+                    [weakSelf.indicator removeFromSuperview];
+                    
+                    [weakSelf createAlertView];
+                    weakSelf.alertView.title=info;
+                    [weakSelf.alertView show];
                     
                 }
-            }
-        }
+                
+            };
+            
+            NSLog(@"获取签章url : %@",urlstring);
+            [request netRequestGetWithUrl:urlstring Data:nil];
+        };
         
-    };
+        request.pictureFailedBlock=^{
+            //        [self.indicator removeFromSuperview];
+            //        
+            //        [self createAlertView];
+            //        self.alertView.title=@"网络有点问题哦，无法下载合同";
+            //        [self.alertView show];
+        };
+        
+        [request downLoadPicture:appendUrlString];
+    }
     
-    request.pictureFailedBlock=^{
-//        [self.indicator removeFromSuperview];
-//        
-//        [self createAlertView];
-//        self.alertView.title=@"网络有点问题哦，无法下载合同";
-//        [self.alertView show];
-    };
+//    SignShowCell *cell = [[SignShowCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:cellIdentifier];
     
-    [request downLoadPicture:appendUrlString];
     
     return cell;
 }

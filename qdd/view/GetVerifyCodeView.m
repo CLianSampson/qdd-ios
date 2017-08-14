@@ -15,6 +15,8 @@
 
 @property(nonatomic,strong)NSTimer *timer;
 
+@property(nonatomic,assign)BOOL clickFlag;  //获取验证码点击标志, 不让其连续点击
+
 @end
 
 @implementation GetVerifyCodeView
@@ -24,6 +26,8 @@ static int timerFlag = 60;
 
 -(instancetype)initWithFrame:(CGRect)frame{
     if (self==[super initWithFrame:frame]) {
+        
+        _clickFlag = YES;
         
         self.backgroundColor=[UIColor whiteColor];
         
@@ -76,8 +80,7 @@ static int timerFlag = 60;
         
         [self addSubview:_smsCode];
         
-        
-        
+
         UILabel *underlabel =[[ UILabel alloc]initWithFrame:CGRectMake(0,height-1, SCREEN_WIDTH, 1)];
         underlabel.backgroundColor=RGBColor(209, 209, 209);
         [self addSubview:underlabel];
@@ -89,7 +92,10 @@ static int timerFlag = 60;
 
 
 -(void)labelTouchUpInside{
-    [self sendSmsCodeClick];
+    if (_clickFlag == YES) {
+        [self sendSmsCodeClick];
+        _clickFlag = NO;
+    }
 }
 
 -(void)sendSmsCodeClick{
@@ -111,7 +117,6 @@ static int timerFlag = 60;
     
     timerFlag--;
    
-    
     NSString *string = [NSString stringWithFormat:@"%d S",timerFlag];
     
     [_smsCode setText:string];
@@ -131,6 +136,10 @@ static int timerFlag = 60;
     _timer = nil;
     timerFlag = 60;
     
+    _clickFlag = YES;
 }
 
 @end
+
+
+

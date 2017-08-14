@@ -111,8 +111,9 @@
 
     [backGround addSubview:_change];
     
-    _verfyCode  = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 27*HEIGHT_SCALE, 120*WIDTH_SCALE, 50-(22+27)*HEIGHT_SCALE)];
-    [_verfyCode setTitle:@"验证码" forState:UIControlStateNormal];
+//    _verfyCode  = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 27*HEIGHT_SCALE, 120*WIDTH_SCALE, 50-(22+27)*HEIGHT_SCALE)];
+    _verfyCode  = [[UIButton alloc]initWithFrame:CGRectMake(SCREEN_WIDTH-_change.frame.size.width-(20+14+120)*WIDTH_SCALE, 10, 120*WIDTH_SCALE, 108*HEIGHT_SCALE-20)];
+//    [_verfyCode setTitle:@"验证码" forState:UIControlStateNormal];
     [_verfyCode addTarget:self action:@selector(sendPictureCode) forControlEvents:UIControlEventTouchUpInside];
     [backGround addSubview:_verfyCode];
     

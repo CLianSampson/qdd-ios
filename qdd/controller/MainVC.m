@@ -17,6 +17,7 @@
 #import "StringUtil.h"
 #import "MainRigthVC.h"
 #import "SignShowVC.h"
+#import "Constants.h"
 
 
 @interface MainVC()<UITableViewDelegate,UITableViewDataSource>
@@ -92,6 +93,9 @@
     _status=1;
     
     _refreshFlag = YES; //可以下拉刷新
+    
+    //添加签完合同之后的通知
+    [self addNotification];
 
     self.view.backgroundColor=[UIColor whiteColor];
     
@@ -549,7 +553,7 @@
     //清除cell点击效果
     [self performSelector:@selector(clearCellSelect) withObject:self afterDelay:0.5f];
     
-    SignModel *model = (SignModel *)[_mutableArry objectAtIndex:indexPath.row];
+    SignModel *model = (SignModel *)[_mutableArry objectAtIndex:indexPath.section];
     
     SignShowVC *VC= [[SignShowVC alloc]init];
     VC.token=self.token;
@@ -726,9 +730,15 @@
     
     
     [_myTableView reloadData];
-    
-   
 }
+
+
+#pragma mark 签署成功后的通知
+-(void)addNotification{
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(waitForMeMethod) name:GOTO_MAIN_CONTROLLER_FROM_SIGN_SUCESS_CONTROLLER object:nil];
+}
+
+
 
 @end
 
