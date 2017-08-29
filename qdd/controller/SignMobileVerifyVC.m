@@ -233,7 +233,6 @@
             [weakSelf createAlertView];
             weakSelf.alertView.title=info;
             [weakSelf.alertView show];
-            
         }
         
     };

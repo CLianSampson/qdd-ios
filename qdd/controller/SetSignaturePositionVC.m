@@ -515,7 +515,6 @@
     UIPanGestureRecognizer *pan=[[UIPanGestureRecognizer alloc]initWithTarget:self action:@selector(handlePan:)];
     [_personalImageView setUserInteractionEnabled:YES];//开启图片控件的用户交互
     [_personalImageView addGestureRecognizer:pan];//给图片添加手势
-    
 }
 
 

@@ -432,12 +432,6 @@
 }
 
 
-
-
-
-
-
-
 -(void)showLeft{
     [self.sideMenuViewController setContentViewController:self.VC];
     //    [self.sideMenuViewController hideMenuViewController];
@@ -451,7 +445,6 @@
     VC.token=self.token;
     [self.navigationController pushViewController:VC animated:YES];
 }
-
 
 
 

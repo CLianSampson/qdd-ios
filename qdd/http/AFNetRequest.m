@@ -234,10 +234,15 @@
     NSString *state = [result objectForKey:@"state"];
     NSString *info = [result objectForKey:@"info"];
     
-    if ([state isEqualToString:@"fail"] && [info isEqualToString:@"登录验证失败！"]) {
-        
+    if([state isEqualToString:@"fail"] && [info containsString:@"登录验证失败"]){
         [self logout];
     }
+    
+//    if ([state isEqualToString:@"fail"] && [info isEqualToString:@"登录验证失败！"]) {
+//        
+//        [self logout];
+//    }
+    
 }
 
 -(void)logout{
@@ -455,6 +460,8 @@
     //1。创建管理者对象
     AFHTTPSessionManager *manager = [AFHTTPSessionManager manager];
     
+    
+    NSLog(@"上传照片的url : %@" , urlString);
     [manager POST:urlString parameters:nil constructingBodyWithBlock:^(id<AFMultipartFormData>  _Nonnull formData) {
         //上传文件参数
         NSData *data = UIImagePNGRepresentation(image);

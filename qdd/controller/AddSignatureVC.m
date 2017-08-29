@@ -129,6 +129,7 @@
         }
     };
     
+    NSLog(@"上传签名 url is : %@",appendUrlString);
     [request upLoad:appendUrlString image:_drawView.getDrawingImg];
 }
 
