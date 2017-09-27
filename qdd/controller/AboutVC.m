@@ -43,8 +43,6 @@
     
     
     [self createView];
-    
-    
 }
 
 
@@ -117,12 +115,9 @@
             cell.textLabel.text=@"意见反馈";
             break;
             
-            
         default:
             break;
     }
-    
-    
     
     cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
     
@@ -133,11 +128,9 @@
 #pragma mark -tableView delegate
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
    
-    
     if (indexPath.row==0) {
          HelpListVC  *VC=[[HelpListVC alloc]init];
         [self.navigationController pushViewController:VC animated:YES];
-    
     }else if (indexPath.row==1){
         CommentVC *VC = [[CommentVC alloc]init];
         VC.token=self.token;
@@ -148,7 +141,6 @@
 
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath{
-    
     return 40;
 }
 
@@ -158,3 +150,7 @@
 }
 
 @end
+
+
+
+
